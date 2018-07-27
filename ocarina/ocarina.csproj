@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5BAE7635-8F44-4707-BD50-F84A6E5339AB}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ocarina</RootNamespace>
+    <AssemblyName>ocarina</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="C\gcc\mips.h" />
+    <Content Include="C\gcc\udivmod.c" />
+    <Content Include="C\gcc\udivmodsi4.c" />
+    <Content Include="C\gcc\__udivmoddi4.c" />
+    <Content Include="C\gcc\__umoddi3.c" />
+    <Content Include="C\h\vector.h" />
+    <Content Include="C\mips.h" />
+    <Content Include="C\mzx\cust.c" />
+    <Content Include="C\z\Actor.h" />
+    <Content Include="C\z\Actor_s.h" />
+    <Content Include="C\z\demo.h" />
+    <Content Include="C\z\GlobalCtx.h" />
+    <Content Include="C\z\GraphicsCtx.h" />
+    <Content Include="C\z\Matrix.h" />
+    <Content Include="C\z\pydefs rando.txt" />
+    <Content Include="C\z\Room.h" />
+    <Content Include="C\z\Save.h" />
+    <Content Include="C\z\SaveCtx.h" />
+    <Content Include="C\z\Spawn.h" />
+    <Content Include="C\z\StaticCtx.h" />
+    <Content Include="C\z\Z_.c" />
+    <Content Include="C\z\Z_.h" />
+    <Content Include="~notes\asm\8MiB.txt" />
+    <Content Include="~notes\asm\A000 %28Link%29.txt" />
+    <Content Include="~notes\asm\A018 %28Fairy%29.txt" />
+    <Content Include="~notes\asm\A057 %28Shadow Temple Obj%29.txt" />
+    <Content Include="~notes\asm\A05D %28Blue Warp%29.txt" />
+    <Content Include="~notes\asm\A080 %28Metal Trap%29.txt" />
+    <Content Include="~notes\asm\A08B %28Demo Effect%29.txt" />
+    <Content Include="~notes\asm\A08F %28Courtyard Patrol%29.txt" />
+    <Content Include="~notes\asm\A094 %28bug,fish,fairy%29.txt" />
+    <Content Include="~notes\asm\A0A2 %28Volvagia Hole%29.txt" />
+    <Content Include="~notes\asm\A0BA %28Barinade%29.txt" />
+    <Content Include="~notes\asm\A0DA %28Bombchu%29.txt" />
+    <Content Include="~notes\asm\A0E8 %28Ganondorf%29.txt" />
+    <Content Include="~notes\asm\A0FE %28Fishing supplimental%29.txt" />
+    <Content Include="~notes\asm\A0FE %28Fishing%29.txt" />
+    <Content Include="~notes\asm\A11A %28Scrub Salesman%29.txt" />
+    <Content Include="~notes\asm\A13C %28Anju%29.txt" />
+    <Content Include="~notes\asm\A146 %28Saria%29.txt" />
+    <Content Include="~notes\asm\A147 %28Navi Green%29.txt" />
+    <Content Include="~notes\asm\A14D %28Owl%29.txt" />
+    <Content Include="~notes\asm\A164 %28KingZora%29.txt" />
+    <Content Include="~notes\asm\A165 %28Weather%29.txt" />
+    <Content Include="~notes\asm\A175 %28Poe Field%29.txt" />
+    <Content Include="~notes\asm\A179 %28Zelda%29.txt" />
+    <Content Include="~notes\asm\A17A %28Ganon%29.txt" />
+    <Content Include="~notes\asm\A181.txt" />
+    <Content Include="~notes\asm\A19D %28Kakariko Objects%29.txt" />
+    <Content Include="~notes\asm\A1B9 %28Gossip Stone%29.txt" />
+    <Content Include="~notes\asm\A1D3 %28Zelda Cutscene%29.txt" />
+    <Content Include="~notes\asm\Actor Collision.txt" />
+    <Content Include="~notes\asm\Armos.txt" />
+    <Content Include="~notes\asm\asm notes lite.txt" />
+    <Content Include="~notes\asm\Beamos.txt" />
+    <Content Include="~notes\asm\chest arwing.txt" />
+    <Content Include="~notes\asm\code-0-pretty.txt" />
+    <Content Include="~notes\asm\code-0.txt" />
+    <Content Include="~notes\asm\code-checksum.txt" />
+    <Content Include="~notes\asm\Custom Inject.txt" />
+    <Content Include="~notes\asm\Dampe %28Gravediggin Tour%29.txt" />
+    <Content Include="~notes\asm\Debug Otter.txt" />
+    <Content Include="~notes\asm\Deku Nut.txt" />
+    <Content Include="~notes\asm\kaleido.txt" />
+    <Content Include="~notes\asm\Link Instance.txt" />
+    <Content Include="~notes\asm\Link States.txt" />
+    <Content Include="~notes\asm\ovl_kaliedo_scope.txt" />
+    <Content Include="~notes\asm\ovl_player_actor %28debug%29.txt" />
+    <Content Include="~notes\asm\ovl_title.txt" />
+    <Content Include="~notes\asm\RBA.txt" />
+    <Content Include="~notes\asm\scraps %28collision, link instance%29.txt" />
+    <Content Include="~notes\asm\title screen.txt" />
+    <Content Include="~notes\asm\twinrova.txt" />
+    <Content Include="~notes\asm\~asm debug.txt" />
+    <Content Include="~notes\asm\~asm iQue Chi.txt" />
+    <Content Include="~notes\asm\~asm N0.txt" />
+    <Content Include="~notes\glitch\Action Swap.txt" />
+    <Content Include="~notes\glitch\Ass Chest.txt" />
+    <Content Include="~notes\glitch\Blue Bubble Glitch.txt" />
+    <Content Include="~notes\glitch\Corrupt Collision.txt" />
+    <Content Include="~notes\glitch\Crawlspace Quirks.txt" />
+    <Content Include="~notes\glitch\Deku Tree Pause Crash.txt" />
+    <Content Include="~notes\glitch\Dodongo Animation Glitch.txt" />
+    <Content Include="~notes\glitch\Explosive Blue Fire.txt" />
+    <Content Include="~notes\glitch\Farore%27s Wind old cast .txt" />
+    <Content Include="~notes\glitch\Fog Glitch.txt" />
+    <Content Include="~notes\glitch\FWWW crash.txt" />
+    <Content Include="~notes\glitch\GCN J Crash Debugger Crash.txt" />
+    <Content Include="~notes\glitch\Kill Screen.txt" />
+    <Content Include="~notes\glitch\Lighting Glitch.txt" />
+    <Content Include="~notes\glitch\log.txt" />
+    <Content Include="~notes\glitch\null glitch.txt" />
+    <Content Include="~notes\glitch\Painful Ledge Glitch.txt" />
+    <Content Include="~notes\glitch\Phantom Chest.txt" />
+    <Content Include="~notes\glitch\Pierre Crash.txt" />
+    <Content Include="~notes\glitch\Prerenderd Background Crash.txt" />
+    <Content Include="~notes\glitch\shop debug log.txt" />
+    <Content Include="~notes\glitch\Time.txt" />
+    <Content Include="~notes\glitch\Twinrova Glitch %28maybe old%29.txt" />
+    <Content Include="~notes\glitch\Zelda%27s Escape Time of Day Glitch.txt" />
+    <Content Include="~notes\glitch\Zora%27s Domain Adult Crash.txt" />
+    <Content Include="~notes\unsorted\Actor Fetch Template.txt" />
+    <Content Include="~notes\unsorted\ActorList Updated.txt" />
+    <Content Include="~notes\unsorted\ActorList.txt" />
+    <Content Include="~notes\unsorted\ActorVars.txt" />
+    <Content Include="~notes\unsorted\Addresses V10.txt" />
+    <Content Include="~notes\unsorted\arflarg.txt" />
+    <Content Include="~notes\unsorted\Camera.txt" />
+    <Content Include="~notes\unsorted\Code Notes.txt" />
+    <Content Include="~notes\unsorted\dbg rom cutscene creation.txt" />
+    <Content Include="~notes\unsorted\dbo.SceneCutscenes.data.txt" />
+    <Content Include="~notes\unsorted\Dead End Water Temple.txt" />
+    <Content Include="~notes\unsorted\dive.txt" />
+    <Content Include="~notes\unsorted\Entrance Table.txt" />
+    <Content Include="~notes\unsorted\File Table Notes.txt" />
+    <Content Include="~notes\unsorted\Finding angles.txt" />
+    <Content Include="~notes\unsorted\Global Context.txt" />
+    <Content Include="~notes\unsorted\ImageMagick convert.txt" />
+    <Content Include="~notes\unsorted\Input Context.txt" />
+    <Content Include="~notes\unsorted\interface test.txt" />
+    <Content Include="~notes\unsorted\Intro Cutscenes.txt" />
+    <Content Include="~notes\unsorted\Inventory Restrictions.txt" />
+    <Content Include="~notes\unsorted\Kokiri Forest.txt" />
+    <Content Include="~notes\unsorted\Maps.txt" />
+    <Content Include="~notes\unsorted\mirror hack.txt" />
+    <Content Include="~notes\unsorted\new  6.txt" />
+    <Content Include="~notes\unsorted\obj.txt" />
+    <Content Include="~notes\unsorted\Object Dump.txt" />
+    <Content Include="~notes\unsorted\object file stuff.txt" />
+    <Content Include="~notes\unsorted\Odd Potion BA calc.txt" />
+    <Content Include="~notes\unsorted\OoT Jap Charset.txt" />
+    <Content Include="~notes\unsorted\ovl tables.txt" />
+    <Content Include="~notes\unsorted\Pots.txt" />
+    <Content Include="~notes\unsorted\ram n0.txt" />
+    <Content Include="~notes\unsorted\red_blue_block_actor_Patch_20180101033944.txt" />
+    <Content Include="~notes\unsorted\room notes.txt" />
+    <Content Include="~notes\unsorted\Save Creation.txt" />
+    <Content Include="~notes\unsorted\Scene Entrances.txt" />
+    <Content Include="~notes\unsorted\Scene Format.txt" />
+    <Content Include="~notes\unsorted\Scene Notes.txt" />
+    <Content Include="~notes\unsorted\SFX.txt" />
+    <Content Include="~notes\unsorted\Skyboxes.txt" />
+    <Content Include="~notes\unsorted\SoD V10 Notes.txt" />
+    <Content Include="~notes\unsorted\Spectrum notes.txt" />
+    <Content Include="~notes\unsorted\spinout.txt" />
+    <Content Include="~notes\unsorted\Spirit Temple.txt" />
+    <Content Include="~notes\unsorted\SpiritHack Codes.txt" />
+    <Content Include="~notes\unsorted\Test.txt" />
+    <Content Include="~notes\unsorted\Text Dump N0 %28wiki%29.txt" />
+    <Content Include="~notes\unsorted\Text Ids.txt" />
+    <Content Include="~notes\unsorted\the-gcn.txt" />
+    <Content Include="~notes\unsorted\Threading debug.txt" />
+    <Content Include="~notes\unsorted\Threading.txt" />
+    <Content Include="~notes\unsorted\TP scariest glitch.txt" />
+    <Content Include="~notes\unsorted\Unref Scene Headers.txt" />
+    <Content Include="~notes\unsorted\v10 import.txt" />
+    <Content Include="~notes\unsorted\V10Filetable.txt" />
+    <Content Include="~notes\unsorted\Vars Misc.txt" />
+    <Content Include="~notes\unsorted\VC SaveGen backup code.txt" />
+    <Content Include="~notes\unsorted\viewcollision.txt" />
+    <Content Include="~notes\unsorted\Water Temple Notes.txt" />
+    <Content Include="~notes\unsorted\Wrong Warp Table %28Old%29.txt" />
+    <Content Include="~notes\unsorted\ww algo.txt" />
+    <Content Include="~notes\unsorted\ww memmap explanation.txt" />
+    <Content Include="~notes\unsorted\z64 ActorList.txt" />
+    <Content Include="~notes\unsorted\~dbg structs.txt" />
+    <Content Include="~notes\unsorted\~diffcheck regex.txt" />
+    <Content Include="~notes\unsorted\~gcc-work.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C\as.bat" />
+    <None Include="C\cfile.bat" />
+    <None Include="C\link.bat" />
+    <None Include="C\test.o" />
+    <None Include="C\z\~def-label.sx" />
+    <None Include="C\z_link.ld" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
