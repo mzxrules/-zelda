@@ -1,0 +1,3 @@
+Deku Nut
+0x13C struct //Actor Collision Cylinder Struct
+0x188 float //?

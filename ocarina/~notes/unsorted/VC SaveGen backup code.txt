@@ -1,0 +1,21 @@
+2A0160
+2A3E60
+
+2A014C - VC save loaded to memory!?
+
+
+
+this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newSaveDataMenuItem,
+            this.newGameFileMenuItem,
+            this.openSaveDataMenuItem,
+            this.openGameFileMenuItem,
+            this.openSeparator,
+            this.injectMenuItem,
+            this.injectSeparator,
+            this.saveAsSRAMenuItem,
+            this.saveAsVCMenuItem,
+            this.saveAsSavestateMenuItem,
+            this.saveAsGameFileMenuItem,
+            this.createSeparator,
+            this.closeMenuItem});

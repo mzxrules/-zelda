@@ -1,0 +1,6 @@
+8011D290 long //OSTime, captured on frame complete?
+8011D298 long //OSTime, previous frame complete?
+80120F28 OSMesgArray
+80120F30 int //pad manager frame count
+80120F88 long //OSTime interval between frames
+80120F90 long //OSTime, ?

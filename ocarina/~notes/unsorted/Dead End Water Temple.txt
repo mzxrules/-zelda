@@ -1,0 +1,6 @@
+Been thinking about whether it was possible for a scrub to get permanently stuck in the water temple. Barring some yet to be discovered glitch, it is currently impossible for one to just stumble along and accidentally get permanently stuck. However, this route is the closest thing I can think of.
+
+Drop to the bottom and go into the F1 water room. Lower the water and collect the F1 key. Unlock the center room, raise the water level to F2, and collect the key on the basement floor to put you back at 1 key, while simultaneously cutting you off from the dragon switch room. Backtrack to the F1 water room and get the key beyond the bombable wall on the second floor for two keys. Then to expend your two keys, use 'm to open the two locked doors on the way to collect the boss key, using hovering? or BA Longshot.
+
+This will stop your progress because you will be unable to reach F3 of the middle platform without hoverboots or bombs, and you cannot unlock the door on F2 to reach the F3 water switch. 
+

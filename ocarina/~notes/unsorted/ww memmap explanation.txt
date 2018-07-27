@@ -1,0 +1,17 @@
+When you wrong warp, the game sets a variable that I call the "cutscene" number that actually determines what your scene setup number will be. When set, it causes the game to attempt to play a cutscene when you load into next area. When you load into an area, the scene setup number picks which scene setup (map loadout) to use, which also determines what cutscene the game plays. So for example, any wrong warp into Kokiri Forest with scene setup 5 (cutscene number 1) will play the Kokiri Emerald cutscene, regardless of where you actually spawned, because the game loads the Kokiri Forest area, then selects the 5th scene setup which references the Kokiri Emerald cutscene, then since the "cutscene" number variable is not a "no cutscene" value, a cutscene plays
+
+Most areas in the game (like Tower Collapse Interior) only have a single scene setup, one that doesn't define a specific cutscene to play. In this situation, the last cutscene you watched sets where the game expects to find the cutscene to play. This is where things get complex because at this point you need to know how the game maps out memory to understand things further.
+
+I can give a simplified model:
+
+38 6000 is the end RAM address for every "scene" file in ram (which can potentially contain a cutscene definition). This value is always constant
+
+The start RAM address for the scene file depends on it's file size. In this model, lets say Hyrule Field's start address is 35 5000, Deku Tree's start address is 37 1000, and Tower Collapse Interior's start address is 37 2000. Let's also say that the Hyrule Field title cutscene starts at 36 6000, and the Deku Tree intro cutscene starts at 38 1000
+
+There's a F A000 sized block that is located before the scene file in ram that stores different graphical assets, like Link's models, and different textures when the game is paused. This space is typically not filled up completely, meaning certain spots are left untouchd in some cases. In our example, it will be loaded at 27 7000 while in the Deku Tree, 27 8000 while in Tower Collapse Interior 
+
+Let's say you're doing the Deku Tree ganondoor after save warping. Your last cutscene will be the Hyrule Field title cutscene, which means the cutscene pointer (the variable that references where the cutscene to play is) will be set to 36 6000. When you load the Deku Tree area, the F A000 sized block will be loaded into memory at 27 7000, and data will be filled into that spot up until let's say 35 B000. Then, when you wrong warp into Tower Collapse, the F A000 sized block will move to 27 8000, and be filled with data up to let's say 34 4000. Since nothing has been written into 36 6000, the title cutscene will play, and the game will softlock because Link's coordinates will be moved to where he's well out of bounds. 
+
+Now let's compare to the Deku Tree ganondoor where you the intro cutscene is your last cutscene. The cutscene pointer will be set to 38 1000, then when you wrong warp to Tower Collapse Interior, the tower collapse scene will be loaded at 37 2000. This will overwrite the Deku Tree intro cutscene with the data from Tower Collapse. No cutscene will play because at 38 1000 the game data shows that the cutscene has either a negative number of frames, or a negative number of "commands".
+
+As you can see, it's not particularly easy to determine how a wrong warp will behave in this situation.

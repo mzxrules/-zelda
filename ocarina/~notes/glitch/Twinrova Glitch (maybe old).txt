@@ -1,0 +1,54 @@
+All Addresses are NTSC 1.0
+
+The Phantom Twinrova glitch is a truly bizarre glitch, especially when one considers Kotake and Koume's parting words:
+"I'll come back to haunt you!"
+
+For the uninitiated, the Phantom Twinrova glitch is triggered when the magic attack connects with Twinrova after the killing blow is delivered. If you remain in the Boss room for 10k frames after the final blow, Twinrova's "ghost" will come back and continue attacking you. You can then continuously repeat the glitch in order to farm for multiple Heart Containers.
+
+The glitch itself is due to the fact that within the main update function and some helper functions called by the main update, the developers check the value of function pointer (located at Instance + 0x13C) that stores what state-specific function should be called this update.
+
+Instance + 0x4E4 stores a byte value used to determine if Twinrova has been hit by a fully charged Mirror Shield attack, while instance + 0x14A is a 2 byte value that stores Twinrova's Invulnerability count down timer.
+
+The main update function calls function 809DF860 every frame. At address 809DFBC8 of the function, Twinrova performs a check on the Instance + 0x13C pointer, testing if Twinrova is in "Stunned by Mirror Shield" state. If not true, Twinrova will be vulnerable to hits from the Charged Mirror Shield attack, and will set the Instance + 0x4E4 variable to 1 if hit.
+
+On the next frame, provided the following conditions are met in this order, the section of code at 809D97DC will zero the Instance + 0x4E4 variable, and update the Instance + 0x13C function pointer to the "Stunned by Mirror Shield" state:
+
+* The invulnerability timer (instance + 0x14A)'s value is 0
+* The function pointer (instance + 0x13C)'s value is not already set to the "Stunned by Mirror Shield" function's start address
+* The is stunned variable (instance + 0x4E4) is 1
+
+Lastly, when the final blow is struck, Twinrova advances to her "death" state. In doing so, her invulnerability frame count is set to 10k frames.
+
+Thus, the sequence of events is as follows:
+
+You start off by absorbing the 3rd elemental charge...
+Instance + 0x13C = Attack Animation Idle
+Instance + 0x14A = 0, vulnerable
+Instance + 0x4E4 = 0, not hit
+
+The charge hits Twinrova...
+Instance + 0x13C = Attack Animation Idle
+Instance + 0x14A = 0, vulnerable
+Instance + 0x4E4 = 1, was hit
+
+Move to next frame. Twinrova is stunned, not invulnerable, and isn't in her "Stunned by Mirror Shield" state...
+Instance + 0x13C = Stunned by Mirror Shield
+Instance + 0x14A = 0, vulnerable
+Instance + 0x4E4 = 0, not hit
+
+Some frames later. Twinrova his dealt her final blow...
+Instance + 0x13C = Death
+Instance + 0x14A = 10000, invulnerable
+Instance + 0x4E4 = 0, not hit
+
+More frames later. Twinrova is hit by a stray Mirror Shield attack...
+Instance + 0x13C = Death
+Instance + 0x14A < 10000, invulnerable
+Instance + 0x4E4 = 1, was hit
+
+Twinrova remains stuck in this state for 10k frames. Finally, when the invulnerability wears off, the game can finally advance to the "Stunned by Mirror Shield" state again...
+Instance + 0x13C = Stunned by Mirror Shield
+Instance + 0x14A = 0, vunerable 
+Instance + 0x4E4 = 0, not hit
+
+And so the Phantom rises again.

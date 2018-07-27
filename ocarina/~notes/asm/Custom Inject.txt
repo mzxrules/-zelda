@@ -1,0 +1,36 @@
+Rom Split Script:
+
+Key files:
+
+Static
+Scene Files
+G_PN Files
+Room Files
+Objects (could split between Gameplay, Link, Rest)
+Overlays (Split between Numbered Actors (exlude Link), and rest ovl's
+VR files
+
+Folders:
+Rom
+|- static
+|- ovl
+|   |- Game //contains ovl_player_actor and ovl_kaleido_scope
+|	|- Effect_Ss (drop ovl_Effect_Ss_)
+|   \- Actors (drop ovl_)
+|- scenes
+|   \- Scene # -> Contains G_PN file
+|       \- Rooms
+|- objects
+|   |- Gameplay (drop gameplay_)
+|   |- Link (drop object_)
+|   \- Etc (drop object_)
+|- vr (skyboxes, drop vr_)
+|- Scripts
+
+
+Rom re-insertion scripting: 
+
+
+
+Traverse "include" Heiarchy
+

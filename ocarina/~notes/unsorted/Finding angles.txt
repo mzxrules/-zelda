@@ -1,0 +1,11 @@
+ There may be a better way to do this with algebra than shown before (and there has to be a more efficient way to solve it with linear algebra), but here it is.
+ 
+To start, subtract the Camera Position from the Camera Focus Point, giving us a vector representing the difference between the focus point and the position. We'll use this vector for our X and Y rotation calculations.
+ 
+To calculate for the X rotation we need two things
+
+Y rotation is pretty tricky because the coordinate system of the game world is mapped out differently than how the [url=http://upload.wikimedia.org/wikipedia/commons/4/4c/Unit_circle_angles_color.svg]unit circle[/url] would be mapped out:
+[LIST]
+[*]If you look top down at the game world (like in the minimap), 0 degrees of rotation will orient you facing north (parallel with the Z axis), whereas a line that has an angle of 0 degrees that starts at the origin would run along the X axis (which is east in a 2d game).[/*]
+[*]As you move north in the game world, your Z coordinate decreases, [/*]
+[/LIST]

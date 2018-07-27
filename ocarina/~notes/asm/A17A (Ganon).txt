@@ -1,0 +1,3 @@
+== Instance ==
+0x0388 s32 //timer that drives cutscenes for the final area
+0x038C u16 //Cutscene Stage

@@ -1,0 +1,394 @@
+NTSC 1.0
+12F0D0 //some data? stores end address to "main heap" below
+0000 803B5000
+0004 803DA800
+0008 80400000
+12BAA0 //some ll? Seems to reference the main heap that all game assets will be stored in
+11BEF0 // ? points to actor ll?
+11F290 //? points to a structure that appears to point to microcode
+
+
+//ll pointer structure:
+u32 point to ll
+u32 point to ll
+u32 size of space allocated
+
+
+near the actor ll pointer, is a pointer to 
+800F72D8
+
+this contains a table of pointers:
+800F5550
+800F55F0
+800F5600
+800F6834
+800F6840 //what's here
+800F6854
+800F7274
+800F72C4
+
+Main Heap First Node = 1C6E60
+
+
+Global Context (Game):
+1C84A0 -> 1DA9C0
+0x12518 bytes long
+
+0x0000 //Graphics Context
+0x0004 //Update Function for Game State
+0x0008 //Deconstructor
+0x000C //Next Global Context constructor function (virtual address), or null (if 0x98 is zeroed, game attempts to switch to this context)
+0x0010 //Space size (never read, wiped after initialization)
+0x0014 Controller controllers[4]; //Controller Structs, size 0x18, starting with player 1
+  00: InputInfo InputCurrent;     //Joystick Input is less than InputReleaseEdge?
+  06: InputInfo InputLast;        //computed at 60 fps, thus can appear equal to Current
+  0C: InputInfo InputPressEdge;   //Joystick info is actually change in position
+  12: InputInfo InputReleaseEdge; //Joystick Info is real-time input
+  // InputInfo Struct (0x06 bytes) is as follows:
+	  00: //short = Buttons 1
+		0001 = C-Right
+		0002 = C-Left
+		0004 = C-Down
+		0008 = C-Up
+		0010 = R Button
+		0020 = L Button
+		0800 = D-Up button
+		1000 = Start Button
+		2000 = Z Button
+		4000 = B Button
+		8000 = A Button
+	  02: sbyte = X axis 1, right is positive, left is negative
+	  03: sbyte = Y axis 1, up is positive, down is negative
+	  04: ? //N64 Mouse?
+  
+0x0074: //Manages Game State's reserved heap
+  00 = Size of heap
+  04 = pointer to start of reserved heap (801DAA00)
+  08 = pointer to start of first unreserved memory
+  0C = pointer to end of first unreserved memory
+  10 = Heapnode??
+0x0098 int //when zeroed, attempts to switch game states based on 0x000C virtual address
+0x009C int //number of frames executed while the current Game State has been loaded
+-------
+0x00A4 s16 Scene Id
+0x00A6 u8 Scene Rendering Configuration Id
+0x00B0 Scene File Start Address
+0x00B8 VIEW Struct //0x128 bytes, see below
+0x01E0 camera_struct //Camera 1, 0x16C bytes, follows the player (see 0x0790)
+0x034C camera_struct //Camera 2, typically used for cutscenes (see 0x0790)
+0x04B8 camera_struct //Camera 3, used when Pierre dances
+0x0624 camera_struct //Camera 4
+0x0790 ptr[4] // Active Camera Pointers. 0 is play camera, 1 is Cutscene Camera
+0x07A0 s16 // Camera Index Immediate
+0x07A2 s16 // Camera Index Delayed
+0x07A4 s8 //Music Sequence (0x15 scene header)
+0x07A5 s8 //Nightime Sequence? (0x15 scene header)
+0x07A8 struct, related to lighting/fog
+  00 = ptr to last record in Light Source Table (last record?)
+  04 = RGB light colors
+  07 = RGB fog final colors (base colors set elsewhere)
+  0A = halfword, fog related
+0x07B8 u32, ?, if non-zero game doesn't seem to update?
+0x07C0 = Mesh Collision stats struct //start of struct
+ 00 = ptr to scene collision mesh
+ 04 = float[3] minimum x,y,z for scene bounding box
+ 10 = float[3] maximum x,y,z for scene bounding box
+ 1C = int[3] x,y,z CollisionPoly lookup table length
+ 28 = float[3] x,y,z "unit size" factor? for CollisionPoly lookup table
+ 34 = float[3] x,y,z "inverse unit size" for CollisionPoly lookup table
+ 40 = ptr to CollisionPoly lookup table, variable length, 0x06 bytes per record. 
+    //record struct
+    /* 0x00 */ short floorsId;   //CollisionPolyLink table index
+    /* 0x02 */ short wallsId;    //CollisionPolyLink table index
+    /* 0x04 */ short ceilingsId; //CollisionPolyLink table index
+ 44 = short, Max Records in CollisionPolyLink table
+ 46 = short, Number of Records Reserved in 0x48 table
+ 48 = ptr, CollisionPolyLink table, 0x04 bytes per record
+    //record struct
+    /* 0x00 */ short polyId;
+    /* 0x02 */ short next; //Next CollisionPolyLink table index
+ 4C = ptr, CollisionPoly has been tested table, 1 byte per record, one record per poly defined in the scene mesh
+
+0x0810 //Struct, actor poly collision data
+  00 = s8, unknown
+0x0814 = Actor Mesh array, 50 elements, 0x64 bytes
+  00 = ptr, Actor Instance
+  04 = ptr, Collision Mesh
+  08 = s16, ?
+  10 = s16, ?
+  14 = float[3] x,y,z scale 1
+  20 = short[3] x,y,z rotation 1
+  28 = float[3] x,y,z pos 1
+  34 = float[3] x,y,z scale 2
+  40 = short[3] x,y,z rotation 2
+  48 = float[3] x,y,z pos 2
+  54 = s16? //?
+  56 = s16? //?
+  58 = s16? //?
+  5A = s16? //Largest Distance to ? (see 800316D8, line 1AD4)
+0x1B9C (0x138C) = u16[50] Stores whether Actor mesh is loaded
+0x1C00 (0x13F0?) ptr to some table (actor meshes?)
+0x1C04 (0x13F4) ptr to translated vertex array (actor meshes?). 6 bytes per vertice
+0x1C08 (0x13F8?) ptr to some table (actor meshes?)
+0x1C24 = Some Actor related struct
+  00 = ?
+  0C (0x1C30) = Actor Category Table
+  6C (0x1C90) = ?
+    + 0x00 x,y,z float // coordinates of something, based of of Link (Y is set to +5 Link's Y this pass)
+    //8 byte struct array starting at 800E8214 determines below (struct unk). Initialized by 8001F900
+    + 0x18 float //?, store unk + 0x00 (255 this pass) or 1 if negative (impossible)
+    + 0x1C float //?, store unk + 0x01 (255 this pass) or 1 if negative (impossible)
+    + 0x20 float //?, store unk + 0x02 (255 this pass) or 1 if negative (impossible)
+    + 0x24 float //?, store unk + 0x03 (255 this pass) or 1 if negative (impossible)
+    + 0x28 float //?, store unk + 0x04 (0 this pass) ...
+    + 0x2C float //?, store unk + 0x05 (0 this pass) ...
+    + 0x30 float //?, store unk + 0x06 (255 this pass) ...
+    + 0x34 float //?, store unk + 0x07 (0 this pass) ...
+	0x38? ptr to Navi Target
+  A4 s32
+  F8 s32
+  FC s32
+0x1D28 u32 // Scene Switch Flags
+0x1D2C u32 // Scene Temporary Switch Flags
+0x1D38 u32 // Scene Chest Flags
+0x1D3C u32 // Scene Room Clear flags
+0x1D44 u32 // Scene Collectible Flags
+0x1D48 u32 // Scene Temporary Collectible Flags
+0x1D4C //?
+  0x0A s8
+  0x0B s8
+  0x0C s16 
+  0x0E s16
+0x1D60 ptr //Points to space allocated for "Type 1" actor overlays
+0x1D64 = Cutscene Struct
+ + 0x00 = ?
+ + 0x04 ptr //Cutscene pointer
+ + 0x08 u8 //Cutscene state (0 no cutscene, 1 entering, 2 playing, 3 ending)
+ + 0x10 s16 //frame counter
+ + 0x18 = Camera Frame
+ + 0x24 ptr //Actor Action 0
+ + 0x28 ptr //Actor Action 1
+ + 0x2C ptr //Actor Action 2
+ + 0x30 ptr //Actor Action 3
+ + 0x34 ptr //Actor Action 4
+ + 0x38 ptr //Actor Action 5
+ + 0x3C ptr //Actor Action 6
+ + 0x40 ptr //Actor Action 7
+ + 0x44 ptr //Actor Action 8
+ + 0x48 ptr //Actor Action 9
+ + 0x4C ptr //Actor Action A
+0x20D8 //Dialog Engine Struct
+  0x00 //VIEW struct
+0xFE88 //Raw Dialog Data (0x20D8 + 0x8000 + 0x5C88)
+0x103D0 //Textbox struct (0x20D8 + 0x8000 + 0x6300) 
+  0x00 u16 //current Text Id
+  0x02 u16 //Text Id? used for branching dialogs?
+  0x0C u16 //Dialog State
+  0x0E u8[0xC8] //Textbox display data buffer, holds one box of data
+0x104A6 s16 //Dialog processing char index?
+0x104E0 ptr //Last Actor Spoken To (Exodus)
+0x104E4 s16 //0x08 header command, Disable Warp Songs (rooms)
+0x104F0 //parameter_static/hud variables
+  0x000 //VIEW struct //0x128 bytes, see below
+  0x130 //parameter_static pointer, size 0x3B00
+  0x134 //A Button Text texture, size 0x480 this pass
+  0x138 //B and C-Button Item Textures
+  0x13C //Minimap Texture pointer, size 0x1000
+  0x1C0 (0x106B0) //?, related to 8006FB6C/Updating B/C-Button button textures
+0x10760 //kaleido_scope vars
+ + 0x000 //VIEW Struct //0x128 bytes?
+ + 0x1D4 u16 //larger animation state
+ + 0x1D6 u16 //inventory editor state (0 off, 1 transition?, 2 on?)
+ + 0x1D8 float[3] //Look-at direction (camera is at 0,0,0)
+ + 0x1E4 u16 //Rotating view if 1, Item Equip if 3
+ + 0x1E6 u16 //Rotation action (spin right on even, left on odd, follows menu order below)
+ + 0x1E8 u16 //Current Inventory Screen (0 = Select Item, 1 = Map, 2 = Quest Status, 3 = Equipment)
+ + 0x1EA s16 //Animation Count-up Timer (Rotation, Box Panels appearing in place)
+ + 0x1EC s16 //Save Game menu state (1 = Save Game? 2 = No, 3 = ?, 4 = Saved game?, 5 = Saved Game Menu close)
+ + 0x214 s16 //Joystick X
+ + 0x216 s16 //Joystick Y
+ + 0x218 s16 //Select Item Cursor Index
+ + 0x21A s16 //?
+ + 0x21C s16
+ + 0x21E s16 //Equipment Cursor Index
+ + 0x220 s16 //Map Cursor Index
+ + 0x222 s16 //Select Item Cursor Grid X
+ + 0x22C s16 //Select Item Cursor Grid Y
+ + 0x236 s16 //same type as 0x21A
+ + 0x238 s16 //? (0x0A if on Z, 0x0B if on R?)
+ + 0x23C s16 //Selected Item Index (0x3E7 = nothing, item indexes for items, different values for maps)
+ + 0x23E s16 //Selected Select Item Index (Item Index, 0x3E7 if nothing) 
+ + 0x240 s16 //Selected Map (Overworld) Index
+ + 0x242 s16 //Selected Quest Status Index (Item Index)
+ + 0x244 s16 //Selected Equipment Index (Item Index)
+ + 0x246 s16 //Selected Select Item Slot 2
+ + 0x24E s16 //Item Index of item to equip?
+ + 0x250 s16 //Selected Select Item Slot 3
+ + 0x252 s16 //Selected C-Item Button Slot (equip animation. 0-2)
+ + 0x254 s16 //Selected C-Item x coordinate (equip animation)
+ + 0x256 s16 //Selected C-Item y coordinate (equip animation)
+ + 0x262 s16 //kaleido_scope, yes/no selection
+0x10A24 struct //lighting related?
+  0x17 u8 //Sunny/Cloudy skybox setting A
+  0x18 u8 //Sunny/Cloudy skybox setting B
+  0x1E u8 //Lighting Engine //0 for Time-based lighting, 1 for Fixed lighting
+  0x1F byte //Current Time Environment Index //byte, state of which triggers fog glitch
+  0x28 //light source A?
+  0x36 //light source B?
+  0xBD u8 //Lighting Settings A
+  0xBE u8 //Lighting Settings B (A is pushed to B for blending purposes?)
+  0xBF u8 //Lighting Settings (written by cutscenes)
+  0xD8 float //lighting? written by cutscenes
+0x10B12 u8 //Target Raindrops to draw 1
+0x10B13 u8 //Raindrops to draw
+0x10B16 u8 //Target Raindrops to draw 2
+0x117A4  //801D9C44 Object Allocation Table
+  0x00 ?
+  0x04
+  0x08 u8 Number of Objects
+  0x09 u8 Number of Scene Global Objects
+  0x0C Record Array (0x13 records, but 0x12 maximum object files can be loaded)
+0x117B0 //Object Table Array Start
+0x117B4 //global context direct ref
+0x11C11 u8 //0x08 header command, invisible (lens) actors? //Is this wrong?
+0x11CBC //Room info struct //1DA15C
+  0x00 u8 //Room Index
+  0x02 (0x11CBE) u8 //0x08 header command, idle animation/heat timer if 0x03
+  0x03 (0x11CBF) u8 //0x08 header command, data1 (room action settings)
+  //substruct, low level stuff
+  0x28 (0x11CE4) s32 //Room Alloc Space Start Pointer
+  0x2C (0x11CE8) s32 //Room Alloc Space End Pointer
+  0x38 z_getfile_t //s32 Loaded Room Virtual Start Address
+  
+0x11D34 u8 //number of transition actors
+0x11D38 ptr //points to transition actor spawn list
+0x11D3C func ptr?//array of func ptrs to ovl_player_actor functions
+0x11D60 float matrix //used for some sort of transformation, see NTSC 1.0 8008EC20
+0x11DE8 u8 //Age to set Link
+0x11DEA u8 //Spawn Id (from Entrance Table)
+0x11DEB u8 //Scene Header 0x01, num actors to spawn
+0x11DF0 ptr //to map file to use in scene data
+0x11DF4 ptr //to Link Actor Spawn Record to use
+0x11DF8 ptr //to Scene Header 0x01 Spawn Record; list of actors to spawn
+0x11E00 ptr //to Scene Header 0x06 entrance data
+0x11E08 ptr //to Scene Header 0x0D pathway data
+0x11E0C ptr //801DA2AC elf_message_* pointer
+0x11E14 u8 //Skybox Id
+0x11E15 u8 //Leaves scene if value = 0x14
+0x11E1A s16 //next entrance index
+0x11E5D s8 //Bombchu Bowling Chu count (overrides B action with use chu)
+0x11E5E s8 //Next Fade Transition Animation
+0x11E60 struct //Simple body Collision Group AT 1
+  0x00 short //elements in array to process this frame
+  0x02 short //?
+  0x04 ptr 	 //first element in array 
+0x11F2C struct //Simple body collision Group AC 2
+  0x00 int   //elements in array to process this frame
+  0x04 ptr 	 //first element in array 
+0x12020 struct //Simple body collision Group OT 3
+  0x00 s32   //elements in array to process this frame
+  0x04 ptr 	 //first element in array
+0x121C8 struct //Transition Animation Data (0x250 bytes)
+  0x000 //Transition Data (transition dependent?)
+  //For Transition 05
+  0x004 s32 //Fade intensity (0 is none, FF is fully obscured)
+  0x008 u16 //Animation Timer, 1 = 1/60th a second
+  0x228 s32 //0x123F0 Transition Animation Id? (value less than 0x38?)
+  0x22C func //Initialize?
+  0x230 func //?
+  0x234 func //Update Function? 80099354
+  0x238 func //Draw Function? 800994E4
+  0x23C func //0x2404 
+  0x240 func
+  0x244 func
+  0x248 s32  //
+  0x24C func
+0x1241B u8   //?, used as index to jump table at 80108D38
+0x1242C ptr //Pointer to currently loaded/loading scene in Scene Table
+
+
+
+
+
+1C8680 1C87EC 1C8958 1C8AC4
+camera_struct: (possibly 0x16C bytes long)
+//union at the beginning of the struct. The following few bytes only applies to the first camera
+  0x0000 f32 //?
+  0x0004 f32 //tween time step (0 to 1)
+  0x0008 f32 //?
+  0x000C f32 //?
+  0x0010 f32 //?
+  0x0014 f32 //?
+  0x0018 f32 //?
+  0x001C s16 //?
+  0x0050 f32[3] //xyz 1 (could be camera focus or loc) //uses collision detection
+  0x005C f32[3] //xyz 2 (could be camera focus or loc)
+  0x00
+  0x007C ptr //Global Context
+  0x0080 ptr //Follow Actor (Link)
+  0x00A8 ptr //Z-Target Actor?
+  0x00FC f32 = Angle of View
+  0x011C s32 //Index for 800EEE70 (camera behavior?) table. Stores next behavior when surfacing water?
+  0x0124 = Focus Point tween list
+  0x0128 = Camera Position tween list
+  0x0142 s16 Camera S //Index for 800EEE70 (camera behavior?) table
+  0x0144 s16 Camera M //related to above
+  0x014C s16 //? flags?
+  0x0164 s16 //?
+  //known values: +0x01E0, +0x034C from global context
+
+the second camera:
+ 0x004 f32 //tween time step (0 to 1)
+ 0x008 s16 //tween point list array index
+
+
+Game VIEW struct //0x128 bytes
+801C8558
+
+  0x18 = Angle of View
+  0x28 = vector3_f32 ViewPoint?
+  0x8C = Global Context ptr
+  0xE0 = Projection Matrix ptr
+  0xE4 = Projection Matrix (mult) ptr
+  
+
+
+801C8674
+
+0x0000 short, stores something probably related to field of view
+0x01A0 // Address of GI/Title Card space
+
+
+
+1D8828 = Particle Table Start Address?
+
+800E7B40 = Particle Array Ram Address location
+
++0xB0 = Scene Start Address //
+1C8CA0 = ?, possibly skybox
++0x808 = pointer to collision mesh related, size 81D0 this pass on Hyrule Field intro cs
++0x80C = pointer to collision mesh related, size 0x062B this pass
+801CA0A0 = pointer to something,  size 0x2000 this pass
+801CA0A4 = pointer to something, size 0xC00 this pass
+801CA0A8 = pointer to something, size 0xFA0 this pass
+801DA2AC = elf_message_* pointer
+801CA540 = skybox pointer1, size 0xC000 this pass
+801CA544 = skybox pointer2, size 0xC000 this pass
+801CA548 = skybox palette1, size 0x100 this pass
+801CA54C = ? pointer, size 0x3840 this pass
+801CA554 = ? pointer, size 0xA00 this pass
+801DA184 = room space start pointer, size 0x15230 this pass
+801DA188 = room space end pointer
+801D8828 = Textbox background texture ptr
+801D8AC0 = parameter_static pointer, size 0x3B00
+801D8AC4 = A button text buffer, size 0x480 this pass
+801D8AC8 = Button Item Icons pointer, size 0x4000
+801D8ACC = Minimap Texture pointer, size 0x1000 this pass
+80121204 = ? pointer, size 0x500 this pass
+
+1D8AF4 = ?, + 0x04 is size of space most likely
+
+
+//notes that should be in my "code" notes
+//800ED990 to 800EEE70 appears to contain a 8 byte structure referencing something?
+//800EEE70 is start of table that references above

@@ -1,0 +1,9 @@
+I think I've got this figured out for the most part.
+
+It has everything to do with how the game triggers moving from one scene to another, and there are a ton of odd special cases that can be manipulated.
+
+When you touch any normal exit, something similar to following sequence occurs
+
+- The base index value into the [url=http://wiki.spinout182.com/w/Debug_ROM:_Exit_List_(alternate)]entrance table[/url] is stored in a temp address
+- The final index value is calculated by adding a value based on EITHER age and time of day (Child Day 0, Child Night 1, Adult Day 2, Adult Night 3) or Cutscene number (4+)
+- 

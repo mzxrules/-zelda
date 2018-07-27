@@ -1,0 +1,20 @@
+Camera code: 
+1C87C3
+
+Shadow Temple: 
+
+03 - Tight spaces
+04 - Tight spaces
+21 - Zone Out, fixed camera
+28 - Open Large Chest
+2F - When going through boss door
+38 - Get Item/Navi/Play Ocarina 
+3A - guillotine room open space
+3E - Crushing wall room
+
+Bongo Bongo:
+03 - Room entrance
+0C - Bongo Room
+
+Kakariko Village:
+2F - Leaving area. Has slow zoom in, no hud

@@ -1,0 +1,25 @@
+Saria (T = 801F30B0, sacred forest meadow child)
+80AA9830 //Initializer
+
+80AA946C //Called by initializer, seems set the type of Saria
+//A0 = Actor Instance
+//A1 = Global Context
+//V0 = Saria Type
+// 00 = Nope.jpg
+// 01 = (Scene 85) Saria Greets you
+// 03 = ?, gives text "When you want ot hear my voice, play Saria's Song..."
+// 04 = (Scene 85) Saria, plays cutscene 02010E20
+// 05 = ?, Sitting, eyes closed, playing Ocarina
+3960 //V1 = Save Context
+3968 //V0 = cutscene number
+//If cutscene number < 0xFFF0 (say 0), goto 39B0
+//If cutscene number = 0xFFFD, goto 39B4
+//either way, load the current scene number
+39B4 //AT = 0x29 (scene 41, Saria's House)
+3A0C //We're in Sacred Forest Meadow
+3A18 //Branch to 3A4C if not obtained Forest Medallion (event_chk_inf)
+3A30 //Branch to 3A40 if not obtained Saria's Song
+3A60 //Branch to 3A8C if have Kokiri Emerald (inventory)
+3A70 //Branch to 3A80 if Saria hasn't greeted you yet
+
+ 80AA9478

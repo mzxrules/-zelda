@@ -1,0 +1,18 @@
+A644 - RBA start
+A6A4 - Deku Tree Flag Start
+A6A4 - A5D0
+
+D4 + B0C = Theoretical end of scene flags
+= BE0
+
+F240 = debug cap
+
+
+pointer -> asset, unbounded
+pointer -> asset + count
+pointer -> asset <- pointer
+
+
+Cutscene box may not exist, but if does
+should contain all 0x17 commands so if moved
+it can be updated

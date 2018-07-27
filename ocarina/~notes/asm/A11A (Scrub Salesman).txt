@@ -1,0 +1,17 @@
+Actor 011A ovl_En_Dns //Deku Scrub Salesman
+
+Spawn from ent 4DE as a child (lost woods from hyrule), deflect nut back at scrub. Use no items.
+file loaded to 801ECC60
+
+## Instance Variables
+
+0x02B0	ptr	//points to shop keeper data within the scrub salesman ovl
+
+## Overlay
+DF866C Shopkeeper Dialog Table, 0x0A records, s16 each
+
+DF8684 Shopkeeper Table. 0x0A records
+  0x00 s16 // Rupee Cost
+  0x02 s16 // ?
+  0x04 ?
+  0x08 func_ptr //Check performed when accepting purchase 

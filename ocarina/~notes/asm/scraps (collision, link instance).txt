@@ -1,0 +1,47 @@
+Adult: 
+Attack			Init Vel	Address
+Backflip			5.8		8038F454 //F8, this is variable
+Sidehop				3.5		8038F454
+Jump Attack 		5.0		80392560
+Jump (full speed)	7.5		8038F454
+Knockback hit		6.0		8038E9A8
+
+Bomb Knockback hit	5.0		8038E9A8
+
+1C6F2C
+
+FFD8
+
+801DAA90
+
+21DD4: E6120060
+
+80394168 : E6040070 //sets minimum y velocity
+
+actor instance + 0x70 = minimum y velocity cap
+
+80394140 // sets some physics stuff
+
+211F0: E4A40060
+
++0x10 past y velocity is max y velocity
+
+Link Instance + 0x01AC = Animation per gameplay keep reference?
+
+722B4: A06F008C (change inventory item ammo)
+
+//Deku nut falls out of scope, but Beamos continues reading! 
+
+801E6448 //beamos collision struct instance
+
+arrow instance = 0x250 size
+deku nut = 0x18C in size
+bomb instance = 0x1F8 in size
+
+
+//wolfos (SFM, child) 1EAE20
+1EB114 = hit struct 1
+1EB234 = hit struct 2, deku nut detected here
+1F3330 deku nut
+
+Actor Instance + 0x114 = Deku Nut Stun Timer

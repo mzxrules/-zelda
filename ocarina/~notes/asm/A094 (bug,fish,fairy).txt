@@ -1,0 +1,186 @@
+========== Actor 0094 (Bugs, Butterflies, Fish spawn) ===========
+
+1E8200 - Actor File
+1E9240 - Actor Instance
+
+&F000, 0x0140 = Spawn Count
+&0700, 0x0142 = Spawn Count Lookup Table 
+&0060, 0x0144 = ?
+&001F, 0x0146 = Type
+
+828C LH 	V0, 0x001C(A0) //load variable component
+8290 SRA	T8, V0, 0x8 
+8294 ANDI	T9, T8, 0x0007 //Store in T9 ? (&0700) 
+8298 SH 	T9, 0x0142(A0) //Save (&0700)
+829C LH 	T3, 0x0142(A0)
+82A0 SRA	T6, V0, 0xC
+82A4 SRA	T0, V0, 0x5
+82A8 ANDI	T7, T6, 0x000F //Store in T7 ? (&F000)
+82AC ANDI	T1, T0, 0x0003 //Store in T1 ? (&0060)
+82B0 ANDI	T2, V0, 0x001F //Store in T2 Type? (&001F)
+82B4 SLTI	AT, T3, 0x0004 //is (&0700) < 4?
+82B8 SH 	T7, 0x0140(A0) //Save (&F000)
+82BC SH 	T1, 0x0144(A0) //Save (&0060)
+82C0 BNEZ	AT, 801E82D8  //Jump if (&0700) < 4
+82C4 SH 	T2, 0x0146(A0) //Save (&001F)
+82C8 JAL	80020EB4
+82D8 LH 	T4, 0x0146(A0)//load (&001F)
+82DC SLTI	AT, T4, 0x0005 //is (&001F) < 5?
+82E0 BNEZ	AT, 801E82F8
+82F8 JAL	801E8258 //-> JAL 801E8200
+82FC SW 	A0, 0x0018(SP)
+
+{
+
+820C LH 	V0, 0x0146 //load (&001F)
+8214 LUI	A1, 0x801F
+//From here, checks if V0 (&001F) is 2, 3, 4, and goes to 1E8230 if so (below),
+//else jumps to 1E8240 which zeros V0. Both sync at 1E8248, with V0 being 1 if 
+//the program goes to 1E8230
+
+8230 JAL	80063F7C
+8234 ADDIU	A1, A1, 0x908C // A1 = 801E908C
+8238 BEQ	R0, R0, 801E8248
+823C ADDIU	V0, R0, 0x0001
+
+8248 LW 	RA, 0x0014(SP)
+8250 JR 	RA
+
+
+//if V0 is only 1 or 0, these instructions are useless (aside from setting RA)
+8268 BNEZ	V0, 801E8278 // (branch if (&001F) is 2-4)
+826C LW 	RA, 0x0014(SP)
+
+827C JR 	RA
+
+}
+
+8300 BNEZ	V0, 801E8318 // (branch if (&001F) is 2-4)
+8304 LW 	A0, 0x0018(SP)
+8308 JAL	80020EB4
+
+8318 LUI	T5, 0x801F
+831C ADDIU	T5, T5, 0x88D8 //T5 = 801E88D8
+8320 SW 	T5, 0x013C(A0) //Store T5 at 0x013C from instance start
+
+--- (&0060) ---
+//(&001F) = 4 in case it matters
+86B4 LH 	V0, 0x0144(A0)
+86B8 ADDIU	AT, R0, 0x0001 //AT = 1
+86BC BEQ	V0, R0, 0x801E86D4 //V0 = 0? goto JAL 801E8398, then returns from function
+86C4 BEQ	V0, AT, 0x801E86E4 //V0 = 1? goto JAL 801E8560, then returns from function
+86CC BEQ	R0, R0, 0x801E86F0 //return from function
+
+== Function 801E8398 ==
+//S0-S8 pushed onto stack
+83A4 OR 	S0, A0, R0 //S0 = instance location
+83A8 OR 	S5, A1, R0 //S5 = global context
+
+83CC JAL	801E8344 //Call Function 801E8344, V0 = num spawns to make
+83D0 OR 	A0, S0, R0 //A0 = instance location
+83D4 SW 	V0, 0x006C(SP)
+83D8 BLEZ	V0, 801E8530 //jump to function end
+83DC OR 	S2, R0, R0 //S2 = 0, S2 is # spawns created
+83E0 LUI	S8, 0x801F
+83E4 LUI	S7, 0x801F
+83E8 ADDIU	S7, S7, 0x9074 //S7 = 801E9074
+83EC ADDIU	S8, S8, 0x9080 //S8 = 801E9080
+83F0 OR 	S4, S0, R0 //S4 = instance ptr + # spawns created
+83F4 ADDIU	S6, SP, 0x0074
+83F8 LBU	V0, 0x0184(S4) //V0 contains ?
+83FC ADDIU	AT, R0, 0x0001 //AT = 1
+8400 ADDIU	S3, S5, 0x1C24 //S3 = 801CA0C4
+8404 BEQ	V0, AT, 801E8518
+8408 SLL	T6, S2, 0x2 //T6 = # spawns created * 4
+840C ADDIU	AT, R0, 0x0002 //AT = 2
+8410 ADDU	S1, S0, T6
+8414 BNE	V0, AT, 801E84A4 //branch if V0 != 2
+8418 ADDIU	A1, S0, 0x0024 //A1 = pointer to x,y,z coords
+//
+841C OR 	A0, S6, R0
+
+
+
+
+== Function 801E8560 ==
+//Spawns V0 number of actors
+//pushes variables on the stack
+8594 JAL	801E8344
+//V0 contains number of things to spawn
+859C OR 	S5, V0, R0
+85A0 BLEZ	V0, 801E867C //Jumps to the function's end
+85A4 OR 	S1, R0, R0 //S1 = 0 (set spawned actor count 0)
+85A8 ADDIU	S6, S4, 0x1C24 //S4 = 801C84A0 (global context), S6 = 801CA0C4
+85AC OR 	S2, S0, R0 //S0 = instance location
+85B0 OR 	S3, S0, R0 //S0 = instance location
+85B4 ADDIU	S7, S0, 0x0024 //offset to x,y,z coord
+85B8 ADDIU	S8, SP, 0x007C 
+85BC OR 	A0, S8, R0
+85C0 OR 	A1, S7, R0 //A1 = offset to x,y,z coord
+85C4 LH 	A2, 0x0142(S0) // &0700 var
+85C8 JAL	801E8370 //Pushes (&0700) var, spawn count, and x,y,z on stack without moving sp
+85CC OR 	A3, S1, R0 //A3 = 0?
+85D0 LH 	V0, 0x0146(S0) //V0 = (&001F) var
+85D4 ADDIU	AT, R0, 0x0004 //AT = butterfly
+85D8 OR 	A0, S6, R0 //A0 = 801CA0C4
+85DC BNE	V0, AT, 801E85F4 //branch if type != butterfly
+85E0 LWC1	F4, 0x0080(SP)//F4 = Y as float
+85E4 BNEZ	S1, 801E85F4
+84E8 ADDIU	T0, R0, 0x0001
+85EC BEQ	R0, R0, 801E8604
+85F0 SLL	V1, V0, 0x1
+
+8604 LWC1	F6, 0x0084(SP)//F6 = Z as float
+8608 SWC1	F4, 0x0010(SP)
+860C LUI	A2, 0x801F
+8610 SWC1	F6, 0x0014(SP)
+8614 LH 	T6, 0x0030(S0)
+8618 ADDIU	A2, A2, V1
+861C LH 	A2, 0x9074 //gets actor id from 1E9074 + Type * 2
+8620 SW 	T6, 0x0018(SP)
+8624 LH 	T7, 0x0032(S0)
+8628 OR 	A1, S4, R0 //A1 = Global context
+862C LW 	A3, 0x007C(SP)//A3 = X as float
+8630 SW 	T7, 0x001C(SP)
+
+863C JAL	80025110 //call spawn actor function
+8640 SW 	T8, 0x0020(SP)
+8644 BEQ	V0, R0, 801E8660 //jump if the spawn function failed to create an actor
+8648 SW 	V0, 0x0148(S2) //store spawned actor pointer at 0x0148 into instance
+864C SB 	R0, 0x0184(S3) //store 0 at 0x0184 into instance
+8650 LW 	T1, 0x0148(S2)
+8654 LB 	T9, 0x0003(S0) //load binding room index
+8658 BEQ	R0, R0, 801E8668
+865C SB 	T9, 0x0003(T1) //Set spawned actor's current room to this actor's room
+
+8668 ADDIU	S1, S1, 0x0001 //Number of actors spawned += 1
+866C SLT	AT, S1, S5 //AT = 1 if number of spawned actors is less than total being spawned
+8670 ADDIU 	S2, S2, 0x0004 //Increment S2 by 4 (array at 0x0148)
+8674 BNEZ	AT, 801E85BC //loop
+8678 ADDIU	S3, S3, 0x0001 //increment S3 by 1 (array at 0x0184)
+//pop variables off the stack, return
+
+
+
+
+=== Function 801E8344 ===
+//Function determines whether to use the spawn count, or look up a pre-defined spawn count
+//returns V0, number of spawns to make
+8344 LH 	V1, 0x0140(A0) //load (&F000)
+8348 BNEZ	V1, 801E8368
+834C OR 	V0, V1, R0 //V0 = (&F000)
+//(&F000 is 0)
+8350 LH 	T6, 0x0142(A0) //load (&0700)
+//basically performs a table lookup for the number of things to spawn
+//the table is located at 801E9064
+//Then returns to caller
+
+8368 JR 	RA
+
+
+801E8370 
+//Pushes (&0700) var, spawn count, and x,y,z on stack without moving sp
+//A0 = Stack Pointer + 7C
+//A1 = Coordinates pointer
+//A2 = (&0700) var
+//A3 = ?

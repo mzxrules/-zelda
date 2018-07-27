@@ -1,0 +1,40 @@
+子供時代で50ｃｍ以上の魚を釣って
+「ハートのかけら」を「つりぼり屋」のオヤジさんからもらう、
+もしくは大人時代で60ｃｍ以上の魚を釣って
+「金のうろこ」をオヤジさんからもらうと、
+「つりぼり」内の４カ所（草むら、流木の上、岩付近、滝付近）
+のうちの１カ所にランダムで「沈むルアー」がセットされます。
+その場所までリンクが移動することで入手出来ます。
+（子供時代は26～55ｃｍのバス、
+　大人時代は35～75ｃｍのバスがいます。）
+
+If you catch a fish larger than 50 cm as a child and receive the Piece of Heart from the Fishing Pond Owner, or catch a fish larger than 60 cm as an adult and receive the Gold Scale, the Sinking Lure is set to appear randomly in one of four places around the Fishing Pond. (The grass, on top of the sunken tree, near the rocks, or near the waterfall.) Link can obtain it by going to that area. (In the child era, one can find bass from 26~55 cm, and in the adult era, one can find bass from 35~75 cm.)
+
+■「ハイラルどじょう」出現条件
+
+Appearance Conditions for the Hylian Loach
+
+4回に1回、「つりぼり屋」に入る（入り口のドアに入る〕度に
+「ハイラルどじょう（60～99ｃｍ）」がセットされます。
+「ハイラルどじょう」は水中深くにいるので、
+「沈むルアー」でないと釣れにくいと思われます。
+
+A Hylian Loach (ranging in size from 60~99 cm) is set to appear 1/4 times you enter the Fishing Pond (from the door to the outside).
+
+■ヒット率
+
+Hit Ratio
+
+夕暮れ　　　　　　　　　　/1.75 倍
+早朝　　　　　　　　　　　/1.5倍
+濁っている日（雨の翌日）　/1.5倍
+雨の日（８回に１回くらい）/3.0倍
+
+Dusk                               /1.75x
+Early Morning                      /1.5x
+Cloudy Water Day (Day After Rain)  /1.5x
+Rainy Day (Est. 1/8 Times)         /3.0x
+
+（数値の大きい状況が優先されます）
+
+(Numbers rounded up.)

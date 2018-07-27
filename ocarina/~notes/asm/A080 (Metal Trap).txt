@@ -1,0 +1,27 @@
+Actor 0080 Sliding Metal Trap
+
+calls 80850FA0!
+
+Instance
+
+//** UNION!
+// ************ Linear Slider ************
+0x0140 short //actor variable & 0xFF00, & 0xF0 = distance, & 0x0F = Attack Direction
+0x0144 float //distance
+//for below, imagine the actor coordinate space (0,0,0)
+//0148 = (1,0,0) * (0x0140's distance component), which is then rotated and translated to a world coordinate by adding actor's x,0,z
+//0154 = (-1,0,0) ...
+//0160 = (0,0,1) ...
+//016C = (0,0,-1) ...
+0x0148 float[3] //xyz (1,0,0) displacement position
+0x0154 float[3] //xyz (-1,0,0) displacement position
+0x0160 float[3] //xyz (0,0,1) displacement position
+0x016C float[3] //xyz (0,0,-1) displacement position
+0x0178 float[3] //z-axis (actor space) speed, translated to world space speed vector
+0x0184 float[3] //x-axis (actor space) speed, translated to world space speed vector
+
+// ************* Circle Slider ************
+0x0140 short //rotation speed
+0x0144 float //radius
+80920D04 //handles 0xF portion of actor variable!
+//** end union

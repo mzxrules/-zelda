@@ -1,0 +1,71 @@
+download n64chain from https://cen64.com
+this will give you gcc, which contains the programs necessary for compiling mips code in C or MIPS assembly. 
+
+The "root" directory for gcc should be "n64chain*/tools". This path will be referred to as "gcc" for the rest of the doc.
+
+download mips.h and my .bat files at [add link]
+
+mips.h (located in the include folder) is a header file that defines readable names to the registers that gcc expects (i.e. mips.h defines a0 as $4 (gcc)). mips.h should be placed in the "gcc/include" path
+
+before any of the .bat files can be used, you must re-define the constants within them:
+
+gccpath should be set to the full path of gcc's root directory
+sourcepath should be set to the full path of where your source code is located
+workpath should be set to the path of where you want gcc to write any output files. I highly recommend making workpath separate from source path
+
+
+******************** asm.bat *********************
+
+asm.bat allows you to compile assembly files into an object file with gcc. an assembly source file MUST end with the .sx extension; this will tell gcc to run the C pre-processor on the file, then compile it as an assembly file.
+
+to assemble a source file named source.sx located in the sourcepath directory, run the following in command prompt:
+
+asm source
+
+if successful, this will generate a source.o file within workpath
+
+
+******************* cfile.bat ********************
+
+cfile.bat allows you to compile a C language source file into an object file. 
+
+to assemble a source file named source.c located in the sourcepath directory, run the following in command prompt:
+
+cfile source
+
+if successful, this will generate a source.o file within workpath
+
+
+****************** readelf.bat *******************
+
+readelf.bat is a shortcut to gcc's readelf program. This program allows you to look into an output object file, letting you see where the compiler allocated functions and variables within memory. 
+
+to view an object file named source.o located in the workpath directory, run the following in command prompt:
+
+readelf source.o
+
+
+******************* link.bat *********************
+
+When compiling C code into an object file, the compiler won't necessarily determine a final assignment address for code symbols. this is especially true if the C file has extern declarations in it. That's where the linker program ld comes in. 
+
+ld allows you to link multiple object files together to form a program, but since we're hackers, we're going to use it to assign a memory layout for w/e code we provide, as well as provide addresses for any external symbols
+
+When you're normally writing your own C program, it's not necessary to provide ld with a linker script. However, since we are hackers and want more control over address assignment, a linker script gives us that level of control. Unfortunately, it's impossible to create Zelda64 overlays via a linker script, but it's still useful in case you want to define some statically addressed code.
+
+In order to use link.bat, you need to create a linker file (.ld). If you have an object file named source.o, and a linker script named source-link.ld both located in workpath, run the following in command prompt:
+
+link source
+
+if successful, this will generate a file named source-2.o 
+
+
+******************** bin.bat *********************
+
+bin.bat converts a fully linked object file into a binary file, stripping away all elf object file metadata. it does this with ld, using a very simple linker script named binary.ld (literally one line). I'm pretty sure that you could just as well move that line into a linker script and only run link.bat, but generating the -2.o object file allows you to read the output of link.bat via gcc's readelf program.
+
+If you have a file named source-2.o within workpath, run the following in command prompt:
+
+bin source
+
+if successful, this will generate a file named source.z64. If you want a more "standard" file extension like .bin, you can easily change the bat file and do just that. I just use .z64 because my system is already configured to open .z64 files with my hex editor of choice.

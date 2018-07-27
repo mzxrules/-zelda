@@ -1,0 +1,22 @@
+
+//input
+8011D500 input context
+  0x00 = Controller 1 (some state?)
+	0x00 u16 //Some enumeration?
+	0x02
+	0x03 u8
+  0x04 = Controller 2 (some state?)
+  0x08 = Controller 3 (some state?)
+  0x0C = Controller 4 (some state?)
+11D730/48/60/78 //port 1-4 buffer
+11D790/96/9C/A2 //port 1-4 internal buffer
+0x2A8 //8011D7A8 = Controller struct?
+  0x00 = plugged in controllers. 0x01 = 1, 0x02 = 2, 0x04 = 3, 0x08 = 4
+  0x01 = ports?
+  0x02 = input 1?
+0x2BC
+0x45C u8 //?
+//80120600 where p1 input is stored on stack
+//8012BC20 = ?, raw input?
+
+800FE510 //input related

@@ -1,0 +1,25 @@
+center Room
+B1 C = Key r wF2
+1F C = Locked door
+2F C = Torch Lock r wNF3
+
+
+Main Room
+1F S = Gold skultulla
+1F E = Water Switch F3
+       Key F2  r wF2
+       Key F1  r wF1
+1F N = Lock Door r Longshot
+1F W = Dragonmouth Key r wF1
+
+2F E = Compass
+2F S = Key r wNF3, Long
+2F W = Lock Door
+
+
+3F W = Lock Door x2
+3F E = Push Block, leading to 2F S
+       Snake River, Key -> 1f W
+
+Final Phase
+1F N -> Lock Door leading to Boss Key

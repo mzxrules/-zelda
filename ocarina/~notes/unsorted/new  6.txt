@@ -1,0 +1,37 @@
+$01795300	160x160 rgba32		main logo
+$017AEB00	192x192 i4		logo mask; a 3x3 grid of 64x64 tiles   
+$017AEB00	64x64 i4		top-left of logo mask   
+$017AF300	64x64 i4		top of logo mask   
+$017AFB00	64x64 i4		top-right of logo mask   
+$017B0300	64x64 i4		left of logo mask   
+$017B0B00	64x64 i4		center of logo mask   
+$017B1300	64x64 i4		right of logo mask   
+$017B1B00	64x64 i4		bottom-left of logo mask   
+$017B2300	64x64 i4		bottom of logo mask   
+$017B2B00	64x64 i4		bottom-right of logo mask
+
+$017B3700	72x8 i8			"the legend of"
+$017B3940	96x8 i8			"ocarina of time"
+
+Usage Tables:  00 = adult, 01 = child, 09 = both
+   ::: NOTE :::   slots != items and with the exception of the last 3 values values in
+   the item usage table, they're all listed in the same order as their
+   item value.
+
+   $00BC7794	select item slot usage table
+   $00BC77AC	equipment slot usage table
+   $00BC77BC	item usage table
+   $00BC77D0	bottled items
+   $00BC77F7	swords
+   $00BC77FA	shields
+   $00BC77FD	tunics
+   $00BC7800	boots
+   $00BC7803	deku seed bags
+   $00BC7806	quivers
+   $00BC7809	bomb bags
+   $00BC780C	bracelets / gauntlets
+   $00BC780F	scales
+   
+   $00B67390	change to below to enable map select
+	${00 00 00 00 00 B9 E4 00 00 BA 11 60 80 80 09 C0}
+	{80 80 37 20 00 00 00 00 80 80 1C 14 80 80 1C 08}

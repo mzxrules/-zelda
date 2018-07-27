@@ -1,0 +1,27 @@
+	bnel            v1,v0,$L002143
+	lw              t3,444(s0)
+	lw              t9,1660(s0)
+	li              $at,-3073
+	or              a0,s1,$zero
+	and             t0,t9,$at
+	beq             v1,v0,$L002144
+	sw              t0,1660(s0)
+
+	lui             $at,0x42c8		//load 100 (floating) into at
+	mtc1			$at,$f6			//transfer into $f6
+	lwc1            $f4,40(s0)		//$f4 = player y
+	lw              a3,36(s0)		//a3 = player x
+	addiu           a0,s1,7204		//?
+	add.s			$f8,$f4,$f6		//$f8 = playery + 100
+	or              a1,s1,$zero		//a1 = 0
+	li              a2,315			//a2 = 0x13B (actor id)
+	swc1            $f8,16($sp)		//store y
+	lwc1            $f10,44(s0)		//$f10 = player z
+	sw              $zero,36($sp)
+	sw              $zero,32($sp)
+	sw              $zero,28($sp)
+	sw              $zero,24($sp)
+	jal             ActorSpawn
+	swc1            $f10,20($sp)
+	or              a0,s0,$zero
+	jal             func_8083C0E8

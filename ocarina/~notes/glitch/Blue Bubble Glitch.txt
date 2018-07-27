@@ -1,0 +1,43 @@
+THE DOUBLE WAMMY (or perhaps a triple decker?)
+
+https://www.youtube.com/watch?v=8JkJPZf17n4 //ICE ARROW
+https://www.youtube.com/watch?v=oRjkU5gLY-Q //SPIN ATTACK
+
+
+Ice Arrow crash analysis
+
+SP = 8011efe8
+
+80063F00 //Arctan2
+//Stack = 0x18
+A0 = Actor 1's +0x24 coords
+A1 = Actor 2's +0x24 coords
+3F18 is crash point
+
+A1's x,z coords are invalid
+
+800213B4 //213D0
+//Stack = 0x18
+//Function's purpose seems to be to grab the coords of two actors
+
+801FABB8 (1088)
+0x69 (actor int 105) 801F9B30-801FD800 Bubble!
+
+
+Actor 0069: Bubble 
+sa 3 11 -1501.4   523.0 -1783.5
+1E6800 nearest bubble actor
+80914F28 //NF! call to arctan2
+
+80914AC8 (T:801E33D8)
+//likely main routine?
+
+80913EAC (T:801E27BC) //Locate explosive actor to seek
+//A0 = Global Context
+//A1 = Actor Instance
+//A2 = float ? (300 this pass)
+3EC8 //Check Explosive Actor Category list ptr for null, and return null if true
+==
+
+== Instance ==
+0314 s32 Explosive actor to seek out

@@ -1,0 +1,109 @@
+188908 - Perspective Matrix 1
+1888C8 - Camera Matrix 1
+1764F8 - Perspective Matrix 2
+
+
+//shop tests
+80186FD8
+80186F48
+80186E78
+80186DA8
+80186D58
+
+
+
+
+
+VICTORY IS MINE:
+
+8009C348 //call to generate some world related matrices
+
+World matrix related?
+
+800D05B0 // jal to matrix update
+
+FFFE
+B373 (flip vertically)
+
+FFFE
+4499 (flip horizontally)
+
+//x joystick flip hack
+.org 0x803A0AC0
+.set noreorder
+##.set noat
+#include <mips.h>
+
+lw t8, 0x0018(t7)
+sw t8, 0x0004(t6)
+lw t9, 0x001C(t7)
+sw t9, 0x0008(t6)
+lw t8, 0x0020(t7)
+sw t8, 0x000C(t6)
+lw t9, 0x0024(t7)
+sw t9, 0x0010(t6)
+lb t8, 0x0028(t7)
+neg t9, t8
+sb t9, 0x0028(t7)
+lw t8, 0x0028(t7)
+sw t8, 0x0014(t6)
+nop
+nop
+
+//Hack 2
+.org 0x801DAFA0
+.set noreorder
+##.set noat
+#include <mips.h>
+
+##don't touch v0, v1
+
+lw t0, 0xFFFC(v1)
+lh t1, 0x0000(t0)
+sll t2, t1, 0x10
+lh t3, 0x0020(t0)
+andi t3, 0xFFFF
+or t4, t2, t3
+neg t5, t4
+sh t5, 0x0020(t0)
+sra t6, t5, 0x10
+sh t6, 0x0000(t0)
+
+lui $at, 0x0001
+j 0x9C358
+ori $at, $at, 0x1DA0
+
+j 0xFB490
+nop
+
+
+
+//Initial Hack
+.org 0x800D03E8
+.set noreorder
+##.set noat
+
+#include <mips.h>
+
+neg.s $f8
+swc1 $f8, 0x0000(v0)
+mul.s $f8, $f6, $f14
+mtc1 $zero, $f6
+mul.s $f10, $f8, $f16
+swc1 $f6, 0x003C(v0)
+
+
+Frame hack
+A1148 // change from 8016A640 to 803B5000
+
+A16D4 // null
+
+803C6F08 
+803D9318
+
+8016A648
+8017CA58
+
+Gameworld projection matrices:
+0: 16A738, from Addr 3B50F8: 803C0EB8 and 803C0E78
+1: 17CB48, Addr 3C7508: 803D32C8 and 803D3288

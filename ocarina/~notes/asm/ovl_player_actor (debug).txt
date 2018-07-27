@@ -1,0 +1,71 @@
+
+Use Item
+    _JAL to Launch
+        _Not Used: Ocarina, Lens, Nut, Bean
+        CPU 0x8038A4D8: Jump Back (Use Melee Weapons)
+            Items: Swords, Deku Stick, Megaton Hammer
+        CPU 0x8038AFC8: Jump Back (Put Away Swords)
+            Items: Swords
+        CPU 0x8038AFD8: Jump Back (Put Away Items)
+            Items: Deku Stick, Slingshot, Boomerang, Bottle, Megaton Hammer
+        CPU 0x8038B004: Jump Back (Pull Out Swords & Deku Stick)
+            Items: Swords, Deku Stick
+        CPU 0x8038B024: Jump Back (Pull Out Items)
+            Items: Bomb, Bombchu, Boomerang, Slingshot, Hookshot, Longshot, Empty Bottle, Megaton Hammer
+        CPU 0x8038CCC8: Jump Back (Use Masks & Custom Items)
+    _Magic
+        CPU 0x800725D0: 
+        CPU 0x80072734: 
+        CPU 0x80072CF8: 
+    CPU 0x80079D4C: V0 = A1 - 0x12
+    CPU 0x80079D50: BLTZ V0, 0x80079D68 (Branch if action is below 12)
+    CPU 0x8038CA14: V1, 0x8038CE98 (Some items jump here)
+    CPU 0x8038CA3C: BEQ A2, R0, 0x8038CA74 (Branch if action is 0)
+    CPU 0x8038CA4C: BGEZL T0, 0x8038CA78
+    CPU 0x8038CA54: Get swim state
+    CPU 0x8038CA58: AT, R0, 0x0010 (10 = Hookshot)
+    CPU 0x8038CA68: BEQ A2, AT, 0x8038CA74 (Branch if action is 10 (Hookshot))
+    CPU 0x8038CA6C: AT, R0, 0x0011 (11 = Longshot)
+    CPU 0x8038CA70: BNE A2, AT, 0x8038CE98 (Branch if action isn't 0x11 (Longshot))
+    CPU 0x8038CA78: some place
+    CPU 0x8038CA84: BNEZ T4, 0x8038CB48
+    CPU 0x8038CA88: NOP
+    CPU 0x8038CA8C: BNE A2, AT, 0x8038CAAC (Branch if action isn't 6 (Deku Stick))
+    CPU 0x8038CAA8: BEQ T7, R0, 0x8038CB38 (Branch if out of Ammo)
+    CPU 0x8038CAB4: BNE A2, AT, 0x8038CAD0 (Branch if action isn't 2E (Magic Bean))
+    CPU 0x8038CAD8: SB A2, 0x0027 (SP) (Store Action)
+    CPU 0x8038CADC: Jump to 0x80079D48
+    CPU 0x8038CAE4: Return Here
+    CPU 0x8038CAEC: LB A2, 0x0027 (SP) (Restore Action)
+    CPU 0x8038CAF0: BLTZ V0, 0x8038CB48
+    CPU 0x8038CB1C: T5 = Ammunition
+    CPU 0x8038CB20: BEQ T5, R0, 0x8038CB38 (Branch if out of Ammo)
+    CPU 0x8038CB48: Some place
+    CPU 0x8038CB50: BNE A2, AT, 0x8038CBCC (Branch if action is not 42 (Lens of Truth))
+    CPU 0x8038CBD0: BNE A2, AT, 0x8038CC14 (Branch if action isn't 1B (Deku Nut))
+    CPU 0x8038CC14: Some place
+    CPU 0x8038CC30: BLTZ V0, 0x8038CCA0
+    CPU 0x8038CC3C: BNEL A2, AT, 0x8038CC54 (Branch if action isn't 18 (Farore's Wind))
+    CPU 0x8038CC70: T7 = Current Magic
+    CPU 0x8038CC7C: BNEZ AT, 0x8038CC90 (Branch if you have enough magic)
+    CPU 0x8038CCA4: BNEZ AT, 0x8038CCD8 (Branch if action is below 3A (Mask))
+    CPU 0x8038CCDC: BNEZ AT, 0x8038CCE8 (Branch if action is below 1C)
+    CPU 0x8038CCE4: BNEZ AT, 0x8038CCF0 (Branch if action is below 1E (Ocarina))
+    CPU 0x8038CCEC: BNEZ AT, 0x8038CD4C (Branch if action is below 1F (Empty Bottle))
+    CPU 0x8038CCF8: Call Dialog Trade Item???
+    CPU 0x8038CD10: BNEZ AT, 0x8038CE98 (Branch if action is below 25 (Use Bottle))
+    CPU 0x8038CD18: BEQL (Branch if action is action is above 2B (Dialog Items))
+    CPU 0x8038CD40: Set Perform Action on landing flag
+    CPU 0x8038CD44: Jump Back
+    CPU 0x8038CD48: Store Action to use when landing
+    CPU 0x8038CD50: BNEL A2, T4, 0x8038CBD88 (Branch if action isn't current action)
+    CPU 0x8038CD6C: Store Action
+    CPU 0x8038CDD4: Jump
+    CPU 0x8038CDE4: BGEZ V0, 0x8038CE4C
+    CPU 0x8038CE70: Call pre Pull out Item
+        CPU 0x8038A038: Pull out Item Call Function
+            CPU 0x8038A0A4: Pull out Item Call
+    CPU 0x8038D1B0: Jump here to use bottle?
+    Injection Point
+        CPU 0x8038CCAC: 
+    MEM 0x803AA6FC: Item Action Table

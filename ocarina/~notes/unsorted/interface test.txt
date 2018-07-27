@@ -1,0 +1,128 @@
+11BA00 = ? value 80 1C6E90 (possibly contains pointer to game context?)
+
+013650 = roughly where the heart drop check occurs.
+
+064DE8 = Load heart total into memory
+064E18 = Shift total hearts right 4, change to 000138C3 to shift 3 to "halve" hearts
+064DF4 = AND current health by 0xF, change to 0x7
+
+064E34 = Shift current health right 4, change to 0003A0C3
+064E3C = Shift current health right 4, change to 0001A0C3
+
+0651CC = heart fraction loaded to T4
+0651D4 = shift left heart fraction numerator by 2, change to 000CC0C0
+
+38E5E8 = Shift Right Arithmetic on A1. A1 stores enemy damage to be calculated
+
+
+
+Actor 112
+
+& F800 = Type?
+- 02 = Invisible, free collectible
+- 03 = Invisible Collision Box, drops collectible (see Z rotation)
+- 07 = Trigger Switch when run into
+- 08 = Bomb window?
+& 07C0 = Items  Table located at DE970C NTSC 1.0
+- 00 = 0C
+- 01 = 06
+- 02 = 0E Magic Jar (Large)
+- 03 = 0F
+- 04 = 03
+- 05 = 08
+- 06 = 09
+- 07 = 0A Arrows (30)
+- 08 = Green Rupee
+- 09 = Blue Rupee
+- 0A = Red Rupee
+- 0B = 12
+& 003F = Switch Flag
+
+Z Rotation
+- Additional parameter
+//Type 2 is collectibles spawned
+//Type 3 must be set to 
+// 00 = Drop on Sword Swing hit
+// 01 = Drop on Arrow hit only
+// 02 = Megaton hammer
+// 03 = Explosions
+// 04 = Drop on Slingshot Seed hit only
+// 05 = Boomerang
+// 06 = Drop on Hookshot only
+
+8009A988 Beginning of scene setup calculation routine
+
+Actor 009B
+
+& 00E0 - Generic Grotto Contents
+00 = Blue Rupee (4D)
+01 = Red Rupee (4E)
+02 = Yellow Rupee (56)
+03 = Bombs (20) (67)
+04 = Bombs (1) (65)
+05 = 
+06 =
+07 =
+& 001F - Chest Flag
+
+Z Rotation //Destination
+
+
+Check if var & 0300 == 0 
+
+Set V0 = (var & 7000) -1;
+JAL 09D94C
+
+09D95C = Read current scene number into v0
+09D964 = Check if current scene is small fairy fountain
+09D96C = Check if current scene is grottos
+09D97C = Load current room number
+
+function -
+
+09D8DC = Stores coords for grotto return
+09D904 = Store current entrance (11B964)
+09D908 = Store Current Room (11B966)
+09D918 = Store Link X (0x24) (11B954)
+09D920 = Store Link Y (0x28) (11B958)
+09D928 = Store ? (11B960)
+09D92C = Store ? (11B962)
+09D930 = Store Link Z (0x2C) (11B95C)
+
+9B code (file at 2690)
+2974 <- return point after storing grotto coords
+29A0 = Store lower byte of actor varible (11B967)
+29A4 = Load Z rotation v0
+29A8 = Increment 1
+29B4 = Load Entrance Index to t5
+29D0 = Store Entrance Index in next entrance (1DA2BA)
+
+020F88 = ?
+
+0181 code (file at 2210)
+2224 = Load byte from 11B967 into V0
+2230 = SRA V0 by 5, store in t7
+
+
+11B930 - Checkpoint system
+B938 - X
+B93C - Y
+B940 - Z
+B944 - Rot
+B946 - Spawn Variable
+B948 - Entrance Index
+B94A - Room Number
+
+
+Ass Chest
+1EEA00 - Minigame Gerudo overlay in ram
+1F0A60 - Gerudo Instance
+FAD0 - JAL to 022BD4 function
+
+King Zora
+
+File at 1FF9E0
+
+0910 BNE V0, AT to determine item
+0914 ADDIU A2, R0, 0x002D - Zora Tunic
+091C ADDIU AT, R0, 0x0024 - Eyeball Frog

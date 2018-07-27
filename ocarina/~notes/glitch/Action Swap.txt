@@ -1,0 +1,37 @@
+Action Swap
+
+Action swap occurs when 0x142 (held item, C-Item ordering) is set to sword while still holding a different item 
+
+800795E8 //Set Held Item Left Hand?
+//A0 = Link Instance
+//A1 = Held Item Index
+	00 = Shield?
+	02 = Sword (Kokiri Sword as Child, Master Sword as Adult)
+	03 = Nothing
+	05 = Giant's Knife
+	06 = Slingshot as Child, Bow as Adult
+	07 = Bomb/Bombchu
+	09 = Hookshot/Longshot
+	0A = Deku Stick
+	0B = Megaton Hammer
+	0D = Ocarina
+	0E = Empty Bottle
+//
+//800F7768 = Pointer to held item settings table
+// 0x00 ?
+// 0x01 u8 ? (used in 800F7A10 lookup)
+// 0x02 u8 ? (used in 800F7A10 lookup)
+//800F7768 + A1*5 = Start of record
+963C //800F7A10 + ((held item settings record 0x01)*4)
+963C //T6 = pointer to record within dlist table
+9644 //T7 = T6 if Adult, T6 + 4 if Child
+9648 //Link Instance + 0x154 = T7
+//repeat above, using held item settings record 0x02 as index
+//save in Link Instance + 0x150
+//repeat with record index 03, save in Link Instance + 0x158
+//repeat with record index 04, save in Link Instance + 0x15C
+JAL 800794FC
+
+800794FC //Related to updating held item
+//A0 = Link Instance
+//Performs a state check on Link

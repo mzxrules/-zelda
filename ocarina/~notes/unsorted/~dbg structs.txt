@@ -1,0 +1,16 @@
+Game //Global context?
+BB8038 sram_initialize( Game *game, Sram *sram )
+
+Sram //sram data? specifically the 0x8000 byte block and not save context
+BB8038 sram_initialize( Game *game, Sram *sram )
+BB8134 sram->read_buff != NULL
+
+z_common_data //save data, including extended vars
+BB7F30 z_common_data.file_no
+DBCCD0 z_common_data.memory.information.room_inf[127][ 0 ] //Horseback Archery Points (saved)
+DE93F8 z_common_data.yabusame_total
+DE942C z_common_data.memory.information.room_inf[127][ 0 ] //Horseback Archery Points (saved)
+E65C28 z_common_data.event_inf[1]
+
+
+800A19D0 points to 80140194, z_skelanime.c str ref

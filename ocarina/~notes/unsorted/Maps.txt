@@ -1,0 +1,34 @@
+801257F8 pointers to the tables specified below
+
+80123A70 - Dungeon floor index in map_48x85_static for all 8 floors of all dungeons (Half) (increases by 2 per floor due to each floor being 2 textures)
+80123B10 - Which floor index the boss room is on. Used to place Link on the subscreen while in one
+80123B20 - Palette index to use for each of the 32 rooms in all 10 dungeon for the map_48x85_static textures (index 0x0 are blank pixels, index 0xF is outline)
+80123DA0 - Number of palette indexes to use for the rooms (Half) (Set to the highest amount of rooms on a single floor)
+80123DB4 - Map palette index 0x1-0xE in table above to their room IDs (Half) (14 entries per floor. 8 floors. 10 dungeons. 0xFF for unused indexes) 
+80124674 - Dungeon Room Compass X Offsets (half)
+801249E4 - Dungeon Room Compass Y Offsets (half)
+80124D54 - # of Room Minimaps per Dungeon (Byte)
+80124D60 - Minimap Room Texture Entry Offsets per Dungeon (Half)
+80124D74 - Overworld Minimap Texture Lengths (Half)
+80124DA4 - Overworld Minimap Texture Offsets (Half)
+80124DD4 - Overworld Minimap X Positions (Half)
+80124E04 - Overworld Minimap Y Positions (Half)
+80124E34 - Overworld Compass X Scale (Half), Y Scale (Half), X Offset (Half), Y Offset (Half)
+80124EF4 - Dungeon start index in map_48x85_static (Half) (increases by 2 per floor due to each floor being 2 textures)
+80124F08 - Dungeon Compass X Scale (Half), Y Scale (Half), X Offset (Half), Y Offset
+80124F58 - Overworld Minimap Texture Width (Half)
+80124F88 - Overworld Minimap Texture Height (Half)
+80124FB8 - Overworld Dungeon Entrance X Position (Half)
+80124FE8 - Overworld Dungeon Entrance Y Position (Half)
+80125018 - Dungeon Entrance Flag [?] (Half)
+
+Dungeon Floors
+80125040 - Z Coordinates for All 8 Floors of All Dungeons
+80125180 - Floor Transition Entries per Dungeon (Number of entries for the next 3 tables)
+80125194 - Room to Go From (Byte)
+80125394 - Floor to Check For (Byte)
+80125594 - Room to Go To (Byte)
+
+Dungeon Subscreen
+80125794 - Floor ID (1F, BF, B2, Etc.) (Byte)
+801257E4 - Dungeon Floor Boss Skull Y Offset relative to center of screen (Half)

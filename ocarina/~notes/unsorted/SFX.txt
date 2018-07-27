@@ -1,0 +1,24 @@
+SFX
+
+In the following table, Id = & F000 of the SFX id
+// probably used for spacial manipulations of sfx
+
+Id	Buffer	
+0	80121FC0	1B0
+1	80122170	240
+2	801223B0	420
+3	801227D0	3C0
+4	80122B90	180
+5	80122D10	90
+6	80122DA0	F0
+
+Each record is 0x30 bytes. First record may be left empty deliberately
+0x00	ptr	Actor Instance + 0xE4
+0x04	ptr	Actor Instance + 0xE8
+0x08	ptr	Actor Instance + 0xEC
+0x0C	?	
+0x10	ptr	?, 801043A0
+0x14	ptr	?, 801043A0
+0x18	ptr	?, 801043A8
+0x28	short	SFX ID
+0x2C	?	?, +0x00 seems to be a byte storing channel number or FF?, +0x01 is another bite that's +2 of previous or FF

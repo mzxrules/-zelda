@@ -1,0 +1,1556 @@
+﻿0000	00	00	41	02	Deku Tree	NULL	Kokiri Forest	NULL	0
+0001	00	00	41	02	Deku Tree	NULL	Kokiri Forest	NULL	0
+0002	00	00	41	02	Deku Tree	NULL	Kokiri Forest	NULL	0
+0003	00	00	41	02	Deku Tree	NULL	Kokiri Forest	NULL	0
+0004	01	00	41	02	Dondogo's Cavern	NULL	Death Mountain Trail	NULL	4
+0005	01	00	41	02	Dondogo's Cavern	NULL	Death Mountain Trail	NULL	4
+0006	01	00	41	02	Dondogo's Cavern	NULL	Death Mountain Trail	NULL	4
+0007	01	00	41	02	Dondogo's Cavern	NULL	Death Mountain Trail	NULL	4
+0008	0B	00	41	02	Gerudo Training Grounds	NULL	Gerudo Fortress	NULL	8
+0009	0B	00	41	02	Gerudo Training Grounds	NULL	Gerudo Fortress	NULL	8
+000A	0B	00	41	02	Gerudo Training Grounds	NULL	Gerudo Fortress	NULL	8
+000B	0B	00	41	02	Gerudo Training Grounds	NULL	Gerudo Fortress	NULL	8
+000C	14	00	C1	02	Forest Temple Boss	NULL	Forest Temple	NULL	12
+000D	14	00	C1	02	Forest Temple Boss	NULL	Forest Temple	NULL	12
+000E	14	00	C1	02	Forest Temple Boss	NULL	Forest Temple	NULL	12
+000F	14	00	C1	02	Forest Temple Boss	NULL	Forest Temple	NULL	12
+0010	05	00	41	02	Water Temple	NULL	Lake Hylia	NULL	16
+0011	05	00	41	02	Water Temple	NULL	Lake Hylia	NULL	16
+0012	05	00	41	02	Water Temple	NULL	Lake Hylia	NULL	16
+0013	05	00	41	02	Water Temple	NULL	Lake Hylia	NULL	16
+0014	6E	00	41	02	Lost Scene	NULL	NULL	NULL	20
+0015	6E	00	41	02	Lost Scene	NULL	NULL	NULL	20
+0016	6E	00	41	02	Lost Scene	NULL	NULL	NULL	20
+0017	6E	00	41	02	Lost Scene	NULL	NULL	NULL	20
+0018	6C	00	41	02	Action Testing Room	NULL	NULL	NULL	24
+0019	6C	00	41	02	Action Testing Room	NULL	NULL	NULL	24
+001A	6C	00	41	02	Action Testing Room	NULL	NULL	NULL	24
+001B	6C	00	41	02	Action Testing Room	NULL	NULL	NULL	24
+001C	68	00	41	02	Stalfos Middle Room	NULL	NULL	NULL	28
+001D	68	00	41	02	Stalfos Middle Room	NULL	NULL	NULL	28
+001E	68	00	41	02	Stalfos Middle Room	NULL	NULL	NULL	28
+001F	68	00	41	02	Stalfos Middle Room	NULL	NULL	NULL	28
+0020	69	00	41	02	Stalfos Boss Room	NULL	NULL	NULL	32
+0021	69	00	41	02	Stalfos Boss Room	NULL	NULL	NULL	32
+0022	69	00	41	02	Stalfos Boss Room	NULL	NULL	NULL	32
+0023	69	00	41	02	Stalfos Boss Room	NULL	NULL	NULL	32
+0024	6D	00	41	02	Item Testing Room	NULL	NULL	NULL	36
+0025	6D	00	41	02	Item Testing Room	NULL	NULL	NULL	36
+0026	6D	00	41	02	Item Testing Room	NULL	NULL	NULL	36
+0027	6D	00	41	02	Item Testing Room	NULL	NULL	NULL	36
+0028	02	00	41	02	Inside Jabu Jabu's Belly	NULL	Zora's Fountain	NULL	40
+0029	02	00	41	02	Inside Jabu Jabu's Belly	NULL	Zora's Fountain	NULL	40
+002A	02	00	41	02	Inside Jabu Jabu's Belly	NULL	Zora's Fountain	NULL	40
+002B	02	00	41	02	Inside Jabu Jabu's Belly	NULL	Zora's Fountain	NULL	40
+002C	02	00	41	02	Inside Jabu Jabu's Belly	NULL	Zora's Fountain	NULL	40
+002D	41	00	41	26	Royal Family's Tomb	NULL	Graveyard	NULL	45
+002E	41	00	41	26	Royal Family's Tomb	NULL	Graveyard	NULL	45
+002F	41	00	41	26	Royal Family's Tomb	NULL	Graveyard	NULL	45
+0030	41	00	41	26	Royal Family's Tomb	NULL	Graveyard	NULL	45
+0031	41	00	41	02	Royal Family's Tomb	NULL	Graveyard	NULL	45
+0032	41	00	41	02	Royal Family's Tomb	NULL	Graveyard	NULL	45
+0033	1B	00	C1	83	Market Entrance - Child Day	NULL	Market	NULL	51
+0034	1C	00	C1	02	Market Entrance - Child Night	NULL	Market	NULL	51
+0035	1D	00	C1	83	Market Entrance - Adult	NULL	Market	NULL	51
+0036	1D	00	C1	02	Market Entrance - Adult	NULL	Market	NULL	51
+0037	07	00	41	02	Shadow Temple	NULL	Graveyard	NULL	55
+0038	07	00	41	02	Shadow Temple	NULL	Graveyard	NULL	55
+0039	07	00	41	02	Shadow Temple	NULL	Graveyard	NULL	55
+003A	07	00	41	02	Shadow Temple	NULL	Graveyard	NULL	55
+003B	42	00	42	20	Shooting Gallery	NULL	Kakariko Village	NULL	59
+003C	42	00	42	20	Shooting Gallery	NULL	Kakariko Village	NULL	59
+003D	42	00	42	20	Shooting Gallery	NULL	Kakariko Village	NULL	59
+003E	42	00	42	20	Shooting Gallery	NULL	Kakariko Village	NULL	59
+003F	3E	00	41	02	Grottos	Default	NULL	NULL	63
+0040	3E	00	41	02	Grottos	Default	NULL	NULL	63
+0041	3E	00	41	02	Grottos	Default	NULL	NULL	63
+0042	3E	00	41	02	Grottos	Default	NULL	NULL	63
+0043	38	00	42	20	Lakeside Laboratory	NULL	Lake Hylia	NULL	67
+0044	38	00	42	20	Lakeside Laboratory	NULL	Lake Hylia	NULL	67
+0045	38	00	42	20	Lakeside Laboratory	NULL	Lake Hylia	NULL	67
+0046	38	00	42	20	Lakeside Laboratory	NULL	Lake Hylia	NULL	67
+0047	6A	00	41	02	Dark Link Testing Area	NULL	NULL	NULL	71
+0048	6A	00	41	02	Dark Link Testing Area	NULL	NULL	NULL	71
+0049	6A	00	41	02	Dark Link Testing Area	NULL	NULL	NULL	71
+004A	6A	00	41	02	Dark Link Testing Area	NULL	NULL	NULL	71
+004B	40	00	41	26	Grave with Shield	Hylian Shield Chest	Graveyard	NULL	75
+004C	40	00	41	26	Grave with Shield	Hylian Shield Chest	Graveyard	NULL	75
+004D	40	00	41	26	Grave with Shield	Hylian Shield Chest	Graveyard	NULL	75
+004E	40	00	41	26	Grave with Shield	Hylian Shield Chest	Graveyard	NULL	75
+004F	4C	00	42	20	Lon Lon Ranch Buildings	Talon's House	Lon Lon Ranch	NULL	79
+0050	4C	00	42	20	Lon Lon Ranch Buildings	Talon's House	Lon Lon Ranch	NULL	79
+0051	4C	00	42	20	Lon Lon Ranch Buildings	Talon's House	Lon Lon Ranch	NULL	79
+0052	4C	00	42	20	Lon Lon Ranch Buildings	Talon's House	Lon Lon Ranch	NULL	79
+0053	43	00	41	02	Temple of Time	NULL	Outside Temple of Time	NULL	83
+0054	43	00	41	02	Temple of Time	NULL	Outside Temple of Time	NULL	83
+0055	43	00	41	02	Temple of Time	NULL	Outside Temple of Time	NULL	83
+0056	43	00	41	02	Temple of Time	NULL	Outside Temple of Time	NULL	83
+0057	43	00	41	02	Temple of Time	NULL	Outside Temple of Time	NULL	83
+0058	43	00	41	02	Temple of Time	NULL	Outside Temple of Time	NULL	83
+0059	43	00	41	02	Temple of Time	NULL	Outside Temple of Time	NULL	83
+005A	43	00	41	02	Temple of Time	NULL	Outside Temple of Time	NULL	83
+005B	43	00	41	02	Temple of Time	NULL	Outside Temple of Time	NULL	83
+005C	43	00	41	02	Temple of Time	NULL	Outside Temple of Time	NULL	83
+005D	43	00	41	02	Temple of Time	NULL	Outside Temple of Time	NULL	83
+005E	43	00	45	8B	Temple of Time	NULL	Outside Temple of Time	NULL	83
+005F	43	00	41	02	Temple of Time	NULL	Outside Temple of Time	NULL	83
+0060	43	00	41	02	Temple of Time	NULL	Outside Temple of Time	NULL	83
+0061	43	00	41	02	Temple of Time	NULL	Outside Temple of Time	NULL	83
+0062	43	00	41	02	Temple of Time	NULL	Outside Temple of Time	NULL	83
+0063	10	00	42	20	Treasure Box Shop	NULL	Market	NULL	99
+0064	10	00	42	20	Treasure Box Shop	NULL	Market	NULL	99
+0065	10	00	42	20	Treasure Box Shop	NULL	Market	NULL	99
+0066	10	00	42	20	Treasure Box Shop	NULL	Market	NULL	99
+0067	1E	03	C1	83	Back Alley - Day	Right side of alley, from door	Back Alley Village House	NULL	103
+0068	1F	03	C1	02	Back Alley - Night	Right side of alley, from door	Back Alley Village House	NULL	103
+0069	1E	03	C1	02	Back Alley - Day	Right side of alley, from door	Back Alley Village House	NULL	103
+006A	1F	03	C1	02	Back Alley - Night	Right side of alley, from door	Back Alley Village House	NULL	103
+006B	44	00	43	87	Chamber of Sages	NULL	NULL	NULL	107
+006C	44	00	43	87	Chamber of Sages	NULL	NULL	NULL	107
+006D	44	00	43	87	Chamber of Sages	NULL	NULL	NULL	107
+006E	44	00	43	87	Chamber of Sages	NULL	NULL	NULL	107
+006F	44	00	46	82	Chamber of Sages	NULL	NULL	NULL	107
+0070	44	00	46	82	Chamber of Sages	NULL	NULL	NULL	107
+0071	44	00	41	83	Chamber of Sages	NULL	NULL	NULL	107
+0072	4E	00	42	20	Granny's Potion Shop	NULL	Kakariko Village	NULL	114
+0073	4E	00	42	20	Granny's Potion Shop	NULL	Kakariko Village	NULL	114
+0074	4E	00	42	20	Granny's Potion Shop	NULL	Kakariko Village	NULL	114
+0075	4E	00	42	20	Granny's Potion Shop	NULL	Kakariko Village	NULL	114
+0076	6B	00	51	22	Beta Castle Courtyard	NULL	NULL	NULL	118
+0077	6B	00	51	22	Beta Castle Courtyard	NULL	NULL	NULL	118
+0078	6B	00	51	22	Beta Castle Courtyard	NULL	NULL	NULL	118
+0079	6B	00	51	22	Beta Castle Courtyard	NULL	NULL	NULL	118
+007A	45	00	51	04	Castle Courtyard - Day	NULL	Castle	Crawlspace	122
+007B	46	00	51	04	Castle Courtyard - Night	NULL	Castle	Crawlspace	122
+007C	45	00	51	04	Castle Courtyard - Day	NULL	Castle	Crawlspace	122
+007D	46	00	51	04	Castle Courtyard - Night	NULL	Castle	Crawlspace	122
+007E	4D	00	41	02	Lots o' Pots	NULL	Market Entrance	NULL	126
+007F	4D	00	41	02	Lots o' Pots	NULL	Market Entrance	NULL	126
+0080	4D	00	41	02	Lots o' Pots	NULL	Market Entrance	NULL	126
+0081	4D	00	41	02	Lots o' Pots	NULL	Market Entrance	NULL	126
+0082	06	00	41	02	Spirit Temple	NULL	Desert Colossus	NULL	130
+0083	06	00	41	02	Spirit Temple	NULL	Desert Colossus	NULL	130
+0084	06	00	41	02	Spirit Temple	NULL	Desert Colossus	NULL	130
+0085	06	00	41	02	Spirit Temple	NULL	Desert Colossus	NULL	130
+0086	06	00	41	02	Spirit Temple	NULL	Desert Colossus	NULL	130
+0087	06	00	41	02	Spirit Temple	NULL	Desert Colossus	NULL	130
+0088	09	00	41	02	Ice Cavern	NULL	Zora's Fountain	NULL	136
+0089	09	00	41	02	Ice Cavern	NULL	Zora's Fountain	NULL	136
+008A	09	00	41	02	Ice Cavern	NULL	Zora's Fountain	NULL	136
+008B	09	00	41	02	Ice Cavern	NULL	Zora's Fountain	NULL	136
+008C	09	00	41	02	Ice Cavern	NULL	Zora's Fountain	NULL	136
+008D	17	00	C1	02	Spirit Temple Boss	NULL	Spirit Temple	NULL	141
+008E	17	00	C1	02	Spirit Temple Boss	NULL	Spirit Temple	NULL	141
+008F	17	00	C1	02	Spirit Temple Boss	NULL	Spirit Temple	NULL	141
+0090	17	00	C1	02	Spirit Temple Boss	NULL	Spirit Temple	NULL	141
+0091	17	00	41	02	Spirit Temple Boss	NULL	Spirit Temple	NULL	141
+0092	17	00	41	02	Spirit Temple Boss	NULL	Spirit Temple	NULL	141
+0093	17	00	41	02	Spirit Temple Boss	NULL	Spirit Temple	NULL	141
+0094	65	00	41	02	Collision Testing Arena	NULL	NULL	NULL	148
+0095	65	00	41	02	Collision Testing Arena	NULL	NULL	NULL	148
+0096	65	00	41	02	Collision Testing Arena	NULL	NULL	NULL	148
+0097	65	00	41	02	Collision Testing Arena	NULL	NULL	NULL	148
+0098	08	00	42	04	Bottom of the Well	NULL	Kakariko Village	NULL	152
+0099	08	00	42	04	Bottom of the Well	NULL	Kakariko Village	NULL	152
+009A	08	00	42	04	Bottom of the Well	NULL	Kakariko Village	NULL	152
+009B	08	00	42	04	Bottom of the Well	NULL	Kakariko Village	NULL	152
+009C	27	00	42	04	House of Twins	NULL	Kokiri Forest	NULL	156
+009D	27	00	42	04	House of Twins	NULL	Kokiri Forest	NULL	156
+009E	27	00	42	04	House of Twins	NULL	Kokiri Forest	NULL	156
+009F	27	00	42	04	House of Twins	NULL	Kokiri Forest	NULL	156
+00A0	47	00	41	83	Cutscene Map	NULL	NULL	NULL	160
+00A1	47	00	41	83	Cutscene Map	NULL	NULL	NULL	160
+00A2	47	00	41	83	Cutscene Map	NULL	NULL	NULL	160
+00A3	47	00	41	83	Cutscene Map	NULL	NULL	NULL	160
+00A4	47	00	45	0A	Cutscene Map	NULL	NULL	NULL	160
+00A5	47	00	41	0A	Cutscene Map	NULL	NULL	NULL	160
+00A6	47	00	C5	0A	Cutscene Map	NULL	NULL	NULL	160
+00A7	47	00	45	8B	Cutscene Map	NULL	NULL	NULL	160
+00A8	47	00	41	83	Cutscene Map	NULL	NULL	NULL	160
+00A9	47	00	41	02	Cutscene Map	NULL	NULL	NULL	160
+00AA	47	00	41	02	Cutscene Map	NULL	NULL	NULL	160
+00AB	47	00	41	83	Cutscene Map	NULL	NULL	NULL	160
+00AC	47	00	41	83	Cutscene Map	NULL	NULL	NULL	160
+00AD	1E	00	C1	83	Back Alley - Day	Right Entrance	Market	NULL	173
+00AE	1F	00	C1	02	Back Alley - Night	Right Entrance	Market	NULL	173
+00AF	1E	00	C1	02	Back Alley - Day	Right Entrance	Market	NULL	173
+00B0	1F	00	C1	02	Back Alley - Night	Right Entrance	Market	NULL	173
+00B1	20	00	C1	83	Market - Child Day	NULL	Market Entrance	NULL	177
+00B2	21	00	C1	02	Market - Child Night	NULL	Market Entrance	NULL	177
+00B3	22	00	C1	02	Market - Adult	NULL	Market Entrance	NULL	177
+00B4	22	00	C1	02	Market - Adult	NULL	Market Entrance	NULL	177
+00B5	20	00	44	08	Market - Child Day	NULL	Market Entrance	NULL	177
+00B6	67	00	41	02	Depth Test	NULL	NULL	NULL	182
+00B7	2C	00	42	20	Bazaar	NULL	Kakariko Village	NULL	183
+00B8	2C	00	42	20	Bazaar	NULL	Kakariko Village	NULL	183
+00B9	2C	00	42	20	Bazaar	NULL	Kakariko Village	NULL	183
+00BA	2C	00	42	20	Bazaar	NULL	Kakariko Village	NULL	183
+00BB	34	00	42	04	Link's House	Bed Entrance	NULL	Savewarp	187
+00BC	34	00	42	04	Link's House	Bed Entrance	NULL	Savewarp	187
+00BD	34	00	42	04	Link's House	Bed Entrance	NULL	Savewarp	187
+00BE	34	00	42	04	Link's House	Bed Entrance	NULL	Savewarp	187
+00BF	34	00	42	02	Link's House	Bed Entrance	NULL	Savewarp	187
+00C0	34	00	48	10	Link's House	Bed Entrance	NULL	Savewarp	187
+00C1	2D	00	42	04	Kokiri Shop	NULL	Kokiri Forest	NULL	193
+00C2	2D	00	42	04	Kokiri Shop	NULL	Kokiri Forest	NULL	193
+00C3	2D	00	42	04	Kokiri Shop	NULL	Kokiri Forest	NULL	193
+00C4	2D	00	42	04	Kokiri Shop	NULL	Kokiri Forest	NULL	193
+00C5	01	01	81	02	Dondogo's Cavern	NULL	Dondogo's Cavern Boss	NULL	197
+00C6	01	01	81	02	Dondogo's Cavern	NULL	Dondogo's Cavern Boss	NULL	197
+00C7	01	01	81	02	Dondogo's Cavern	NULL	Dondogo's Cavern Boss	NULL	197
+00C8	01	01	81	02	Dondogo's Cavern	NULL	Dondogo's Cavern Boss	NULL	197
+00C9	26	00	42	04	Know-it-all Brothers	NULL	Kokiri Forest	NULL	201
+00CA	26	00	42	04	Know-it-all Brothers	NULL	Kokiri Forest	NULL	201
+00CB	26	00	42	04	Know-it-all Brothers	NULL	Kokiri Forest	NULL	201
+00CC	26	00	42	04	Know-it-all Brothers	NULL	Kokiri Forest	NULL	201
+00CD	51	00	41	83	Hyrule Field	NULL	NULL	After Zelda Escape, 2nd+ Impa Escort	205
+00CE	51	00	41	02	Hyrule Field	NULL	NULL	After Zelda Escape, 2nd+ Impa Escort	205
+00CF	51	00	41	83	Hyrule Field	NULL	NULL	After Zelda Escape, 2nd+ Impa Escort	205
+00D0	51	00	41	02	Hyrule Field	NULL	NULL	After Zelda Escape, 2nd+ Impa Escort	205
+00D1	51	00	42	02	Hyrule Field	NULL	NULL	After Zelda Escape, 2nd+ Impa Escort	205
+00D2	51	00	50	A1	Hyrule Field	NULL	NULL	After Zelda Escape, 2nd+ Impa Escort	205
+00D3	51	00	50	A1	Hyrule Field	NULL	NULL	After Zelda Escape, 2nd+ Impa Escort	205
+00D4	51	00	51	A3	Hyrule Field	NULL	NULL	After Zelda Escape, 2nd+ Impa Escort	205
+00D5	51	00	41	83	Hyrule Field	NULL	NULL	After Zelda Escape, 2nd+ Impa Escort	205
+00D6	51	00	C1	02	Hyrule Field	NULL	NULL	After Zelda Escape, 2nd+ Impa Escort	205
+00D7	51	00	51	A3	Hyrule Field	NULL	NULL	After Zelda Escape, 2nd+ Impa Escort	205
+00D8	51	00	41	83	Hyrule Field	NULL	NULL	After Zelda Escape, 2nd+ Impa Escort	205
+00D9	51	00	54	A9	Hyrule Field	NULL	NULL	After Zelda Escape, 2nd+ Impa Escort	205
+00DA	51	00	C1	83	Hyrule Field	NULL	NULL	After Zelda Escape, 2nd+ Impa Escort	205
+00DB	52	00	41	83	Kakariko Village	NULL	Hyrule Field	NULL	219
+00DC	52	00	41	02	Kakariko Village	NULL	Hyrule Field	NULL	219
+00DD	52	00	41	83	Kakariko Village	NULL	Hyrule Field	NULL	219
+00DE	52	00	41	02	Kakariko Village	NULL	Hyrule Field	NULL	219
+00DF	52	00	53	26	Kakariko Village	NULL	Hyrule Field	NULL	219
+00E0	52	00	50	A1	Kakariko Village	NULL	Hyrule Field	NULL	219
+00E1	52	00	D0	A1	Kakariko Village	NULL	Hyrule Field	NULL	219
+00E2	52	00	50	A1	Kakariko Village	NULL	Hyrule Field	NULL	219
+00E3	52	00	C1	02	Kakariko Village	NULL	Hyrule Field	NULL	219
+00E4	53	00	41	83	Kakariko Graveyard	NULL	Kakariko Village	NULL	228
+00E5	53	00	41	02	Kakariko Graveyard	NULL	Kakariko Village	NULL	228
+00E6	53	00	41	83	Kakariko Graveyard	NULL	Kakariko Village	NULL	228
+00E7	53	00	41	02	Kakariko Graveyard	NULL	Kakariko Village	NULL	228
+00E8	53	00	42	02	Kakariko Graveyard	NULL	Kakariko Village	NULL	228
+00E9	53	00	C1	02	Kakariko Graveyard	NULL	Kakariko Village	NULL	228
+00EA	54	00	C1	83	Zora River	Land Entrance	Hyrule Field	NULL	234
+00EB	54	00	C1	02	Zora River	Land Entrance	Hyrule Field	NULL	234
+00EC	54	00	C1	83	Zora River	Land Entrance	Hyrule Field	NULL	234
+00ED	54	00	C1	02	Zora River	Land Entrance	Hyrule Field	NULL	234
+00EE	55	00	41	83	Kokiri Forest	NULL	NULL	After Forest Medallion Cutscene	238
+00EF	55	00	41	02	Kokiri Forest	NULL	NULL	After Forest Medallion Cutscene	238
+00F0	55	00	41	83	Kokiri Forest	NULL	NULL	After Forest Medallion Cutscene	238
+00F1	55	00	41	02	Kokiri Forest	NULL	NULL	After Forest Medallion Cutscene	238
+00F2	55	00	C5	0A	Kokiri Forest	NULL	NULL	After Forest Medallion Cutscene	238
+00F3	55	00	45	0A	Kokiri Forest	NULL	NULL	After Forest Medallion Cutscene	238
+00F4	55	00	C5	0A	Kokiri Forest	NULL	NULL	After Forest Medallion Cutscene	238
+00F5	55	00	46	8A	Kokiri Forest	NULL	NULL	After Forest Medallion Cutscene	238
+00F6	55	00	45	0A	Kokiri Forest	NULL	NULL	After Forest Medallion Cutscene	238
+00F7	55	00	45	0A	Kokiri Forest	NULL	NULL	After Forest Medallion Cutscene	238
+00F8	55	00	C1	02	Kokiri Forest	NULL	NULL	After Forest Medallion Cutscene	238
+00F9	55	00	C1	02	Kokiri Forest	NULL	NULL	After Forest Medallion Cutscene	238
+00FA	55	00	C1	02	Kokiri Forest	NULL	NULL	After Forest Medallion Cutscene	238
+00FB	55	00	C1	02	Kokiri Forest	NULL	NULL	After Forest Medallion Cutscene	238
+00FC	56	00	C1	02	Sacred Forest Meadow	NULL	Lost Woods	NULL	252
+00FD	56	00	C1	02	Sacred Forest Meadow	NULL	Lost Woods	NULL	252
+00FE	56	00	C1	02	Sacred Forest Meadow	NULL	Lost Woods	NULL	252
+00FF	56	00	C1	02	Sacred Forest Meadow	NULL	Lost Woods	NULL	252
+0100	56	00	41	83	Sacred Forest Meadow	NULL	Lost Woods	NULL	252
+0101	56	00	40	00	Sacred Forest Meadow	NULL	Lost Woods	NULL	252
+0102	57	00	C1	83	Lake Hylia	NULL	Hyrule Field	NULL	258
+0103	57	00	C1	02	Lake Hylia	NULL	Hyrule Field	NULL	258
+0104	57	00	C1	83	Lake Hylia	NULL	Hyrule Field	NULL	258
+0105	57	00	C1	02	Lake Hylia	NULL	Hyrule Field	NULL	258
+0106	57	00	41	83	Lake Hylia	NULL	Hyrule Field	NULL	258
+0107	57	00	C1	02	Lake Hylia	NULL	Hyrule Field	NULL	258
+0108	58	00	41	02	Zora's Domain	NULL	Zora River	NULL	264
+0109	58	00	41	02	Zora's Domain	NULL	Zora River	NULL	264
+010A	58	00	41	02	Zora's Domain	NULL	Zora River	NULL	264
+010B	58	00	41	02	Zora's Domain	NULL	Zora River	NULL	264
+010C	58	00	C1	02	Zora's Domain	NULL	Zora River	NULL	264
+010D	58	00	C1	02	Zora's Domain	NULL	Zora River	NULL	264
+010E	59	00	41	83	Zora's Fountain	Sapphire Cutscene Entrance	NULL	NULL	270
+010F	59	00	41	02	Zora's Fountain	Sapphire Cutscene Entrance	NULL	NULL	270
+0110	59	00	41	83	Zora's Fountain	Sapphire Cutscene Entrance	NULL	NULL	270
+0111	59	00	41	02	Zora's Fountain	Sapphire Cutscene Entrance	NULL	NULL	270
+0112	59	00	46	80	Zora's Fountain	Sapphire Cutscene Entrance	NULL	NULL	270
+0113	59	00	41	02	Zora's Fountain	Sapphire Cutscene Entrance	NULL	NULL	270
+0114	59	00	C1	02	Zora's Fountain	Sapphire Cutscene Entrance	NULL	NULL	270
+0115	59	00	41	02	Zora's Fountain	Sapphire Cutscene Entrance	NULL	NULL	270
+0116	59	00	C1	02	Zora's Fountain	Sapphire Cutscene Entrance	NULL	NULL	270
+0117	5A	00	41	83	Gerudo Valley	NULL	Hyrule Field	NULL	279
+0118	5A	00	41	02	Gerudo Valley	NULL	Hyrule Field	NULL	279
+0119	5A	00	41	83	Gerudo Valley	NULL	Hyrule Field	NULL	279
+011A	5A	00	41	02	Gerudo Valley	NULL	Hyrule Field	NULL	279
+011B	5A	00	C6	0A	Gerudo Valley	NULL	Hyrule Field	NULL	279
+011C	5A	00	C5	0A	Gerudo Valley	NULL	Hyrule Field	NULL	279
+011D	5A	00	C1	02	Gerudo Valley	NULL	Hyrule Field	NULL	279
+011E	5B	00	41	02	Lost Woods	NULL	Kokiri Forest	NULL	286
+011F	5B	00	41	02	Lost Woods	NULL	Kokiri Forest	NULL	286
+0120	5B	00	41	02	Lost Woods	NULL	Kokiri Forest	NULL	286
+0121	5B	00	41	02	Lost Woods	NULL	Kokiri Forest	NULL	286
+0122	5B	00	41	02	Lost Woods	NULL	Kokiri Forest	NULL	286
+0123	5C	00	C7	8F	Desert Colossus	NULL	Haunted Wasteland	NULL	291
+0124	5C	00	C7	8F	Desert Colossus	NULL	Haunted Wasteland	NULL	291
+0125	5C	00	C7	8F	Desert Colossus	NULL	Haunted Wasteland	NULL	291
+0126	5C	00	C7	8F	Desert Colossus	NULL	Haunted Wasteland	NULL	291
+0127	5C	00	C1	02	Desert Colossus	NULL	Haunted Wasteland	NULL	291
+0128	5C	00	C7	8F	Desert Colossus	NULL	Haunted Wasteland	NULL	291
+0129	5D	00	C1	83	Gerudo Fortress	NULL	Gerudo Valley	NULL	297
+012A	5D	00	C1	02	Gerudo Fortress	NULL	Gerudo Valley	NULL	297
+012B	5D	00	C1	83	Gerudo Fortress	NULL	Gerudo Valley	NULL	297
+012C	5D	00	C1	02	Gerudo Fortress	NULL	Gerudo Valley	NULL	297
+012D	5D	00	D0	A1	Gerudo Fortress	NULL	Gerudo Valley	NULL	297
+012E	5D	00	C1	02	Gerudo Fortress	NULL	Gerudo Valley	NULL	297
+012F	5D	00	C1	02	Gerudo Fortress	NULL	Gerudo Valley	NULL	297
+0130	5E	00	C7	0E	Haunted Wasteland	NULL	Gerudo Fortress	NULL	304
+0131	5E	00	C7	0E	Haunted Wasteland	NULL	Gerudo Fortress	NULL	304
+0132	5E	00	C7	0E	Haunted Wasteland	NULL	Gerudo Fortress	NULL	304
+0133	5E	00	C7	0E	Haunted Wasteland	NULL	Gerudo Fortress	NULL	304
+0134	0E	01	C1	02	Tower Collapse Interior	Bottom of Boss Room	Tower Collapse Exterior	(Lower)	308
+0135	0E	01	C1	02	Tower Collapse Interior	Bottom of Boss Room	Tower Collapse Exterior	(Lower)	308
+0136	0E	01	C1	02	Tower Collapse Interior	Bottom of Boss Room	Tower Collapse Exterior	(Lower)	308
+0137	0E	01	C1	02	Tower Collapse Interior	Bottom of Boss Room	Tower Collapse Exterior	(Lower)	308
+0138	5F	00	41	83	Hyrule Castle	NULL	Market Entrance	NULL	312
+0139	5F	00	41	02	Hyrule Castle	NULL	Market Entrance	NULL	312
+013A	64	00	41	02	Ganon's Castle	NULL	Market Entrance	NULL	312
+013B	64	00	41	02	Ganon's Castle	NULL	Market Entrance	NULL	312
+013C	64	00	42	02	Ganon's Castle	NULL	Market Entrance	NULL	312
+013D	60	00	41	83	Death Mountain Trail	NULL	Kakariko Village	NULL	317
+013E	60	00	41	02	Death Mountain Trail	NULL	Kakariko Village	NULL	317
+013F	60	00	41	83	Death Mountain Trail	NULL	Kakariko Village	NULL	317
+0140	60	00	41	02	Death Mountain Trail	NULL	Kakariko Village	NULL	317
+0141	60	00	C5	0A	Death Mountain Trail	NULL	Kakariko Village	NULL	317
+0142	60	00	41	83	Death Mountain Trail	NULL	Kakariko Village	NULL	317
+0143	60	00	41	02	Death Mountain Trail	NULL	Kakariko Village	NULL	317
+0144	60	00	C1	02	Death Mountain Trail	NULL	Kakariko Village	NULL	317
+0145	60	00	C1	83	Death Mountain Trail	NULL	Kakariko Village	NULL	317
+0146	60	00	C1	83	Death Mountain Trail	NULL	Kakariko Village	NULL	317
+0147	61	00	41	02	Death Mountain Crater	NULL	Death Mountain Trail	NULL	327
+0148	61	00	41	02	Death Mountain Crater	NULL	Death Mountain Trail	NULL	327
+0149	61	00	41	02	Death Mountain Crater	NULL	Death Mountain Trail	NULL	327
+014A	61	00	41	02	Death Mountain Crater	NULL	Death Mountain Trail	NULL	327
+014B	61	00	41	83	Death Mountain Crater	NULL	Death Mountain Trail	NULL	327
+014C	61	00	41	02	Death Mountain Crater	NULL	Death Mountain Trail	NULL	327
+014D	62	00	41	02	Goron City	NULL	Death Mountain Trail	NULL	333
+014E	62	00	41	02	Goron City	NULL	Death Mountain Trail	NULL	333
+014F	62	00	41	02	Goron City	NULL	Death Mountain Trail	NULL	333
+0150	62	00	41	02	Goron City	NULL	Death Mountain Trail	NULL	333
+0151	62	00	41	02	Goron City	NULL	Death Mountain Trail	NULL	333
+0152	62	00	C1	02	Goron City	NULL	Death Mountain Trail	NULL	333
+0153	58	03	40	00	Zora's Domain	Eyeball Frog Timeout	NULL	NULL	339
+0154	58	03	40	00	Zora's Domain	Eyeball Frog Timeout	NULL	NULL	339
+0155	58	03	40	00	Zora's Domain	Eyeball Frog Timeout	NULL	NULL	339
+0156	58	03	40	00	Zora's Domain	Eyeball Frog Timeout	NULL	NULL	339
+0157	63	00	41	83	Lon Lon Ranch	NULL	Hyrule Field	NULL	343
+0158	63	00	41	02	Lon Lon Ranch	NULL	Hyrule Field	NULL	343
+0159	63	00	41	83	Lon Lon Ranch	NULL	Hyrule Field	NULL	343
+015A	63	00	41	02	Lon Lon Ranch	NULL	Hyrule Field	NULL	343
+015B	63	00	50	20	Lon Lon Ranch	NULL	Hyrule Field	NULL	343
+015C	63	00	55	2A	Lon Lon Ranch	NULL	Hyrule Field	NULL	343
+015D	63	00	C1	02	Lon Lon Ranch	NULL	Hyrule Field	NULL	343
+015E	63	00	C1	02	Lon Lon Ranch	NULL	Hyrule Field	NULL	343
+015F	63	00	C1	02	Lon Lon Ranch	NULL	Hyrule Field	NULL	343
+0160	63	00	C1	02	Lon Lon Ranch	NULL	Hyrule Field	NULL	343
+0161	63	00	C1	02	Lon Lon Ranch	NULL	Hyrule Field	NULL	343
+0162	63	00	C1	02	Lon Lon Ranch	NULL	Hyrule Field	NULL	343
+0163	63	00	C1	02	Lon Lon Ranch	NULL	Hyrule Field	NULL	343
+0164	63	00	C1	02	Lon Lon Ranch	NULL	Hyrule Field	NULL	343
+0165	04	00	41	02	Fire Temple	NULL	Death Mountain Crater	NULL	357
+0166	04	00	41	02	Fire Temple	NULL	Death Mountain Crater	NULL	357
+0167	04	00	41	02	Fire Temple	NULL	Death Mountain Crater	NULL	357
+0168	04	00	41	02	Fire Temple	NULL	Death Mountain Crater	NULL	357
+0169	03	00	41	02	Forest Temple	NULL	Sacred Forest Meadow	NULL	361
+016A	03	00	41	02	Forest Temple	NULL	Sacred Forest Meadow	NULL	361
+016B	03	00	41	02	Forest Temple	NULL	Sacred Forest Meadow	NULL	361
+016C	03	00	41	02	Forest Temple	NULL	Sacred Forest Meadow	NULL	361
+016D	42	01	42	20	Shooting Gallery	NULL	Market Entrance	NULL	365
+016E	42	01	42	20	Shooting Gallery	NULL	Market Entrance	NULL	365
+016F	42	01	42	20	Shooting Gallery	NULL	Market Entrance	NULL	365
+0170	42	01	42	20	Shooting Gallery	NULL	Market Entrance	NULL	365
+0171	23	00	41	83	Outside Temple of Time - Child Day	NULL	Market Entrance	NULL	369
+0172	24	00	41	02	Outside Temple of Time - Child Night	NULL	Market Entrance	NULL	369
+0173	25	00	41	02	Outside Temple of Time - Adult	NULL	Market Entrance	NULL	369
+0174	25	00	41	02	Outside Temple of Time - Adult	NULL	Market Entrance	NULL	369
+0175	04	01	C1	02	Fire Temple	Outside Boss Door	Fire Temple Boss	Secret Map #0	373
+0176	04	01	C1	02	Fire Temple	Outside Boss Door	Fire Temple Boss	Secret Map #0	373
+0177	04	01	C1	02	Fire Temple	Outside Boss Door	Fire Temple Boss	Secret Map #0	373
+0178	04	01	C1	02	Fire Temple	Outside Boss Door	Fire Temple Boss	Secret Map #0	373
+0179	0E	00	C1	02	Tower Collapse Interior	Bottom of Boss Room	Tower Collapse Exterior	(Higher)	377
+017A	0E	00	C1	02	Tower Collapse Interior	Bottom of Boss Room	Tower Collapse Exterior	(Higher)	377
+017B	0E	00	C1	02	Tower Collapse Interior	Bottom of Boss Room	Tower Collapse Exterior	(Higher)	377
+017C	0E	00	C1	02	Tower Collapse Interior	Bottom of Boss Room	Tower Collapse Exterior	(Higher)	377
+017D	51	01	41	83	Hyrule Field	NULL	Kakariko Village	NULL	381
+017E	51	01	41	02	Hyrule Field	NULL	Kakariko Village	NULL	381
+017F	51	01	41	83	Hyrule Field	NULL	Kakariko Village	NULL	381
+0180	51	01	41	02	Hyrule Field	NULL	Kakariko Village	NULL	381
+0181	51	02	C1	83	Hyrule Field	NULL	Zora River	Land	385
+0182	51	02	C1	02	Hyrule Field	NULL	Zora River	Land	385
+0183	51	02	C1	83	Hyrule Field	NULL	Zora River	Land	385
+0184	51	02	C1	02	Hyrule Field	NULL	Zora River	Land	385
+0185	51	03	41	02	Hyrule Field	NULL	Lost Woods	NULL	389
+0186	51	03	41	02	Hyrule Field	NULL	Lost Woods	NULL	389
+0187	51	03	41	02	Hyrule Field	NULL	Lost Woods	NULL	389
+0188	51	03	41	02	Hyrule Field	NULL	Lost Woods	NULL	389
+0189	51	04	C1	83	Hyrule Field	NULL	Lake Hylia	NULL	393
+018A	51	04	C1	02	Hyrule Field	NULL	Lake Hylia	NULL	393
+018B	51	04	C1	83	Hyrule Field	NULL	Lake Hylia	NULL	393
+018C	51	04	C1	02	Hyrule Field	NULL	Lake Hylia	NULL	393
+018D	51	05	41	83	Hyrule Field	NULL	Gerudo Valley	NULL	397
+018E	51	05	41	02	Hyrule Field	NULL	Gerudo Valley	NULL	397
+018F	51	05	41	83	Hyrule Field	NULL	Gerudo Valley	NULL	397
+0190	51	05	41	02	Hyrule Field	NULL	Gerudo Valley	NULL	397
+0191	52	01	41	83	Kakariko Village	NULL	Death Mountain Trail	NULL	401
+0192	52	01	41	02	Kakariko Village	NULL	Death Mountain Trail	NULL	401
+0193	52	01	41	83	Kakariko Village	NULL	Death Mountain Trail	NULL	401
+0194	52	01	41	02	Kakariko Village	NULL	Death Mountain Trail	NULL	401
+0195	52	02	41	83	Kakariko Village	NULL	Graveyard	NULL	405
+0196	52	02	41	02	Kakariko Village	NULL	Graveyard	NULL	405
+0197	52	02	41	83	Kakariko Village	NULL	Graveyard	NULL	405
+0198	52	02	41	02	Kakariko Village	NULL	Graveyard	NULL	405
+0199	54	01	C1	83	Zora River	Dropped from top of Waterfall	NULL	NULL	409
+019A	54	01	C1	83	Zora River	Dropped from top of Waterfall	NULL	NULL	409
+019B	54	01	C1	83	Zora River	Dropped from top of Waterfall	NULL	NULL	409
+019C	54	01	C1	83	Zora River	Dropped from top of Waterfall	NULL	NULL	409
+019D	54	02	41	83	Zora River	NULL	Zora's Domain	NULL	413
+019E	54	02	41	02	Zora River	NULL	Zora's Domain	NULL	413
+019F	54	02	41	83	Zora River	NULL	Zora's Domain	NULL	413
+01A0	54	02	41	02	Zora River	NULL	Zora's Domain	NULL	413
+01A1	58	01	41	02	Zora's Domain	NULL	Zora's Fountain	NULL	417
+01A2	58	01	41	02	Zora's Domain	NULL	Zora's Fountain	NULL	417
+01A3	58	01	41	02	Zora's Domain	NULL	Zora's Fountain	NULL	417
+01A4	58	01	41	02	Zora's Domain	NULL	Zora's Fountain	NULL	417
+01A5	5A	01	41	83	Gerudo Valley	Thrown out of Gerudo Fortress	NULL	Caught without usable hookshot	421
+01A6	5A	01	41	02	Gerudo Valley	Thrown out of Gerudo Fortress	NULL	Caught without usable hookshot	421
+01A7	5A	01	41	83	Gerudo Valley	Thrown out of Gerudo Fortress	NULL	Caught without usable hookshot	421
+01A8	5A	01	41	02	Gerudo Valley	Thrown out of Gerudo Fortress	NULL	Caught without usable hookshot	421
+01A9	5B	01	C1	02	Lost Woods	NULL	Sacred Forest Meadow	NULL	425
+01AA	5B	01	C1	02	Lost Woods	NULL	Sacred Forest Meadow	NULL	425
+01AB	5B	01	C1	02	Lost Woods	NULL	Sacred Forest Meadow	NULL	425
+01AC	5B	01	C1	02	Lost Woods	NULL	Sacred Forest Meadow	NULL	425
+01AD	5B	02	41	02	Lost Woods	Mushroom Timeout (Adult)	NULL	NULL	429
+01AE	5B	02	41	02	Lost Woods	Mushroom Timeout (Adult)	NULL	NULL	429
+01AF	5B	02	41	02	Lost Woods	Mushroom Timeout (Adult)	NULL	NULL	429
+01B0	5B	02	41	02	Lost Woods	Mushroom Timeout (Adult)	NULL	NULL	429
+01B1	5B	03	41	02	Lost Woods	start from the tree opposite of the main entrance	NULL	NULL	433
+01B2	5B	03	41	02	Lost Woods	start from the tree opposite of the main entrance	NULL	NULL	433
+01B3	5B	03	41	02	Lost Woods	start from the tree opposite of the main entrance	NULL	NULL	433
+01B4	5B	03	41	02	Lost Woods	start from the tree opposite of the main entrance	NULL	NULL	433
+01B5	0E	02	C1	02	Tower Collapse Interior	Burning Rocks	Tower Collapse Exterior	(Higher)	437
+01B6	0E	02	C1	02	Tower Collapse Interior	Burning Rocks	Tower Collapse Exterior	(Higher)	437
+01B7	0E	02	C1	02	Tower Collapse Interior	Burning Rocks	Tower Collapse Exterior	(Higher)	437
+01B8	0E	02	C1	02	Tower Collapse Interior	Burning Rocks	Tower Collapse Exterior	(Higher)	437
+01B9	60	01	41	83	Death Mountain Trail	NULL	Goron City	NULL	441
+01BA	60	01	41	02	Death Mountain Trail	NULL	Goron City	NULL	441
+01BB	60	01	41	83	Death Mountain Trail	NULL	Goron City	NULL	441
+01BC	60	01	41	02	Death Mountain Trail	NULL	Goron City	NULL	441
+01BD	60	02	41	83	Death Mountain Trail	NULL	Death Mountain Crater	NULL	445
+01BE	60	02	41	02	Death Mountain Trail	NULL	Death Mountain Crater	NULL	445
+01BF	60	02	41	83	Death Mountain Trail	NULL	Death Mountain Crater	NULL	445
+01C0	60	02	41	02	Death Mountain Trail	NULL	Death Mountain Crater	NULL	445
+01C1	62	01	41	02	Goron City	NULL	Death Mountain Crater	NULL	449
+01C2	62	01	41	02	Goron City	NULL	Death Mountain Crater	NULL	449
+01C3	62	01	41	02	Goron City	NULL	Death Mountain Crater	NULL	449
+01C4	62	01	41	02	Goron City	NULL	Death Mountain Crater	NULL	449
+01C5	38	01	42	20	Lakeside Laboratory	Possibly Eyedrops Timeout	NULL	NULL	453
+01C6	38	01	42	20	Lakeside Laboratory	Possibly Eyedrops Timeout	NULL	NULL	453
+01C7	38	01	42	20	Lakeside Laboratory	Possibly Eyedrops Timeout	NULL	NULL	453
+01C8	38	01	42	20	Lakeside Laboratory	Possibly Eyedrops Timeout	NULL	NULL	453
+01C9	1A	05	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Stalfos Room (Higher)	457
+01CA	1A	05	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Stalfos Room (Higher)	457
+01CB	1A	05	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Stalfos Room (Higher)	457
+01CC	1A	05	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Stalfos Room (Higher)	457
+01CD	20	08	42	02	Market - Child Day	NULL	Shooting Gallery	NULL	461
+01CE	21	08	42	02	Market - Child Night	NULL	Shooting Gallery	NULL	461
+01CF	22	08	42	02	Market - Adult	NULL	Shooting Gallery	NULL	461
+01D0	22	08	42	02	Market - Adult	NULL	Shooting Gallery	NULL	461
+01D1	20	09	42	02	Market - Child Day	NULL	Happy Mask Shop	NULL	465
+01D2	21	09	42	02	Market - Child Night	NULL	Happy Mask Shop	NULL	465
+01D3	22	09	42	02	Market - Adult	NULL	Happy Mask Shop	NULL	465
+01D4	22	09	42	02	Market - Adult	NULL	Happy Mask Shop	NULL	465
+01D5	20	0A	42	02	Market - Child Day	NULL	Treasure Box Shop	NULL	469
+01D6	21	0A	42	02	Market - Child Night	NULL	Treasure Box Shop	NULL	469
+01D7	22	0A	42	02	Market - Adult	NULL	Treasure Box Shop	NULL	469
+01D8	22	0A	42	02	Market - Adult	NULL	Treasure Box Shop	NULL	469
+01D9	54	03	C1	83	Zora River	Water Entrance	Hyrule Field	NULL	473
+01DA	54	03	C1	02	Zora River	Water Entrance	Hyrule Field	NULL	473
+01DB	54	03	C1	83	Zora River	Water Entrance	Hyrule Field	NULL	473
+01DC	54	03	C1	02	Zora River	Water Entrance	Hyrule Field	NULL	473
+01DD	54	04	56	2C	Zora River	NULL	Lost Woods	NULL	477
+01DE	54	04	56	2C	Zora River	NULL	Lost Woods	NULL	477
+01DF	54	04	56	2C	Zora River	NULL	Lost Woods	NULL	477
+01E0	54	04	56	2C	Zora River	NULL	Lost Woods	NULL	477
+01E1	5C	01	41	83	Desert Colossus	NULL	Spirit Temple	NULL	481
+01E2	5C	01	41	02	Desert Colossus	NULL	Spirit Temple	NULL	481
+01E3	5C	01	41	83	Desert Colossus	NULL	Spirit Temple	NULL	481
+01E4	5C	01	41	02	Desert Colossus	NULL	Spirit Temple	NULL	481
+01E5	5C	02	01	83	Desert Colossus	NULL	Spirit Temple	Gauntlets Entrance	485
+01E6	5C	02	01	02	Desert Colossus	NULL	Spirit Temple	Gauntlets Entrance	485
+01E7	5C	02	01	83	Desert Colossus	NULL	Spirit Temple	Gauntlets Entrance	485
+01E8	5C	02	01	02	Desert Colossus	NULL	Spirit Temple	Gauntlets Entrance	485
+01E9	5C	03	01	83	Desert Colossus	NULL	Spirit Temple	Mirror Shield Entrance	489
+01EA	5C	03	01	02	Desert Colossus	NULL	Spirit Temple	Mirror Shield Entrance	489
+01EB	5C	03	01	83	Desert Colossus	NULL	Spirit Temple	Mirror Shield Entrance	489
+01EC	5C	03	01	02	Desert Colossus	NULL	Spirit Temple	Mirror Shield Entrance	489
+01ED	5C	04	41	02	Desert Colossus	After Requiem Cutscene	NULL	NULL	493
+01EE	5C	04	41	02	Desert Colossus	After Requiem Cutscene	NULL	NULL	493
+01EF	5C	04	41	02	Desert Colossus	After Requiem Cutscene	NULL	NULL	493
+01F0	5C	04	41	02	Desert Colossus	After Requiem Cutscene	NULL	NULL	493
+01F1	5C	05	41	83	Desert Colossus	Requiem Entrance	NULL	NULL	497
+01F2	5C	05	41	02	Desert Colossus	Requiem Entrance	NULL	NULL	497
+01F3	5C	05	41	83	Desert Colossus	Requiem Entrance	NULL	NULL	497
+01F4	5C	05	41	02	Desert Colossus	Requiem Entrance	NULL	NULL	497
+01F5	5C	06	87	8F	Desert Colossus	Nabooru Capture Cutscene Entrance	NULL	NULL	501
+01F6	5C	06	87	8F	Desert Colossus	Nabooru Capture Cutscene Entrance	NULL	NULL	501
+01F7	5C	06	87	8F	Desert Colossus	Nabooru Capture Cutscene Entrance	NULL	NULL	501
+01F8	5C	06	87	8F	Desert Colossus	Nabooru Capture Cutscene Entrance	NULL	NULL	501
+01F9	51	06	41	83	Hyrule Field	NULL	Lon Lon Ranch	NULL	505
+01FA	51	06	41	02	Hyrule Field	NULL	Lon Lon Ranch	NULL	505
+01FB	51	06	41	83	Hyrule Field	NULL	Lon Lon Ranch	NULL	505
+01FC	51	06	41	02	Hyrule Field	NULL	Lon Lon Ranch	NULL	505
+01FD	51	07	41	83	Hyrule Field	NULL	Market Entrance	NULL	509
+01FE	51	07	41	02	Hyrule Field	NULL	Market Entrance	NULL	509
+01FF	51	07	41	83	Hyrule Field	NULL	Market Entrance	NULL	509
+0200	51	07	41	02	Hyrule Field	NULL	Market Entrance	NULL	509
+0201	52	03	42	02	Kakariko Village	NULL	Bazaar	NULL	513
+0202	52	03	42	02	Kakariko Village	NULL	Bazaar	NULL	513
+0203	52	03	42	02	Kakariko Village	NULL	Bazaar	NULL	513
+0204	52	03	42	02	Kakariko Village	NULL	Bazaar	NULL	513
+0205	53	01	41	02	Kakariko Graveyard	NULL	Shadow Temple	NULL	517
+0206	53	01	41	02	Kakariko Graveyard	NULL	Shadow Temple	NULL	517
+0207	53	01	41	02	Kakariko Graveyard	NULL	Shadow Temple	NULL	517
+0208	53	01	41	02	Kakariko Graveyard	NULL	Shadow Temple	NULL	517
+0209	55	01	41	83	Kokiri Forest	NULL	Deku Tree	NULL	521
+020A	55	01	41	02	Kokiri Forest	NULL	Deku Tree	NULL	521
+020B	55	01	41	83	Kokiri Forest	NULL	Deku Tree	NULL	521
+020C	55	01	41	02	Kokiri Forest	NULL	Deku Tree	NULL	521
+020D	55	02	41	02	Kokiri Forest	NULL	Lost Woods	Hyrule Bridge	525
+020E	55	02	41	02	Kokiri Forest	NULL	Lost Woods	Hyrule Bridge	525
+020F	55	02	41	02	Kokiri Forest	NULL	Lost Woods	Hyrule Bridge	525
+0210	55	02	41	02	Kokiri Forest	NULL	Lost Woods	Hyrule Bridge	525
+0211	55	03	42	04	Kokiri Forest	NULL	Link's House	NULL	529
+0212	55	03	42	04	Kokiri Forest	NULL	Link's House	NULL	529
+0213	55	03	42	04	Kokiri Forest	NULL	Link's House	NULL	529
+0214	55	03	42	04	Kokiri Forest	NULL	Link's House	NULL	529
+0215	56	01	49	12	Sacred Forest Meadow	NULL	Forest Temple	NULL	533
+0216	56	01	41	02	Sacred Forest Meadow	NULL	Forest Temple	NULL	533
+0217	56	01	49	12	Sacred Forest Meadow	NULL	Forest Temple	NULL	533
+0218	56	01	41	02	Sacred Forest Meadow	NULL	Forest Temple	NULL	533
+0219	57	01	41	83	Lake Hylia	NULL	Gerudo Valley	NULL	537
+021A	57	01	41	02	Lake Hylia	NULL	Gerudo Valley	NULL	537
+021B	57	01	41	83	Lake Hylia	NULL	Gerudo Valley	NULL	537
+021C	57	01	41	02	Lake Hylia	NULL	Gerudo Valley	NULL	537
+021D	57	02	49	93	Lake Hylia	NULL	Water Temple	NULL	541
+021E	57	02	41	02	Lake Hylia	NULL	Water Temple	NULL	541
+021F	57	02	49	93	Lake Hylia	NULL	Water Temple	NULL	541
+0220	57	02	41	02	Lake Hylia	NULL	Water Temple	NULL	541
+0221	59	01	41	02	Zora's Fountain	NULL	Inside Jabu Jabu's Belly	NULL	545
+0222	59	01	41	02	Zora's Fountain	NULL	Inside Jabu Jabu's Belly	NULL	545
+0223	59	01	41	02	Zora's Fountain	NULL	Inside Jabu Jabu's Belly	NULL	545
+0224	59	01	41	02	Zora's Fountain	NULL	Inside Jabu Jabu's Belly	NULL	545
+0225	59	02	41	83	Zora's Fountain	NULL	Zora's Domain	NULL	549
+0226	59	02	41	02	Zora's Fountain	NULL	Zora's Domain	NULL	549
+0227	59	02	41	83	Zora's Fountain	NULL	Zora's Domain	NULL	549
+0228	59	02	41	02	Zora's Fountain	NULL	Zora's Domain	NULL	549
+0229	5A	02	C1	83	Gerudo Valley	Triggers Fortress Loading Zone	NULL	NULL	553
+022A	5A	02	C1	02	Gerudo Valley	Triggers Fortress Loading Zone	NULL	NULL	553
+022B	5A	02	C1	83	Gerudo Valley	Triggers Fortress Loading Zone	NULL	NULL	553
+022C	5A	02	C1	02	Gerudo Valley	Triggers Fortress Loading Zone	NULL	NULL	553
+022D	5A	03	C1	83	Gerudo Valley	NULL	Gerudo Fortress	NULL	557
+022E	5A	03	C1	02	Gerudo Valley	NULL	Gerudo Fortress	NULL	557
+022F	5A	03	C1	83	Gerudo Valley	NULL	Gerudo Fortress	NULL	557
+0230	5A	03	C1	02	Gerudo Valley	NULL	Gerudo Fortress	NULL	557
+0231	5D	01	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	561
+0232	5D	01	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	561
+0233	5D	01	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	561
+0234	5D	01	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	561
+0235	5D	02	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	565
+0236	5D	02	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	565
+0237	5D	02	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	565
+0238	5D	02	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	565
+0239	5D	03	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	569
+023A	5D	03	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	569
+023B	5D	03	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	569
+023C	5D	03	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	569
+023D	5F	01	41	83	Hyrule Castle	NULL	Castle Courtyard	NULL	573
+023E	5F	01	41	02	Hyrule Castle	NULL	Castle Courtyard	NULL	573
+023F	64	01	42	85	Ganon's Castle	NULL	Inside Ganon's Castle	NULL	573
+0240	64	01	42	85	Ganon's Castle	NULL	Inside Ganon's Castle	NULL	573
+0241	5F	01	40	00	Hyrule Castle	NULL	Castle Courtyard	NULL	573
+0242	60	03	41	83	Death Mountain Trail	NULL	Dondogo's Cavern	NULL	578
+0243	60	03	41	02	Death Mountain Trail	NULL	Dondogo's Cavern	NULL	578
+0244	60	03	41	83	Death Mountain Trail	NULL	Dondogo's Cavern	NULL	578
+0245	60	03	41	02	Death Mountain Trail	NULL	Dondogo's Cavern	NULL	578
+0246	61	01	41	02	Death Mountain Crater	NULL	Goron City	NULL	582
+0247	61	01	41	02	Death Mountain Crater	NULL	Goron City	NULL	582
+0248	61	01	41	02	Death Mountain Crater	NULL	Goron City	NULL	582
+0249	61	01	41	02	Death Mountain Crater	NULL	Goron City	NULL	582
+024A	61	02	41	02	Death Mountain Crater	NULL	Fire Temple	NULL	586
+024B	61	02	41	02	Death Mountain Crater	NULL	Fire Temple	NULL	586
+024C	61	02	41	02	Death Mountain Crater	NULL	Fire Temple	NULL	586
+024D	61	02	41	02	Death Mountain Crater	NULL	Fire Temple	NULL	586
+024E	03	01	C1	02	Forest Temple	Outside Boss Door	Forest Temple Boss	Secret Map #0	590
+024F	03	01	C1	02	Forest Temple	Outside Boss Door	Forest Temple Boss	Secret Map #0	590
+0250	03	01	C1	02	Forest Temple	Outside Boss Door	Forest Temple Boss	Secret Map #0	590
+0251	03	01	C1	02	Forest Temple	Outside Boss Door	Forest Temple Boss	Secret Map #0	590
+0252	00	01	81	02	Deku Tree	NULL	Deku Tree Boss	NULL	594
+0253	00	01	81	02	Deku Tree	NULL	Deku Tree Boss	NULL	594
+0254	00	01	81	02	Deku Tree	NULL	Deku Tree Boss	NULL	594
+0255	00	01	81	02	Deku Tree	NULL	Deku Tree Boss	NULL	594
+0256	0E	03	C1	02	Tower Collapse Interior	Burning Rocks	Tower Collapse Exterior	(Lower)	598
+0257	0E	03	C1	02	Tower Collapse Interior	Burning Rocks	Tower Collapse Exterior	(Lower)	598
+0258	0E	03	C1	02	Tower Collapse Interior	Burning Rocks	Tower Collapse Exterior	(Lower)	598
+0259	0E	03	C1	02	Tower Collapse Interior	Burning Rocks	Tower Collapse Exterior	(Lower)	598
+025A	20	01	41	83	Market - Child Day	NULL	Castle	NULL	602
+025B	21	01	41	02	Market - Child Night	NULL	Castle	NULL	602
+025C	22	01	41	02	Market - Adult	NULL	Ganon's Castle	NULL	602
+025D	22	01	41	02	Market - Adult	NULL	Ganon's Castle	NULL	602
+025E	20	02	41	83	Market - Child Day	NULL	Temple of Time	NULL	606
+025F	21	02	41	02	Market - Child Night	NULL	Temple of Time	NULL	606
+0260	22	02	41	02	Market - Adult	NULL	Temple of Time	NULL	606
+0261	22	02	41	02	Market - Adult	NULL	Temple of Time	NULL	606
+0262	20	03	C1	83	Market - Child Day	NULL	Back Alley	(Right)	610
+0263	21	03	C1	02	Market - Child Night	NULL	Back Alley	(Right)	610
+0264	22	03	C1	02	Market - Adult	NULL	Back Alley	(Right)	610
+0265	22	03	C1	02	Market - Adult	NULL	Back Alley	(Right)	610
+0266	55	04	02	04	Kokiri Forest	NULL	Kokiri Shop	NULL	614
+0267	55	04	02	04	Kokiri Forest	NULL	Kokiri Shop	NULL	614
+0268	55	04	02	04	Kokiri Forest	NULL	Kokiri Shop	NULL	614
+0269	55	04	02	04	Kokiri Forest	NULL	Kokiri Shop	NULL	614
+026A	55	05	02	04	Kokiri Forest	NULL	Know-it-all Brothers	NULL	618
+026B	55	05	02	04	Kokiri Forest	NULL	Know-it-all Brothers	NULL	618
+026C	55	05	02	04	Kokiri Forest	NULL	Know-it-all Brothers	NULL	618
+026D	55	05	02	04	Kokiri Forest	NULL	Know-it-all Brothers	NULL	618
+026E	1B	02	01	02	Market Entrance - Child Day	NULL	Lots 'o Pots	NULL	622
+026F	1C	02	01	02	Market Entrance - Child Night	NULL	Lots 'o Pots	NULL	622
+0270	1D	02	01	02	Market Entrance - Adult	NULL	Lots 'o Pots	NULL	622
+0271	1D	02	01	02	Market Entrance - Adult	NULL	Lots 'o Pots	NULL	622
+0272	34	01	42	04	Link's House	NULL	Kokiri Forest	NULL	626
+0273	34	01	42	04	Link's House	NULL	Kokiri Forest	NULL	626
+0274	34	01	42	04	Link's House	NULL	Kokiri Forest	NULL	626
+0275	34	01	42	04	Link's House	NULL	Kokiri Forest	NULL	626
+0276	1B	01	41	83	Market Entrance - Child Day	NULL	Hyrule Field	NULL	630
+0277	1C	01	41	02	Market Entrance - Child Night	NULL	Hyrule Field	NULL	630
+0278	1D	01	41	02	Market Entrance - Adult	NULL	Hyrule Field	NULL	630
+0279	1D	01	41	02	Market Entrance - Adult	NULL	Hyrule Field	NULL	630
+027A	51	08	C1	83	Hyrule Field	Positioned near Lake Hylia	NULL	NULL	634
+027B	51	08	C1	02	Hyrule Field	Positioned near Lake Hylia	NULL	NULL	634
+027C	51	08	C1	83	Hyrule Field	Positioned near Lake Hylia	NULL	NULL	634
+027D	51	08	C1	02	Hyrule Field	Positioned near Lake Hylia	NULL	NULL	634
+027E	51	09	41	83	Hyrule Field	Owl Drop Spot	Lake Hylia	NULL	638
+027F	51	09	41	83	Hyrule Field	Owl Drop Spot	Lake Hylia	NULL	638
+0280	51	09	41	83	Hyrule Field	Owl Drop Spot	Lake Hylia	NULL	638
+0281	51	09	41	83	Hyrule Field	Owl Drop Spot	Lake Hylia	NULL	638
+0282	51	0A	41	83	Hyrule Field	Unused Location	NULL	NULL	642
+0283	51	0A	41	83	Hyrule Field	Unused Location	NULL	NULL	642
+0284	51	0A	41	83	Hyrule Field	Unused Location	NULL	NULL	642
+0285	51	0A	41	83	Hyrule Field	Unused Location	NULL	NULL	642
+0286	55	06	41	02	Kokiri Forest	NULL	Lost Woods	NULL	646
+0287	55	06	41	02	Kokiri Forest	NULL	Lost Woods	NULL	646
+0288	55	06	41	02	Kokiri Forest	NULL	Lost Woods	NULL	646
+0289	55	06	41	02	Kokiri Forest	NULL	Lost Woods	NULL	646
+028A	51	0B	42	85	Hyrule Field	NULL	Lon Lon Ranch	Southern Fence Jump	650
+028B	51	0B	42	02	Hyrule Field	NULL	Lon Lon Ranch	Southern Fence Jump	650
+028C	51	0B	42	85	Hyrule Field	NULL	Lon Lon Ranch	Southern Fence Jump	650
+028D	51	0B	42	02	Hyrule Field	NULL	Lon Lon Ranch	Southern Fence Jump	650
+028E	51	0C	42	85	Hyrule Field	NULL	Lon Lon Ranch	Western Fence Jump	654
+028F	51	0C	42	02	Hyrule Field	NULL	Lon Lon Ranch	Western Fence Jump	654
+0290	51	0C	42	85	Hyrule Field	NULL	Lon Lon Ranch	Western Fence Jump	654
+0291	51	0C	42	02	Hyrule Field	NULL	Lon Lon Ranch	Western Fence Jump	654
+0292	51	0D	42	85	Hyrule Field	NULL	Lon Lon Ranch	Eastern Fence Jump	658
+0293	51	0D	42	02	Hyrule Field	NULL	Lon Lon Ranch	Eastern Fence Jump	658
+0294	51	0D	42	85	Hyrule Field	NULL	Lon Lon Ranch	Eastern Fence Jump	658
+0295	51	0D	42	02	Hyrule Field	NULL	Lon Lon Ranch	Eastern Fence Jump	658
+0296	45	01	41	83	Castle Courtyard - Day	NULL	Zelda's Courtyard	NULL	662
+0297	46	01	41	02	Castle Courtyard - Night	NULL	Zelda's Courtyard	NULL	662
+0298	45	01	41	83	Castle Courtyard - Day	NULL	Zelda's Courtyard	NULL	662
+0299	46	01	41	02	Castle Courtyard - Night	NULL	Zelda's Courtyard	NULL	662
+029A	1E	01	C1	83	Back Alley - Day	Left Entrance	Market	NULL	666
+029B	1F	01	C1	02	Back Alley - Night	Left Entrance	Market	NULL	666
+029C	1E	01	C1	02	Back Alley - Day	Left Entrance	Market	NULL	666
+029D	1F	01	C1	02	Back Alley - Night	Left Entrance	Market	NULL	666
+029E	20	04	C1	83	Market - Child Day	NULL	Back Alley	(Left)	670
+029F	21	04	C1	02	Market - Child Night	NULL	Back Alley	(Left)	670
+02A0	22	04	C1	02	Market - Adult	NULL	Back Alley	(Left)	670
+02A1	22	04	C1	02	Market - Adult	NULL	Back Alley	(Left)	670
+02A2	20	05	42	02	Market - Child Day	NULL	Market Potion Shop	NULL	674
+02A3	21	05	42	02	Market - Child Night	NULL	Potion Shop	NULL	674
+02A4	22	05	42	02	Market - Adult	NULL	Potion Shop	NULL	674
+02A5	22	05	42	02	Market - Adult	NULL	Potion Shop	NULL	674
+02A6	52	04	41	02	Kakariko Village	NULL	Bottom of the Well	NULL	678
+02A7	52	04	41	02	Kakariko Village	NULL	Bottom of the Well	NULL	678
+02A8	52	04	41	02	Kakariko Village	NULL	Bottom of the Well	NULL	678
+02A9	52	04	41	02	Kakariko Village	NULL	Bottom of the Well	NULL	678
+02AA	5D	04	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	682
+02AB	5D	04	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	682
+02AC	5D	04	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	682
+02AD	5D	04	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	682
+02AE	63	01	01	83	Lon Lon Ranch	Epona's Song Cutscene	NULL	NULL	686
+02AF	63	01	01	02	Lon Lon Ranch	Epona's Song Cutscene	NULL	NULL	686
+02B0	63	01	01	83	Lon Lon Ranch	Epona's Song Cutscene	NULL	NULL	686
+02B1	63	01	01	02	Lon Lon Ranch	Epona's Song Cutscene	NULL	NULL	686
+02B2	07	01	41	02	Shadow Temple	Outside Boss Door	NULL	NULL	690
+02B3	07	01	41	02	Shadow Temple	Outside Boss Door	NULL	NULL	690
+02B4	07	01	41	02	Shadow Temple	Outside Boss Door	NULL	NULL	690
+02B5	07	01	41	02	Shadow Temple	Outside Boss Door	NULL	NULL	690
+02B6	07	02	C1	02	Shadow Temple	NULL	Shadow Temple Boss	Secret Map #0	694
+02B7	07	02	C1	02	Shadow Temple	NULL	Shadow Temple Boss	Secret Map #0	694
+02B8	07	02	C1	02	Shadow Temple	NULL	Shadow Temple Boss	Secret Map #0	694
+02B9	07	02	C1	02	Shadow Temple	NULL	Shadow Temple Boss	Secret Map #0	694
+02BA	5D	05	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	698
+02BB	5D	05	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	698
+02BC	5D	05	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	698
+02BD	5D	05	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	698
+02BE	5D	06	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	702
+02BF	5D	06	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	702
+02C0	5D	06	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	702
+02C1	5D	06	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	702
+02C2	5D	07	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	706
+02C3	5D	07	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	706
+02C4	5D	07	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	706
+02C5	5D	07	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	706
+02C6	5D	08	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	710
+02C7	5D	08	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	710
+02C8	5D	08	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	710
+02C9	5D	08	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	710
+02CA	43	02	45	0A	Temple of Time	Pull or Place Master Sword	NULL	NULL	714
+02CB	43	02	45	0A	Temple of Time	Pull or Place Master Sword	NULL	NULL	714
+02CC	43	02	45	0A	Temple of Time	Pull or Place Master Sword	NULL	NULL	714
+02CD	43	02	45	0A	Temple of Time	Pull or Place Master Sword	NULL	NULL	714
+02CE	44	01	41	02	Chamber of Sages	??? (Forest Medallion?)	NULL	NULL	718
+02CF	44	01	41	02	Chamber of Sages	??? (Forest Medallion?)	NULL	NULL	718
+02D0	44	01	41	02	Chamber of Sages	??? (Forest Medallion?)	NULL	NULL	718
+02D1	44	01	41	02	Chamber of Sages	??? (Forest Medallion?)	NULL	NULL	718
+02D2	5D	09	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	722
+02D3	5D	09	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	722
+02D4	5D	09	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	722
+02D5	5D	09	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	722
+02D6	5D	0A	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	726
+02D7	5D	0A	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	726
+02D8	5D	0A	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	726
+02D9	5D	0A	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	726
+02DA	5D	0B	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	730
+02DB	5D	0B	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	730
+02DC	5D	0B	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	730
+02DD	5D	0B	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	730
+02DE	5D	0C	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	734
+02DF	5D	0C	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	734
+02E0	5D	0C	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	734
+02E1	5D	0C	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	734
+02E2	63	02	41	83	Lon Lon Ranch	Near South Gate	NULL	NULL	738
+02E3	63	02	41	02	Lon Lon Ranch	Near South Gate	NULL	NULL	738
+02E4	63	02	41	83	Lon Lon Ranch	Near South Gate	NULL	NULL	738
+02E5	63	02	41	02	Lon Lon Ranch	Near South Gate	NULL	NULL	738
+02E6	63	03	41	83	Lon Lon Ranch	Near West Gate	NULL	NULL	742
+02E7	63	03	41	02	Lon Lon Ranch	Near West Gate	NULL	NULL	742
+02E8	63	03	41	83	Lon Lon Ranch	Near West Gate	NULL	NULL	742
+02E9	63	03	41	02	Lon Lon Ranch	Near West Gate	NULL	NULL	742
+02EA	42	00	41	02	Shooting Gallery	NULL	Kakariko Village	NULL	746
+02EB	42	00	41	02	Shooting Gallery	NULL	Kakariko Village	NULL	746
+02EC	42	00	41	02	Shooting Gallery	NULL	Kakariko Village	NULL	746
+02ED	42	00	41	02	Shooting Gallery	NULL	Kakariko Village	NULL	746
+02EE	56	00	41	02	Sacred Forest Meadow	NULL	Lost Woods	NULL	750
+02EF	47	00	41	02	Cutscene Map	NULL	NULL	NULL	751
+02F0	42	00	41	02	Shooting Gallery	NULL	Kakariko Village	NULL	752
+02F1	42	00	41	02	Shooting Gallery	NULL	Kakariko Village	NULL	752
+02F2	42	00	41	02	Shooting Gallery	NULL	Kakariko Village	NULL	752
+02F3	42	00	41	02	Shooting Gallery	NULL	Kakariko Village	NULL	752
+02F4	42	00	41	02	Shooting Gallery	NULL	Kakariko Village	NULL	752
+02F5	06	01	C1	02	Spirit Temple	Boss Room Entrance	Spirit Temple Boss	NULL	757
+02F6	06	01	C1	02	Spirit Temple	Boss Room Entrance	Spirit Temple Boss	NULL	757
+02F7	06	01	C1	02	Spirit Temple	Boss Room Entrance	Spirit Temple Boss	NULL	757
+02F8	06	01	C1	02	Spirit Temple	Boss Room Entrance	Spirit Temple Boss	NULL	757
+02F9	36	00	42	20	Stables	NULL	Lon Lon Ranch	NULL	761
+02FA	36	00	42	20	Stables	NULL	Lon Lon Ranch	NULL	761
+02FB	36	00	42	20	Stables	NULL	Lon Lon Ranch	NULL	761
+02FC	36	00	42	20	Stables	NULL	Lon Lon Ranch	NULL	761
+02FD	2A	00	42	20	Kakariko Village House	Boss's House	Kakariko Village	NULL	765
+02FE	2A	00	42	20	Kakariko Village House	Boss's House	Kakariko Village	NULL	765
+02FF	2A	00	42	20	Kakariko Village House	Boss's House	Kakariko Village	NULL	765
+0300	2A	00	42	20	Kakariko Village House	Boss's House	Kakariko Village	NULL	765
+0301	13	00	C1	02	Inside Jabu Jabu's Belly Boss	NULL	Inside Jabu Jabu's Belly	NULL	769
+0302	13	00	C1	02	Inside Jabu Jabu's Belly Boss	NULL	Inside Jabu Jabu's Belly	NULL	769
+0303	13	00	C1	02	Inside Jabu Jabu's Belly Boss	NULL	Inside Jabu Jabu's Belly	NULL	769
+0304	13	00	C1	02	Inside Jabu Jabu's Belly Boss	NULL	Inside Jabu Jabu's Belly	NULL	769
+0305	15	00	C1	02	Fire Temple Boss	NULL	Fire Temple	NULL	773
+0306	15	00	C1	02	Fire Temple Boss	NULL	Fire Temple	NULL	773
+0307	15	00	C1	02	Fire Temple Boss	NULL	Fire Temple	NULL	773
+0308	15	00	C1	02	Fire Temple Boss	NULL	Fire Temple	NULL	773
+0309	57	06	42	02	Lake Hylia	NULL	Fishing Pond	NULL	777
+030A	57	06	42	02	Lake Hylia	NULL	Fishing Pond	NULL	777
+030B	57	06	42	02	Lake Hylia	NULL	Fishing Pond	NULL	777
+030C	57	06	42	02	Lake Hylia	NULL	Fishing Pond	NULL	777
+030D	3A	00	41	20	Gravekeeper's Hut	NULL	Graveyard	NULL	781
+030E	3A	00	41	20	Gravekeeper's Hut	NULL	Graveyard	NULL	781
+030F	3A	00	41	20	Gravekeeper's Hut	NULL	Graveyard	NULL	781
+0310	3A	00	41	20	Gravekeeper's Hut	NULL	Graveyard	NULL	781
+0311	51	0E	C1	83	Hyrule Field	NULL	Zora River	Water	785
+0312	51	0E	C1	83	Hyrule Field	NULL	Zora River	Water	785
+0313	51	0E	C1	83	Hyrule Field	NULL	Zora River	Water	785
+0314	51	0E	C1	83	Hyrule Field	NULL	Zora River	Water	785
+0315	3B	00	41	02	Great Fairy's Fountain (Upgrades)	NULL	Death Mountain Trail	NULL	789
+0316	3B	00	41	02	Great Fairy's Fountain (Upgrades)	NULL	Death Mountain Trail	NULL	789
+0317	3B	00	41	02	Great Fairy's Fountain (Upgrades)	NULL	Death Mountain Trail	NULL	789
+0318	3B	00	41	02	Great Fairy's Fountain (Upgrades)	NULL	Death Mountain Trail	NULL	789
+0319	3B	00	41	02	Great Fairy's Fountain (Upgrades)	NULL	Death Mountain Trail	NULL	789
+031A	3B	00	41	02	Great Fairy's Fountain (Upgrades)	NULL	Death Mountain Trail	NULL	789
+031B	3B	00	41	02	Great Fairy's Fountain (Upgrades)	NULL	Death Mountain Trail	NULL	789
+031C	3F	00	41	26	Grave with Redead	NULL	Graveyard	NULL	796
+031D	3F	00	41	26	Grave with Redead	NULL	Graveyard	NULL	796
+031E	3F	00	41	26	Grave with Redead	NULL	Graveyard	NULL	796
+031F	3F	00	41	26	Grave with Redead	NULL	Graveyard	NULL	796
+0320	43	03	41	02	Temple of Time	Standing facing away from SoT spot	NULL	NULL	800
+0321	43	03	41	02	Temple of Time	Standing facing away from SoT spot	NULL	NULL	800
+0322	43	03	41	02	Temple of Time	Standing facing away from SoT spot	NULL	NULL	800
+0323	43	03	41	02	Temple of Time	Standing facing away from SoT spot	NULL	NULL	800
+0324	43	04	41	02	Temple of Time	After pulling the MS for first time?	NULL	NULL	804
+0325	43	04	41	02	Temple of Time	After pulling the MS for first time?	NULL	NULL	804
+0326	43	04	41	02	Temple of Time	After pulling the MS for first time?	NULL	NULL	804
+0327	43	04	41	02	Temple of Time	After pulling the MS for first time?	NULL	NULL	804
+0328	58	04	56	2C	Zora's Domain	NULL	Lake Hylia	NULL	808
+0329	58	04	56	2C	Zora's Domain	NULL	Lake Hylia	NULL	808
+032A	58	04	56	2C	Zora's Domain	NULL	Lake Hylia	NULL	808
+032B	58	04	56	2C	Zora's Domain	NULL	Lake Hylia	NULL	808
+032C	1A	02	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Boss Room Floor (Lower)	812
+032D	1A	02	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Boss Room Floor (Lower)	812
+032E	1A	02	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Boss Room Floor (Lower)	812
+032F	1A	02	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Boss Room Floor (Lower)	812
+0330	1A	03	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Burning Rocks (Higher)	816
+0331	1A	03	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Burning Rocks (Higher)	816
+0332	1A	03	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Burning Rocks (Higher)	816
+0333	1A	03	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Burning Rocks (Higher)	816
+0334	1A	04	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Burning Rocks (Lower)	820
+0335	1A	04	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Burning Rocks (Lower)	820
+0336	1A	04	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Burning Rocks (Lower)	820
+0337	1A	04	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Burning Rocks (Lower)	820
+0338	55	07	02	04	Kokiri Forest	Spawn on Link's House	NULL	NULL	824
+0339	55	07	02	04	Kokiri Forest	Spawn on Link's House	NULL	NULL	824
+033A	55	07	02	04	Kokiri Forest	Spawn on Link's House	NULL	NULL	824
+033B	55	07	02	04	Kokiri Forest	Spawn on Link's House	NULL	NULL	824
+033C	55	08	02	04	Kokiri Forest	NULL	House of Twins	NULL	828
+033D	55	08	02	04	Kokiri Forest	NULL	House of Twins	NULL	828
+033E	55	08	02	04	Kokiri Forest	NULL	House of Twins	NULL	828
+033F	55	08	02	04	Kokiri Forest	NULL	House of Twins	NULL	828
+0340	5F	02	41	02	Hyrule Castle	NULL	Great Fairy's Fountain (Spells)	NULL	832
+0341	5F	02	41	02	Hyrule Castle	NULL	Great Fairy's Fountain (Spells)	NULL	832
+0342	64	02	41	02	Ganon's Castle	NULL	Great Fairy's Fountain (Upgrades)	NULL	832
+0343	64	02	41	02	Ganon's Castle	NULL	Great Fairy's Fountain (Upgrades)	NULL	832
+0344	5F	02	40	00	Hyrule Castle	NULL	Great Fairy's Fountain (Spells)	NULL	832
+0345	52	05	42	02	Kakariko Village	NULL	NULL	Cow Heartpiece House (Door)	837
+0346	52	05	42	02	Kakariko Village	NULL	NULL	Cow Heartpiece House (Door)	837
+0347	52	05	42	02	Kakariko Village	NULL	NULL	Cow Heartpiece House (Door)	837
+0348	52	05	42	02	Kakariko Village	NULL	NULL	Cow Heartpiece House (Door)	837
+0349	52	06	42	02	Kakariko Village	NULL	Kakariko Village House	Boss's House	841
+034A	52	06	42	02	Kakariko Village	NULL	Kakariko Village House	Boss's House	841
+034B	52	06	42	02	Kakariko Village	NULL	Kakariko Village House	Boss's House	841
+034C	52	06	42	02	Kakariko Village	NULL	Kakariko Village House	Boss's House	841
+034D	52	07	42	02	Kakariko Village	NULL	Granny's Potion Shop	NULL	845
+034E	52	07	42	02	Kakariko Village	NULL	Granny's Potion Shop	NULL	845
+034F	52	07	42	02	Kakariko Village	NULL	Granny's Potion Shop	NULL	845
+0350	52	07	42	02	Kakariko Village	NULL	Granny's Potion Shop	NULL	845
+0351	52	08	42	02	Kakariko Village	NULL	?	Windmill	849
+0352	52	08	42	02	Kakariko Village	NULL	?	Windmill	849
+0353	52	08	42	02	Kakariko Village	NULL	?	Windmill	849
+0354	52	08	42	02	Kakariko Village	NULL	?	Windmill	849
+0355	53	02	42	02	Kakariko Graveyard	NULL	Gravekeeper's Hut	NULL	853
+0356	53	02	42	02	Kakariko Graveyard	NULL	Gravekeeper's Hut	NULL	853
+0357	53	02	42	02	Kakariko Graveyard	NULL	Gravekeeper's Hut	NULL	853
+0358	53	02	42	02	Kakariko Graveyard	NULL	Gravekeeper's Hut	NULL	853
+0359	53	03	41	83	Kakariko Graveyard	NULL	?	Dampe's Grave	857
+035A	53	03	41	83	Kakariko Graveyard	NULL	?	Dampe's Grave	857
+035B	53	03	41	83	Kakariko Graveyard	NULL	?	Dampe's Grave	857
+035C	53	03	41	83	Kakariko Graveyard	NULL	?	Dampe's Grave	857
+035D	53	04	41	83	Kakariko Graveyard	NULL	Grave with Shield	NULL	861
+035E	53	04	41	83	Kakariko Graveyard	NULL	Grave with Shield	NULL	861
+035F	53	04	41	83	Kakariko Graveyard	NULL	Grave with Shield	NULL	861
+0360	53	04	41	83	Kakariko Graveyard	NULL	Grave with Shield	NULL	861
+0361	53	05	41	83	Kakariko Graveyard	NULL	Grave with Redead	NULL	865
+0362	53	05	41	83	Kakariko Graveyard	NULL	Grave with Redead	NULL	865
+0363	53	05	41	83	Kakariko Graveyard	NULL	Grave with Redead	NULL	865
+0364	53	05	41	83	Kakariko Graveyard	NULL	Grave with Redead	NULL	865
+0365	5E	01	C7	0E	Haunted Wasteland	NULL	Desert Colossus	NULL	869
+0366	5E	01	C7	0E	Haunted Wasteland	NULL	Desert Colossus	NULL	869
+0367	5E	01	C7	0E	Haunted Wasteland	NULL	Desert Colossus	NULL	869
+0368	5E	01	C7	0E	Haunted Wasteland	NULL	Desert Colossus	NULL	869
+0369	5E	02	47	0E	Haunted Wasteland	Crashes (Bad Map)	NULL	NULL	873
+036A	5E	02	47	0E	Haunted Wasteland	Crashes (Bad Map)	NULL	NULL	873
+036B	5E	02	47	0E	Haunted Wasteland	Crashes (Bad Map)	NULL	NULL	873
+036C	5E	02	47	0E	Haunted Wasteland	Crashes (Bad Map)	NULL	NULL	873
+036D	3C	00	41	83	Small Fairy's Fountain	NULL	NULL	Grotto spot	877
+036E	3C	00	41	83	Small Fairy's Fountain	NULL	NULL	Grotto spot	877
+036F	3C	00	41	83	Small Fairy's Fountain	NULL	NULL	Grotto spot	877
+0370	3C	00	41	83	Small Fairy's Fountain	NULL	NULL	Grotto spot	877
+0371	3D	00	41	02	Great Fairy's Fountain (Spells)	NULL	Zora's Fountain	NULL	881
+0372	3D	00	41	02	Great Fairy's Fountain (Spells)	NULL	Zora's Fountain	NULL	881
+0373	3D	00	41	02	Great Fairy's Fountain (Spells)	NULL	Zora's Fountain	NULL	881
+0374	3D	00	41	02	Great Fairy's Fountain (Spells)	NULL	Zora's Fountain	NULL	881
+0375	3D	00	41	02	Great Fairy's Fountain (Spells)	NULL	Zora's Fountain	NULL	881
+0376	3D	00	41	02	Great Fairy's Fountain (Spells)	NULL	Zora's Fountain	NULL	881
+0377	3D	00	41	02	Great Fairy's Fountain (Spells)	NULL	Zora's Fountain	NULL	881
+0378	63	04	42	02	Lon Lon Ranch	NULL	Ranch House	Talon's House	888
+0379	63	04	42	02	Lon Lon Ranch	NULL	Ranch House	Talon's House	888
+037A	63	04	42	02	Lon Lon Ranch	NULL	Ranch House	Talon's House	888
+037B	63	04	42	02	Lon Lon Ranch	NULL	Ranch House	Talon's House	888
+037C	2E	00	42	20	Goron Shop	NULL	Goron City	NULL	892
+037D	2E	00	42	20	Goron Shop	NULL	Goron City	NULL	892
+037E	2E	00	42	20	Goron Shop	NULL	Goron City	NULL	892
+037F	2E	00	42	20	Goron Shop	NULL	Goron City	NULL	892
+0380	2F	00	42	04	Zora Shop	NULL	Zora's Domain	NULL	896
+0381	2F	00	42	04	Zora Shop	NULL	Zora's Domain	NULL	896
+0382	2F	00	42	04	Zora Shop	NULL	Zora's Domain	NULL	896
+0383	2F	00	42	04	Zora Shop	NULL	Zora's Domain	NULL	896
+0384	30	00	02	20	Kakariko Potion Shop	NULL	Kakariko Village	NULL	900
+0385	30	00	02	20	Kakariko Potion Shop	NULL	Kakariko Village	NULL	900
+0386	30	00	42	20	Kakariko Potion Shop	NULL	Kakariko Village	NULL	900
+0387	30	00	42	20	Kakariko Potion Shop	NULL	Kakariko Village	NULL	900
+0388	31	00	42	20	Market Potion Shop	NULL	Market	NULL	904
+0389	31	00	42	20	Market Potion Shop	NULL	Market	NULL	904
+038A	31	00	42	20	Market Potion Shop	NULL	Market	NULL	904
+038B	31	00	42	20	Market Potion Shop	NULL	Market	NULL	904
+038C	1E	04	42	02	Back Alley - Day	NULL	Puppy Woman's House	NULL	908
+038D	1F	04	42	02	Back Alley - Night	NULL	Puppy Woman's House	NULL	908
+038E	1E	04	42	02	Back Alley - Day	NULL	Puppy Woman's House	NULL	908
+038F	1F	04	42	02	Back Alley - Night	NULL	Puppy Woman's House	NULL	908
+0390	32	00	41	02	Bombchu Shop	??? (Back Alley)	NULL	NULL	912
+0391	32	00	41	02	Bombchu Shop	??? (Back Alley)	NULL	NULL	912
+0392	32	00	41	02	Bombchu Shop	??? (Back Alley)	NULL	NULL	912
+0393	32	00	41	02	Bombchu Shop	??? (Back Alley)	NULL	NULL	912
+0394	59	05	41	83	Zora's Fountain	NULL	Great Fairy's Fountain (Spells)	NULL	916
+0395	59	05	41	83	Zora's Fountain	NULL	Great Fairy's Fountain (Spells)	NULL	916
+0396	59	05	41	83	Zora's Fountain	NULL	Great Fairy's Fountain (Spells)	NULL	916
+0397	59	05	41	83	Zora's Fountain	NULL	Great Fairy's Fountain (Spells)	NULL	916
+0398	35	00	42	02	Puppy Woman's House	NULL	Back Alley	(Left)	920
+0399	35	00	42	02	Puppy Woman's House	NULL	Back Alley	(Left)	920
+039A	35	00	42	02	Puppy Woman's House	NULL	Back Alley	(Left)	920
+039B	35	00	42	02	Puppy Woman's House	NULL	Back Alley	(Left)	920
+039C	37	00	42	20	Impa's House	NULL	Kakariko Village	NULL	924
+039D	37	00	42	20	Impa's House	NULL	Kakariko Village	NULL	924
+039E	37	00	42	20	Impa's House	NULL	Kakariko Village	NULL	924
+039F	37	00	42	20	Impa's House	NULL	Kakariko Village	NULL	924
+03A0	39	00	42	04	Carpenter's Tent	NULL	Gerudo Valley	NULL	928
+03A1	39	00	42	04	Carpenter's Tent	NULL	Gerudo Valley	NULL	928
+03A2	39	00	42	04	Carpenter's Tent	NULL	Gerudo Valley	NULL	928
+03A3	39	00	42	04	Carpenter's Tent	NULL	Gerudo Valley	NULL	928
+03A4	5D	0D	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	932
+03A5	5D	0D	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	932
+03A6	5D	0D	41	83	Gerudo Fortress	NULL	Thieves' Hideout	NULL	932
+03A7	5D	0D	41	02	Gerudo Fortress	NULL	Thieves' Hideout	NULL	932
+03A8	5D	0E	41	85	Gerudo Fortress	NULL	Thieves' Hideout	NULL	936
+03A9	5D	0E	41	04	Gerudo Fortress	NULL	Thieves' Hideout	NULL	936
+03AA	5D	0E	41	85	Gerudo Fortress	NULL	Thieves' Hideout	NULL	936
+03AB	5D	0E	41	04	Gerudo Fortress	NULL	Thieves' Hideout	NULL	936
+03AC	5D	0F	C7	8F	Gerudo Fortress	NULL	Haunted Wasteland	NULL	940
+03AD	5D	0F	C7	8F	Gerudo Fortress	NULL	Haunted Wasteland	NULL	940
+03AE	5D	0F	C7	8F	Gerudo Fortress	NULL	Haunted Wasteland	NULL	940
+03AF	5D	0F	C7	8F	Gerudo Fortress	NULL	Haunted Wasteland	NULL	940
+03B0	5D	10	41	02	Gerudo Fortress	After Horseback Archery	Gerudo Fortress	NULL	944
+03B1	5D	10	41	02	Gerudo Fortress	After Horseback Archery	Gerudo Fortress	NULL	944
+03B2	5D	10	41	02	Gerudo Fortress	After Horseback Archery	Gerudo Fortress	NULL	944
+03B3	5D	10	41	02	Gerudo Fortress	After Horseback Archery	Gerudo Fortress	NULL	944
+03B4	5D	11	41	02	Gerudo Fortress	Captured First Time with Hookshot	NULL	NULL	948
+03B5	5D	11	41	02	Gerudo Fortress	Captured First Time with Hookshot	NULL	NULL	948
+03B6	5D	11	41	02	Gerudo Fortress	Captured First Time with Hookshot	NULL	NULL	948
+03B7	5D	11	41	02	Gerudo Fortress	Captured First Time with Hookshot	NULL	NULL	948
+03B8	20	06	42	02	Market - Child Day	NULL	Bazaar	NULL	952
+03B9	21	06	42	02	Market - Child Night	NULL	Bazaar	NULL	952
+03BA	22	06	42	02	Market - Adult	NULL	Bazaar	NULL	952
+03BB	22	06	42	02	Market - Adult	NULL	Bazaar	NULL	952
+03BC	20	07	42	02	Market - Child Day	NULL	Bombchu Bowling Alley	NULL	956
+03BD	21	07	42	02	Market - Child Night	NULL	Bombchu Bowling Alley	NULL	956
+03BE	22	07	42	02	Market - Adult	NULL	Bombchu Bowling Alley	NULL	956
+03BF	22	07	42	02	Market - Adult	NULL	Bombchu Bowling Alley	NULL	956
+03C0	1E	02	42	02	Back Alley - Day	NULL	Bombchu Shop	NULL	960
+03C1	1F	02	42	02	Back Alley - Night	NULL	Bombchu Shop	NULL	960
+03C2	1E	02	41	83	Back Alley - Day	NULL	Bombchu Shop	NULL	960
+03C3	1F	02	41	02	Back Alley - Night	NULL	Bombchu Shop	NULL	960
+03C4	58	02	41	02	Zora's Domain	NULL	Zora Shop	NULL	964
+03C5	58	02	41	02	Zora's Domain	NULL	Zora Shop	NULL	964
+03C6	58	02	41	02	Zora's Domain	NULL	Zora Shop	NULL	964
+03C7	58	02	41	02	Zora's Domain	NULL	Zora Shop	NULL	964
+03C8	57	03	41	83	Lake Hylia	Hyrule Field Entrance	NULL	NULL	968
+03C9	57	03	41	83	Lake Hylia	Hyrule Field Entrance	NULL	NULL	968
+03CA	57	03	41	83	Lake Hylia	Hyrule Field Entrance	NULL	NULL	968
+03CB	57	03	41	83	Lake Hylia	Hyrule Field Entrance	NULL	NULL	968
+03CC	57	04	42	02	Lake Hylia	NULL	Lakeside Laboratory	NULL	972
+03CD	57	04	42	02	Lake Hylia	NULL	Lakeside Laboratory	NULL	972
+03CE	57	04	42	02	Lake Hylia	NULL	Lakeside Laboratory	NULL	972
+03CF	57	04	42	02	Lake Hylia	NULL	Lakeside Laboratory	NULL	972
+03D0	5A	04	42	02	Gerudo Valley	NULL	Carpenter's Tent	NULL	976
+03D1	5A	04	42	02	Gerudo Valley	NULL	Carpenter's Tent	NULL	976
+03D2	5A	04	42	02	Gerudo Valley	NULL	Carpenter's Tent	NULL	976
+03D3	5A	04	42	02	Gerudo Valley	NULL	Carpenter's Tent	NULL	976
+03D4	59	03	41	83	Zora's Fountain	NULL	Ice Cavern	NULL	980
+03D5	59	03	41	02	Zora's Fountain	NULL	Ice Cavern	NULL	980
+03D6	59	03	41	83	Zora's Fountain	NULL	Ice Cavern	NULL	980
+03D7	59	03	41	02	Zora's Fountain	NULL	Ice Cavern	NULL	980
+03D8	59	04	41	02	Zora's Fountain	SE corner facing fallen tree	NULL	NULL	984
+03D9	59	04	41	02	Zora's Fountain	SE corner facing fallen tree	NULL	NULL	984
+03DA	59	04	41	02	Zora's Fountain	SE corner facing fallen tree	NULL	NULL	984
+03DB	59	04	41	02	Zora's Fountain	SE corner facing fallen tree	NULL	NULL	984
+03DC	0E	04	C1	02	Tower Collapse Interior	Stalfos Fight Room	Tower Collapse Exterior	(Higher)	988
+03DD	0E	04	C1	02	Tower Collapse Interior	Stalfos Fight Room	Tower Collapse Exterior	(Higher)	988
+03DE	0E	04	C1	02	Tower Collapse Interior	Stalfos Fight Room	Tower Collapse Exterior	(Higher)	988
+03DF	0E	04	C1	02	Tower Collapse Interior	Stalfos Fight Room	Tower Collapse Exterior	(Higher)	988
+03E0	0E	05	C1	02	Tower Collapse Interior	Stalfos Fight Room	Tower Collapse Exterior	(Lower)	992
+03E1	0E	05	C1	02	Tower Collapse Interior	Stalfos Fight Room	Tower Collapse Exterior	(Lower)	992
+03E2	0E	05	C1	02	Tower Collapse Interior	Stalfos Fight Room	Tower Collapse Exterior	(Lower)	992
+03E3	0E	05	C1	02	Tower Collapse Interior	Stalfos Fight Room	Tower Collapse Exterior	(Lower)	992
+03E4	0E	06	C1	02	Tower Collapse Interior	Staircase Down	Tower Collapse Exterior	(Higher)	996
+03E5	0E	06	C1	02	Tower Collapse Interior	Staircase Down	Tower Collapse Exterior	(Higher)	996
+03E6	0E	06	C1	02	Tower Collapse Interior	Staircase Down	Tower Collapse Exterior	(Higher)	996
+03E7	0E	06	C1	02	Tower Collapse Interior	Staircase Down	Tower Collapse Exterior	(Higher)	996
+03E8	30	01	02	20	Kakariko Potion Shop	Unused	NULL	NULL	1000
+03E9	30	01	02	20	Kakariko Potion Shop	Unused	NULL	NULL	1000
+03EA	30	01	42	20	Kakariko Potion Shop	Unused	NULL	NULL	1000
+03EB	30	01	42	20	Kakariko Potion Shop	Unused	NULL	NULL	1000
+03EC	30	02	02	20	Kakariko Potion Shop	Back Door	Kakariko Village	NULL	1004
+03ED	30	02	02	20	Kakariko Potion Shop	Back Door	Kakariko Village	NULL	1004
+03EE	30	02	42	20	Kakariko Potion Shop	Back Door	Kakariko Village	NULL	1004
+03EF	30	02	42	20	Kakariko Potion Shop	Back Door	Kakariko Village	NULL	1004
+03F0	06	02	01	02	Spirit Temple	NULL	Desert Colossus	Silver Gauntlets Chest	1008
+03F1	06	02	01	02	Spirit Temple	NULL	Desert Colossus	Silver Gauntlets Chest	1008
+03F2	06	02	01	02	Spirit Temple	NULL	Desert Colossus	Silver Gauntlets Chest	1008
+03F3	06	02	01	02	Spirit Temple	NULL	Desert Colossus	Silver Gauntlets Chest	1008
+03F4	06	03	01	02	Spirit Temple	NULL	Desert Colossus	Mirror Shield Chest	1012
+03F5	06	03	01	02	Spirit Temple	NULL	Desert Colossus	Mirror Shield Chest	1012
+03F6	06	03	01	02	Spirit Temple	NULL	Desert Colossus	Mirror Shield Chest	1012
+03F7	06	03	01	02	Spirit Temple	NULL	Desert Colossus	Mirror Shield Chest	1012
+03F8	06	04	41	02	Spirit Temple	Crashes (Bad Map)	NULL	NULL	1016
+03F9	06	04	41	02	Spirit Temple	Crashes (Bad Map)	NULL	NULL	1016
+03FA	06	04	41	02	Spirit Temple	Crashes (Bad Map)	NULL	NULL	1016
+03FB	06	04	41	02	Spirit Temple	Crashes (Bad Map)	NULL	NULL	1016
+03FC	62	02	42	02	Goron City	NULL	Goron Shop	NULL	1020
+03FD	62	02	42	02	Goron City	NULL	Goron Shop	NULL	1020
+03FE	62	02	42	02	Goron City	NULL	Goron Shop	NULL	1020
+03FF	62	02	42	02	Goron City	NULL	Goron Shop	NULL	1020
+0400	4A	00	41	83	Zelda's Courtyard	NULL	Castle Courtyard	NULL	1024
+0401	4A	00	41	02	Zelda's Courtyard	NULL	Castle Courtyard	NULL	1024
+0402	4A	00	41	83	Zelda's Courtyard	NULL	Castle Courtyard	NULL	1024
+0403	4A	00	41	02	Zelda's Courtyard	NULL	Castle Courtyard	NULL	1024
+0404	4A	00	41	83	Zelda's Courtyard	NULL	Castle Courtyard	NULL	1024
+0405	4A	00	41	83	Zelda's Courtyard	NULL	Castle Courtyard	NULL	1024
+0406	4A	00	41	83	Zelda's Courtyard	NULL	Castle Courtyard	NULL	1024
+0407	02	01	C1	02	Inside Jabu Jabu's Belly	Map 14	Inside Jabu Jabu's Belly Boss	NULL	1031
+0408	02	01	C1	02	Inside Jabu Jabu's Belly	Map 14	Inside Jabu Jabu's Belly Boss	NULL	1031
+0409	02	01	C1	02	Inside Jabu Jabu's Belly	Map 14	Inside Jabu Jabu's Belly Boss	NULL	1031
+040A	02	01	C1	02	Inside Jabu Jabu's Belly	Map 14	Inside Jabu Jabu's Belly Boss	NULL	1031
+040B	12	00	81	02	Dondogo's Cavern Boss	NULL	Dondogo's Cavern	NULL	1035
+040C	12	00	81	02	Dondogo's Cavern Boss	NULL	Dondogo's Cavern	NULL	1035
+040D	12	00	81	02	Dondogo's Cavern Boss	NULL	Dondogo's Cavern	NULL	1035
+040E	12	00	81	02	Dondogo's Cavern Boss	NULL	Dondogo's Cavern	NULL	1035
+040F	11	00	81	02	Deku Tree Boss	NULL	Deku Tree	NULL	1039
+0410	11	00	81	02	Deku Tree Boss	NULL	Deku Tree	NULL	1039
+0411	11	00	81	02	Deku Tree Boss	NULL	Deku Tree	NULL	1039
+0412	11	00	81	02	Deku Tree Boss	NULL	Deku Tree	NULL	1039
+0413	18	00	C1	02	Shadow Temple Boss	NULL	Shadow Temple	NULL	1043
+0414	18	00	C1	02	Shadow Temple Boss	NULL	Shadow Temple	NULL	1043
+0415	18	00	C1	02	Shadow Temple Boss	NULL	Shadow Temple	NULL	1043
+0416	18	00	C1	02	Shadow Temple Boss	NULL	Shadow Temple	NULL	1043
+0417	16	00	C1	02	Water Temple Boss	NULL	Water Temple	NULL	1047
+0418	16	00	C1	02	Water Temple Boss	NULL	Water Temple	NULL	1047
+0419	16	00	C1	02	Water Temple Boss	NULL	Water Temple	NULL	1047
+041A	16	00	C1	02	Water Temple Boss	NULL	Water Temple	NULL	1047
+041B	0A	00	41	02	Ganon's Tower Climb	NULL	Inside Ganon's Castle	NULL	1051
+041C	0A	00	41	02	Ganon's Tower Climb	NULL	Inside Ganon's Castle	NULL	1051
+041D	0A	00	41	02	Ganon's Tower Climb	NULL	Inside Ganon's Castle	NULL	1051
+041E	0A	00	41	02	Ganon's Tower Climb	NULL	Inside Ganon's Castle	NULL	1051
+041F	19	00	C1	02	Ganondorf Boss Room	NULL	Ganon's Tower Climb	NULL	1055
+0420	19	00	C1	02	Ganondorf Boss Room	NULL	Ganon's Tower Climb	NULL	1055
+0421	19	00	C1	02	Ganondorf Boss Room	NULL	Ganon's Tower Climb	NULL	1055
+0422	19	00	C1	02	Ganondorf Boss Room	NULL	Ganon's Tower Climb	NULL	1055
+0423	05	01	C1	82	Water Temple	Main Entrance	Water Temple Boss	NULL	1059
+0424	05	01	C1	02	Water Temple	Main Entrance	Water Temple Boss	NULL	1059
+0425	05	01	C1	82	Water Temple	Main Entrance	Water Temple Boss	NULL	1059
+0426	05	01	C1	02	Water Temple	Main Entrance	Water Temple Boss	NULL	1059
+0427	0A	01	C1	02	Ganon's Tower Climb	NULL	NULL	Outside Boss Door	1063
+0428	0A	01	C1	02	Ganon's Tower Climb	NULL	NULL	Outside Boss Door	1063
+0429	0A	01	C1	02	Ganon's Tower Climb	NULL	NULL	Outside Boss Door	1063
+042A	0A	01	C1	02	Ganon's Tower Climb	NULL	NULL	Outside Boss Door	1063
+042B	0A	02	41	02	Ganon's Tower Climb	Facing Boss Key Door	NULL	NULL	1067
+042C	0A	02	41	02	Ganon's Tower Climb	Facing Boss Key Door	NULL	NULL	1067
+042D	0A	02	41	02	Ganon's Tower Climb	Facing Boss Key Door	NULL	NULL	1067
+042E	0A	02	41	02	Ganon's Tower Climb	Facing Boss Key Door	NULL	NULL	1067
+042F	63	05	42	02	Lon Lon Ranch	NULL	Stables	NULL	1071
+0430	63	05	42	02	Lon Lon Ranch	NULL	Stables	NULL	1071
+0431	63	05	42	02	Lon Lon Ranch	NULL	Stables	NULL	1071
+0432	63	05	42	02	Lon Lon Ranch	NULL	Stables	NULL	1071
+0433	28	00	42	04	Mido's House	NULL	Kokiri Forest	NULL	1075
+0434	28	00	42	04	Mido's House	NULL	Kokiri Forest	NULL	1075
+0435	28	00	42	04	Mido's House	NULL	Kokiri Forest	NULL	1075
+0436	28	00	42	04	Mido's House	NULL	Kokiri Forest	NULL	1075
+0437	29	00	42	04	Saria's House	NULL	Kokiri Forest	NULL	1079
+0438	29	00	42	04	Saria's House	NULL	Kokiri Forest	NULL	1079
+0439	29	00	42	04	Saria's House	NULL	Kokiri Forest	NULL	1079
+043A	29	00	42	04	Saria's House	NULL	Kokiri Forest	NULL	1079
+043B	2B	00	42	20	Back Alley Village House	Back Alley Guy's House	Back Alley	(Right)	1083
+043C	2B	00	42	20	Back Alley Village House	Back Alley Guy's House	Back Alley	(Right)	1083
+043D	2B	00	42	20	Back Alley Village House	Back Alley Guy's House	Back Alley	(Right)	1083
+043E	2B	00	42	20	Back Alley Village House	Back Alley Guy's House	Back Alley	(Right)	1083
+043F	1A	00	C1	02	Tower Collapse Exterior	Death Cutscene	Ganondorf Boss Room	NULL	1087
+0440	1A	00	C1	02	Tower Collapse Exterior	Death Cutscene	Ganondorf Boss Room	NULL	1087
+0441	1A	00	C1	02	Tower Collapse Exterior	Death Cutscene	Ganondorf Boss Room	NULL	1087
+0442	1A	00	C1	02	Tower Collapse Exterior	Death Cutscene	Ganondorf Boss Room	NULL	1087
+0443	55	09	02	04	Kokiri Forest	NULL	Mido's House	NULL	1091
+0444	55	09	02	04	Kokiri Forest	NULL	Mido's House	NULL	1091
+0445	55	09	02	04	Kokiri Forest	NULL	Mido's House	NULL	1091
+0446	55	09	02	04	Kokiri Forest	NULL	Mido's House	NULL	1091
+0447	55	0A	02	04	Kokiri Forest	NULL	Saria's House	NULL	1095
+0448	55	0A	02	04	Kokiri Forest	NULL	Saria's House	NULL	1095
+0449	55	0A	02	04	Kokiri Forest	NULL	Saria's House	NULL	1095
+044A	55	0A	02	04	Kokiri Forest	NULL	Saria's House	NULL	1095
+044B	52	09	42	04	Kakariko Village	NULL	Kakariko Potion Shop	NULL	1099
+044C	52	09	42	04	Kakariko Village	NULL	Kakariko Potion Shop	NULL	1099
+044D	52	09	42	04	Kakariko Village	NULL	Kakariko Potion Shop	NULL	1099
+044E	52	09	42	04	Kakariko Village	NULL	Kakariko Potion Shop	NULL	1099
+044F	48	00	41	26	?	Dampe's Grave	Graveyard	NULL	1103
+0450	48	00	41	26	?	Dampe's Grave	Graveyard	NULL	1103
+0451	48	00	41	26	?	Dampe's Grave	Graveyard	NULL	1103
+0452	48	00	41	26	?	Dampe's Grave	Graveyard	NULL	1103
+0453	48	01	42	20	?	Windmill	Kakariko Village	NULL	1107
+0454	48	01	42	20	?	Windmill	Kakariko Village	NULL	1107
+0455	48	01	42	20	?	Windmill	Kakariko Village	NULL	1107
+0456	48	01	42	20	?	Windmill	Kakariko Village	NULL	1107
+0457	55	0B	42	02	Kokiri Forest	After Deku Tree Death Cutscene	Kokiri Forest	NULL	1111
+0458	55	0B	42	02	Kokiri Forest	After Deku Tree Death Cutscene	Kokiri Forest	NULL	1111
+0459	55	0B	42	02	Kokiri Forest	After Deku Tree Death Cutscene	Kokiri Forest	NULL	1111
+045A	55	0B	42	02	Kokiri Forest	After Deku Tree Death Cutscene	Kokiri Forest	NULL	1111
+045B	60	04	41	02	Death Mountain Trail	NULL	Great Fairy's Fountain (Upgrades)	NULL	1115
+045C	60	04	41	02	Death Mountain Trail	NULL	Great Fairy's Fountain (Upgrades)	NULL	1115
+045D	60	04	41	02	Death Mountain Trail	NULL	Great Fairy's Fountain (Upgrades)	NULL	1115
+045E	60	04	41	02	Death Mountain Trail	NULL	Great Fairy's Fountain (Upgrades)	NULL	1115
+045F	49	00	41	20	Fishing Pond	NULL	Lake Hylia	NULL	1119
+0460	49	00	41	20	Fishing Pond	NULL	Lake Hylia	NULL	1119
+0461	49	00	41	20	Fishing Pond	NULL	Lake Hylia	NULL	1119
+0462	49	00	41	20	Fishing Pond	NULL	Lake Hylia	NULL	1119
+0463	52	0A	42	02	Kakariko Village	NULL	Shooting Gallery	NULL	1123
+0464	52	0A	42	02	Kakariko Village	NULL	Shooting Gallery	NULL	1123
+0465	52	0A	42	02	Kakariko Village	NULL	Shooting Gallery	NULL	1123
+0466	52	0A	42	02	Kakariko Village	NULL	Shooting Gallery	NULL	1123
+0467	0D	00	42	02	Inside Ganon's Castle	NULL	Castle	NULL	1127
+0468	0D	00	42	02	Inside Ganon's Castle	NULL	Castle	NULL	1127
+0469	0D	00	42	02	Inside Ganon's Castle	NULL	Castle	NULL	1127
+046A	0D	00	42	02	Inside Ganon's Castle	NULL	Castle	NULL	1127
+046B	0D	00	42	02	Inside Ganon's Castle	NULL	Castle	NULL	1127
+046C	0D	00	42	02	Inside Ganon's Castle	NULL	Castle	NULL	1127
+046D	0D	00	42	02	Inside Ganon's Castle	NULL	Castle	NULL	1127
+046E	0D	00	42	02	Inside Ganon's Castle	NULL	Castle	NULL	1127
+046F	0D	00	42	02	Inside Ganon's Castle	NULL	Castle	NULL	1127
+0470	0D	00	42	02	Inside Ganon's Castle	NULL	Castle	NULL	1127
+0471	0D	00	42	02	Inside Ganon's Castle	NULL	Castle	NULL	1127
+0472	23	01	42	02	Outside Temple of Time - Child Day	NULL	Temple of Time	NULL	1138
+0473	24	01	42	02	Outside Temple of Time - Child Night	NULL	Temple of Time	NULL	1138
+0474	25	01	42	02	Outside Temple of Time - Adult	NULL	Temple of Time	NULL	1138
+0475	25	01	42	02	Outside Temple of Time - Adult	NULL	Temple of Time	NULL	1138
+0476	51	0F	42	85	Hyrule Field	NULL	Lon Lon Ranch	Front Gate Jump	1142
+0477	51	0F	42	02	Hyrule Field	NULL	Lon Lon Ranch	Front Gate Jump	1142
+0478	51	0F	42	85	Hyrule Field	NULL	Lon Lon Ranch	Front Gate Jump	1142
+0479	51	0F	42	02	Hyrule Field	NULL	Lon Lon Ranch	Front Gate Jump	1142
+047A	60	05	42	02	Death Mountain Trail	Goron Ruby Cutscene	NULL	NULL	1146
+047B	60	05	42	02	Death Mountain Trail	Goron Ruby Cutscene	NULL	NULL	1146
+047C	60	05	42	02	Death Mountain Trail	Goron Ruby Cutscene	NULL	NULL	1146
+047D	60	05	42	02	Death Mountain Trail	Goron Ruby Cutscene	NULL	NULL	1146
+047E	5F	04	41	83	Hyrule Castle	Guard Capture (Outside)	NULL	NULL	1150
+047F	5F	04	41	02	Hyrule Castle	Guard Capture (Outside)	NULL	NULL	1150
+0480	64	04	41	02	Ganon's Castle	Crashes (Bad Map)	NULL	NULL	1150
+0481	64	04	41	02	Ganon's Castle	Crashes (Bad Map)	NULL	NULL	1150
+0482	61	03	41	02	Death Mountain Crater	NULL	Great Fairy's Fountain (Upgrades)	NULL	1154
+0483	61	03	41	02	Death Mountain Crater	NULL	Great Fairy's Fountain (Upgrades)	NULL	1154
+0484	61	03	41	02	Death Mountain Crater	NULL	Great Fairy's Fountain (Upgrades)	NULL	1154
+0485	61	03	41	02	Death Mountain Crater	NULL	Great Fairy's Fountain (Upgrades)	NULL	1154
+0486	0C	00	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1158
+0487	0C	00	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1158
+0488	0C	00	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1158
+0489	0C	00	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1158
+048A	0C	01	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1162
+048B	0C	01	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1162
+048C	0C	01	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1162
+048D	0C	01	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1162
+048E	0C	02	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1166
+048F	0C	02	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1166
+0490	0C	02	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1166
+0491	0C	02	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1166
+0492	0C	03	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1170
+0493	0C	03	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1170
+0494	0C	03	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1170
+0495	0C	03	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1170
+0496	0C	04	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1174
+0497	0C	04	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1174
+0498	0C	04	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1174
+0499	0C	04	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1174
+049A	0C	05	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1178
+049B	0C	05	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1178
+049C	0C	05	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1178
+049D	0C	05	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1178
+049E	0C	06	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1182
+049F	0C	06	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1182
+04A0	0C	06	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1182
+04A1	0C	06	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1182
+04A2	0C	07	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1186
+04A3	0C	07	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1186
+04A4	0C	07	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1186
+04A5	0C	07	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1186
+04A6	0C	08	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1190
+04A7	0C	08	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1190
+04A8	0C	08	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1190
+04A9	0C	08	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1190
+04AA	0C	09	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1194
+04AB	0C	09	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1194
+04AC	0C	09	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1194
+04AD	0C	09	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1194
+04AE	0C	0A	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1198
+04AF	0C	0A	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1198
+04B0	0C	0A	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1198
+04B1	0C	0A	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1198
+04B2	0C	0B	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1202
+04B3	0C	0B	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1202
+04B4	0C	0B	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1202
+04B5	0C	0B	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1202
+04B6	0E	07	C1	02	Tower Collapse Interior	Staircase Down	Tower Collapse Interior Exit	NULL	1206
+04B7	0E	07	C1	02	Tower Collapse Interior	Staircase Down	Tower Collapse Interior Exit	NULL	1206
+04B8	0E	07	C1	02	Tower Collapse Interior	Staircase Down	Tower Collapse Interior Exit	NULL	1206
+04B9	0E	07	C1	02	Tower Collapse Interior	Staircase Down	Tower Collapse Interior Exit	NULL	1206
+04BA	1A	01	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Boss Room Floor (Higher)	1210
+04BB	1A	01	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Boss Room Floor (Higher)	1210
+04BC	1A	01	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Boss Room Floor (Higher)	1210
+04BD	1A	01	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Boss Room Floor (Higher)	1210
+04BE	3B	01	41	02	Great Fairy's Fountain (Upgrades)	NULL	Death Mountain Crater	NULL	1214
+04BF	3B	01	41	02	Great Fairy's Fountain (Upgrades)	NULL	Death Mountain Crater	NULL	1214
+04C0	3B	01	41	02	Great Fairy's Fountain (Upgrades)	NULL	Death Mountain Crater	NULL	1214
+04C1	3B	01	41	02	Great Fairy's Fountain (Upgrades)	NULL	Death Mountain Crater	NULL	1214
+04C2	3B	02	41	02	Great Fairy's Fountain (Upgrades)	NULL	Castle	NULL	1218
+04C3	3B	02	41	02	Great Fairy's Fountain (Upgrades)	NULL	Castle	NULL	1218
+04C4	3B	02	41	02	Great Fairy's Fountain (Upgrades)	NULL	Castle	NULL	1218
+04C5	3B	02	41	02	Great Fairy's Fountain (Upgrades)	NULL	Castle	NULL	1218
+04C6	5B	04	41	02	Lost Woods	??? placed west of Cojiro Guy map	NULL	NULL	1222
+04C7	5B	04	41	02	Lost Woods	??? placed west of Cojiro Guy map	NULL	NULL	1222
+04C8	5B	04	41	02	Lost Woods	??? placed west of Cojiro Guy map	NULL	NULL	1222
+04C9	5B	04	41	02	Lost Woods	??? placed west of Cojiro Guy map	NULL	NULL	1222
+04CA	63	06	01	26	Lon Lon Ranch	Pay Ingo to Ride	NULL	NULL	1226
+04CB	63	06	01	26	Lon Lon Ranch	Pay Ingo to Ride	NULL	NULL	1226
+04CC	63	06	01	26	Lon Lon Ranch	Pay Ingo to Ride	NULL	NULL	1226
+04CD	63	06	01	26	Lon Lon Ranch	Pay Ingo to Ride	NULL	NULL	1226
+04CE	63	07	17	2E	Lon Lon Ranch	Beat Ingo Both Times	NULL	NULL	1230
+04CF	63	07	17	2E	Lon Lon Ranch	Beat Ingo Both Times	NULL	NULL	1230
+04D0	63	07	17	2E	Lon Lon Ranch	Beat Ingo Both Times	NULL	NULL	1230
+04D1	63	07	17	2E	Lon Lon Ranch	Beat Ingo Both Times	NULL	NULL	1230
+04D2	5B	05	41	02	Lost Woods	Exit point clockwise from SFM exit	NULL	NULL	1234
+04D3	5B	05	41	02	Lost Woods	Exit point clockwise from SFM exit	NULL	NULL	1234
+04D4	5B	05	41	02	Lost Woods	Exit point clockwise from SFM exit	NULL	NULL	1234
+04D5	5B	05	41	02	Lost Woods	Exit point clockwise from SFM exit	NULL	NULL	1234
+04D6	5B	06	56	2C	Lost Woods	NULL	Goron City	NULL	1238
+04D7	5B	06	56	2C	Lost Woods	NULL	Goron City	NULL	1238
+04D8	5B	06	56	2C	Lost Woods	NULL	Goron City	NULL	1238
+04D9	5B	06	56	2C	Lost Woods	NULL	Goron City	NULL	1238
+04DA	5B	07	56	2C	Lost Woods	NULL	Zora River	NULL	1242
+04DB	5B	07	56	2C	Lost Woods	NULL	Zora River	NULL	1242
+04DC	5B	07	56	2C	Lost Woods	NULL	Zora River	NULL	1242
+04DD	5B	07	56	2C	Lost Woods	NULL	Zora River	NULL	1242
+04DE	5B	08	01	02	Lost Woods	NULL	Hyrule Field	NULL	1246
+04DF	5B	08	01	02	Lost Woods	NULL	Hyrule Field	NULL	1246
+04E0	5B	08	01	02	Lost Woods	NULL	Hyrule Field	NULL	1246
+04E1	5B	08	01	02	Lost Woods	NULL	Hyrule Field	NULL	1246
+04E2	62	03	56	2C	Goron City	NULL	Lost Woods	NULL	1250
+04E3	62	03	56	2C	Goron City	NULL	Lost Woods	NULL	1250
+04E4	62	03	56	2C	Goron City	NULL	Lost Woods	NULL	1250
+04E5	62	03	56	2C	Goron City	NULL	Lost Woods	NULL	1250
+04E6	57	05	41	02	Lake Hylia	Serenade Entrance	NULL	NULL	1254
+04E7	57	05	41	02	Lake Hylia	Serenade Entrance	NULL	NULL	1254
+04E8	57	05	41	02	Lake Hylia	Serenade Entrance	NULL	NULL	1254
+04E9	57	05	41	02	Lake Hylia	Serenade Entrance	NULL	NULL	1254
+04EA	07	03	41	02	Shadow Temple	NULL	NULL	NULL	1258
+04EB	07	03	41	02	Shadow Temple	NULL	NULL	NULL	1258
+04EC	07	03	41	02	Shadow Temple	NULL	NULL	NULL	1258
+04ED	07	03	41	02	Shadow Temple	NULL	NULL	NULL	1258
+04EE	52	0B	42	02	Kakariko Village	NULL	House of Skulltula	NULL	1262
+04EF	52	0B	42	02	Kakariko Village	NULL	House of Skulltula	NULL	1262
+04F0	52	0B	42	02	Kakariko Village	NULL	House of Skulltula	NULL	1262
+04F1	52	0B	42	02	Kakariko Village	NULL	House of Skulltula	NULL	1262
+04F2	3B	03	41	02	Great Fairy's Fountain (Upgrades)	Leaving puts you at 044B	NULL	NULL	1266
+04F3	3B	03	41	02	Great Fairy's Fountain (Upgrades)	Leaving puts you at 044B	NULL	NULL	1266
+04F4	3B	03	41	02	Great Fairy's Fountain (Upgrades)	Leaving puts you at 044B	NULL	NULL	1266
+04F5	3B	03	41	02	Great Fairy's Fountain (Upgrades)	Leaving puts you at 044B	NULL	NULL	1266
+04F6	61	04	41	02	Death Mountain Crater	Bolero Entrance	NULL	NULL	1270
+04F7	61	04	41	02	Death Mountain Crater	Bolero Entrance	NULL	NULL	1270
+04F8	61	04	41	02	Death Mountain Crater	Bolero Entrance	NULL	NULL	1270
+04F9	61	04	41	02	Death Mountain Crater	Bolero Entrance	NULL	NULL	1270
+04FA	5F	03	41	83	Hyrule Castle	NULL	Castle Courtyard	Caught by guard	1274
+04FB	5F	03	41	02	Hyrule Castle	NULL	Castle Courtyard	Caught by guard	1274
+04FC	64	03	41	02	Ganon's Castle	NULL	Castle Courtyard	Caught by guard	1274
+04FD	64	03	41	02	Ganon's Castle	NULL	Castle Courtyard	Caught by guard	1274
+04FE	5F	03	40	00	Hyrule Castle	NULL	Castle Courtyard	Caught by guard	1274
+04FF	52	0C	42	02	Kakariko Village	NULL	Kakariko Potion Shop	Back Entrance	1279
+0500	52	0C	42	02	Kakariko Village	NULL	Kakariko Potion Shop	Back Entrance	1279
+0501	52	0C	42	02	Kakariko Village	NULL	Kakariko Potion Shop	Back Entrance	1279
+0502	52	0C	42	02	Kakariko Village	NULL	Kakariko Potion Shop	Back Entrance	1279
+0503	48	02	C2	20	?	Windmill After Song of Storms?	NULL	NULL	1283
+0504	48	02	C2	20	?	Windmill After Song of Storms?	NULL	NULL	1283
+0505	48	02	C2	20	?	Windmill After Song of Storms?	NULL	NULL	1283
+0506	48	02	C2	20	?	Windmill After Song of Storms?	NULL	NULL	1283
+0507	4B	00	42	20	Bombchu Bowling Alley	NULL	Market	NULL	1287
+0508	4B	00	42	20	Bombchu Bowling Alley	NULL	Market	NULL	1287
+0509	4B	00	42	20	Bombchu Bowling Alley	NULL	Market	NULL	1287
+050A	4B	00	42	20	Bombchu Bowling Alley	NULL	Market	NULL	1287
+050B	53	06	41	83	Kakariko Graveyard	NULL	Royal Family's Tomb	NULL	1291
+050C	53	06	41	83	Kakariko Graveyard	NULL	Royal Family's Tomb	NULL	1291
+050D	53	06	41	83	Kakariko Graveyard	NULL	Royal Family's Tomb	NULL	1291
+050E	53	06	41	83	Kakariko Graveyard	NULL	Royal Family's Tomb	NULL	1291
+050F	51	10	45	8B	Hyrule Field	Get Ocarina of Time	NULL	NULL	1295
+0510	51	10	45	8B	Hyrule Field	Get Ocarina of Time	NULL	NULL	1295
+0511	51	10	45	8B	Hyrule Field	Get Ocarina of Time	NULL	NULL	1295
+0512	51	10	45	8B	Hyrule Field	Get Ocarina of Time	NULL	NULL	1295
+0513	52	0D	41	83	Kakariko Village	NULL	NULL	Nocturne Cutscene	1299
+0514	52	0D	41	02	Kakariko Village	NULL	NULL	Nocturne Cutscene	1299
+0515	52	0D	41	83	Kakariko Village	NULL	NULL	Nocturne Cutscene	1299
+0516	52	0D	41	02	Kakariko Village	NULL	NULL	Nocturne Cutscene	1299
+0517	4F	00	41	83	Ganon Battle	NULL	Tower Collapse Interior Exit	NULL	1303
+0518	4F	00	41	83	Ganon Battle	NULL	Tower Collapse Interior Exit	NULL	1303
+0519	4F	00	41	83	Ganon Battle	NULL	Tower Collapse Interior Exit	NULL	1303
+051A	4F	00	41	83	Ganon Battle	NULL	Tower Collapse Interior Exit	NULL	1303
+051B	4F	00	41	83	Ganon Battle	NULL	Tower Collapse Interior Exit	NULL	1303
+051C	1A	06	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Stalfos Fight (Lower)	1308
+051D	1A	06	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Stalfos Fight (Lower)	1308
+051E	1A	06	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Stalfos Fight (Lower)	1308
+051F	1A	06	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Stalfos Fight (Lower)	1308
+0520	66	00	41	02	Beshitu	NULL	NULL	NULL	1312
+0521	66	00	41	02	Beshitu	NULL	NULL	NULL	1312
+0522	66	00	41	02	Beshitu	NULL	NULL	NULL	1312
+0523	66	00	41	02	Beshitu	NULL	NULL	NULL	1312
+0524	1A	07	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Stairs	1316
+0525	1A	07	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Stairs	1316
+0526	1A	07	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Stairs	1316
+0527	1A	07	C1	02	Tower Collapse Exterior	NULL	Tower Collapse Interior	Stairs	1316
+0528	32	01	41	02	Bombchu Shop	NULL	Back Alley	(Left)	1320
+0529	32	01	41	02	Bombchu Shop	NULL	Back Alley	(Left)	1320
+052A	32	01	41	02	Bombchu Shop	NULL	Back Alley	(Left)	1320
+052B	32	01	41	02	Bombchu Shop	NULL	Back Alley	(Left)	1320
+052C	2C	01	42	20	Bazaar	NULL	Market	NULL	1324
+052D	2C	01	42	20	Bazaar	NULL	Market	NULL	1324
+052E	2C	01	42	20	Bazaar	NULL	Market	NULL	1324
+052F	2C	01	42	20	Bazaar	NULL	Market	NULL	1324
+0530	33	00	42	20	Happy Mask Shop	NULL	Market	NULL	1328
+0531	33	00	42	20	Happy Mask Shop	NULL	Market	NULL	1328
+0532	33	00	42	20	Happy Mask Shop	NULL	Market	NULL	1328
+0533	33	00	42	20	Happy Mask Shop	NULL	Market	NULL	1328
+0534	0D	01	02	02	Inside Ganon's Castle	NULL	Ganon's Tower Climb	NULL	1332
+0535	0D	01	02	02	Inside Ganon's Castle	NULL	Ganon's Tower Climb	NULL	1332
+0536	0D	01	02	02	Inside Ganon's Castle	NULL	Ganon's Tower Climb	NULL	1332
+0537	0D	01	02	02	Inside Ganon's Castle	NULL	Ganon's Tower Climb	NULL	1332
+0538	0D	02	42	02	Inside Ganon's Castle	Clear Forest Trial	Inside Ganon's Castle	NULL	1336
+0539	0D	02	42	02	Inside Ganon's Castle	Clear Forest Trial	Inside Ganon's Castle	NULL	1336
+053A	0D	02	42	02	Inside Ganon's Castle	Clear Forest Trial	Inside Ganon's Castle	NULL	1336
+053B	0D	02	42	02	Inside Ganon's Castle	Clear Forest Trial	Inside Ganon's Castle	NULL	1336
+053C	0D	03	42	02	Inside Ganon's Castle	Clear Water Trial	Inside Ganon's Castle	NULL	1340
+053D	0D	03	42	02	Inside Ganon's Castle	Clear Water Trial	Inside Ganon's Castle	NULL	1340
+053E	0D	03	42	02	Inside Ganon's Castle	Clear Water Trial	Inside Ganon's Castle	NULL	1340
+053F	0D	03	42	02	Inside Ganon's Castle	Clear Water Trial	Inside Ganon's Castle	NULL	1340
+0540	0D	04	42	02	Inside Ganon's Castle	Clear Shadow Trial	Inside Ganon's Castle	NULL	1344
+0541	0D	04	42	02	Inside Ganon's Castle	Clear Shadow Trial	Inside Ganon's Castle	NULL	1344
+0542	0D	04	42	02	Inside Ganon's Castle	Clear Shadow Trial	Inside Ganon's Castle	NULL	1344
+0543	0D	04	42	02	Inside Ganon's Castle	Clear Shadow Trial	Inside Ganon's Castle	NULL	1344
+0544	0D	05	42	02	Inside Ganon's Castle	Clear Fire Trial	Inside Ganon's Castle	NULL	1348
+0545	0D	05	42	02	Inside Ganon's Castle	Clear Fire Trial	Inside Ganon's Castle	NULL	1348
+0546	0D	05	42	02	Inside Ganon's Castle	Clear Fire Trial	Inside Ganon's Castle	NULL	1348
+0547	0D	05	42	02	Inside Ganon's Castle	Clear Fire Trial	Inside Ganon's Castle	NULL	1348
+0548	0D	06	42	02	Inside Ganon's Castle	Clear Light Trial	Inside Ganon's Castle	NULL	1352
+0549	0D	06	42	02	Inside Ganon's Castle	Clear Light Trial	Inside Ganon's Castle	NULL	1352
+054A	0D	06	42	02	Inside Ganon's Castle	Clear Light Trial	Inside Ganon's Castle	NULL	1352
+054B	0D	06	42	02	Inside Ganon's Castle	Clear Light Trial	Inside Ganon's Castle	NULL	1352
+054C	0D	07	42	02	Inside Ganon's Castle	Clear Spirit Trial	Inside Ganon's Castle	NULL	1356
+054D	0D	07	42	02	Inside Ganon's Castle	Clear Spirit Trial	Inside Ganon's Castle	NULL	1356
+054E	0D	07	42	02	Inside Ganon's Castle	Clear Spirit Trial	Inside Ganon's Castle	NULL	1356
+054F	0D	07	42	02	Inside Ganon's Castle	Clear Spirit Trial	Inside Ganon's Castle	NULL	1356
+0550	50	00	42	20	House of Skulltula	NULL	Kakariko Village	NULL	1360
+0551	50	00	42	20	House of Skulltula	NULL	Kakariko Village	NULL	1360
+0552	50	00	42	20	House of Skulltula	NULL	Kakariko Village	NULL	1360
+0553	50	00	42	20	House of Skulltula	NULL	Kakariko Village	NULL	1360
+0554	52	0E	41	83	Kakariko Village	Owl Drop Spot	Death Mountain Crater	Owl Teleport	1364
+0555	52	0E	41	02	Kakariko Village	Owl Drop Spot	Death Mountain Crater	Owl Teleport	1364
+0556	52	0E	41	83	Kakariko Village	Owl Drop Spot	Death Mountain Crater	Owl Teleport	1364
+0557	52	0E	41	02	Kakariko Village	Owl Drop Spot	Death Mountain Crater	Owl Teleport	1364
+0558	63	08	10	20	Lon Lon Ranch	"You're too slow!"	NULL	NULL	1368
+0559	63	08	10	20	Lon Lon Ranch	"You're too slow!"	NULL	NULL	1368
+055A	63	08	10	20	Lon Lon Ranch	"You're too slow!"	NULL	NULL	1368
+055B	63	08	10	20	Lon Lon Ranch	"You're too slow!"	NULL	NULL	1368
+055C	63	09	01	02	Lon Lon Ranch	??? (Near Ingo/Malon)	NULL	NULL	1372
+055D	63	09	01	02	Lon Lon Ranch	??? (Near Ingo/Malon)	NULL	NULL	1372
+055E	63	09	01	02	Lon Lon Ranch	??? (Near Ingo/Malon)	NULL	NULL	1372
+055F	63	09	01	02	Lon Lon Ranch	??? (Near Ingo/Malon)	NULL	NULL	1372
+0560	57	07	56	2C	Lake Hylia	NULL	Zora's Domain	NULL	1376
+0561	57	07	56	2C	Lake Hylia	NULL	Zora's Domain	NULL	1376
+0562	57	07	56	2C	Lake Hylia	NULL	Zora's Domain	NULL	1376
+0563	57	07	56	2C	Lake Hylia	NULL	Zora's Domain	NULL	1376
+0564	61	05	41	02	Death Mountain Crater	NULL	Fire Temple Boss	Blue Warp	1380
+0565	61	05	41	02	Death Mountain Crater	NULL	Fire Temple Boss	Blue Warp	1380
+0566	61	05	41	02	Death Mountain Crater	NULL	Fire Temple Boss	Blue Warp	1380
+0567	61	05	41	02	Death Mountain Crater	NULL	Fire Temple Boss	Blue Warp	1380
+0568	53	07	41	83	Kakariko Graveyard	Nocturne Warp	NULL	NULL	1384
+0569	53	07	41	83	Kakariko Graveyard	Nocturne Warp	NULL	NULL	1384
+056A	53	07	41	83	Kakariko Graveyard	Nocturne Warp	NULL	NULL	1384
+056B	53	07	41	83	Kakariko Graveyard	Nocturne Warp	NULL	NULL	1384
+056C	0F	00	C1	02	Tower Collapse Interior Exit	NULL	Tower Collapse Interior	Stairs	1388
+056D	0F	00	C1	02	Tower Collapse Interior Exit	NULL	Tower Collapse Interior	Stairs	1388
+056E	0F	00	C1	02	Tower Collapse Interior Exit	NULL	Tower Collapse Interior	Stairs	1388
+056F	0F	00	C1	02	Tower Collapse Interior Exit	NULL	Tower Collapse Interior	Stairs	1388
+0570	0C	0C	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1392
+0571	0C	0C	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1392
+0572	0C	0C	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1392
+0573	0C	0C	41	02	Thieves' Hideout	NULL	Gerudo Fortress	NULL	1392
+0574	41	01	41	02	Royal Family's Tomb	Sun Song Cutscene	NULL	NULL	1396
+0575	41	01	41	02	Royal Family's Tomb	Sun Song Cutscene	NULL	NULL	1396
+0576	41	01	41	02	Royal Family's Tomb	Sun Song Cutscene	NULL	NULL	1396
+0577	41	01	41	02	Royal Family's Tomb	Sun Song Cutscene	NULL	NULL	1396
+0578	3D	01	42	04	Great Fairy's Fountain (Spells)	NULL	Castle	NULL	1400
+0579	3D	01	42	04	Great Fairy's Fountain (Spells)	NULL	Castle	NULL	1400
+057A	3D	01	42	04	Great Fairy's Fountain (Spells)	NULL	Castle	NULL	1400
+057B	3D	01	42	04	Great Fairy's Fountain (Spells)	NULL	Castle	NULL	1400
+057C	5C	07	41	83	Desert Colossus	NULL	Great Fairy's Fountain (Spells)	NULL	1404
+057D	5C	07	41	02	Desert Colossus	NULL	Great Fairy's Fountain (Spells)	NULL	1404
+057E	5C	07	41	83	Desert Colossus	NULL	Great Fairy's Fountain (Spells)	NULL	1404
+057F	5C	07	41	02	Desert Colossus	NULL	Great Fairy's Fountain (Spells)	NULL	1404
+0580	53	08	41	83	Kakariko Graveyard	NULL	Shadow Temple Boss	Blue Warp	1408
+0581	53	08	41	83	Kakariko Graveyard	NULL	Shadow Temple Boss	Blue Warp	1408
+0582	53	08	41	83	Kakariko Graveyard	NULL	Shadow Temple Boss	Blue Warp	1408
+0583	53	08	41	83	Kakariko Graveyard	NULL	Shadow Temple Boss	Blue Warp	1408
+0584	03	02	41	02	Forest Temple	Ceiling Crush room	NULL	NULL	1412
+0585	03	02	41	02	Forest Temple	Ceiling Crush room	NULL	NULL	1412
+0586	03	02	41	02	Forest Temple	Ceiling Crush room	NULL	NULL	1412
+0587	03	02	41	02	Forest Temple	Ceiling Crush room	NULL	NULL	1412
+0588	3D	02	41	02	Great Fairy's Fountain (Spells)	NULL	Desert Colossus	NULL	1416
+0589	3D	02	41	02	Great Fairy's Fountain (Spells)	NULL	Desert Colossus	NULL	1416
+058A	3D	02	41	02	Great Fairy's Fountain (Spells)	NULL	Desert Colossus	NULL	1416
+058B	3D	02	41	02	Great Fairy's Fountain (Spells)	NULL	Desert Colossus	NULL	1416
+058C	43	05	41	02	Temple of Time	NULL	Temple of Time	Light Arrow Cutscene	1420
+058D	43	05	41	02	Temple of Time	NULL	Temple of Time	Light Arrow Cutscene	1420
+058E	43	05	41	02	Temple of Time	NULL	Temple of Time	Light Arrow Cutscene	1420
+058F	43	05	41	02	Temple of Time	NULL	Temple of Time	Light Arrow Cutscene	1420
+0590	43	06	41	02	Temple of Time	Front of Pedestal	NULL	NULL	1424
+0591	43	06	41	02	Temple of Time	Front of Pedestal	NULL	NULL	1424
+0592	43	06	41	02	Temple of Time	Front of Pedestal	NULL	NULL	1424
+0593	43	06	41	02	Temple of Time	Front of Pedestal	NULL	NULL	1424
+0594	51	11	41	83	Hyrule Field	After Impa Escort Cutscene	NULL	NULL	1428
+0595	51	11	41	02	Hyrule Field	After Impa Escort Cutscene	NULL	NULL	1428
+0596	51	11	41	83	Hyrule Field	After Impa Escort Cutscene	NULL	NULL	1428
+0597	51	11	41	02	Hyrule Field	After Impa Escort Cutscene	NULL	NULL	1428
+0598	3E	01	41	02	Grottos	Big Skulltula	NULL	NULL	1432
+0599	3E	01	41	02	Grottos	Big Skulltula	NULL	NULL	1432
+059A	3E	01	41	02	Grottos	Big Skulltula	NULL	NULL	1432
+059B	3E	01	41	02	Grottos	Big Skulltula	NULL	NULL	1432
+059C	3E	02	41	02	Grottos	Heart Piece Scrub	NULL	NULL	1436
+059D	3E	02	41	02	Grottos	Heart Piece Scrub	NULL	NULL	1436
+059E	3E	02	41	02	Grottos	Heart Piece Scrub	NULL	NULL	1436
+059F	3E	02	41	02	Grottos	Heart Piece Scrub	NULL	NULL	1436
+05A0	3E	03	41	02	Grottos	Two Redeads	NULL	NULL	1440
+05A1	3E	03	41	02	Grottos	Two Redeads	NULL	NULL	1440
+05A2	3E	03	41	02	Grottos	Two Redeads	NULL	NULL	1440
+05A3	3E	03	41	02	Grottos	Two Redeads	NULL	NULL	1440
+05A4	3E	04	41	02	Grottos	Three Deku Salescrubs	NULL	NULL	1444
+05A5	3E	04	41	02	Grottos	Three Deku Salescrubs	NULL	NULL	1444
+05A6	3E	04	41	02	Grottos	Three Deku Salescrubs	NULL	NULL	1444
+05A7	3E	04	41	02	Grottos	Three Deku Salescrubs	NULL	NULL	1444
+05A8	3E	05	41	03	Grottos	Webbed	NULL	NULL	1448
+05A9	3E	05	41	03	Grottos	Webbed	NULL	NULL	1448
+05AA	3E	05	41	03	Grottos	Webbed	NULL	NULL	1448
+05AB	3E	05	41	03	Grottos	Webbed	NULL	NULL	1448
+05AC	3E	06	41	02	Grottos	Octoroc	NULL	NULL	1452
+05AD	3E	06	41	02	Grottos	Octoroc	NULL	NULL	1452
+05AE	3E	06	41	02	Grottos	Octoroc	NULL	NULL	1452
+05AF	3E	06	41	02	Grottos	Octoroc	NULL	NULL	1452
+05B0	3E	07	41	02	Grottos	Two Deku Salescrubs, Closest sells Deku Nut Upgrade	NULL	NULL	1456
+05B1	3E	07	41	02	Grottos	Two Deku Salescrubs, Closest sells Deku Nut Upgrade	NULL	NULL	1456
+05B2	3E	07	41	02	Grottos	Two Deku Salescrubs, Closest sells Deku Nut Upgrade	NULL	NULL	1456
+05B3	3E	07	41	02	Grottos	Two Deku Salescrubs, Closest sells Deku Nut Upgrade	NULL	NULL	1456
+05B4	3E	08	41	02	Grottos	Two Wolfos	NULL	NULL	1460
+05B5	3E	08	41	02	Grottos	Two Wolfos	NULL	NULL	1460
+05B6	3E	08	41	02	Grottos	Two Wolfos	NULL	NULL	1460
+05B7	3E	08	41	02	Grottos	Two Wolfos	NULL	NULL	1460
+05B8	3E	09	41	02	Grottos	Bombable Wall	NULL	NULL	1464
+05B9	3E	09	41	02	Grottos	Bombable Wall	NULL	NULL	1464
+05BA	3E	09	41	02	Grottos	Bombable Wall	NULL	NULL	1464
+05BB	3E	09	41	02	Grottos	Bombable Wall	NULL	NULL	1464
+05BC	3E	0A	41	02	Grottos	Two Deku Salescrubs, Closest sells Green Pot	NULL	NULL	1468
+05BD	3E	0A	41	02	Grottos	Two Deku Salescrubs, Closest sells Green Pot	NULL	NULL	1468
+05BE	3E	0A	41	02	Grottos	Two Deku Salescrubs, Closest sells Green Pot	NULL	NULL	1468
+05BF	3E	0A	41	02	Grottos	Two Deku Salescrubs, Closest sells Green Pot	NULL	NULL	1468
+05C0	3E	0B	41	02	Grottos	Tektite	NULL	NULL	1472
+05C1	3E	0B	41	02	Grottos	Tektite	NULL	NULL	1472
+05C2	3E	0B	41	02	Grottos	Tektite	NULL	NULL	1472
+05C3	3E	0B	41	02	Grottos	Tektite	NULL	NULL	1472
+05C4	3E	0C	41	02	Grottos	Forest Stage	NULL	NULL	1476
+05C5	3E	0C	41	02	Grottos	Forest Stage	NULL	NULL	1476
+05C6	3E	0C	41	02	Grottos	Forest Stage	NULL	NULL	1476
+05C7	3E	0C	41	02	Grottos	Forest Stage	NULL	NULL	1476
+05C8	37	01	42	20	Impa's House	Roof entrance	Kakariko Village	NULL	1480
+05C9	37	01	42	20	Impa's House	Roof entrance	Kakariko Village	NULL	1480
+05CA	37	01	42	20	Impa's House	Roof entrance	Kakariko Village	NULL	1480
+05CB	37	01	42	20	Impa's House	Roof entrance	Kakariko Village	NULL	1480
+05CC	08	01	42	04	Bottom of the Well	???	NULL	NULL	1484
+05CD	08	01	42	04	Bottom of the Well	???	NULL	NULL	1484
+05CE	08	01	42	04	Bottom of the Well	???	NULL	NULL	1484
+05CF	08	01	42	04	Bottom of the Well	???	NULL	NULL	1484
+05D0	4C	01	42	20	Lon Lon Ranch Buildings	Back Tower	Lon Lon Ranch	NULL	1488
+05D1	4C	01	42	20	Lon Lon Ranch Buildings	Back Tower	Lon Lon Ranch	NULL	1488
+05D2	4C	01	42	20	Lon Lon Ranch Buildings	Back Tower	Lon Lon Ranch	NULL	1488
+05D3	4C	01	42	20	Lon Lon Ranch Buildings	Back Tower	Lon Lon Ranch	NULL	1488
+05D4	63	0A	42	02	Lon Lon Ranch	NULL	Ranch Buildings	Back Tower	1492
+05D5	63	0A	42	02	Lon Lon Ranch	NULL	Ranch Buildings	Back Tower	1492
+05D6	63	0A	42	02	Lon Lon Ranch	NULL	Ranch Buildings	Back Tower	1492
+05D7	63	0A	42	02	Lon Lon Ranch	NULL	Ranch Buildings	Back Tower	1492
+05D8	09	01	41	02	Ice Cavern	NULL	NULL	NULL	1496
+05D9	09	01	41	02	Ice Cavern	NULL	NULL	NULL	1496
+05DA	09	01	41	02	Ice Cavern	NULL	NULL	NULL	1496
+05DB	09	01	41	02	Ice Cavern	NULL	NULL	NULL	1496
+05DC	52	0F	41	83	Kakariko Village	NULL	Impa's House	Cow Exit	1500
+05DD	52	0F	41	02	Kakariko Village	NULL	Impa's House	Cow Exit	1500
+05DE	52	0F	41	83	Kakariko Village	NULL	Impa's House	Cow Exit	1500
+05DF	52	0F	41	02	Kakariko Village	NULL	Impa's House	Cow Exit	1500
+05E0	5B	09	01	02	Lost Woods	NULL	Kokiri Forest	Hyrule Exit	1504
+05E1	5B	09	01	02	Lost Woods	NULL	Kokiri Forest	Hyrule Exit	1504
+05E2	5B	09	01	02	Lost Woods	NULL	Kokiri Forest	Hyrule Exit	1504
+05E3	5B	09	01	02	Lost Woods	NULL	Kokiri Forest	Hyrule Exit	1504
+05E4	4C	02	42	20	Lon Lon Ranch Buildings	Talon's House	NULL	Lose/Win Cucco Game	1508
+05E5	4C	02	42	20	Lon Lon Ranch Buildings	Talon's House	NULL	Lose/Win Cucco Game	1508
+05E6	4C	02	42	20	Lon Lon Ranch Buildings	Talon's House	NULL	Lose/Win Cucco Game	1508
+05E7	4C	02	42	20	Lon Lon Ranch Buildings	Talon's House	NULL	Lose/Win Cucco Game	1508
+05E8	55	0C	42	02	Kokiri Forest	Deku Sprout Cutscene	NULL	NULL	1512
+05E9	55	0C	42	02	Kokiri Forest	Deku Sprout Cutscene	NULL	NULL	1512
+05EA	55	0C	42	02	Kokiri Forest	Deku Sprout Cutscene	NULL	NULL	1512
+05EB	55	0C	42	02	Kokiri Forest	Deku Sprout Cutscene	NULL	NULL	1512
+05EC	17	02	C1	02	Spirit Temple Boss	Inside Boss Map	NULL	NULL	1516
+05ED	17	02	C1	02	Spirit Temple Boss	Inside Boss Map	NULL	NULL	1516
+05EE	17	02	C1	02	Spirit Temple Boss	Inside Boss Map	NULL	NULL	1516
+05EF	17	02	C1	02	Spirit Temple Boss	Inside Boss Map	NULL	NULL	1516
+05F0	4A	01	01	83	Zelda's Courtyard	NULL	NULL	Triforce Legend Cutscene	1520
+05F1	4A	01	01	02	Zelda's Courtyard	NULL	NULL	Triforce Legend Cutscene	1520
+05F2	4A	01	01	83	Zelda's Courtyard	NULL	NULL	Triforce Legend Cutscene	1520
+05F3	4A	01	01	02	Zelda's Courtyard	NULL	NULL	Triforce Legend Cutscene	1520
+05F4	43	07	41	02	Temple of Time	Prelude Entrance	NULL	NULL	1524
+05F5	43	07	41	02	Temple of Time	Prelude Entrance	NULL	NULL	1524
+05F6	43	07	41	02	Temple of Time	Prelude Entrance	NULL	NULL	1524
+05F7	43	07	41	02	Temple of Time	Prelude Entrance	NULL	NULL	1524
+05F8	5D	12	41	02	Gerudo Fortress	Captured Second Time	NULL	NULL	1528
+05F9	5D	12	41	02	Gerudo Fortress	Captured Second Time	NULL	NULL	1528
+05FA	5D	12	41	02	Gerudo Fortress	Captured Second Time	NULL	NULL	1528
+05FB	5D	12	41	02	Gerudo Fortress	Captured Second Time	NULL	NULL	1528
+05FC	3E	0D	41	02	Grottos	Cow	NULL	NULL	1532
+05FD	3E	0D	41	02	Grottos	Cow	NULL	NULL	1532
+05FE	3E	0D	41	02	Grottos	Cow	NULL	NULL	1532
+05FF	3E	0D	41	02	Grottos	Cow	NULL	NULL	1532
+0600	56	02	49	12	Sacred Forest Meadow	Minuet Warp	NULL	NULL	1536
+0601	56	02	41	02	Sacred Forest Meadow	Minuet Warp	NULL	NULL	1536
+0602	56	02	49	12	Sacred Forest Meadow	Minuet Warp	NULL	NULL	1536
+0603	56	02	41	02	Sacred Forest Meadow	Minuet Warp	NULL	NULL	1536
+0604	57	08	41	02	Lake Hylia	Serenade Warp	NULL	NULL	1540
+0605	57	08	41	02	Lake Hylia	Serenade Warp	NULL	NULL	1540
+0606	57	08	41	02	Lake Hylia	Serenade Warp	NULL	NULL	1540
+0607	57	08	41	02	Lake Hylia	Serenade Warp	NULL	NULL	1540
+0608	56	03	41	83	Sacred Forest Meadow	NULL	Forest Temple Boss	Blue Warp	1544
+0609	56	03	41	83	Sacred Forest Meadow	NULL	Forest Temple Boss	Blue Warp	1544
+060A	56	03	41	83	Sacred Forest Meadow	NULL	Forest Temple Boss	Blue Warp	1544
+060B	56	03	41	83	Sacred Forest Meadow	NULL	Forest Temple Boss	Blue Warp	1544
+060C	57	09	41	83	Lake Hylia	NULL	Water Temple Boss	Blue Warp	1548
+060D	57	09	41	83	Lake Hylia	NULL	Water Temple Boss	Blue Warp	1548
+060E	57	09	41	83	Lake Hylia	NULL	Water Temple Boss	Blue Warp	1548
+060F	57	09	41	83	Lake Hylia	NULL	Water Temple Boss	Blue Warp	1548
+0610	5C	08	41	83	Desert Colossus	NULL	Spirit Temple Boss	Blue Warp	1552
+0611	5C	08	41	83	Desert Colossus	NULL	Spirit Temple Boss	Blue Warp	1552
+0612	5C	08	41	83	Desert Colossus	NULL	Spirit Temple Boss	Blue Warp	1552
+0613	5C	08	41	83	Desert Colossus	NULL	Spirit Temple Boss	Blue Warp	1552

@@ -1,0 +1,76 @@
+T = 801E7820; obtained by spawning outside shadow temple as adult
+
+
+809CF7AC //Main Function
+F8B8 //jump to Instance + 0x13C state function
+F8C0 //update xyz position, factoring speed
+//initialize Collision Body
+F924 //CollisionCheck_setAC 
+//if Instance + 0x13C state != 809CEFA8
+//	CollisionCheck_setOC (instance + 0x174)
+//Copy Instance + 0x24 coords and Instance + 0x30 rotation to Instance + 0x38/Instance + 0x44
+//if Instance + 0x13C state != 809CF118, return
+
+
+809CEBE0 // Explode
+//A0 = Instance
+//A1 = Global Context
+//Spawns normal bomb at chu's xyz coords, sets explosion timer to 0
+EC74 //branch ECC4 if float at instance + 0x84 <= 0
+//F26 = 0.25f
+//F24 = 30f
+//F22 = 5f
+//F20 = 1f
+//S2 = 0x28 // number of bubble particles to spawn
+ECA0
+//Spawn Particle 0x07 BUBBLES!
+//branch ECA0 if more particles to spawn
+ECC4
+//set Instance + 0x13C state func to 809CF630
+//return
+
+
+809CF630 //Post Explosion State
+//Instance + 0x13C func
+
+809CEFA8 //Holding Chu State
+//Instance + 0x13C func
+
+
+
+809CF118 //Crawling Chu state
+//Instance + 0x13C func
+
+
+809CED74 (T:801E7BA4) //?
+
+
+== Instance Variables ==
+
+0x13C s32 //State Pointer
+0x140 s?16 unknown
+0x174 //Collision Body
+
+== Double Explosion Glitch ==
+Coordinates 1360.000 700.000 600.000
+
+Frame 0:
+Explosion 1 hit
+Bomb Spawned
+Bombchu state funcptr (0x13C) changes to post explosion state
+Bombchu state funcptr (0x13C) changes unconditionally
+
+Bombchu col body subs to AC OC
+
+Frame 1:
+Bomb 801E9100 (falls 1.8 units, becomes explosion)
+Chu 1E8EF0
+Bomb 2 Spawned 1E9330
+Bombchu state funcptr (0x13C) changes to post explosion state
+Bombchu col body subs to AC OC
+
+Frame 2:
+Bomb 1 subs to AT
+Chu signals it's death
+
+

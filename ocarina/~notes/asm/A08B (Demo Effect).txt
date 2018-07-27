@@ -1,0 +1,14 @@
+== Functions ==
+8092E3B4 // Spiritual Stone, check cutscene action
+8092D22C // Set Spiritual Stone Color
+//A0 = Instance
+//A1 float = Intensity? 0.0f = "Grey", 1.0f = base color
+8092D12C // Set Spiritual Stone Color (base colors)
+8092E014 // Update function for Spiritual Stone
+== Instance Variables ==
+
+0x168 u8[3] //RGB Stone Color 1
+0x16B u8[3] //RGB Stone Color 2
+0x16E u8[3] //RGB Stone Gold Trim 1
+0x171 u8[3] //RGB Stone Gold Trim 2
+0x174 u8 //Type. 13 = Kokiri Emerald, 14 = Goron Ruby, 15 = Zora Sapphire

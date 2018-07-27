@@ -1,0 +1,65 @@
+Actor 008F: Court Patrol //cue Night Court theme
+
+The cast:
+0000 //main entrance guard
+0001 // Water fountain patrol 1
+0102 // Water fountain patrol 2 //walks fast
+0303 // Rupee Patrol guy //walks fast
+0204 // Statue Patrol 1
+0206 // Statue Patrol 2
+0305 // Final Patrol 1
+0307 // Final Patrol 2
+05FF //the cock-blocks
+
+//bypass first
+xyz 1193.0     0.0   261.0
+//bypass second, stand near bushes
+xyz 230.0     0.0   174.0
+
+//last group
+xyz -1270, 0, -300
+
+
+80938580 (T:801E2D40) //Initializer
+2DAC //A0 = Actor Init Variable
+80938798 (T:801E2F58) //Destructor
+80939378 (T:801E3B38) //Update
+809396D0 (T:801E3E90) //Draw
+
+
+=== older notes ===
+
+hyrule guard 008F init routine
+NTSC 1.0
+
+1E2DAC
+2DAC LH		A0, 0x001C(S2) //load var
+
+2DB8 SRA	T9,A0, 0008
+2DBC ANDI	T1,A0, 00FF //lower byte (path)
+2DC0 ANDI	T0,T9, 00FF //Upper byte (type)
+
+2DC8 SH		T0, 025A(S2) // save to instance + off
+2DCC SH 	T1, 025C(S2) // save to instance
+
+2DDC SLL	T3, T2, 0x5 //shift type left by 5
+
+2DD4 -> 2DF4 might be a terrible loop. 
+
+2DFC LH 	T6, 025C (S2) //load path to T6
+2E00 ADDIU	AT, R0, 0003 //AT = 3
+2E04 LUI	S0, 801E
+2E08 BNE	T6, AT, 801E2E80 //jump if path != 3? (why)
+
+2E88 ADDIU	AT, R0, 0005
+
+V0 = 8011A5D0
+2E90 BEQ	T0,AT,801E2EF0 //branch if type is 5
+
+
+2EF0 LHU	T6,000C (V0) //fetch world time
+2EF4 ORI	AT,R0,B889 // word time where the guards will show up
+
+1E3F44 = Data related to specific type (in case I forget, it's)
+
+0x20 bytes per type, appears to be a series of 8 floats

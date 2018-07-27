@@ -1,0 +1,12 @@
+v1.0
+
+B06BAE - location
+B06BBA - cutscene numb
+
+B71E70 - ZELDA save
+B71F34 - ZELDAZ save
+
+Debug
+
+Water Temple Level 
+B1F43C - code, 4000

@@ -1,0 +1,26 @@
+============ Kakariko Objects (019D) ===========
+
+1E3410 - File location
+
+//possibly for initialization?
+3420 LH 	T6, 001C(A2) //load actor init var
+3424 ANDI	T7, T6, 0007 
+3428 STLIU	AT, T7, 0005 //set less than immediate 
+342C BEQ	AT, R0, 801E3468 //If type > 04, deconstruct the instance?
+3430 SLL	T7, T7, 02 //multiply by 4
+3434 LUI	AT, 801E
+3438 ADDU	AT, AT, T7
+343C LW		T7, 0x3810(AT) //load from 1E3810 + (Type * 2)
+3440 JR		T7
+
+//possibly for execution?
+
+360C LH 	T2, 001C(S0) //load actor init var
+3610 ANDI	T3, T2, 0007 
+3614 STLIU	AT, T3, 0005 //set less than immediate 
+3628 BEQ	AT, R0, 801E3714 //If type > 04, deconstruct the instance?
+362C SLL	T3, T3, 02 //multiply by 4
+3630 LUI	AT, 801E
+3634 ADDU	AT, AT, T3
+3638 LW		T3, 0x3824(AT) //load from 1E3824 + (Type * 2)
+363C JR		T3

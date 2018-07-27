@@ -1,0 +1,32 @@
+Time of day (ToD) in-game is measured by an unsigned short having values between 0 and 65535, inclusive.  It increments at 10 units per frame during the day (06:00 - 17:59) and 20 units/frame at night (18:00 - 5:59), and rolls over when it would exceed it's maximum.  The in-game clock, which can be seen by slashing Gossip Stones or talking to the eagle statue in child hyrule castle is calculated by the minute by taking the ToD value and dividing by 1440 and rounding it up.  This value works out to about 45.51 ToD units / in-game minute.  Time passes during unpause lag as well, at a rate equal to the visual frames.
+
+Time of day events do NOT go by the in-game clock, but the ToD variable.  
+
+Dampe's Gravedigging Tour runs between 49153 and 57343, inclusive.  These values correspond to the gossip stone clock of 1800 (1 ToD unit after) and 2059 (final frame of this time).
+
+Pausing the game stops the movement of ToD immediately, as do textboxes such as gossip stone times, picking items up in a bottle, etc.  Using the ocarina also stops time, but the action of pulling it out and using it takes about 300 ToD units (round about 7 clock-minutes).  This can be taken advantage of, as bugs dropped onto soft-soil will still dig while ToD is frozen, and the rng for the gold skulltula to spawn will still tick, meaning that once the textbox is canceled it will spawn immediately, assuming you've waited long enough.
+
+Cutscenes and setting ToD - 
+Intro: 32768 (noon)
+Kokiri Emerald: 32768 (noon)
+Goron Ruby: 32768 (noon)
+Zora Sapphire: 32768 (noon)
+Entrapment of Nabooru (after silver gauntlets): time doesn't pass
+All warp songs: time passes normally while leaving the area, until fade, and entering the area, from fade
+
+
+Zelda Escape: This cutscene is VERY strange.  When it's triggered to activate by having all 3 spiritual stones in your inventory, the sky will change around the castle to be very cloudy.  During this transition, time actually stops ticking along until it's fully changed.  After that point, time passes normally.  During the cutscene itself, time passes when there's no textboxes; however, during a fairly specific interval of time weird stuff happens.  During the ToD interval of about 52800 to 54614 the time passing inside this cutscene changes.  At the lower end of the interval, time will pass normally as it would otherwise, but simply won't reach full morning by the end of the cutscene.  At the other end of the spectrum, time doesn't pass at all during the cutscene, leaving it nighttime at the end.  Round about this middle of this interval time simply passes more slowly than usual, meaning it won't reach morning at all.  Considering the ToD variable is incremented in steps of 10 every frame, this window is only about 9 seconds wide, but it's very easy to hit when coming from dampe grave digging.
+
+
+
+Some milestones for ToD variable vs. in-game clock:
+00:00 - 0
+06:00 - 16384
+08:15 - 22528
+10:30 - 28672
+12:00 - 32769
+18:00 - 49152
+19:30 - 53248
+
+Playing sun's song in an area where time does not pass will reload the area and set it to either 00:00 or 12:00, whichever is next.  In areas where time DOES pass, sun's song will make the ToD variable increment 400 units per frame until either 06:00 or 18:00 is reached, whichever is next.  
+The sun's song cutscene, where the camera is in the graveyard and you can see the windmill, roughly sets time of day to 06:00 or 18:00, whichever is next.  I believe time of day actually passes a bit during transitions to and from the scene, which would explain the slight variation - it could also be a rounding error.

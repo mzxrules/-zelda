@@ -1,0 +1,25 @@
+Corrupt Collision Glitch
+
+8002EC70 //initialize collision
+80030DAC //initialize collision lookup tables
+
+
+xyz 1314.5   531.0  -958.5
+
+colxyz 452.6  -160.0 -1677.8
+Table: 80274040 Unit Size: (450, 424, 342)
+80274CC4: (6, 1, 8)
+
+021A
+
+8025F2FC //data being corrupted
+
+
+800316D8 //main function related to the overflow corruption. Initializes Actor poly collision data
+//RESUME DEBUGGING HERE
+
+
+22F060:255E50 //space allocated for room data
+8025EA94 //0x48 table
+8025DC40 //0x4C table
+8025B040 //?

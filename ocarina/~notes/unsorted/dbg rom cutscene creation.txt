@@ -1,0 +1,20 @@
+Use N-Gage plug-in 2.00+ for managing the mem pack
+
+mem pack, 1 block = 0x100, blocks 0-4 reserved for system
+
+500 contains first cutscene.
+
+First block seems to contain data for cs 1? One line contains one segment to the cutscene, for 15 segments total (one line unused in block)
+
+Structure
+
+0x00 = Capital letter, cutscene segment "name"
+0x01 = ??, possibly cutscene "name"
+0x04 = unknown pointer, values 8044C020, 8044C2C0
+0x08 = unknown pointer, values 8044BEB0, 8044C190
+0x0E = appears to be end tween count -1
+
+
+002D
+Transition A = Fade in from black
+Transition B = Fade out from black

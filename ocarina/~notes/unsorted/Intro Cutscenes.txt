@@ -1,0 +1,23 @@
+Intro Cutscenes
+B65C64 
+
+XXYY BBBB
+
+X - Entrance Index
+Y - Possibly Flag
+B - Location of cutscene relative to bank
+
+Event Flags?
+
+02A0 	= Hyrule Field Intro
+B4B9 00 = Stored in SRAM
+02A8	= Deku Tree Intro
+B4B8 00 = Stored in SRAM
+
+
+81XX	= Deku Tree Skulltula
+B46F XX = Stored in SRAM
+82XX	= Dodongo's Cavern Skulltula
+B46E XX = Stored in SRAM
+85XX 	= Fire Temple Skulltula
+B473 XX = Stored in SRAM

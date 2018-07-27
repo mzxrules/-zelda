@@ -1,0 +1,22 @@
+https://www.youtube.com/watch?v=P1K55-ny-OE
+
+//The first thing valient did in that video was a hess
+//And it happens when a multiple frame damage source hits you during roll invincibility while you hold ess, and you target and shield on a subsequent damage frame
+// The second thing was a superslide and happens when lifting something is interrupted by damage hitting your shield.
+//Hess is immediately steerable by releasing and repressing target
+//Superslide is locked in a line until you drop shield
+
+
+Supersliding: Shield a hit, end up in a slide
+//Shield a hit while trying to pick something up. Get Ground Jump and be hit at same time?
+//You can drop into an ESS, but you'll lose a bit of velocity due to not entering "pivot" state immediately
+
+ESS/ISS = Endless/Infinite Super Slide
+HESS/HISS = Hyper Endless/Infinite Super Slide. Simply an ESS but no speed loss
+//Occurs when you lock Link in his "pivot" state while XZ velocity > 0
+
+When you hold "ESS" position, Link's state advances to a "pivot" state, which is meant to spin Link to where he's facing the direction the joystick is being held, relative to the camera. In most situations, Link only remains in this "pivot" state for a single frame, but when holding ESS position, Link will pivot slowly for several frames until he reaches the proper direction.
+
+This "pivot" state has an interesting property to it in that while Link is in this state, his velocity will remain constant. Normally this isn't a problem, since the "pivot" state usually only lasts a single frame, and is usually triggered when Link has a velocity of 0. 
+
+You can keep Link pivoting indefinitely two ways: Holding Z while holding ESS position will lock your angle, stopping Link's pivot. Or, you can rotate the stick while still keeping it within ESS position, preventing Link from being able to pivot to the direction of the joystick

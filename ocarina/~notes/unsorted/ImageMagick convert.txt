@@ -1,0 +1,2 @@
+PNG to Raw RGBA
+>convert x.png -format RGBA -size 160x160 -depth 8 out.rgba

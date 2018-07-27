@@ -1,0 +1,11 @@
+210A10
+
+
+80211882 (E72) u16, if non-zero, Link's sword swipe collision is visible, must be set for scene and actor collision to be visible
+80211894 (E84) u16, if non-zero, actor collision is visible*
+80211896 (E86) u16, if non-zero, scene collision is visible
+80211898 (E88) u16, affects displacement of visible collision triangles (how high off the ground surface triangles are and how far away from walls wall triangles are, default (and best) setting is 0000)
+
+
+0x8085f8a0
+0x8085f89c

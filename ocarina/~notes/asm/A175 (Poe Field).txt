@@ -1,0 +1,5 @@
+//Hyrule Field, no Epona
+80AFB740 = Big Poe coorinates (short)
+80AFB780 = Pig Poe actor variable (byte)
+80AF7D60 (T:801E5890) //Copies spawn data to overlay's bss block
+80AF88DC

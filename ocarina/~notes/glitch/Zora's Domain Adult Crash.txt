@@ -1,0 +1,19 @@
+The King Zora Pause-to-Kill glitch
+Video: https://www.twitch.tv/glankk/v/86399136?t=1h53m34s
+
+Crash Debug Screen (Raw Data)
+
+THREAD:4 (2:TLB eception on load)
+PC:8003408CH   SR:2000FF03H   VA:06003598H
+
+AT:80000000H   V0:8032526CH   V1:06003598H  //V0 = Object 0113 + 0038FC. V1 is data stored at V0 + 0x1C
+A0:80275380H   A1:00000000H   A2:00000000H  //A1,A2 should be 0x32. Being zero is causing the bad lookup
+A3:00000000H   T0:06003598H   T1:--------H
+T2:--------H   T3:--------H   T4:00000000H
+T5:801DAA30H   T6:86003598H   T7:00000000H  //T5 = Link inst. T6 is mangled since game assumes ram not segment addr
+S0:801C8C60H   S1:8027F960H   S2:8011EA00H  //S0 = Global Context + 0x7C0, stores ptr to scene collision header
+S3:8011EAD4H   S4:00000002H   S5:0000001CH
+S6:8011EAD0H   S7:8011EF44H   T8:00000000H
+T9:00000000H   GP:00000000H   SP:8011E938H
+
+The root cause of the crash above is that segment addresses stored within object 0x0113 are not being translated into real ram addresses in time for the function that looks up what surface type is being touched.

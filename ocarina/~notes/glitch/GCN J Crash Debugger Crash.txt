@@ -1,0 +1,20 @@
+GCN J (OoT/MQ combo, vanilla oot)
+800AEF10 - fault thread entry point
+
+800AE1FC - entry point for crash debugger input loop
+
+800AE0E4 - Get faulted thread?
+
+800AF0DC, don't skip over BEQ?
+
+800AD7E0, draw bar
+
+80122608 fault thread?
+8011E7F8 game thread
+
+80002564 //part of exception handler that handles things
+
+8011E190
+
+break on mem 6200
+break on addr 28B0

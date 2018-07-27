@@ -1,0 +1,64 @@
+Spectrum notes:
+
+3377F0 33B030 = icon_item_24_static addr in Kokiri Forest, Deku Tree
+
+Ram Map: Game Loaded
+
+000000:000460	file: makerom
+000460:006830	file: boot
+00B140:0110A0	file: dmadata
+0110A0:114DD0	file: code
+1DAA00:??????	data: actor overlay space
+
+-FA000:SceneStart  data: obj space. Starts at SceneStart -FA000
+	 B9F40? adult C47C0? child = Pause screen static files, seems to align itself ~ Floor(address, 0x40) + 0x10
+<<<<<<:384980   file: scenes
+384980:386960	data: Explosion space?
+
+Ram Map: Game Loaded (Paused, outside dungeon)
+Bank 08 points to start of paused stuff?
+icon_item_static
+icon_item_24_static
+icon_item_field_static
+icon_item_*_static (* = language) //49E8DEA0
+item_name_static texture (last selected, 0x400)  //E9BB20
+map_name_static texture (current location, 0xA00) //E9BF20
+??? (0x1C00 bytes of 0x20) //E9C920
+
+Ram Map: Game Loaded (Paused, inside dungeon)
+Bank 08 points to start of paused stuff?
+icon_item_static
+icon_item_24_static
+icon_item_dungeon_static
+icon_item_*_static (* = language)
+item_name_static texture (last selected, 0x400) 
+map_name_static texture (current location (unused?), 0xA00)
+??? (0x1C00 bytes of 0x20) 
+
+
+39C0 rule?, single room scenes?
+DC20 rule?, double room scenes?
+
+Kakariko Graveyard (child, main ent)
+Default
+2347E0:236E40 = spot02_room_0 (size 0x2660)
+20CEA0:20F500 = spot02_room_0 (vr_LHVR loaded)
+250C20:253280 = spot02_room_0 (no skybox?)
+ 
+
+
+Link's House Map (child)
+2416E0 = link_home_room_0 end
+244C60 = vr_LHVR_pal_static
+245460 = vr_LHVR_static
+
+
+Hyrule Field Map (title)
+236710 = spot00_room_0 end
+
+23A950 = vr_fine3_pal_static //current pal?
+23AA50 = vr_fine0_pal_static //fade into pal?
+23AB50 = vr_fine0_static
+246B50 = vr_fine3_static
+252B50 = elf_message_field
+

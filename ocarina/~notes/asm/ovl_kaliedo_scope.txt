@@ -1,0 +1,121 @@
+8039D9B8 //logic for save warps start
+
+D9D4 //T6 = entrance index - 0x40B
+
+//A0BD0 frame update
+//Gctx + 0x10760 = Kaleido Gctx
+8011D040 //Ptr to Update Function
+
+//Death Hack
+1D8DD4, Global Context + 0x10934 // Stores higher level state of ovl_kaleido_scope
+1D8E62, //Stores selected option on Game Over Screen (0 = yes, 4 = no) for save, quit screens 
+
+80819CDC (T:8038F07C) //Draw Unknown
+//A0 = Global Context
+
+808263C0 (T:8039B760) //Update Function
+//A0 = Global Context
+//
+//T7 = Static Context
+//T6 = Link Instance
+B7A0 //V0 = Kaliedo Gctx + 0x1D4 (state)
+//If the +0x1D4 state != 06, skip input check?
+//Store ReleaseEdge X,Y to Kaliedo gctx + 0x214/0x216
+B800 jal	8039B260
+B80C jal	803949D0 //A0 = Kaliedo gctx, A1 = Player Input 1 struct
+B818 t0 = Static Context ptr ptr
+B820 //v0 = Kaliedo Gctx + 0x1D4
+B81C //branch B85C
+//
+B860 //branch B87C if Kaliedo Gctx + 0x1D4 != 0x06
+B868 jal	803980E8
+
+
+80822D48 (T:803980E8) //
+//A0 = Global Context
+8100 //T6 = Kalido Gctx + 0x23C //Item Index
+8114 //T1 = Kalido Gctx + 0x23E //Item Index of Select Item menu
+8120 //branch 8144 if T1 != T6
+8144
+
+8081F630 (T:803949D0) //Top-level input
+//Determine if Kaliedo should rotate left or right
+//A0 = Kaliedo gctx
+//A1 = P1 Input
+//
+49DC //Branch to 49FC if Inventory Select State not set
+49F0 //Return if P1 is holding L
+4A04 //Branch 4A1C if P1 is not holding R
+4A0C jal	80394858 //A1 = 2 (right?)
+4A20 //Branch 4A3C if P1 is not holding Z
+4A28 jal	80394858 //A1 = 0 (left?)
+4A40 //branch 49AC if Kaliedo Gctx + 0x238 != 0x0A (on Z button Icon)
+
+
+80825EC0 (T:8039B260) //?
+//Performs some repetitive action
+//A0 = Global Context
+//
+B268 //t6 = Kaliedo Gctx + 0x238
+//branch to B3A4 if t6 not 0
+B3A4
+B3AC //V0 = Kaliedo Gctx
+
+80825A00 (T:8039ADA0) //Draw Function
+
+
+80819C50 (T:8038EFF0) //Update Cursor/Draw
+//This is where shit is going down!
+F05C //Branch F8EC if Kaliedo Gctx + 0x1D4 != 0x06
+F3C8 //Check if P1 Controller X < FFE2 (when on R button)
+F4A0 //T1 = Kaleido Gctx + 0x23E
+F4B4 //V0 = P1 Controller Y
+F4BC //A3 = Select Item Slot Index
+F610 //Branch F630 if Select Item Slot index item is equipable by both Links
+F65C //Branch F8B0 if Inventory Editor open
+F680 //Load P1 Input (+0x0C buttons)
+F688 //Branch F8B0 if no C-Equip buttons pressed
+F774 //Begin check for special equip sfx
+
+80828CB8 (T:8039E058) //Render Dungeon Map Icons?
+//A0 = Global Context
+//
+//SP -0x70
+//
+//S5 = Global Context
+//T7 = Static Context
+//T6 = ptr at 8011D050 (resolves to 8082A3E0 this pass, kaleido data for map info)
+//T8 = s16 at Static Context + 0xF2E (dungeon floor texture index)
+//F30 = -36
+E0BC
+//T9 = T8/2
+//T4 = T9 * 0x1EC
+//S3 = T6 + T4
+//F8 = float at 8082E970 (0.041f this pass)
+//F26 = 1.5f
+//F24 = 1f
+//F22 = 0f
+E0F8 
+//S1 = Graphics Context
+//S7 = 8082E920
+E108
+
+
+
+== Data ==
+
+8082A3E0 //Dungeon Floor data
+struct 
+{
+	/* 0x00 */ s16 icon; //Icon Type; 0 = Chest, 1 = Boss
+	/* 0x04 */ s32 //?
+	/* 0x08 */ Vertex* vertex //icon vertex data
+	/* 0x0C */ int numVertices //icon vertices 
+	/* 0x10 */ s32 //Number of chests?
+	/* 0x14 */ struct 
+	{
+		/* 0x00 */ s16 //chest flag; -1 for no flag
+		/* 0x04 */ f32 //x icon offset
+		/* 0x08 */ f32 //y icon offset
+	} IconPositionData[12]; 
+} DungeonFloorData[3]; //0xA4 bytes, 0x1EC bytes total

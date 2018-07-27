@@ -1,0 +1,9 @@
+off 	virtual
+B320	01F1 2000 - Dodongo's cavern, first scene file
+D1A0	0346 7000 - Tower Collapse Interior Exit (Map 2)
+D1B0    0347 1000 - end of scene/map virtual filetable
+
+AEEDF4 - Scene table in compressed v1.0
+
+
+17240 - Start of first scene file in debug?

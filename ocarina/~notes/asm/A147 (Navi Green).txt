@@ -1,0 +1,23 @@
+============= Checkable Spot (navi green, 0147) ================
+
+1E2410 Actor file
+1E2AD0 Actor instance
+
+1E2430 LH	V0, 0x001C(A2) //load actor init var
+2434 ADDIU	AT, R0, 0x003F
+243C ANDI	T0, V0, 0x003F  //var & 003F 
+2440 SH		T0, 0x0144(A2)  //store var (&003F)
+2444 LH		A3, 0x0144(A2)
+2448 SRA	T6, V0, 0xB
+244C SRA	T8, V0, 0x6
+2450 ANDI	T7, T6, 0x001F
+2454 ANDI	T9, T8, 0x001F
+2458 SH 	T7, 0x0140(A2) //store var (&F800)
+245C BNE	A3, AT, 0x801E2470 //branch if A3 != 3F
+2460 SH 	T9, 0x0142(A2) //store var (&07C0)
+//set the &003F var to -1
+2464 ADDIU	T1, R0, 0xFFFF //T1 = -1
+2468 SH 	T1, 0x0144(A2) //store T1
+246C LH 	A3, 0x0144(A2)
+2470 BLTZ	A3, 801E24A0 //branch if A3 is -1
+2474 SB 	T2, 0x001F(A2)

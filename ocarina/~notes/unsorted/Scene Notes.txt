@@ -1,0 +1,43 @@
+cmd, type, sized
+
+0x00 bank count
+0x01 bank count
+0x02 ?    
+0x03 bank         collision (scene) format?
+0x04 bank count
+0x05 ?    
+0x06 bank unbound
+0x07 cmd  n/a
+0x08 ?    
+0x09 ?
+0x0A bank         Mesh Header
+0x0B bank count
+0x0C ?
+0x0D bank 
+0x0E bank count
+0x0F bank count
+0x10 cmd
+0x11 cmd
+0x12 cmd
+0x13 bank 
+0x14 cmd
+0x15 cmd
+0x16 cmd
+0x17 bank
+0x18 bank unbound (positions 0x0)
+0x19 cmd
+
+
+
+Env setting pointer after exit list
+
+
+04 maps 00 01F0
+0E 00 0080
+03 collision mesh 01 1D38
+06 Entrance Index defs 00 0278
+07 Dangeon keep
+00 Actor List 00 0060
+11 Skybox
+13 Exit List 0027C
+0F Env Settings 00 0280

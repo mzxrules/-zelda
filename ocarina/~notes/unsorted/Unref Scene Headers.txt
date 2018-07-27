@@ -1,0 +1,35 @@
+Hyrule Castle Unused Setup differences - 3D80
+
+1 - Link when caught by the guards will not be "thrown out" but warped out without the "hurt" animation.
+
+2 - Link when caught by the guards in Zelda's Courtyard will not be "thrown out" but walk nonchalantly out of the door that's not a door next to the castle.
+
+3 - The Fairy Fountain takes you to the Great Fairy of Magic who gives you magic, instead of the Din's Fire fairy.
+
+
+
+Death Mountain Unused Setup differences - 78F8
+
+1 - Rolling Goron goes carousing to his death as he does not turn to go down the mountain.
+
+2 - The Beta Bomb Flower Goron is present and upon speaking to him he will continue to shuffle until he hits a wall, then continues to shuffle. Well at least he has collision and doesn't go through the wall.
+
+3 - The Great Fairy Entrance has a warp transition that Link will walk into forever, without the map ever transitioning.
+
+Cutscene Map 3580 Offset
+
+1 - Blue Sky... that's it. Link also has a spawn here, which he normally does not on the Cutscene Map.
+
+Properly Loaded! When the proper map is loaded there is a Fire Dancer to be found within the room. It's purpose is currently unknown, but as it follows another actor with similar Actor/Object correlation it may be safe to say that the Fire Dancer was once another actor completely/
+
+Cutscene Map 3640 Offset 
+
+Identical to above.
+
+Cutscene Map 3700 Offset 
+
+Identical to above
+
+Great Fairy Fountain Unused Setup at 4470
+
+Freezes for me.

@@ -1,0 +1,55 @@
+Motherfuckin Dampe's Grave Diggin' Tour
+Actor 0085 (pay attention to this stupid)
+
+
+//Instance Variables
+0x01F8 byte //is Digging?
+0x01F9 i8 //Green Rupees dug up
+0x01FA i8 //Blue Rupees dug up
+0x01FB i8 //Red Rupees dug up
+0x01FC i8 //Heart Pieces/Purple Rupees dug up
+0x0204 i32 //Digging Tour Reward
+0x020A i16 //
+
+//Overlay Data variables
+80926E3C:
+001C4C float  //(0.4) probability test for gravedigging green rupee drop
+001C50 double //(0.7) probability test for gravedigging blue rupee drop
+001C58 double //(0.9) probability test for gravedigging red rupee drop
+001C60 float //  0.1
+001C64 float // -0.1
+
+
+80925FE8 (T:1FC798) //Probably determines grave digging tour reward
+C7A4 //call RNG, generate float F0 between 0 and 1
+C7B0 //read 0.40 float into F4
+C7BC //Test if F0 (random number) is less than F4
+C7C4 //Branch to C7D4 if false
+//else, set A0 to 0, branch to C818
+//
+C7D4 //read 0.70 double into F6
+C7E8 //branch to C7F8 if F0 > F6
+//else, set A0 to 1, branch to C818
+//
+//todo
+//C818 is start of testing our reward
+C818 //branch to C840 if A0 == 0 (green rupee)
+C820 //branch to C85C if A0 == 1 (blue rupee)
+//
+C85C //V1 = Instance + 0x01FA (byte)
+C868 //branch C878 if V1 >= 4
+//else, increment Instance + 0x01FA by 1, branch to C944
+C878 //branch C8C0, V1 = 
+
+
+If RGN < 0.4, give green rupee, unless all plots have been dug
+If RGN >= 0.4, but < 0.7, give blue rupee, unless all plots have been dug
+If RGN >= 0.7, but < 0.9, give red rupee, unless all plots have been dug
+IF RGN >= 0.9, give heart piece or purple rupee if hp was dug up (skippable hp)
+
+
+809470A8 (T:80207318)//probably dampe's stupid eye blinking shit
+
+809261A4 (T:801FC954) //probably the dampe's heart diggin funlovers particle effects
+
+801FC0F0

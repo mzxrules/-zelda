@@ -1,0 +1,366 @@
+80000BFC //boot, dma thread, load file (inner)
+//A0 = ROM address
+//A1 = RAM write address
+//A2 = Size
+
+80009468 to 8000Ac5C //boot, file list string ptr array
+
+
+80001390 //dmadata, ?
+80001330 //dmadata, look up filename
+//A0 = DMA Start
+//
+ 
+800013FC //dma thread, load file
+//A0 = ?
+//A1 = ?
+1428 jal	80001390 //filename lookup related
+146C //V1 = dmadata record that contains S0 file
+146C //A1 = physical file end/is compressed if non-zero
+1474 //branch if file not compressed 
+//T9 = filesize
+1480 //branch if dma start + read size < file end
+
+80001AA0 //DMA access function (public)
+
+80001664 //upper DMA call (not top)
+//A0 = Stack address to store data (logging)
+//A1 = RAM address to copy to
+//A2 = ROM address to copy from
+//A3 = size
+
+
+800C6AC4 // Rendering debugging info?
+//A0 = ?
+//A1 = graphics context
+//A2 = filename
+//A3 = ?
+//
+//V0 = Static Context ptr
+//return if..
+// s16 at Static Context + 0x1074 != 7
+// s16 at Static Context + 0x1078 == 4
+
+
+800C5B14 //Seems to set up a new frame
+
+C63A0 //noop the dlist jump to xlu disp
+C63A4 //change this to luw 0x0010 instead of 0x0004 to skip over XLU display list
+
+
+80030BE8 //Actor_draw
+//A0 = Global Context
+//A1 = Actor Instance
+//Call D41DC with the following parameters:
+//A0 = SP+0x50
+//A1 = func 80030B2C
+//A2 = Actor Instance
+//A3 = string "Actor_draw"
+
+8002E4B4 //collision check
+//called by actors
+
+8003D52C //possibly background collision check main code
+
+8003CDD4 //collision mesh related ../z_bgcheck.c
+//A0 = Global Context + 0x7C0
+//A1 = ? (2 this pass)
+//A2 = ptr? (on stack)
+//A3 = ptr to Actor Instance XYZ
+
+
+8003ADC8 //../z_bgcheck.c, code, graph, Get Collision Hash Table x,y,z index
+//returns index to Global Context + 0x7C0 + 0x40 table
+//[N0 8002D9B8]
+//A0 = Global Context + 0x7C0 (Scene Collision)
+//A1 = Ptr to world space xyz to convert (value passed onto stack)
+//A2 = Ptr to result collision space xyz (value on stack)
+//A2 + 0x00 = int, x coordinate "int scale"
+//A2 + 0x04 = int, y coordinate "int scale"
+//A2 + 0x08 = int, z coordinate "int scale"
+//takes the coordinate, subtracts the min bounding box, then multiplies
+//by the "inverse" component in the scene collision data resulting in an
+//int[3] x,y,z value
+//then, the result is bound between 0 and the max defined in the Scene Collision minus 1
+
+80039AEC //unknown, hinting towards collision mesh related
+9D68 jal 80001FF0 //
+
+
+80001FF0 //unknown, logging related (!! Emulation Incompatability Issues !!)
+
+800D66B4 //logging related (!! Emulation Incompatability Issues !!)
+
+
+800D41DC //logging related
+//A0 = Result pointer (80030BE8 func reserves 0x50 onto stack)
+//A1 = Func Ptr 
+//A2 = Func Ptr Param?
+//A3 = String Ptr
+//Start with stack wiping 
+4218 //osSetIntMask (A0 = 1)
+4224 //A1 = 8016A800
+
+8016A800 //ptr, points to "fault" OSThread i believe
+//No actually it points to a larger structure!
+//min 0x7E0 bytes I think
+0x7D8 //ptr to stack?, possibly fault thread?
+
+
+//Cutscene Camera stuff
+800B6068 //not func, but beginning of Controller 3 C-Right check
+
+8015BD80 //possibly related to cutscene builder
+8015BE20 //command 01 position list //+ 0x0A0
+8015C630 //command 02 position list //+ 0x8B0
+
+800B3B50 //related to setting camera focus direction?
+
+800BB2B4 //cutscene tweening function
+//likely computes a final x,y,z for the camera focus / camera position passed in
+//A0 = X,Y,Z? (8016112C this pass), possibly used for display
+//A1 = ? (80161138 this pass)
+//A2 = Angle of View (8016113C this pass)
+//A3 = Pointer to cutscene 01/02 command tween list
+//SP + 0x10 = 80161118, points to some struct:
+// /* 0x00 */ s16 commandStart?;
+//SP + 0x14 = 80161110, ptr to ?
+//
+//lh 0x0000(sp+0x10) = start tween
+//If points 0, 1, or 2 are terminators, return
+B320 //v0 = SP+4C
+B348 //Branch if we've looped 4 times
+B34C //load X
+//convert next 4 positions/store onto the stack
+//v0 + 0x00 = x
+//v0 + 0x04 = y
+//v0 + 0x08 = z
+//v0 + 0x0C = rotation
+//v0 + 0x10 = angle of view
+B40C //Store pointers to the 4 points at the following addresses:
+//SP+ 0x10 = p0
+//SP+ 0x14 = p1
+//SP+ 0x18 = p2
+//SP+ 0x1C = p3
+B440 jal	800BB0A0
+//Begin calculating time step for next frame
+B468 //v1 = frames in tween point p1 
+B4A0 //F14 = 1/v1 (if v1 >= 0)
+B4A4 //v1 = frames in tween point p2
+B4D4 //f16 = 1/v1 (if v1 >= 0)
+B4D8 //f4 = f16 - f14
+//multiply difference by time step %
+//add to p1 frame step fraction
+//if result < 0, force zero
+
+800BB0A0 //Tween Camera Points
+//F12 = ?, possibly time percentage (value 0 to 1?)
+//A1 = 8016112C this pass //store tween'd x,y,z
+//A2 = 80161138 this pass //store tween'd camera roll
+//A3 = 8016113C this pass //store tween'd angle of view
+//SP+ 0x10 = p0
+//SP+ 0x14 = p1
+//SP+ 0x18 = p2
+//SP+ 0x1C = p3
+//Algorithm is as follows
+//  p0 * (1 - t)^3/6 
+//+ p1 * (t^3/2 - t^2 + 2/3)
+//+ p2 * (-t^3/2 +  t^2/2 + t/2 + 1/6)
+//+ p3 * (t^3/6) = Tweened point
+//
+// ((1-x)^3/6 * 1) + ((x^3/2 - x^2 + 2/3) * 3) + ((-x^3/2 + x^2/2 + x/2 + 1/6)*2) + (x^3/6 * 1) for 0 to 1
+//
+B0B8 //If F12 > 1, set to 1
+//F0 = 1 - F12
+B0CC //F18 = 6.0f
+B0D4 //F4 = F0 * F0
+B0D8 //F10 = 0.5f;
+//V1 = p0
+//A0 = p1
+//A2 = p2
+//V0 = p3
+B0F0 //F6 = F4 * F0    // = (1 - F12)^3
+B0F8 //F2 = F12 * F12
+B0FC //F8 = F6 / 6.0f  // = (1 - F12)^3 /6
+B100 //F14 = F2 * F12  // = F12^3
+B108 //F4 = F14 * 0.5f
+//80143CE0, two float constants (2/3f, 1/6f)
+B10C //F10 = 2.0/3.0f
+B114 //SP + 0x00 = F8  // = (1 - F12)^3 /6; 
+B118 //F6 = F4 - F2    // = F12^3/2 - F12^2
+B11C //F4 = F6 + F10   // = F12^3/2 - F12^2 + 2.0/3.0f
+B120 //F6 = -F12
+B124 //SP + 0x04 = F4  // = F12^3/2 - F12^2 + 2.0/3.0f
+B128 //F10 = F6 * F12  // = -F12 * F12
+B130 //F6 = F10 * F12  // = -F12^3
+B134 //F10 = 0.5f;
+B13C //F6 = F6 * F10   // = -F12^3/2
+B148 //F10 = F2 * F10  // = F12^2/2
+B14C //F6 = F6 + 10    // = -F12^3/2 +  F12^2/2
+B150 //F10 = 0.5f;
+B158 //F10 = F12 * F10 // = F12 / 2
+B15C //F6 = F6 + F10   // = -F12^3/2 +  F12^2/2 + F12/2
+B160 //F10 = 1.0f/6.0f;
+B164 //F6 = F6 + F10   // = -F12^3/2 +  F12^2/2 + F12/2 + 1/6
+B168 //F10 = F14 / F18 // = F12^3/6
+B16C //SP + 0x08 = F6  // = -F12^3/2 +  F12^2/2 + F12/2 + 1/6
+B170 //SP + 0x0C = F10 // = F12^3/6
+//All factors are saved
+//F8 = SP + 0x00 entering here
+//F8 = (SP+0)*p0 + (SP+4)*p1 + (SP+8)*p2 + (SP+C)*p3 //X coordinate
+
+
+
+
+800FDDA4 //InitArena (__osInitArena?), logging version
+//A0 = Arena Reference (0x24 bytes)
+//A1 = Arena Start
+//A2 = Arena Size
+
+800FDC10 //Print? (related to InitArena)
+
+
+800FDDF4 //InitArena (__osInitArena?)
+//A0 = Arena Reference (0x24 bytes)
+//A1 = Arena Start
+//A2 = Arena Size
+
+
+800D3E84 //Initialize end arena
+8015FF80
+8016A7D0 (address of end arena ref)
+80175610
+
+800B87D8 //allocates on "debug" heap
+
+800FDFF4 //Allocate to "head" end of Arena
+//A0 = Arena Ref
+//A1 = Size?
+//A2 = Address?
+
+
+
+80063E90 //Zeroes 8015FCB0
+
+//8015FCB0 is some sort of pointer
+
+800C69CC //?
+//A0 = Graphics Context
+//A1 = ?
+//
+//skip drawing ? if Static context + 0x104A != 1
+6A1C // round A1 up to the nearest 0x10
+6A30 jal	800C39E0 //?
+//call with
+//a0 = POLY_OPA_DISP
+//a1 = ?
+
+800C39E0 //wrapper for 800C3AC8
+800C3AC8 //Reserve space on POLY_OPA_DISP
+//A0 = display list ptr (POLY_OPA_DISP this pass)
+//A1 = size to reserve
+
+800B4E7C //Camera Debugger Draw Function
+
+80119F8C //array of names of ?
+8011D394 //set to 1, enables free roam camera
+8011D3F8 //list of camera behaviors?
+
+80210D04 //Static Context + 0x2F4
+//if 1, does something related to camera stuffs?
+
+80058D34 //probably camera related
+//A0 = Camera Ptr
+8D74 //a0 = 801399CC "attention sound URGENCY"
+8D7C //branch 8DA8 on not Controller 3 C-Up 
+//play sfx 0x4837 if above is true
+8DAC //branch 8DD8 on not Controller 3 C-Down
+//a0 = 801399e8 "attention sound NORMAL"
+//play sfx 0x480C if above is true
+8DE0 //branch 8DEC if not Controller 3 C-Right
+//inc A2 by 1 if branch not taken
+8DF0 //branch 8DFC if not Controller 3 C-Left
+//dec A2 by 1 if branch not taken
+8DFC //return if A2 = 0
+//
+8E00 //V1 = 8011D398
+//T7 = s32 at V1
+//at = 6
+8E20 sw t9, 0x0000 (v1) //t9 = (T7 + A2) / 6
+//A1 = t9 * 2
+8E2C jal	8005A77C //camera related
+//A0 = Camera Ptr
+//A1 = s16 at 8011DAFC + (t9 * 2)
+8E3C //V1 = 8011D398
+//t2 = s32 at 8011D398
+8E54 //t4 == 8011DAFC + (t2 *2)
+//T5 = t4 * 0x0C
+8E70 jal	80002130
+//A0 = 80139A00
+//A1 = 80119F8C + (t5) //name of camera thing
+
+
+8005A77C //wrapper for 8005A548
+//sets A2 to 0 when calling wrapper
+//A0 = Camera Ptr
+//A1 = ?
+//V0 = ?
+
+
+80059850 //NOT A FUNCTION START
+//Hit if Static Context + 0x2F4 > 0
+//A2 = s16 Camera Struct + 0x142
+//V0 = s16 Camera Struct + 0x144
+9864 //multu A2, 0x0C
+986C //T5 = A2 * 8
+9874 //T9 = ptr at 8011D068 + T5  //T9 = [(Camera S struct +4)]
+//T6 = [Camera Struct + 0x144] * 8  //T6 = Camera M struct offset
+//T7 = t9 + t6 //T7 is current Camera M struct ptr
+//V1 = lh
+
+80078884 //play sfx (bank 0x4?)
+//A0 = SFX id
+
+
+80035260 //?
+// ../z_cheap_proc.c
+// called when drawing en_wood (trees, actor 0x77)
+//A0 = Global Context
+//A1 = diplay list
+80035288 jal	800C6AC4
+
+
+
+80002E10 //print ?
+//A0 = str ptr
+//A1 = ?
+
+80002130 //IS64 output? string format?
+//A0 = string
+//A1 = arg1
+//A2 = ?
+//A3 = B3FF0000
+
+800021B0 //string formatting
+//A0 = ?, possibly value to replace %d formatter
+//A1 = String
+//A2 = offset of formatter
+//
+2208 //at = IS64 in hex
+
+800052E0 //String formatting related?
+//A0 = func ptr
+//A1 = ?
+//A2 = String ptr
+//A3 = ? (ptr on stack this pass, possibly out param)
+
+80007760 //low level thing
+
+
+//en_elf
+80A05568 //not a function
+//update y rotation,
+//load s32 at Save Context + 0xEB8 //horseback archery record?
+//copy to s16 at Static Context + 0x12B4?!
+//en_elf inst
+0x02BC s16 y rotation next?

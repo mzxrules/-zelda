@@ -1,0 +1,14 @@
+The Mystery of the River Otter
+
+by mzxrules
+
+800BD2C8 (lw from Static Context + 0x1452)
+
+80144294 //kawauso_data=[%x]
+801614D0 //some buffer, possibly where the kawauso_data is written
+8016852C //? some structure, contains different important looking variables
+0x0000 = 801614D0
+0x0014 = 80175610, points to heap management struct 
+0x001C = Global Context
+0x0020 = Global Context Size
+0x0024 = Graphics Context

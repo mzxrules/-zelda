@@ -1,0 +1,44 @@
+Phantom Twinrova (T:1F7EE0) instance (load directly into Twinrova's room)
+
+Type 2 Twinrova is the boss instance
+
+At instance + 0x14A stores Twinrova's Invunerability count down timer. 0x14 on hits, but is set to 0x2710 on final blow
+When it reaches 0, nothing happens if the glitch wasn't set up correctly
+
+instance + 0x4E4 is a byte value storing whether Twinrova has been hit by a charged Mirror Shield attack. If this is 1 when the timer above is 0, twinrova will come back from the dead
+
+809DF860 (T:1F0AB0) //function start for something, called every frame by main routine
+809DFCD4 (T:1F0F24) //not a function start, hit when twinrova is hit by charged mirror shield
+FCD4 sb, t4, 0x04E4(t5) //write 01 to instance + 0x04E4
+
+
+809D97FC (T:1EAA4C) //part of main routine for Twinrova, instruction checks if she's been stunned
+
+
+809D9810 //not a function start (T:1EAA60)
+9810 //writes 00 to instance + 0x4E4
+
+
+809D93D4 //return from JALR
+
+
+809E28F0 //halfword table indexed by Instance + 0x148 (T:1F3B40)
+//this halfword is saved at instance + 0x4BC (half)
+
+
+(T:1E8838) 809D75E8 //Moves Twinrova instance to "death" state
+
+
+Type 2 (Twinrova) Instance + 0x13C pointers:
+(T:1E5F68) 809D4D18 //Initial State
+(T:1E602C) 809D4DDC //Phase 1 completed, Twinrova Appears cutscene
+(T:1F35DC) 809E238C //Post Twinrova Appears CS, begin moving to new position
+(T:1F27F8) 809E15A8 //Arrive at destination, prepare for attack
+(T:1F2984) 809E1734 //Attack Animation Start
+(T:1F2BF8) 809E19A8 //Attack Animation choose Spell, launch
+(T:1F2E94) 809E1C44 //Attack Animation Idle
+(T:1F3984) 809E2734 //Twinrova laughs at your shortcomings as a man
+(T:1F38A8) 809E2658 //Spins to evade attack
+(T:1E9114) 809D7EC4 //Death hit
+(T:1F3058) 809E1E08 //Stunned by Mirror Shield
+(T:1F3370) 809E2120 //Recovered from Charged Mirror Shield

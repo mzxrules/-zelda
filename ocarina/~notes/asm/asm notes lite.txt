@@ -1,0 +1,78 @@
+asm notes lite
+
+800010EC //?, seems related to decompressing file data
+A0 = Probably start pointer to buffer containing the compressed file data (80008490 this pass)
+A1 = Address to copy to
+
+80000DF0 //DMA read function
+A0 = Address to load into
+A1 = Address to read from
+A2 = Size
+A3 = Bank Address to read from?
+SP+00 returns Space loaded to
+SP+04 returns DMA location
+SP+08 returns Size
+
+80025110 //Spawn Actor?
+//A1 = Global Context
+//A2 = Actor ID
+//A3 = X coordinate (binary representation of a float)
+
+800253F0 //Spawn Actor? Calls 80025110
+
+800902AC //? Function that is executed when jumping into the game?
+//Related to spawning Link from save
+//Execution branches based on a table located at:
+//B7EA40, 80108AE0, within code. One records
+
+80090334 //?, seems to be some subroutine that determines where link spawns?
+
+80090C18 //Create New File Function
+//
+//0C4C sets start entrance index
+//0C50 sets age
+//0C54 sets time of day
+//0C58 sets initial cutscene
+
+
+8009A750  //MAIN GAME CONSTRUCTION ROUTINE
+A0 = Global Context
+
+
+800A1C50 //Main boot routine?, calls 80051B50
+
+80051B50 //Allocates some space before the Global Context, calls 800CDA20
+
+800CD390 //Allocates main heap
+//A0 = Block start (801C6E60)
+//A1 = Block size (001EE1A0)
+
+
+800CDD90 //Creates a heap space with one node, and attaches it to some structure
+//A0 = External Ptr (8012BAA0)
+//A1 = Address (801C6E60)
+//A2 = Size (001EE1A0)
+
+
+800AD410 //Disk Drive boot routine (called by A1C50)
+
+SaveFormat:
+
+0x13E7 = Instantly display title logo if not 0
+0x1418 = ? Title Logo (1 this pass)
+0x1419 = ? Title Logo (FF this pass)
+
+80000080 //Exception Handler (MIPS standard)
+
+80002440 //Exception Handler
+
+80023234 //Seems to set the variables pertaining to displaying the Farore's Wind sprite
+
+800B70C8 //Initializes Audiobank, Audioseq, and Audiotable pointer tables for fast DMA access
+//A0 = Table Address
+//A1 = VRom File Start
+//A2 = ?, always 0?
+
+8005BCE4 //?, loads english textbox font data, called repeatedly just before text is displayed
+
+80095CEC // Related to loading Skyboxes into memory

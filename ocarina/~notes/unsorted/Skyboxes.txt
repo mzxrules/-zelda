@@ -1,0 +1,17 @@
+Skyboxes
+00 = No Box (Black)
+01 = Sky
+02 = Bazaar
+03 = Brown Clouds (Tower Collapse, Ganon)
+04 = Market Town Adult
+05 = Night, cloudy
+06 = The best skybox in the game
+07 = Link's House (vr_LHVR)
+08 = Glitched
+09 = Market Town Child Day
+0A = Market Town Child Night
+0B = Happy Mask Shop
+0C = Know-It-All-Bros
+0E = Kokiri Sisters house
+0F = Stables
+1D = Mono color (determined by fog?)

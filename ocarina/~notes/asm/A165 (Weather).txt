@@ -1,0 +1,16 @@
+80AD7A80 (T:801E9D40) //Main Subroutine
+//A0 = Actor* Instance
+//A1 = Global Context
+//
+//SP -0x28
+//
+7AB0 jal 80AD7638
+	//call with
+	//A0 = Actor* Instance
+	//A1 = Global Context
+	//A2 = 1
+	//A3 = 0
+	//SP+0x10 = 2
+	//SP+0x14 = 0
+	//SP+0x18 = 0x3C
+	

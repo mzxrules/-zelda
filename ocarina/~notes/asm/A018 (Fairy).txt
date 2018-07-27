@@ -1,0 +1,33 @@
+Actor 0x0018
+
+80886284 - Assigns a random edging color to generic fairies
+//A0 = Randomization type for color channel, 0-2. Data within byte array located at off 0x43D4?
+//F0 = Returns color channel intensity
+//
+//Starts with jump table to set what randomization to use
+//
+62A0 // Type 0. Simply returns 0 as current color channel
+//
+62AC // Type 1.
+//Randomly generates number between 0 and 55 exclusive, adds 200, returns as color channel
+//
+62D0 // Type 2. 
+//Randomly generates number between 0 and 255 exclusive, returns as color channel
+
+80886898 (T:801DE2C8) //Unload lights
+
+
+== Data ==
+global off 0x4494 float = number of randomized "Kokiri" style fairy color types. Value = 11.99f. Used to generate a random number between 0-11.99f, then result is incremented by 1, cast to int, and used to index the edge color table.
+global off 0x43D4 = Randomized "Kokiri" style fairy edge "colors".
+13 records (index 0 unused), 3 bytes per record. Each
+byte sets how the color channels will be randomized:
+* 0 = color channel is 0
+* 1 = color channel is randomized to 200-255
+* 2 = color channel is randomized to 0-255
+
+== Instance ==
+0x244 float[3] = RGB color of outer edge of fairies
+0x264 ptr //pointer to Light source ll record
+0x278 ptr //pointer to Light source ll record
+0x2BC ptr = Instance Start Addr

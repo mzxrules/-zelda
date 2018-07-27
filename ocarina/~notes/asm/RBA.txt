@@ -1,0 +1,63 @@
+80232740 -  B button item icon (Ganon's Castle)
+071BA8 - Starting half milk rba routine probably
+
+1BA8 ADDIU	AT, R0, 0x001A (store Full Milk item index)
+
+1BB4 LBU	T8, 0x0074(V0) (Load bottle item from inv)
+1BBC BNE	T8, AT, 80071BD0 (branch if Item isn't Full Milk
+1BC0 ADDIU	AT, R0, 0x0014 (? Item index of empty bottle?)
+
+1BD0 SB		A3, 0x0074 (V0) = store item into inventory
+1BD4 SB		A3, 0x0068 (V1) = Store item into active buttons
+
+1BE0 JAL	8006FB50 (probably updates ui)
+1BE4 SB 	A3, 0x0027 (SP) (store new item on stack)
+
+
+
+06FB84 - Beginning of routine to update button icons?
+FBA8 LUI	T1, 0x007C
+FBAC ADDIU	T1, T1, 0xD000 (T1 = 7BD000, icon_item_static!)
+FBB8 SLL	T9, T8, 0xC (multiply by 0x1000)
+
+000DF0 - DMA Function (Called when loading the disc drive code)
+A0 = Address to load into
+A1 = Address to read from
+A2 = Size
+
+000D28 - Inner DMA DATA FUNCTION! 
+A0 = Pointer to struct containing A1-A3's data
+A1 = RAM ADDRESS
+A2 = DMA OFFSET
+A3 = Read length?!
+
+
+000B0C - Some dma related function? (probably seeks for a file to read from)
+A0 = pointer to struct that contains data to read from rom
+{ u32 = DMA offset, u32 = ram pointer to load data, u32 = read size}
+
+
+
+
+801D8FC8 - Link anim DMA access struct
+801D9008 - Another Link anim DMA access struct?! (size 0x40?)
+
+
+DMA can be read via LW from B000 0000 address
+
+
+
+
+
+NTSC 1.2!@@!
+
+BOOT
+
+022C BNE	A3,T0, 80000248 (bad crc)
+
+0238 BNE	A3,T0, 80000248 (bad crc)
+
+
+0248 BGEZAL	R0, 8000248 (CRC check failed, infinite loop)
+
+09EC = Probably a yaz0 chunk reading function?

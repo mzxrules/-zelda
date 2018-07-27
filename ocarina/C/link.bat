@@ -1,0 +1,1 @@
+start "mips64-gcc" /B /D "C:\Users\mzxrules\Documents\c\gcc\bin"  "C:\Users\mzxrules\Documents\c\gcc\bin\mips64-ld" -L "C:\Users\mzxrules\Google Drive\~zelda\ocarina\C\z" -T "C:\Users\mzxrules\Google Drive\~zelda\ocarina\C\z_link.ld" -o "C:\Users\mzxrules\Google Drive\~zelda\ocarina\C\z.o" "C:\Users\mzxrules\Google Drive\~zelda\ocarina\C\test.o"

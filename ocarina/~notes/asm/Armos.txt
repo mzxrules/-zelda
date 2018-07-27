@@ -1,0 +1,41 @@
+Armos:
+As Adult Link: 
+sa 6 18 1992 843 390 
+
+Instance Vars
+
+0x198 int //unknown, state checked to see if Armos should lose health?
+0x244 func ptr //Used to keep track of "state"
+0x250 short //Possibly for detecting if actor should behave like a statue
+0x254 short //unknown, possibly for detecting if actor should be a statue?
+0x257 byte //0xB1 attack type!
+0x264 //Common Actor Collision Struct 1
+0x2B0 //Common Actor Collision Struct 2?
+0x2FC //Common Actor Collision Struct 3?
+
+808F9080 (T:1E26F0) // Switch States
+//A0 = actor instance
+//A1 = func pointer representing the next state
+
+808FAB64 (T:1E41D4) // Main Update Routine
+
+808FA9CC (T:1E403C) // Main Update Subroutine (Provides logic for monster form)
+//A0 = Actor Instance
+//A1 = Global Context
+// (where things go bad with Armos SD glitch)
+//notes using T addr
+40A8 lw t3, 0x0198(a3)
+40B0 //return if t3 is greater than or equal to 5
+40B8 lbu	v1, 0x00B1(a3) //get attack type!
+40C4 //branch if v1 == attack type 0x0E
+40C8 //Collision Struct 1, byte 0x11 is & 0xFD and saved, t4 storing this &'d value
+//zero 0x254, store v1 in 0x257
+40E0 jal	800283BC //performs some test on the entity colliding into the Armos
+40F4 lbu	v0, 0x00B1(a3) //load type of attack that connected with the Armos
+40FC //branch if attack type is 1
+4104 //branch if attack type is 6
+410C //branch if attack type is not 0xD
+4190 //branch if attack type is 0xF
+//probably type 0 attack
+4198 lw 	t9, 0x0198(a3) //possibly some "non statue" armos state?
+41A0 bne	v1, t9, 0x801E41BC //skips "update damage and kill?" routine

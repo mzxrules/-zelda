@@ -1,0 +1,1712 @@
+{{#switch:{{{1}}}
+|ovl_player_actor={{Z64File2|Filename=ovl_player_actor}}
+{{Z64File2R|version=Debug|rom-start=00C010B0|rom-end=00C27940|size=26890}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00BCDB70|rom-end=00BF40D0|size=26560}}
+{{Z64File2R|version=PAL MQ|rom-start=00BB8E30|rom-end=00BDF540|size=26710}}
+|ovl_En_Test={{Z64File2|Filename=ovl_En_Test}}
+{{Z64File2R|version=Debug|rom-start=00C2E420|rom-end=00C33CD0|size=58B0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00BFAC30|rom-end=00C004E0|size=58B0}}
+{{Z64File2R|version=PAL MQ|rom-start=00BE6020|rom-end=00BEB8D0|size=58B0}}
+|ovl_En_GirlA={{Z64File2|Filename=ovl_En_GirlA}}
+{{Z64File2R|version=Debug|rom-start=00DF1330|rom-end=00DF42C0|size=2F90}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C004E0|rom-end=00C02E00|size=2920}}
+{{Z64File2R|version=PAL MQ|rom-start=00D93E80|rom-end=00D967A0|size=2920}}
+|ovl_En_Part={{Z64File2|Filename=ovl_En_Part}}
+{{Z64File2R|version=Debug|rom-start=00E83E40|rom-end=00E85510|size=16D0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C02E00|rom-end=00C04410|size=1610}}
+{{Z64File2R|version=PAL MQ|rom-start=00E1FE90|rom-end=00E214F0|size=1660}}
+|ovl_En_Light={{Z64File2|Filename=ovl_En_Light}}
+{{Z64File2R|version=Debug|rom-start=00E53BB0|rom-end=00E54A40|size=E90}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C04410|rom-end=00C05200|size=DF0}}
+{{Z64File2R|version=PAL MQ|rom-start=00DF29B0|rom-end=00DF37B0|size=E00}}
+|ovl_En_Door={{Z64File2|Filename=ovl_En_Door}}
+{{Z64File2R|version=Debug|rom-start=00DB2DC0|rom-end=00DB3C20|size=E60}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C05200|rom-end=00C06030|size=E30}}
+{{Z64File2R|version=PAL MQ|rom-start=00D58970|rom-end=00D597B0|size=E40}}
+|ovl_En_Box={{Z64File2|Filename=ovl_En_Box}}
+{{Z64File2R|version=Debug|rom-start=00D823F0|rom-end=00D84130|size=1D40}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C06030|rom-end=00C07B60|size=1B30}}
+{{Z64File2R|version=PAL MQ|rom-start=00D29E30|rom-end=00D2B980|size=1B50}}
+|ovl_Bg_Dy_Yoseizo={{Z64File2|Filename=ovl_Bg_Dy_Yoseizo}}
+{{Z64File2R|version=Debug|rom-start=00C41590|rom-end=00C44680|size=30F0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C89210|rom-end=00C8BF60|size=2D50}}
+{{Z64File2R|version=PAL MQ|rom-start=00BF8980|rom-end=00BFB770|size=2DF0}}
+|ovl_Bg_Hidan_Firewall={{Z64File2|Filename=ovl_Bg_Hidan_Firewall}}
+{{Z64File2R|version=Debug|rom-start=00C553A0|rom-end=00C55B80|size=7E0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C88AB0|rom-end=00C89210|size=760}}
+{{Z64File2R|version=PAL MQ|rom-start=00C0B7E0|rom-end=00C0BF40|size=760}}
+|ovl_En_Poh={{Z64File2|Filename=ovl_En_Poh}}
+{{Z64File2R|version=Debug|rom-start=00E93D30|rom-end=00E980A0|size=4370}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C07B60|rom-end=00C0BCF0|size=4190}}
+{{Z64File2R|version=PAL MQ|rom-start=00E2F7B0|rom-end=00E339A0|size=41F0}}
+|ovl_En_Okuta={{Z64File2|Filename=ovl_En_Okuta}}
+{{Z64File2R|version=Debug|rom-start=00E766D0|rom-end=00E78D10|size=2640}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C0BCF0|rom-end=00C0E2D0|size=25E0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E13730|rom-end=00E15D10|size=25E0}}
+|ovl_Bg_Ydan_Sp={{Z64File2|Filename=ovl_Bg_Ydan_Sp}}
+{{Z64File2R|version=Debug|rom-start=00C8E110|rom-end=00C8F920|size=1810}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EE48F0|rom-end=00EE6060|size=1770}}
+{{Z64File2R|version=PAL MQ|rom-start=00C3F800|rom-end=00C40F20|size=1720}}
+|ovl_En_Bom={{Z64File2|Filename=ovl_En_Bom}}
+{{Z64File2R|version=Debug|rom-start=00D7BD00|rom-end=00D7CC60|size=F60}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C0E2D0|rom-end=00C0F1A0|size=ED0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D23CB0|rom-end=00D24B80|size=ED0}}
+|ovl_En_Wallmas={{Z64File2|Filename=ovl_En_Wallmas}}
+{{Z64File2R|version=Debug|rom-start=00EE5350|rom-end=00EE6E50|size=1B00}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C0F1A0|rom-end=00C10BB0|size=1A10}}
+{{Z64File2R|version=PAL MQ|rom-start=00E7DC20|rom-end=00E7F630|size=1A10}}
+|ovl_En_Dodongo={{Z64File2|Filename=ovl_En_Dodongo}}
+{{Z64File2R|version=Debug|rom-start=00DAEE40|rom-end=00DB1BC0|size=2D80}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C10BB0|rom-end=00C13950|size=2DA0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D54A20|rom-end=00D577C0|size=2DA0}}
+|ovl_En_Firefly={{Z64File2|Filename=ovl_En_Firefly}}
+{{Z64File2R|version=Debug|rom-start=00DC9C60|rom-end=00DCBE70|size=2210}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C13950|rom-end=00C15AC0|size=2170}}
+{{Z64File2R|version=PAL MQ|rom-start=00D6DD00|rom-end=00D6FE70|size=2170}}
+|ovl_En_Horse={{Z64File2|Filename=ovl_En_Horse}}
+{{Z64File2R|version=Debug|rom-start=00E11ED0|rom-end=00E1E130|size=C260}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C15AC0|rom-end=00C21CE0|size=C220}}
+{{Z64File2R|version=PAL MQ|rom-start=00DB28A0|rom-end=00DBEB00|size=C260}}
+|ovl_En_Arrow={{Z64File2|Filename=ovl_En_Arrow}}
+{{Z64File2R|version=Debug|rom-start=00D6CF50|rom-end=00D6E730|size=17E0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C21CE0|rom-end=00C233D0|size=16F0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D15410|rom-end=00D16B10|size=1700}}
+|ovl_En_Elf={{Z64File2|Filename=ovl_En_Elf}}
+{{Z64File2R|version=Debug|rom-start=00DB8820|rom-end=00DBD310|size=4AF0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C233D0|rom-end=00C27D90|size=49C0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D5E210|rom-end=00D62BD0|size=49C0}}
+|ovl_En_Niw={{Z64File2|Filename=ovl_En_Niw}}
+{{Z64File2R|version=Debug|rom-start=00E6B7F0|rom-end=00E6EFF0|size=3800}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C27D90|rom-end=00C2B0C0|size=3330}}
+{{Z64File2R|version=PAL MQ|rom-start=00E09D10|rom-end=00E0D040|size=3330}}
+|ovl_En_Tite={{Z64File2|Filename=ovl_En_Tite}}
+{{Z64File2R|version=Debug|rom-start=00ECE910|rom-end=00ED1790|size=2E80}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C2B0C0|rom-end=00C2DE60|size=2DA0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E67F00|rom-end=00E6ACA0|size=2DA0}}
+|ovl_En_Reeba={{Z64File2|Filename=ovl_En_Reeba}}
+{{Z64File2R|version=Debug|rom-start=00E9ACB0|rom-end=00E9C910|size=1C60}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C2DE60|rom-end=00C2F8D0|size=1A70}}
+{{Z64File2R|version=PAL MQ|rom-start=00E365A0|rom-end=00E38010|size=1A70}}
+|ovl_En_Peehat={{Z64File2|Filename=ovl_En_Peehat}}
+{{Z64File2R|version=Debug|rom-start=00E85510|rom-end=00E88D20|size=3810}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C2F8D0|rom-end=00C32FD0|size=3700}}
+{{Z64File2R|version=PAL MQ|rom-start=00E214F0|rom-end=00E24BF0|size=3700}}
+|ovl_En_Butte={{Z64File2|Filename=ovl_En_Butte}}
+{{Z64File2R|version=Debug|rom-start=00D86690|rom-end=00D87D00|size=1670}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DDC2E0|rom-end=00DDD8B0|size=15D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D2DE90|rom-end=00D2F460|size=15D0}}
+|ovl_En_Insect={{Z64File2|Filename=ovl_En_Insect}}
+{{Z64File2R|version=Debug|rom-start=00E329F0|rom-end=00E35030|size=2640}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DD9DC0|rom-end=00DDC2E0|size=2520}}
+{{Z64File2R|version=PAL MQ|rom-start=00DD2900|rom-end=00DD4E20|size=2520}}
+|ovl_En_Fish={{Z64File2|Filename=ovl_En_Fish}}
+{{Z64File2R|version=Debug|rom-start=00DCBE70|rom-end=00DCE100|size=2290}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DDD8B0|rom-end=00DDF9C0|size=2110}}
+{{Z64File2R|version=PAL MQ|rom-start=00D6FE70|rom-end=00D71F80|size=2110}}
+|ovl_En_Holl={{Z64File2|Filename=ovl_En_Holl}}
+{{Z64File2R|version=Debug|rom-start=00E0F7F0|rom-end=00E10810|size=1020}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C32FD0|rom-end=00C33FA0|size=FD0}}
+{{Z64File2R|version=PAL MQ|rom-start=00DB0370|rom-end=00DB1340|size=FD0}}
+|ovl_En_Scene_Change={{Z64File2|Filename=ovl_En_Scene_Change}}
+{{Z64File2R|version=Debug|rom-start=00EAEC50|rom-end=00EAEE00|size=1B0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C33FA0|rom-end=00C340D0|size=130}}
+{{Z64File2R|version=PAL MQ|rom-start=00E49880|rom-end=00E499B0|size=130}}
+|ovl_En_Zf={{Z64File2|Filename=ovl_En_Zf}}
+{{Z64File2R|version=Debug|rom-start=00EF9D60|rom-end=00F00840|size=6AE0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C340D0|rom-end=00C3ABC0|size=6AF0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E901C0|rom-end=00E96CA0|size=6AE0}}
+|ovl_En_Hata={{Z64File2|Filename=ovl_En_Hata}}
+{{Z64File2R|version=Debug|rom-start=00E07930|rom-end=00E07EB0|size=580}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C3ABC0|rom-end=00C3B150|size=590}}
+{{Z64File2R|version=PAL MQ|rom-start=00DA93D0|rom-end=00DA9960|size=590}}
+|ovl_Boss_Dodongo={{Z64File2|Filename=ovl_Boss_Dodongo}}
+{{Z64File2R|version=Debug|rom-start=00C8FE90|rom-end=00C99AC0|size=9C30}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C3B150|rom-end=00C44C30|size=9AE0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C41370|rom-end=00C4AE70|size=9B00}}
+|ovl_Boss_Goma={{Z64File2|Filename=ovl_Boss_Goma}}
+{{Z64File2R|version=Debug|rom-start=00CDF070|rom-end=00CE5160|size=60F0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C44C30|rom-end=00C4ABB0|size=5F80}}
+{{Z64File2R|version=PAL MQ|rom-start=00C8E290|rom-end=00C94230|size=5FA0}}
+|ovl_En_Zl1={{Z64File2|Filename=ovl_En_Zl1}}
+{{Z64File2R|version=Debug|rom-start=00F00840|rom-end=00F04690|size=3E50}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C4ABB0|rom-end=00C4E9B0|size=3E00}}
+{{Z64File2R|version=PAL MQ|rom-start=00E96CA0|rom-end=00E9AAB0|size=3E10}}
+|ovl_En_Viewer={{Z64File2|Filename=ovl_En_Viewer}}
+{{Z64File2R|version=Debug|rom-start=00EE0050|rom-end=00EE3290|size=3240}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C4E9B0|rom-end=00C51860|size=2EB0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E78FD0|rom-end=00E7BE70|size=2EA0}}
+|ovl_En_Goma={{Z64File2|Filename=ovl_En_Goma}}
+{{Z64File2R|version=Debug|rom-start=00DFFAA0|rom-end=00E02880|size=2DE0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C51860|rom-end=00C544F0|size=2C90}}
+{{Z64File2R|version=PAL MQ|rom-start=00DA1B50|rom-end=00DA4800|size=2CB0}}
+|ovl_Bg_Pushbox={{Z64File2|Filename=ovl_Bg_Pushbox}}
+{{Z64File2R|version=Debug|rom-start=00C777E0|rom-end=00C77B50|size=370}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C544F0|rom-end=00C547F0|size=300}}
+{{Z64File2R|version=PAL MQ|rom-start=00C2AA30|rom-end=00C2AD30|size=300}}
+|ovl_En_Bubble={{Z64File2|Filename=ovl_En_Bubble}}
+{{Z64File2R|version=Debug|rom-start=00D85220|rom-end=00D86690|size=1470}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C547F0|rom-end=00C55C10|size=1420}}
+{{Z64File2R|version=PAL MQ|rom-start=00D2CA70|rom-end=00D2DE90|size=1420}}
+|ovl_Door_Shutter={{Z64File2|Filename=ovl_Door_Shutter}}
+{{Z64File2R|version=Debug|rom-start=00D4F8E0|rom-end=00D51C60|size=2380}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C55C10|rom-end=00C57E90|size=2280}}
+{{Z64File2R|version=PAL MQ|rom-start=00CFA350|rom-end=00CFC610|size=22C0}}
+|ovl_En_Dodojr={{Z64File2|Filename=ovl_En_Dodojr}}
+{{Z64File2R|version=Debug|rom-start=00DACFB0|rom-end=00DAEE40|size=1E90}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C57E90|rom-end=00C59D30|size=1EA0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D52B80|rom-end=00D54A20|size=1EA0}}
+|ovl_En_Bdfire={{Z64File2|Filename=ovl_En_Bdfire}}
+{{Z64File2R|version=Debug|rom-start=00D75660|rom-end=00D76290|size=C30}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C59D30|rom-end=00C5A8C0|size=B90}}
+{{Z64File2R|version=PAL MQ|rom-start=00D1D920|rom-end=00D1E4C0|size=BA0}}
+|ovl_En_Boom={{Z64File2|Filename=ovl_En_Boom}}
+{{Z64File2R|version=Debug|rom-start=00D81AB0|rom-end=00D823F0|size=940}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C5A8C0|rom-end=00C5B180|size=8C0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D29560|rom-end=00D29E30|size=8D0}}
+|ovl_En_Torch2={{Z64File2|Filename=ovl_En_Torch2}}
+{{Z64File2R|version=Debug|rom-start=00ED3810|rom-end=00ED5FC0|size=27B0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C5B180|rom-end=00C5D8E0|size=2760}}
+{{Z64File2R|version=PAL MQ|rom-start=00E6CBC0|rom-end=00E6F320|size=2760}}
+|ovl_En_Bili={{Z64File2|Filename=ovl_En_Bili}}
+{{Z64File2R|version=Debug|rom-start=00D78ED0|rom-end=00D7B1E0|size=2310}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C5D8E0|rom-end=00C5FBB0|size=22D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D20FC0|rom-end=00D23290|size=22D0}}
+|ovl_En_Tp={{Z64File2|Filename=ovl_En_Tp}}
+{{Z64File2R|version=Debug|rom-start=00ED6C30|rom-end=00ED8B40|size=1F10}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C5FBB0|rom-end=00C61A00|size=1E50}}
+{{Z64File2R|version=PAL MQ|rom-start=00E6FFB0|rom-end=00E71E20|size=1E70}}
+|ovl_En_St={{Z64File2|Filename=ovl_En_St}}
+{{Z64File2R|version=Debug|rom-start=00EBA7A0|rom-end=00EBD450|size=2CB0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C61A00|rom-end=00C64670|size=2C70}}
+{{Z64File2R|version=PAL MQ|rom-start=00E54CD0|rom-end=00E57940|size=2C70}}
+|ovl_En_Bw={{Z64File2|Filename=ovl_En_Bw}}
+{{Z64File2R|version=Debug|rom-start=00D87D00|rom-end=00D8B100|size=3400}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C64670|rom-end=00C679D0|size=3360}}
+{{Z64File2R|version=PAL MQ|rom-start=00D2F460|rom-end=00D327F0|size=3390}}
+|ovl_En_Eiyer={{Z64File2|Filename=ovl_En_Eiyer}}
+{{Z64File2R|version=Debug|rom-start=00DB6B90|rom-end=00DB8820|size=1C90}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C679D0|rom-end=00C69630|size=1C60}}
+{{Z64File2R|version=PAL MQ|rom-start=00D5C5B0|rom-end=00D5E210|size=1C60}}
+|ovl_En_River_Sound={{Z64File2|Filename=ovl_En_River_Sound}}
+{{Z64File2R|version=Debug|rom-start=00E9C910|rom-end=00E9D290|size=980}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C69630|rom-end=00C69FC0|size=990}}
+{{Z64File2R|version=PAL MQ|rom-start=00E38010|rom-end=00E389A0|size=990}}
+|ovl_En_Horse_Normal={{Z64File2|Filename=ovl_En_Horse_Normal}}
+{{Z64File2R|version=Debug|rom-start=00E21E30|rom-end=00E244B0|size=2680}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C69FC0|rom-end=00C6C5E0|size=2620}}
+{{Z64File2R|version=PAL MQ|rom-start=00DC2750|rom-end=00DC4D70|size=2620}}
+|ovl_En_Ossan={{Z64File2|Filename=ovl_En_Ossan}}
+{{Z64File2R|version=Debug|rom-start=00E78D10|rom-end=00E7FF90|size=7280}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C6C5E0|rom-end=00C72BC0|size=65E0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E15D10|rom-end=00E1C2F0|size=65E0}}
+|ovl_Bg_Treemouth={{Z64File2|Filename=ovl_Bg_Treemouth}}
+{{Z64File2R|version=Debug|rom-start=00C8B200|rom-end=00C8C8E0|size=16E0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C72BC0|rom-end=00C74210|size=1650}}
+{{Z64File2R|version=PAL MQ|rom-start=00C3CA60|rom-end=00C3E0C0|size=1660}}
+|ovl_Bg_Dodoago={{Z64File2|Filename=ovl_Bg_Dodoago}}
+{{Z64File2R|version=Debug|rom-start=00C407D0|rom-end=00C41590|size=DC0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C74210|rom-end=00C74F50|size=D40}}
+{{Z64File2R|version=PAL MQ|rom-start=00BF7C40|rom-end=00BF8980|size=D40}}
+|ovl_Bg_Hidan_Dalm={{Z64File2|Filename=ovl_Bg_Hidan_Dalm}}
+{{Z64File2R|version=Debug|rom-start=00C54B60|rom-end=00C553A0|size=840}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C74F50|rom-end=00C757A0|size=850}}
+{{Z64File2R|version=PAL MQ|rom-start=00C0AF90|rom-end=00C0B7E0|size=850}}
+|ovl_Bg_Hidan_Hrock={{Z64File2|Filename=ovl_Bg_Hidan_Hrock}}
+{{Z64File2R|version=Debug|rom-start=00C57E70|rom-end=00C586A0|size=830}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C757A0|rom-end=00C75FD0|size=830}}
+{{Z64File2R|version=PAL MQ|rom-start=00C0DFA0|rom-end=00C0E7D0|size=830}}
+|ovl_En_Horse_Ganon={{Z64File2|Filename=ovl_En_Horse_Ganon}}
+{{Z64File2R|version=Debug|rom-start=00E1F240|rom-end=00E1FFB0|size=D70}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C75FD0|rom-end=00C76D50|size=D80}}
+{{Z64File2R|version=PAL MQ|rom-start=00DBFBD0|rom-end=00DC0950|size=D80}}
+|ovl_Bg_Hidan_Rock={{Z64File2|Filename=ovl_Bg_Hidan_Rock}}
+{{Z64File2R|version=Debug|rom-start=00C59DC0|rom-end=00C5AF40|size=1180}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C76D50|rom-end=00C77E40|size=10F0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C0FC40|rom-end=00C10D40|size=1100}}
+|ovl_Bg_Hidan_Rsekizou={{Z64File2|Filename=ovl_Bg_Hidan_Rsekizou}}
+{{Z64File2R|version=Debug|rom-start=00C5AF40|rom-end=00C5BC00|size=CC0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C77E40|rom-end=00C78A20|size=BE0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C10D40|rom-end=00C11920|size=BE0}}
+|ovl_Bg_Hidan_Sekizou={{Z64File2|Filename=ovl_Bg_Hidan_Sekizou}}
+{{Z64File2R|version=Debug|rom-start=00C5BC00|rom-end=00C5D110|size=1510}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C78A20|rom-end=00C79E70|size=1450}}
+{{Z64File2R|version=PAL MQ|rom-start=00C11920|rom-end=00C12D70|size=1450}}
+|ovl_Bg_Hidan_Sima={{Z64File2|Filename=ovl_Bg_Hidan_Sima}}
+{{Z64File2R|version=Debug|rom-start=00C5D110|rom-end=00C5E100|size=FF0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C79E70|rom-end=00C7AD90|size=F20}}
+{{Z64File2R|version=PAL MQ|rom-start=00C12D70|rom-end=00C13C70|size=F00}}
+|ovl_Bg_Hidan_Syoku={{Z64File2|Filename=ovl_Bg_Hidan_Syoku}}
+{{Z64File2R|version=Debug|rom-start=00C5E100|rom-end=00C5E550|size=450}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C7AD90|rom-end=00C7B1F0|size=460}}
+{{Z64File2R|version=PAL MQ|rom-start=00C13C70|rom-end=00C140D0|size=460}}
+|ovl_En_Xc={{Z64File2|Filename=ovl_En_Xc}}
+{{Z64File2R|version=Debug|rom-start=00EF1F20|rom-end=00EF8AD0|size=6BB0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C7B1F0|rom-end=00C81950|size=6760}}
+{{Z64File2R|version=PAL MQ|rom-start=00E88D80|rom-end=00E8F4E0|size=6760}}
+|ovl_Bg_Hidan_Curtain={{Z64File2|Filename=ovl_Bg_Hidan_Curtain}}
+{{Z64File2R|version=Debug|rom-start=00C53EE0|rom-end=00C54B60|size=C80}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C81950|rom-end=00C823F0|size=AA0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C0A4F0|rom-end=00C0AF90|size=AA0}}
+|ovl_Bg_Spot00_Hanebasi={{Z64File2|Filename=ovl_Bg_Spot00_Hanebasi}}
+{{Z64File2R|version=Debug|rom-start=00C78480|rom-end=00C796C0|size=1240}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C823F0|rom-end=00C83500|size=1110}}
+{{Z64File2R|version=PAL MQ|rom-start=00C2B680|rom-end=00C2C790|size=1110}}
+|ovl_En_Mb={{Z64File2|Filename=ovl_En_Mb}}
+{{Z64File2R|version=Debug|rom-start=00E5C0C0|rom-end=00E602C0|size=4200}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C83500|rom-end=00C87640|size=4140}}
+{{Z64File2R|version=PAL MQ|rom-start=00DFABE0|rom-end=00DFEE10|size=4230}}
+|ovl_En_Bombf={{Z64File2|Filename=ovl_En_Bombf}}
+{{Z64File2R|version=Debug|rom-start=00D80590|rom-end=00D81AB0|size=1520}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C87640|rom-end=00C88AB0|size=1470}}
+{{Z64File2R|version=PAL MQ|rom-start=00D280D0|rom-end=00D29560|size=1490}}
+|ovl_En_Zl2={{Z64File2|Filename=ovl_En_Zl2}}
+{{Z64File2R|version=Debug|rom-start=00F04690|rom-end=00F090B0|size=4A20}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C8BF60|rom-end=00C90690|size=4730}}
+{{Z64File2R|version=PAL MQ|rom-start=00E9AAB0|rom-end=00E9F1B0|size=4700}}
+|ovl_Bg_Hidan_Fslift={{Z64File2|Filename=ovl_Bg_Hidan_Fslift}}
+{{Z64File2R|version=Debug|rom-start=00C55B80|rom-end=00C56030|size=4B0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C90690|rom-end=00C90B60|size=4D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C0BF40|rom-end=00C0C410|size=4D0}}
+|ovl_En_OE2={{Z64File2|Filename=ovl_En_OE2}}
+{{Z64File2R|version=Debug|rom-start=00E74710|rom-end=00E747D0|size=C0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C90B60|rom-end=00C90C40|size=E0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E11D90|rom-end=00E11E70|size=E0}}
+|ovl_Bg_Ydan_Hasi={{Z64File2|Filename=ovl_Bg_Ydan_Hasi}}
+{{Z64File2R|version=Debug|rom-start=00C8D200|rom-end=00C8DA40|size=840}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C90C40|rom-end=00C913F0|size=7B0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C3E970|rom-end=00C3F120|size=7B0}}
+|ovl_Bg_Ydan_Maruta={{Z64File2|Filename=ovl_Bg_Ydan_Maruta}}
+{{Z64File2R|version=Debug|rom-start=00C8DA40|rom-end=00C8E110|size=6D0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C913F0|rom-end=00C91AD0|size=6E0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C3F120|rom-end=00C3F800|size=6E0}}
+|ovl_Boss_Ganondrof={{Z64File2|Filename=ovl_Boss_Ganondrof}}
+{{Z64File2R|version=Debug|rom-start=00CD9CA0|rom-end=00CDF070|size=53D0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C91AD0|rom-end=00C96840|size=4D70}}
+{{Z64File2R|version=PAL MQ|rom-start=00C89500|rom-end=00C8E290|size=4D90}}
+|ovl_En_Am={{Z64File2|Filename=ovl_En_Am}}
+{{Z64File2R|version=Debug|rom-start=00D67550|rom-end=00D699A0|size=2450}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C96840|rom-end=00C98C40|size=2400}}
+{{Z64File2R|version=PAL MQ|rom-start=00D0FE10|rom-end=00D12210|size=2400}}
+|ovl_En_Dekubaba={{Z64File2|Filename=ovl_En_Dekubaba}}
+{{Z64File2R|version=Debug|rom-start=00D9C3C0|rom-end=00DA0150|size=3D90}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C98C40|rom-end=00C9C6E0|size=3AA0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D43070|rom-end=00D46B20|size=3AB0}}
+|ovl_En_M_Fire1={{Z64File2|Filename=ovl_En_M_Fire1}}
+{{Z64File2R|version=Debug|rom-start=00E54EB0|rom-end=00E55050|size=1A0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C9C6E0|rom-end=00C9C880|size=1A0}}
+{{Z64File2R|version=PAL MQ|rom-start=00DF3C30|rom-end=00DF3DD0|size=1A0}}
+|ovl_En_M_Thunder={{Z64File2|Filename=ovl_En_M_Thunder}}
+{{Z64File2R|version=Debug|rom-start=00E55050|rom-end=00E56700|size=16B0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C9C880|rom-end=00C9DE70|size=15F0}}
+{{Z64File2R|version=PAL MQ|rom-start=00DF3DD0|rom-end=00DF53D0|size=1600}}
+|ovl_Bg_Ddan_Jd={{Z64File2|Filename=ovl_Bg_Ddan_Jd}}
+{{Z64File2R|version=Debug|rom-start=00C3F880|rom-end=00C3FEC0|size=640}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C9DE70|rom-end=00C9E4C0|size=650}}
+{{Z64File2R|version=PAL MQ|rom-start=00BF6D00|rom-end=00BF7350|size=650}}
+|ovl_Bg_Breakwall={{Z64File2|Filename=ovl_Bg_Breakwall}}
+{{Z64File2R|version=Debug|rom-start=00C3E9B0|rom-end=00C3F880|size=ED0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C9E4C0|rom-end=00C9F330|size=E70}}
+{{Z64File2R|version=PAL MQ|rom-start=00BF5E90|rom-end=00BF6D00|size=E70}}
+|ovl_En_Jj={{Z64File2|Filename=ovl_En_Jj}}
+{{Z64File2R|version=Debug|rom-start=00E3E3D0|rom-end=00E3F9E0|size=1610}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00C9F330|rom-end=00CA0900|size=15D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00DDE100|rom-end=00DDF6D0|size=15D0}}
+|ovl_En_Horse_Zelda={{Z64File2|Filename=ovl_En_Horse_Zelda}}
+{{Z64File2R|version=Debug|rom-start=00E244B0|rom-end=00E24F80|size=AD0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CA0900|rom-end=00CA13F0|size=AF0}}
+{{Z64File2R|version=PAL MQ|rom-start=00DC4D70|rom-end=00DC5860|size=AF0}}
+|ovl_Bg_Ddan_Kd={{Z64File2|Filename=ovl_Bg_Ddan_Kd}}
+{{Z64File2R|version=Debug|rom-start=00C3FEC0|rom-end=00C407D0|size=910}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CA13F0|rom-end=00CA1CE0|size=8F0}}
+{{Z64File2R|version=PAL MQ|rom-start=00BF7350|rom-end=00BF7C40|size=8F0}}
+|ovl_Door_Warp1={{Z64File2|Filename=ovl_Door_Warp1}}
+{{Z64File2R|version=Debug|rom-start=00D51DC0|rom-end=00D562E0|size=4520}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CA1CE0|rom-end=00CA5F80|size=42A0}}
+{{Z64File2R|version=PAL MQ|rom-start=00CFC770|rom-end=00D00A70|size=4300}}
+|ovl_Obj_Syokudai={{Z64File2|Filename=ovl_Obj_Syokudai}}
+{{Z64File2R|version=Debug|rom-start=00F4DED0|rom-end=00F4EBB0|size=CE0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CA5F80|rom-end=00CA6BB0|size=C30}}
+{{Z64File2R|version=PAL MQ|rom-start=00EE06B0|rom-end=00EE12F0|size=C40}}
+|ovl_Item_B_Heart={{Z64File2|Filename=ovl_Item_B_Heart}}
+{{Z64File2R|version=Debug|rom-start=00F33D70|rom-end=00F34210|size=4A0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CA6BB0|rom-end=00CA6FA0|size=3F0}}
+{{Z64File2R|version=PAL MQ|rom-start=00EC84E0|rom-end=00EC88F0|size=410}}
+|ovl_En_Dekunuts={{Z64File2|Filename=ovl_En_Dekunuts}}
+{{Z64File2R|version=Debug|rom-start=00DA0150|rom-end=00DA1930|size=17E0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CA6FA0|rom-end=00CA87A0|size=1800}}
+{{Z64File2R|version=PAL MQ|rom-start=00D46B20|rom-end=00D48320|size=1800}}
+|ovl_Bg_Menkuri_Kaiten={{Z64File2|Filename=ovl_Bg_Menkuri_Kaiten}}
+{{Z64File2R|version=Debug|rom-start=00C6AEE0|rom-end=00C6B060|size=180}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CA87A0|rom-end=00CA8930|size=190}}
+{{Z64File2R|version=PAL MQ|rom-start=00C1F8F0|rom-end=00C1FA80|size=190}}
+|ovl_Bg_Menkuri_Eye={{Z64File2|Filename=ovl_Bg_Menkuri_Eye}}
+{{Z64File2R|version=Debug|rom-start=00C6A9B0|rom-end=00C6AEE0|size=530}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CA8930|rom-end=00CA8DC0|size=490}}
+{{Z64File2R|version=PAL MQ|rom-start=00C1F460|rom-end=00C1F8F0|size=490}}
+|ovl_En_Vali={{Z64File2|Filename=ovl_En_Vali}}
+{{Z64File2R|version=Debug|rom-start=00EDC500|rom-end=00EDED00|size=2800}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CA8DC0|rom-end=00CAB460|size=26A0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E75660|rom-end=00E77D20|size=26C0}}
+|ovl_Bg_Mizu_Movebg={{Z64File2|Filename=ovl_Bg_Mizu_Movebg}}
+{{Z64File2R|version=Debug|rom-start=00C6C960|rom-end=00C6DB70|size=1210}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CAB460|rom-end=00CAC5F0|size=1190}}
+{{Z64File2R|version=PAL MQ|rom-start=00C210A0|rom-end=00C22220|size=1180}}
+|ovl_Bg_Mizu_Water={{Z64File2|Filename=ovl_Bg_Mizu_Water}}
+{{Z64File2R|version=Debug|rom-start=00C6E5D0|rom-end=00C6F4A0|size=ED0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CAC5F0|rom-end=00CAD2C0|size=CD0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C22BF0|rom-end=00C238C0|size=CD0}}
+|ovl_Arms_Hook={{Z64File2|Filename=ovl_Arms_Hook}}
+{{Z64File2R|version=Debug|rom-start=00C33CD0|rom-end=00C34AE0|size=E10}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CAD2C0|rom-end=00CAE020|size=D60}}
+{{Z64File2R|version=PAL MQ|rom-start=00BEB8D0|rom-end=00BEC640|size=D70}}
+|ovl_En_fHG={{Z64File2|Filename=ovl_En_fHG}}
+{{Z64File2R|version=Debug|rom-start=00F186C0|rom-end=00F1B420|size=2D60}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CAE020|rom-end=00CB0950|size=2930}}
+{{Z64File2R|version=PAL MQ|rom-start=00EADFF0|rom-end=00EB0920|size=2930}}
+|ovl_Bg_Mori_Hineri={{Z64File2|Filename=ovl_Bg_Mori_Hineri}}
+{{Z64File2R|version=Debug|rom-start=00C724E0|rom-end=00C73350|size=E70}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CB0950|rom-end=00CB1620|size=CD0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C25F10|rom-end=00C26C60|size=D50}}
+|ovl_En_Bb={{Z64File2|Filename=ovl_En_Bb}}
+{{Z64File2R|version=Debug|rom-start=00D71910|rom-end=00D75660|size=3D50}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CB1620|rom-end=00CB52F0|size=3CD0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D19C40|rom-end=00D1D920|size=3CE0}}
+|ovl_Bg_Toki_Hikari={{Z64File2|Filename=ovl_Bg_Toki_Hikari}}
+{{Z64File2R|version=Debug|rom-start=00C88C00|rom-end=00C89B40|size=F40}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CB52F0|rom-end=00CB6090|size=DA0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C3A670|rom-end=00C3B410|size=DA0}}
+|ovl_En_Yukabyun={{Z64File2|Filename=ovl_En_Yukabyun}}
+{{Z64File2R|version=Debug|rom-start=00EF96D0|rom-end=00EF9D60|size=690}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CB6090|rom-end=00CB66A0|size=610}}
+{{Z64File2R|version=PAL MQ|rom-start=00E8FBB0|rom-end=00E901C0|size=610}}
+|ovl_Bg_Toki_Swd={{Z64File2|Filename=ovl_Bg_Toki_Swd}}
+{{Z64File2R|version=Debug|rom-start=00C89B40|rom-end=00C8B200|size=16C0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CB66A0|rom-end=00CB7CF0|size=1650}}
+{{Z64File2R|version=PAL MQ|rom-start=00C3B410|rom-end=00C3CA60|size=1650}}
+|ovl_En_Fhg_Fire={{Z64File2|Filename=ovl_En_Fhg_Fire}}
+{{Z64File2R|version=Debug|rom-start=00DC5E50|rom-end=00DC8810|size=29C0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CB7CF0|rom-end=00CBA310|size=2620}}
+{{Z64File2R|version=PAL MQ|rom-start=00D6A550|rom-end=00D6CBF0|size=26A0}}
+|ovl_Bg_Mjin={{Z64File2|Filename=ovl_Bg_Mjin}}
+{{Z64File2R|version=Debug|rom-start=00C6F4A0|rom-end=00C6F8E0|size=440}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CBA310|rom-end=00CBA6F0|size=3E0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C238C0|rom-end=00C23CB0|size=3F0}}
+|ovl_Bg_Hidan_Kousi={{Z64File2|Filename=ovl_Bg_Hidan_Kousi}}
+{{Z64File2R|version=Debug|rom-start=00C586A0|rom-end=00C58D60|size=6C0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CBA6F0|rom-end=00CBAC70|size=580}}
+{{Z64File2R|version=PAL MQ|rom-start=00C0E7D0|rom-end=00C0ED60|size=590}}
+|ovl_Door_Toki={{Z64File2|Filename=ovl_Door_Toki}}
+{{Z64File2R|version=Debug|rom-start=00D51C60|rom-end=00D51DC0|size=160}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CBAC70|rom-end=00CBADD0|size=160}}
+{{Z64File2R|version=PAL MQ|rom-start=00CFC610|rom-end=00CFC770|size=160}}
+|ovl_Bg_Hidan_Hamstep={{Z64File2|Filename=ovl_Bg_Hidan_Hamstep}}
+{{Z64File2R|version=Debug|rom-start=00C56D80|rom-end=00C57E70|size=10F0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CBADD0|rom-end=00CBBC60|size=E90}}
+{{Z64File2R|version=PAL MQ|rom-start=00C0D0F0|rom-end=00C0DFA0|size=EB0}}
+|ovl_En_Bird={{Z64File2|Filename=ovl_En_Bird}}
+{{Z64File2R|version=Debug|rom-start=00D7B1E0|rom-end=00D7B690|size=4B0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CBBC60|rom-end=00CBC120|size=4C0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D23290|rom-end=00D23750|size=4C0}}
+|ovl_En_Wood02={{Z64File2|Filename=ovl_En_Wood02}}
+{{Z64File2R|version=Debug|rom-start=00EF0CC0|rom-end=00EF1F20|size=1260}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CBC120|rom-end=00CBD2F0|size=11D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E87BB0|rom-end=00E88D80|size=11D0}}
+|ovl_En_Lightbox={{Z64File2|Filename=ovl_En_Lightbox}}
+{{Z64File2R|version=Debug|rom-start=00E54A40|rom-end=00E54EB0|size=470}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CBD2F0|rom-end=00CBD770|size=480}}
+{{Z64File2R|version=PAL MQ|rom-start=00DF37B0|rom-end=00DF3C30|size=480}}
+|ovl_En_Pu_box={{Z64File2|Filename=ovl_En_Pu_box}}
+{{Z64File2R|version=Debug|rom-start=00E980A0|rom-end=00E983E0|size=340}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CBD770|rom-end=00CBDAB0|size=340}}
+{{Z64File2R|version=PAL MQ|rom-start=00E339A0|rom-end=00E33CE0|size=340}}
+|ovl_En_Trap={{Z64File2|Filename=ovl_En_Trap}}
+{{Z64File2R|version=Debug|rom-start=00EDA4B0|rom-end=00EDB740|size=1290}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CBDAB0|rom-end=00CBED50|size=12A0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E73720|rom-end=00E749C0|size=12A0}}
+|ovl_En_Arow_Trap={{Z64File2|Filename=ovl_En_Arow_Trap}}
+{{Z64File2R|version=Debug|rom-start=00D6CE00|rom-end=00D6CF50|size=150}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CBED50|rom-end=00CBEEA0|size=150}}
+{{Z64File2R|version=PAL MQ|rom-start=00D152C0|rom-end=00D15410|size=150}}
+|ovl_En_Vase={{Z64File2|Filename=ovl_En_Vase}}
+{{Z64File2R|version=Debug|rom-start=00EDED00|rom-end=00EDEDF0|size=F0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CBEEA0|rom-end=00CBEFA0|size=100}}
+{{Z64File2R|version=PAL MQ|rom-start=00E77D20|rom-end=00E77E20|size=100}}
+|ovl_En_Ta={{Z64File2|Filename=ovl_En_Ta}}
+{{Z64File2R|version=Debug|rom-start=00EC9930|rom-end=00ECD3F0|size=3AC0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CBEFA0|rom-end=00CC2960|size=39C0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E632F0|rom-end=00E66CB0|size=39C0}}
+|ovl_En_Tk={{Z64File2|Filename=ovl_En_Tk}}
+{{Z64File2R|version=Debug|rom-start=00ED1790|rom-end=00ED3720|size=1F90}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CC2960|rom-end=00CC4790|size=1E30}}
+{{Z64File2R|version=PAL MQ|rom-start=00E6ACA0|rom-end=00E6CAD0|size=1E30}}
+|ovl_Bg_Mori_Bigst={{Z64File2|Filename=ovl_Bg_Mori_Bigst}}
+{{Z64File2R|version=Debug|rom-start=00C6F8E0|rom-end=00C70520|size=C40}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CC4790|rom-end=00CC50C0|size=930}}
+{{Z64File2R|version=PAL MQ|rom-start=00C23CB0|rom-end=00C245E0|size=930}}
+|ovl_Bg_Mori_Elevator={{Z64File2|Filename=ovl_Bg_Mori_Elevator}}
+{{Z64File2R|version=Debug|rom-start=00C70520|rom-end=00C71280|size=D60}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CC50C0|rom-end=00CC5BB0|size=AF0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C245E0|rom-end=00C250D0|size=AF0}}
+|ovl_Bg_Mori_Kaitenkabe={{Z64File2|Filename=ovl_Bg_Mori_Kaitenkabe}}
+{{Z64File2R|version=Debug|rom-start=00C73AD0|rom-end=00C74280|size=7B0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CC5BB0|rom-end=00CC6210|size=660}}
+{{Z64File2R|version=PAL MQ|rom-start=00C272A0|rom-end=00C27910|size=670}}
+|ovl_Bg_Mori_Rakkatenjo={{Z64File2|Filename=ovl_Bg_Mori_Rakkatenjo}}
+{{Z64File2R|version=Debug|rom-start=00C74280|rom-end=00C74F20|size=CA0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CC6210|rom-end=00CC6B80|size=970}}
+{{Z64File2R|version=PAL MQ|rom-start=00C27910|rom-end=00C28290|size=980}}
+|ovl_En_Vm={{Z64File2|Filename=ovl_En_Vm}}
+{{Z64File2R|version=Debug|rom-start=00EE3290|rom-end=00EE4C20|size=1990}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CC6B80|rom-end=00CC8430|size=18B0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E7BE70|rom-end=00E7D730|size=18C0}}
+|ovl_Demo_Effect={{Z64File2|Filename=ovl_Demo_Effect}}
+{{Z64File2R|version=Debug|rom-start=00D2A5E0|rom-end=00D30A20|size=6440}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CC8430|rom-end=00CCDF30|size=5B00}}
+{{Z64File2R|version=PAL MQ|rom-start=00CD7A10|rom-end=00CDD5B0|size=5BA0}}
+|ovl_Demo_Kankyo={{Z64File2|Filename=ovl_Demo_Kankyo}}
+{{Z64File2R|version=Debug|rom-start=00D42510|rom-end=00D46610|size=4100}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CCDF30|rom-end=00CD1BE0|size=3CB0}}
+{{Z64File2R|version=PAL MQ|rom-start=00CEDBB0|rom-end=00CF1850|size=3CA0}}
+|ovl_Bg_Hidan_Fwbig={{Z64File2|Filename=ovl_Bg_Hidan_Fwbig}}
+{{Z64File2R|version=Debug|rom-start=00C56030|rom-end=00C56D80|size=D50}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CD1BE0|rom-end=00CD28C0|size=CE0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C0C410|rom-end=00C0D0F0|size=CE0}}
+|ovl_En_Floormas={{Z64File2|Filename=ovl_En_Floormas}}
+{{Z64File2R|version=Debug|rom-start=00DCE100|rom-end=00DD1590|size=3490}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CD28C0|rom-end=00CD5CA0|size=33E0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D71F80|rom-end=00D75360|size=33E0}}
+|ovl_En_Heishi1={{Z64File2|Filename=ovl_En_Heishi1}}
+{{Z64File2R|version=Debug|rom-start=00E07EB0|rom-end=00E09A80|size=1BD0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CD5CA0|rom-end=00CD71B0|size=1510}}
+{{Z64File2R|version=PAL MQ|rom-start=00DA9960|rom-end=00DAAE70|size=1510}}
+|ovl_En_Rd={{Z64File2|Filename=ovl_En_Rd}}
+{{Z64File2R|version=Debug|rom-start=00E983E0|rom-end=00E9ACB0|size=28D0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CD71B0|rom-end=00CD9A60|size=28B0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E33CE0|rom-end=00E365A0|size=28C0}}
+|ovl_En_Po_Sisters={{Z64File2|Filename=ovl_En_Po_Sisters}}
+{{Z64File2R|version=Debug|rom-start=00E8EF70|rom-end=00E93D30|size=4DC0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CD9A60|rom-end=00CDE750|size=4CF0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E2AAC0|rom-end=00E2F7B0|size=4CF0}}
+|ovl_Bg_Heavy_Block={{Z64File2|Filename=ovl_Bg_Heavy_Block}}
+{{Z64File2R|version=Debug|rom-start=00C524D0|rom-end=00C53EE0|size=1A10}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CDE750|rom-end=00CE0040|size=18F0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C08C00|rom-end=00C0A4F0|size=18F0}}
+|ovl_Bg_Po_Event={{Z64File2|Filename=ovl_Bg_Po_Event}}
+{{Z64File2R|version=Debug|rom-start=00C74F20|rom-end=00C76DB0|size=1E90}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CE0040|rom-end=00CE1E70|size=1E30}}
+{{Z64File2R|version=PAL MQ|rom-start=00C28290|rom-end=00C2A0C0|size=1E30}}
+|ovl_Obj_Mure={{Z64File2|Filename=ovl_Obj_Mure}}
+{{Z64File2R|version=Debug|rom-start=00F476C0|rom-end=00F48B60|size=14A0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CE1E70|rom-end=00CE2E80|size=1010}}
+{{Z64File2R|version=PAL MQ|rom-start=00EDA9D0|rom-end=00EDB9E0|size=1010}}
+|ovl_En_Sw={{Z64File2|Filename=ovl_En_Sw}}
+{{Z64File2R|version=Debug|rom-start=00EC1CC0|rom-end=00EC5540|size=3880}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CE2E80|rom-end=00CE65F0|size=3770}}
+{{Z64File2R|version=PAL MQ|rom-start=00E5BF90|rom-end=00E5F700|size=3770}}
+|ovl_Boss_Fd={{Z64File2|Filename=ovl_Boss_Fd}}
+{{Z64File2R|version=Debug|rom-start=00C99AC0|rom-end=00CA1370|size=78B0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CE65F0|rom-end=00CED920|size=7330}}
+{{Z64File2R|version=PAL MQ|rom-start=00C4AE70|rom-end=00C521D0|size=7360}}
+|ovl_Object_Kankyo={{Z64File2|Filename=ovl_Object_Kankyo}}
+{{Z64File2R|version=Debug|rom-start=00F516B0|rom-end=00F54C80|size=35D0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CED920|rom-end=00CF0B40|size=3220}}
+{{Z64File2R|version=PAL MQ|rom-start=00EE3A60|rom-end=00EE6CE0|size=3280}}
+|ovl_En_Du={{Z64File2|Filename=ovl_En_Du}}
+{{Z64File2R|version=Debug|rom-start=00DB4820|rom-end=00DB62E0|size=1AC0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CF0B40|rom-end=00CF25E0|size=1AA0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D5A3D0|rom-end=00D5BE60|size=1A90}}
+|ovl_En_Fd={{Z64File2|Filename=ovl_En_Fd}}
+{{Z64File2R|version=Debug|rom-start=00DC22B0|rom-end=00DC50A0|size=2DF0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CF25E0|rom-end=00CF52A0|size=2CC0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D66BA0|rom-end=00D69840|size=2CA0}}
+|ovl_En_Horse_Link_Child={{Z64File2|Filename=ovl_En_Horse_Link_Child}}
+{{Z64File2R|version=Debug|rom-start=00E1FFB0|rom-end=00E21E30|size=1E80}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CF52A0|rom-end=00CF70A0|size=1E00}}
+{{Z64File2R|version=PAL MQ|rom-start=00DC0950|rom-end=00DC2750|size=1E00}}
+|ovl_Door_Ana={{Z64File2|Filename=ovl_Door_Ana}}
+{{Z64File2R|version=Debug|rom-start=00D4D530|rom-end=00D4DC20|size=6F0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CF70A0|rom-end=00CF7710|size=670}}
+{{Z64File2R|version=PAL MQ|rom-start=00CF8180|rom-end=00CF87F0|size=670}}
+|ovl_Bg_Spot02_Objects={{Z64File2|Filename=ovl_Bg_Spot02_Objects}}
+{{Z64File2R|version=Debug|rom-start=00C7B360|rom-end=00C7C7E0|size=1480}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CF7710|rom-end=00CF8A60|size=1350}}
+{{Z64File2R|version=PAL MQ|rom-start=00C2E020|rom-end=00C2F380|size=1360}}
+|ovl_Bg_Haka={{Z64File2|Filename=ovl_Bg_Haka}}
+{{Z64File2R|version=Debug|rom-start=00C4A400|rom-end=00C4AB40|size=740}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CF8A60|rom-end=00CF9120|size=6C0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C00F00|rom-end=00C015C0|size=6C0}}
+|ovl_Magic_Wind={{Z64File2|Filename=ovl_Magic_Wind}}
+{{Z64File2R|version=Debug|rom-start=00F39D20|rom-end=00F3BC70|size=1F50}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CF9120|rom-end=00CFAE20|size=1D00}}
+{{Z64File2R|version=PAL MQ|rom-start=00ECE050|rom-end=00ECFD50|size=1D00}}
+|ovl_Magic_Fire={{Z64File2|Filename=ovl_Magic_Fire}}
+{{Z64File2R|version=Debug|rom-start=00F37990|rom-end=00F39D20|size=2390}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CFAE20|rom-end=00CFD0F0|size=22D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00ECBD50|rom-end=00ECE050|size=2300}}
+|ovl_En_Ru1={{Z64File2|Filename=ovl_En_Ru1}}
+{{Z64File2R|version=Debug|rom-start=00EA0BF0|rom-end=00EA8530|size=7940}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00CFD0F0|rom-end=00D04790|size=76A0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E3BDB0|rom-end=00E43450|size=76A0}}
+|ovl_Boss_Fd2={{Z64File2|Filename=ovl_Boss_Fd2}}
+{{Z64File2R|version=Debug|rom-start=00CA1370|rom-end=00CA5570|size=4200}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D04790|rom-end=00D084C0|size=3D30}}
+{{Z64File2R|version=PAL MQ|rom-start=00C521D0|rom-end=00C55F00|size=3D30}}
+|ovl_En_Fd_Fire={{Z64File2|Filename=ovl_En_Fd_Fire}}
+{{Z64File2R|version=Debug|rom-start=00DC50A0|rom-end=00DC5E50|size=DB0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D084C0|rom-end=00D091D0|size=D10}}
+{{Z64File2R|version=PAL MQ|rom-start=00D69840|rom-end=00D6A550|size=D10}}
+|ovl_En_Dh={{Z64File2|Filename=ovl_En_Dh}}
+{{Z64File2R|version=Debug|rom-start=00DA1930|rom-end=00DA3470|size=1B40}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D091D0|rom-end=00D0ACA0|size=1AD0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D48320|rom-end=00D49E00|size=1AE0}}
+|ovl_En_Dha={{Z64File2|Filename=ovl_En_Dha}}
+{{Z64File2R|version=Debug|rom-start=00DA3470|rom-end=00DA4460|size=FF0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D0ACA0|rom-end=00D0BC70|size=FD0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D49E00|rom-end=00D4AE00|size=1000}}
+|ovl_En_Rl={{Z64File2|Filename=ovl_En_Rl}}
+{{Z64File2R|version=Debug|rom-start=00E9D290|rom-end=00E9E420|size=1190}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D0BC70|rom-end=00D0CB50|size=EE0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E389A0|rom-end=00E39880|size=EE0}}
+|ovl_En_Encount1={{Z64File2|Filename=ovl_En_Encount1}}
+{{Z64File2R|version=Debug|rom-start=00DBD310|rom-end=00DBE580|size=1270}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D0CB50|rom-end=00D0D6B0|size=B60}}
+{{Z64File2R|version=PAL MQ|rom-start=00D62BD0|rom-end=00D63730|size=B60}}
+|ovl_Demo_Du={{Z64File2|Filename=ovl_Demo_Du}}
+{{Z64File2R|version=Debug|rom-start=00D23160|rom-end=00D26B40|size=39E0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D0D6B0|rom-end=00D10E90|size=37E0}}
+{{Z64File2R|version=PAL MQ|rom-start=00CD09D0|rom-end=00CD41B0|size=37E0}}
+|ovl_Demo_Im={{Z64File2|Filename=ovl_Demo_Im}}
+{{Z64File2R|version=Debug|rom-start=00D3E270|rom-end=00D42510|size=42A0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D10E90|rom-end=00D14E00|size=3F70}}
+{{Z64File2R|version=PAL MQ|rom-start=00CE9C40|rom-end=00CEDBB0|size=3F70}}
+|ovl_Demo_Tre_Lgt={{Z64File2|Filename=ovl_Demo_Tre_Lgt}}
+{{Z64File2R|version=Debug|rom-start=00D4CD00|rom-end=00D4D530|size=830}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D14E00|rom-end=00D15510|size=710}}
+{{Z64File2R|version=PAL MQ|rom-start=00CF7A70|rom-end=00CF8180|size=710}}
+|ovl_En_Fw={{Z64File2|Filename=ovl_En_Fw}}
+{{Z64File2R|version=Debug|rom-start=00DD5180|rom-end=00DD69A0|size=1820}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D15510|rom-end=00D16CC0|size=17B0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D78B30|rom-end=00D7A2F0|size=17C0}}
+|ovl_Bg_Vb_Sima={{Z64File2|Filename=ovl_Bg_Vb_Sima}}
+{{Z64File2R|version=Debug|rom-start=00C8CA60|rom-end=00C8D200|size=7A0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D16CC0|rom-end=00D173D0|size=710}}
+{{Z64File2R|version=PAL MQ|rom-start=00C3E250|rom-end=00C3E970|size=720}}
+|ovl_En_Vb_Ball={{Z64File2|Filename=ovl_En_Vb_Ball}}
+{{Z64File2R|version=Debug|rom-start=00EDEDF0|rom-end=00EE0050|size=1260}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D173D0|rom-end=00D18570|size=11A0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E77E20|rom-end=00E78FD0|size=11B0}}
+|ovl_Bg_Haka_Megane={{Z64File2|Filename=ovl_Bg_Haka_Megane}}
+{{Z64File2R|version=Debug|rom-start=00C4C780|rom-end=00C4CB70|size=3F0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D18570|rom-end=00D18970|size=400}}
+{{Z64File2R|version=PAL MQ|rom-start=00C030F0|rom-end=00C034F0|size=400}}
+|ovl_Bg_Haka_MeganeBG={{Z64File2|Filename=ovl_Bg_Haka_MeganeBG}}
+{{Z64File2R|version=Debug|rom-start=00C4CB70|rom-end=00C4D220|size=6B0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D18970|rom-end=00D19030|size=6C0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C034F0|rom-end=00C03BB0|size=6C0}}
+|ovl_Bg_Haka_Ship={{Z64File2|Filename=ovl_Bg_Haka_Ship}}
+{{Z64File2R|version=Debug|rom-start=00C4DE40|rom-end=00C4E9E0|size=BA0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D19030|rom-end=00D19A70|size=A40}}
+{{Z64File2R|version=PAL MQ|rom-start=00C047D0|rom-end=00C05220|size=A50}}
+|ovl_Bg_Haka_Sgami={{Z64File2|Filename=ovl_Bg_Haka_Sgami}}
+{{Z64File2R|version=Debug|rom-start=00C4D220|rom-end=00C4DE40|size=C20}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D19A70|rom-end=00D1A690|size=C20}}
+{{Z64File2R|version=PAL MQ|rom-start=00C03BB0|rom-end=00C047D0|size=C20}}
+|ovl_En_Heishi2={{Z64File2|Filename=ovl_En_Heishi2}}
+{{Z64File2R|version=Debug|rom-start=00E09A80|rom-end=00E0C220|size=27A0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D1A690|rom-end=00D1C890|size=2200}}
+{{Z64File2R|version=PAL MQ|rom-start=00DAAE70|rom-end=00DAD070|size=2200}}
+|ovl_En_Encount2={{Z64File2|Filename=ovl_En_Encount2}}
+{{Z64File2R|version=Debug|rom-start=00DBE580|rom-end=00DBFA90|size=1510}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D1C890|rom-end=00D1DAC0|size=1230}}
+{{Z64File2R|version=PAL MQ|rom-start=00D63730|rom-end=00D64960|size=1230}}
+|ovl_En_Fire_Rock={{Z64File2|Filename=ovl_En_Fire_Rock}}
+{{Z64File2R|version=Debug|rom-start=00DC8810|rom-end=00DC9C60|size=1450}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D1DAC0|rom-end=00D1EBD0|size=1110}}
+{{Z64File2R|version=PAL MQ|rom-start=00D6CBF0|rom-end=00D6DD00|size=1110}}
+|ovl_En_Brob={{Z64File2|Filename=ovl_En_Brob}}
+{{Z64File2R|version=Debug|rom-start=00D84130|rom-end=00D85220|size=10F0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D1EBD0|rom-end=00D1FCC0|size=10F0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D2B980|rom-end=00D2CA70|size=10F0}}
+|ovl_Mir_Ray={{Z64File2|Filename=ovl_Mir_Ray}}
+{{Z64File2R|version=Debug|rom-start=00F3BC70|rom-end=00F3D6A0|size=1A30}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D1FCC0|rom-end=00D21580|size=18C0}}
+{{Z64File2R|version=PAL MQ|rom-start=00ECFD50|rom-end=00ED1600|size=18B0}}
+|ovl_Bg_Spot09_Obj={{Z64File2|Filename=ovl_Bg_Spot09_Obj}}
+{{Z64File2R|version=Debug|rom-start=00C807E0|rom-end=00C80E80|size=6A0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D21580|rom-end=00D21A90|size=510}}
+{{Z64File2R|version=PAL MQ|rom-start=00C33090|rom-end=00C335B0|size=520}}
+|ovl_Bg_Spot18_Obj={{Z64File2|Filename=ovl_Bg_Spot18_Obj}}
+{{Z64File2R|version=Debug|rom-start=00C87610|rom-end=00C880D0|size=AC0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D21A90|rom-end=00D22360|size=8D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C392F0|rom-end=00C39BC0|size=8D0}}
+|ovl_Boss_Va={{Z64File2|Filename=ovl_Boss_Va}}
+{{Z64File2R|version=Debug|rom-start=00D11350|rom-end=00D1FFE0|size=EC90}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D22360|rom-end=00D30B50|size=E7F0}}
+{{Z64File2R|version=PAL MQ|rom-start=00CBF3E0|rom-end=00CCDC70|size=E890}}
+|ovl_Bg_Haka_Tubo={{Z64File2|Filename=ovl_Bg_Haka_Tubo}}
+{{Z64File2R|version=Debug|rom-start=00C4FF90|rom-end=00C50A40|size=AB0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D30B50|rom-end=00D31570|size=A20}}
+{{Z64File2R|version=PAL MQ|rom-start=00C067F0|rom-end=00C07210|size=A20}}
+|ovl_Bg_Haka_Trap={{Z64File2|Filename=ovl_Bg_Haka_Trap}}
+{{Z64File2R|version=Debug|rom-start=00C4E9E0|rom-end=00C4FF90|size=15B0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D31570|rom-end=00D32B40|size=15D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C05220|rom-end=00C067F0|size=15D0}}
+|ovl_Bg_Haka_Huta={{Z64File2|Filename=ovl_Bg_Haka_Huta}}
+{{Z64File2R|version=Debug|rom-start=00C4BD00|rom-end=00C4C780|size=A80}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D32B40|rom-end=00D335E0|size=AA0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C02650|rom-end=00C030F0|size=AA0}}
+|ovl_Bg_Haka_Zou={{Z64File2|Filename=ovl_Bg_Haka_Zou}}
+{{Z64File2R|version=Debug|rom-start=00C51300|rom-end=00C524D0|size=11D0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D335E0|rom-end=00D347D0|size=11F0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C07A10|rom-end=00C08C00|size=11F0}}
+|ovl_Bg_Spot17_Funen={{Z64File2|Filename=ovl_Bg_Spot17_Funen}}
+{{Z64File2R|version=Debug|rom-start=00C86100|rom-end=00C86410|size=310}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D347D0|rom-end=00D34A20|size=250}}
+{{Z64File2R|version=PAL MQ|rom-start=00C37F10|rom-end=00C38160|size=250}}
+|ovl_En_Syateki_Itm={{Z64File2|Filename=ovl_En_Syateki_Itm}}
+{{Z64File2R|version=Debug|rom-start=00EC5540|rom-end=00EC6700|size=11C0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D34A20|rom-end=00D357C0|size=DA0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E5F700|rom-end=00E604A0|size=DA0}}
+|ovl_En_Syateki_Man={{Z64File2|Filename=ovl_En_Syateki_Man}}
+{{Z64File2R|version=Debug|rom-start=00EC6700|rom-end=00EC7780|size=1080}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D357C0|rom-end=00D36580|size=DC0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E604A0|rom-end=00E61260|size=DC0}}
+|ovl_En_Tana={{Z64File2|Filename=ovl_En_Tana}}
+{{Z64File2R|version=Debug|rom-start=00ECDDC0|rom-end=00ECE1F0|size=430}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D36580|rom-end=00D36820|size=2A0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E67570|rom-end=00E67820|size=2B0}}
+|ovl_En_Nb={{Z64File2|Filename=ovl_En_Nb}}
+{{Z64File2R|version=Debug|rom-start=00E66E00|rom-end=00E6B7F0|size=49F0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D36820|rom-end=00D3ADF0|size=45D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E05740|rom-end=00E09D10|size=45D0}}
+|ovl_Boss_Mo={{Z64File2|Filename=ovl_Boss_Mo}}
+{{Z64File2R|version=Debug|rom-start=00CE5160|rom-end=00CF1120|size=BFC0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D3ADF0|rom-end=00D46390|size=B5A0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C94230|rom-end=00C9FD00|size=BAD0}}
+|ovl_En_Sb={{Z64File2|Filename=ovl_En_Sb}}
+{{Z64File2R|version=Debug|rom-start=00EAD7D0|rom-end=00EAEC50|size=1480}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D46390|rom-end=00D477D0|size=1440}}
+{{Z64File2R|version=PAL MQ|rom-start=00E48440|rom-end=00E49880|size=1440}}
+|ovl_En_Bigokuta={{Z64File2|Filename=ovl_En_Bigokuta}}
+{{Z64File2R|version=Debug|rom-start=00D76290|rom-end=00D78ED0|size=2C40}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D477D0|rom-end=00D4A2E0|size=2B10}}
+{{Z64File2R|version=PAL MQ|rom-start=00D1E4C0|rom-end=00D20FC0|size=2B00}}
+|ovl_En_Karebaba={{Z64File2|Filename=ovl_En_Karebaba}}
+{{Z64File2R|version=Debug|rom-start=00E4B3C0|rom-end=00E4CE20|size=1A60}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D4A2E0|rom-end=00D4BBD0|size=18F0}}
+{{Z64File2R|version=PAL MQ|rom-start=00DEA500|rom-end=00DEBDF0|size=18F0}}
+|ovl_Bg_Bdan_Objects={{Z64File2|Filename=ovl_Bg_Bdan_Objects}}
+{{Z64File2R|version=Debug|rom-start=00C3AA70|rom-end=00C3BDE0|size=1370}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D4BBD0|rom-end=00D4CEA0|size=12D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00BF2330|rom-end=00BF3600|size=12D0}}
+|ovl_Demo_Sa={{Z64File2|Filename=ovl_Demo_Sa}}
+{{Z64File2R|version=Debug|rom-start=00D47AA0|rom-end=00D4A870|size=2DD0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D4CEA0|rom-end=00D4F9C0|size=2B20}}
+{{Z64File2R|version=PAL MQ|rom-start=00CF2B40|rom-end=00CF5660|size=2B20}}
+|ovl_Demo_Go={{Z64File2|Filename=ovl_Demo_Go}}
+{{Z64File2R|version=Debug|rom-start=00D35F00|rom-end=00D36D00|size=E00}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D4F9C0|rom-end=00D50720|size=D60}}
+{{Z64File2R|version=PAL MQ|rom-start=00CE23D0|rom-end=00CE3120|size=D50}}
+|ovl_En_In={{Z64File2|Filename=ovl_En_In}}
+{{Z64File2R|version=Debug|rom-start=00E2FB80|rom-end=00E329F0|size=2E70}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D50720|rom-end=00D53480|size=2D60}}
+{{Z64File2R|version=PAL MQ|rom-start=00DCFB60|rom-end=00DD2900|size=2DA0}}
+|ovl_En_Tr={{Z64File2|Filename=ovl_En_Tr}}
+{{Z64File2R|version=Debug|rom-start=00ED8B40|rom-end=00EDA4B0|size=1970}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D53480|rom-end=00D54D80|size=1900}}
+{{Z64File2R|version=PAL MQ|rom-start=00E71E20|rom-end=00E73720|size=1900}}
+|ovl_Bg_Spot16_Bombstone={{Z64File2|Filename=ovl_Bg_Spot16_Bombstone}}
+{{Z64File2R|version=Debug|rom-start=00C83930|rom-end=00C85140|size=1810}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D54D80|rom-end=00D562C0|size=1540}}
+{{Z64File2R|version=PAL MQ|rom-start=00C35D10|rom-end=00C37260|size=1550}}
+|ovl_Bg_Hidan_Kowarerukabe={{Z64File2|Filename=ovl_Bg_Hidan_Kowarerukabe}}
+{{Z64File2R|version=Debug|rom-start=00C58D60|rom-end=00C59DC0|size=1060}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D562C0|rom-end=00D57190|size=ED0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C0ED60|rom-end=00C0FC40|size=EE0}}
+|ovl_Bg_Bombwall={{Z64File2|Filename=ovl_Bg_Bombwall}}
+{{Z64File2R|version=Debug|rom-start=00C3D5A0|rom-end=00C3DF30|size=990}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D57190|rom-end=00D57A50|size=8C0}}
+{{Z64File2R|version=PAL MQ|rom-start=00BF4C50|rom-end=00BF5510|size=8C0}}
+|ovl_Bg_Spot08_Iceblock={{Z64File2|Filename=ovl_Bg_Spot08_Iceblock}}
+{{Z64File2R|version=Debug|rom-start=00C7F660|rom-end=00C807E0|size=1180}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DDF9C0|rom-end=00DE0A00|size=1040}}
+{{Z64File2R|version=PAL MQ|rom-start=00C32050|rom-end=00C33090|size=1040}}
+|ovl_En_Ru2={{Z64File2|Filename=ovl_En_Ru2}}
+{{Z64File2R|version=Debug|rom-start=00EA8530|rom-end=00EAB540|size=3010}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D57A50|rom-end=00D5A7D0|size=2D80}}
+{{Z64File2R|version=PAL MQ|rom-start=00E43450|rom-end=00E461D0|size=2D80}}
+|ovl_Obj_Dekujr={{Z64File2|Filename=ovl_Obj_Dekujr}}
+{{Z64File2R|version=Debug|rom-start=00F41040|rom-end=00F41720|size=6E0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D5A7D0|rom-end=00D5AE10|size=640}}
+{{Z64File2R|version=PAL MQ|rom-start=00ED4D00|rom-end=00ED5340|size=640}}
+|ovl_Bg_Mizu_Uzu={{Z64File2|Filename=ovl_Bg_Mizu_Uzu}}
+{{Z64File2R|version=Debug|rom-start=00C6E400|rom-end=00C6E5D0|size=1D0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D5AE10|rom-end=00D5AFE0|size=1D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C22A20|rom-end=00C22BF0|size=1D0}}
+|ovl_Bg_Spot06_Objects={{Z64File2|Filename=ovl_Bg_Spot06_Objects}}
+{{Z64File2R|version=Debug|rom-start=00C7D480|rom-end=00C7E930|size=14B0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D5AFE0|rom-end=00D5C3F0|size=1410}}
+{{Z64File2R|version=PAL MQ|rom-start=00C2FFC0|rom-end=00C313C0|size=1400}}
+|ovl_Bg_Ice_Objects={{Z64File2|Filename=ovl_Bg_Ice_Objects}}
+{{Z64File2R|version=Debug|rom-start=00C5E550|rom-end=00C5F480|size=F30}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D5C3F0|rom-end=00D5D330|size=F40}}
+{{Z64File2R|version=PAL MQ|rom-start=00C140D0|rom-end=00C15010|size=F40}}
+|ovl_Bg_Haka_Water={{Z64File2|Filename=ovl_Bg_Haka_Water}}
+{{Z64File2R|version=Debug|rom-start=00C50A40|rom-end=00C51300|size=8C0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D5D330|rom-end=00D5DB10|size=7E0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C07210|rom-end=00C07A10|size=800}}
+|ovl_En_Ma2={{Z64File2|Filename=ovl_En_Ma2}}
+{{Z64File2R|version=Debug|rom-start=00E57A10|rom-end=00E58B10|size=1100}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D5DB10|rom-end=00D5EB70|size=1060}}
+{{Z64File2R|version=PAL MQ|rom-start=00DF66B0|rom-end=00DF7710|size=1060}}
+|ovl_En_Bom_Chu={{Z64File2|Filename=ovl_En_Bom_Chu}}
+{{Z64File2R|version=Debug|rom-start=00D7EE60|rom-end=00D80590|size=1730}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D5EB70|rom-end=00D60210|size=16A0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D26A30|rom-end=00D280D0|size=16A0}}
+|ovl_En_Horse_Game_Check={{Z64File2|Filename=ovl_En_Horse_Game_Check}}
+{{Z64File2R|version=Debug|rom-start=00E1E130|rom-end=00E1F240|size=1110}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D60210|rom-end=00D612E0|size=10D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00DBEB00|rom-end=00DBFBD0|size=10D0}}
+|ovl_Boss_Tw={{Z64File2|Filename=ovl_Boss_Tw}}
+{{Z64File2R|version=Debug|rom-start=00CFD7E0|rom-end=00D11350|size=13B70}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D612E0|rom-end=00D74360|size=13080}}
+{{Z64File2R|version=PAL MQ|rom-start=00CAC290|rom-end=00CBF3E0|size=13150}}
+|ovl_En_Rr={{Z64File2|Filename=ovl_En_Rr}}
+{{Z64File2R|version=Debug|rom-start=00E9E420|rom-end=00EA0BF0|size=27D0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D74360|rom-end=00D76880|size=2520}}
+{{Z64File2R|version=PAL MQ|rom-start=00E39880|rom-end=00E3BDB0|size=2530}}
+|ovl_En_Ba={{Z64File2|Filename=ovl_En_Ba}}
+{{Z64File2R|version=Debug|rom-start=00D6F980|rom-end=00D71910|size=1F90}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D76880|rom-end=00D78750|size=1ED0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D17D70|rom-end=00D19C40|size=1ED0}}
+|ovl_En_Bx={{Z64File2|Filename=ovl_En_Bx}}
+{{Z64File2R|version=Debug|rom-start=00D8B100|rom-end=00D8BCB0|size=BB0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D78750|rom-end=00D79240|size=AF0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D327F0|rom-end=00D332F0|size=B00}}
+|ovl_En_Anubice={{Z64File2|Filename=ovl_En_Anubice}}
+{{Z64File2R|version=Debug|rom-start=00D6A750|rom-end=00D6BBD0|size=1480}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D79240|rom-end=00D7A4F0|size=12B0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D12F80|rom-end=00D14230|size=12B0}}
+|ovl_En_Anubice_Fire={{Z64File2|Filename=ovl_En_Anubice_Fire}}
+{{Z64File2R|version=Debug|rom-start=00D6BBD0|rom-end=00D6CA30|size=E60}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D7A4F0|rom-end=00D7B2B0|size=DC0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D14230|rom-end=00D14FF0|size=DC0}}
+|ovl_Bg_Mori_Hashigo={{Z64File2|Filename=ovl_Bg_Mori_Hashigo}}
+{{Z64File2R|version=Debug|rom-start=00C71280|rom-end=00C71D80|size=B00}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D7B2B0|rom-end=00D7BB70|size=8C0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C250D0|rom-end=00C25990|size=8C0}}
+|ovl_Bg_Mori_Hashira4={{Z64File2|Filename=ovl_Bg_Mori_Hashira4}}
+{{Z64File2R|version=Debug|rom-start=00C71D80|rom-end=00C724E0|size=760}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D7BB70|rom-end=00D7C0F0|size=580}}
+{{Z64File2R|version=PAL MQ|rom-start=00C25990|rom-end=00C25F10|size=580}}
+|ovl_Bg_Mori_Idomizu={{Z64File2|Filename=ovl_Bg_Mori_Idomizu}}
+{{Z64File2R|version=Debug|rom-start=00C73350|rom-end=00C73AD0|size=780}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D7C0F0|rom-end=00D7C730|size=640}}
+{{Z64File2R|version=PAL MQ|rom-start=00C26C60|rom-end=00C272A0|size=640}}
+|ovl_Bg_Spot16_Doughnut={{Z64File2|Filename=ovl_Bg_Spot16_Doughnut}}
+{{Z64File2R|version=Debug|rom-start=00C85140|rom-end=00C858C0|size=780}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D7C730|rom-end=00D7CCE0|size=5B0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C37260|rom-end=00C37820|size=5C0}}
+|ovl_Bg_Bdan_Switch={{Z64File2|Filename=ovl_Bg_Bdan_Switch}}
+{{Z64File2R|version=Debug|rom-start=00C3BDE0|rom-end=00C3D320|size=1540}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D7CCE0|rom-end=00D7E110|size=1430}}
+{{Z64File2R|version=PAL MQ|rom-start=00BF3600|rom-end=00BF4A30|size=1430}}
+|ovl_En_Ma1={{Z64File2|Filename=ovl_En_Ma1}}
+{{Z64File2R|version=Debug|rom-start=00E56700|rom-end=00E57A10|size=1310}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D7E110|rom-end=00D7F3F0|size=12E0}}
+{{Z64File2R|version=PAL MQ|rom-start=00DF53D0|rom-end=00DF66B0|size=12E0}}
+|ovl_Boss_Ganon={{Z64File2|Filename=ovl_Boss_Ganon}}
+{{Z64File2R|version=Debug|rom-start=00CA5570|rom-end=00CC80C0|size=22B50}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00D7F3F0|rom-end=00DA1660|size=22270}}
+{{Z64File2R|version=PAL MQ|rom-start=00C55F00|rom-end=00C781B0|size=222B0}}
+|ovl_Boss_Sst={{Z64File2|Filename=ovl_Boss_Sst}}
+{{Z64File2R|version=Debug|rom-start=00CF1120|rom-end=00CFD7E0|size=C6C0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DA1660|rom-end=00DADB80|size=C520}}
+{{Z64File2R|version=PAL MQ|rom-start=00C9FD00|rom-end=00CAC290|size=C590}}
+|ovl_En_Ny={{Z64File2|Filename=ovl_En_Ny}}
+{{Z64File2R|version=Debug|rom-start=00E72C20|rom-end=00E74710|size=1AF0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DADB80|rom-end=00DAF4B0|size=1930}}
+{{Z64File2R|version=PAL MQ|rom-start=00E10450|rom-end=00E11D90|size=1940}}
+|ovl_En_Fr={{Z64File2|Filename=ovl_En_Fr}}
+{{Z64File2R|version=Debug|rom-start=00DD1590|rom-end=00DD4400|size=2E70}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DAF4B0|rom-end=00DB1F40|size=2A90}}
+{{Z64File2R|version=PAL MQ|rom-start=00D75360|rom-end=00D77DF0|size=2A90}}
+|ovl_Item_Shield={{Z64File2|Filename=ovl_Item_Shield}}
+{{Z64File2R|version=Debug|rom-start=00F35540|rom-end=00F35FF0|size=AB0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DB1F40|rom-end=00DB2950|size=A10}}
+{{Z64File2R|version=PAL MQ|rom-start=00EC9AF0|rom-end=00ECA500|size=A10}}
+|ovl_Bg_Ice_Shelter={{Z64File2|Filename=ovl_Bg_Ice_Shelter}}
+{{Z64File2R|version=Debug|rom-start=00C5F480|rom-end=00C60800|size=1380}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DB2950|rom-end=00DB3B80|size=1230}}
+{{Z64File2R|version=PAL MQ|rom-start=00C15010|rom-end=00C16250|size=1240}}
+|ovl_En_Ice_Hono={{Z64File2|Filename=ovl_En_Ice_Hono}}
+{{Z64File2R|version=Debug|rom-start=00E29BD0|rom-end=00E2AEF0|size=1320}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DB3B80|rom-end=00DB4D70|size=11F0}}
+{{Z64File2R|version=PAL MQ|rom-start=00DCA320|rom-end=00DCB510|size=11F0}}
+|ovl_Item_Ocarina={{Z64File2|Filename=ovl_Item_Ocarina}}
+{{Z64File2R|version=Debug|rom-start=00F34D50|rom-end=00F35540|size=7F0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DB4D70|rom-end=00DB5540|size=7D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00EC9320|rom-end=00EC9AF0|size=7D0}}
+|ovl_Magic_Dark={{Z64File2|Filename=ovl_Magic_Dark}}
+{{Z64File2R|version=Debug|rom-start=00F35FF0|rom-end=00F37990|size=19A0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DB5540|rom-end=00DB6D90|size=1850}}
+{{Z64File2R|version=PAL MQ|rom-start=00ECA500|rom-end=00ECBD50|size=1850}}
+|ovl_Demo_6K={{Z64File2|Filename=ovl_Demo_6K}}
+{{Z64File2R|version=Debug|rom-start=00D1FFE0|rom-end=00D23160|size=3180}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DB6D90|rom-end=00DB9AA0|size=2D10}}
+{{Z64File2R|version=PAL MQ|rom-start=00CCDC70|rom-end=00CD09D0|size=2D60}}
+|ovl_En_Anubice_Tag={{Z64File2|Filename=ovl_En_Anubice_Tag}}
+{{Z64File2R|version=Debug|rom-start=00D6CA30|rom-end=00D6CE00|size=3D0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DB9AA0|rom-end=00DB9D70|size=2D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D14FF0|rom-end=00D152C0|size=2D0}}
+|ovl_Bg_Haka_Gate={{Z64File2|Filename=ovl_Bg_Haka_Gate}}
+{{Z64File2R|version=Debug|rom-start=00C4AB40|rom-end=00C4BD00|size=11C0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DB9D70|rom-end=00DBADF0|size=1080}}
+{{Z64File2R|version=PAL MQ|rom-start=00C015C0|rom-end=00C02650|size=1090}}
+|ovl_Bg_Spot15_Saku={{Z64File2|Filename=ovl_Bg_Spot15_Saku}}
+{{Z64File2R|version=Debug|rom-start=00C83550|rom-end=00C83930|size=3E0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DBADF0|rom-end=00DBB130|size=340}}
+{{Z64File2R|version=PAL MQ|rom-start=00C359D0|rom-end=00C35D10|size=340}}
+|ovl_Bg_Jya_Goroiwa={{Z64File2|Filename=ovl_Bg_Jya_Goroiwa}}
+{{Z64File2R|version=Debug|rom-start=00C666B0|rom-end=00C66E00|size=750}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DBB130|rom-end=00DBB8B0|size=780}}
+{{Z64File2R|version=PAL MQ|rom-start=00C1B5A0|rom-end=00C1BD20|size=780}}
+|ovl_Bg_Jya_Zurerukabe={{Z64File2|Filename=ovl_Bg_Jya_Zurerukabe}}
+{{Z64File2R|version=Debug|rom-start=00C6A180|rom-end=00C6A9B0|size=830}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DBB8B0|rom-end=00DBBF60|size=6B0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C1EDB0|rom-end=00C1F460|size=6B0}}
+|ovl_Bg_Jya_Cobra={{Z64File2|Filename=ovl_Bg_Jya_Cobra}}
+{{Z64File2R|version=Debug|rom-start=00C64630|rom-end=00C666B0|size=2080}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DBBF60|rom-end=00DBDC80|size=1D20}}
+{{Z64File2R|version=PAL MQ|rom-start=00C19860|rom-end=00C1B5A0|size=1D40}}
+|ovl_Bg_Jya_Kanaami={{Z64File2|Filename=ovl_Bg_Jya_Kanaami}}
+{{Z64File2R|version=Debug|rom-start=00C68480|rom-end=00C688E0|size=460}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DBDC80|rom-end=00DBE030|size=3B0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C1D2C0|rom-end=00C1D670|size=3B0}}
+|ovl_Fishing={{Z64File2|Filename=ovl_Fishing}}
+{{Z64File2R|version=Debug|rom-start=00F1F6A0|rom-end=00F33D70|size=146D0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DBE030|rom-end=00DD1A00|size=139D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00EB4A40|rom-end=00EC84E0|size=13AA0}}
+|ovl_Obj_Oshihiki={{Z64File2|Filename=ovl_Obj_Oshihiki}}
+{{Z64File2R|version=Debug|rom-start=00F49DA0|rom-end=00F4BBF0|size=1E50}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DD1A00|rom-end=00DD34B0|size=1AB0}}
+{{Z64File2R|version=PAL MQ|rom-start=00EDCBD0|rom-end=00EDE680|size=1AB0}}
+|ovl_Bg_Gate_Shutter={{Z64File2|Filename=ovl_Bg_Gate_Shutter}}
+{{Z64File2R|version=Debug|rom-start=00C46EC0|rom-end=00C47420|size=560}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DD34B0|rom-end=00DD3930|size=480}}
+{{Z64File2R|version=PAL MQ|rom-start=00BFDDB0|rom-end=00BFE240|size=490}}
+|ovl_Eff_Dust={{Z64File2|Filename=ovl_Eff_Dust}}
+{{Z64File2R|version=Debug|rom-start=00D56F00|rom-end=00D583E0|size=14E0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DD3930|rom-end=00DD4D10|size=13E0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D01560|rom-end=00D02930|size=13D0}}
+|ovl_Bg_Spot01_Fusya={{Z64File2|Filename=ovl_Bg_Spot01_Fusya}}
+{{Z64File2R|version=Debug|rom-start=00C796C0|rom-end=00C799E0|size=320}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DD4D10|rom-end=00DD4FB0|size=2A0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C2C790|rom-end=00C2CA30|size=2A0}}
+|ovl_Bg_Spot01_Idohashira={{Z64File2|Filename=ovl_Bg_Spot01_Idohashira}}
+{{Z64File2R|version=Debug|rom-start=00C799E0|rom-end=00C7A7E0|size=E00}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DD4FB0|rom-end=00DD5BB0|size=C00}}
+{{Z64File2R|version=PAL MQ|rom-start=00C2CA30|rom-end=00C2D630|size=C00}}
+|ovl_Bg_Spot01_Idomizu={{Z64File2|Filename=ovl_Bg_Spot01_Idomizu}}
+{{Z64File2R|version=Debug|rom-start=00C7A7E0|rom-end=00C7AB80|size=3A0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DD5BB0|rom-end=00DD5EC0|size=310}}
+{{Z64File2R|version=PAL MQ|rom-start=00C2D630|rom-end=00C2D950|size=320}}
+|ovl_Bg_Po_Syokudai={{Z64File2|Filename=ovl_Bg_Po_Syokudai}}
+{{Z64File2R|version=Debug|rom-start=00C76DB0|rom-end=00C777E0|size=A30}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DD5EC0|rom-end=00DD6810|size=950}}
+{{Z64File2R|version=PAL MQ|rom-start=00C2A0C0|rom-end=00C2AA30|size=970}}
+|ovl_Bg_Ganon_Otyuka={{Z64File2|Filename=ovl_Bg_Ganon_Otyuka}}
+{{Z64File2R|version=Debug|rom-start=00C44680|rom-end=00C46EC0|size=2840}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DD6810|rom-end=00DD8E50|size=2640}}
+{{Z64File2R|version=PAL MQ|rom-start=00BFB770|rom-end=00BFDDB0|size=2640}}
+|ovl_Bg_Spot15_Rrbox={{Z64File2|Filename=ovl_Bg_Spot15_Rrbox}}
+{{Z64File2R|version=Debug|rom-start=00C82660|rom-end=00C83550|size=EF0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DD8E50|rom-end=00DD9C30|size=DE0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C34BF0|rom-end=00C359D0|size=DE0}}
+|ovl_Bg_Umajump={{Z64File2|Filename=ovl_Bg_Umajump}}
+{{Z64File2R|version=Debug|rom-start=00C8C8E0|rom-end=00C8CA60|size=180}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DD9C30|rom-end=00DD9DC0|size=190}}
+{{Z64File2R|version=PAL MQ|rom-start=00C3E0C0|rom-end=00C3E250|size=190}}
+|ovl_Arrow_Fire={{Z64File2|Filename=ovl_Arrow_Fire}}
+{{Z64File2R|version=Debug|rom-start=00C34AE0|rom-end=00C36AA0|size=1FC0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DE12D0|rom-end=00DE3190|size=1EC0}}
+{{Z64File2R|version=PAL MQ|rom-start=00BEC640|rom-end=00BEE520|size=1EE0}}
+|ovl_Arrow_Ice={{Z64File2|Filename=ovl_Arrow_Ice}}
+{{Z64File2R|version=Debug|rom-start=00C36AA0|rom-end=00C38A80|size=1FE0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DE3190|rom-end=00DE5070|size=1EE0}}
+{{Z64File2R|version=PAL MQ|rom-start=00BEE520|rom-end=00BF0420|size=1F00}}
+|ovl_Arrow_Light={{Z64File2|Filename=ovl_Arrow_Light}}
+{{Z64File2R|version=Debug|rom-start=00C38A80|rom-end=00C3AA70|size=1FF0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DE5070|rom-end=00DE6F60|size=1EF0}}
+{{Z64File2R|version=PAL MQ|rom-start=00BF0420|rom-end=00BF2330|size=1F10}}
+|ovl_Item_Etcetera={{Z64File2|Filename=ovl_Item_Etcetera}}
+{{Z64File2R|version=Debug|rom-start=00F34210|rom-end=00F34C00|size=9F0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DE0A00|rom-end=00DE12D0|size=8D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00EC88F0|rom-end=00EC91C0|size=8D0}}
+|ovl_Obj_Kibako={{Z64File2|Filename=ovl_Obj_Kibako}}
+{{Z64File2R|version=Debug|rom-start=00F438C0|rom-end=00F445F0|size=D30}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DE6F60|rom-end=00DE7C60|size=D00}}
+{{Z64File2R|version=PAL MQ|rom-start=00ED71E0|rom-end=00ED7EE0|size=D00}}
+|ovl_Obj_Tsubo={{Z64File2|Filename=ovl_Obj_Tsubo}}
+{{Z64File2R|version=Debug|rom-start=00F4F970|rom-end=00F50A00|size=1090}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DE7C60|rom-end=00DE8C50|size=FF0}}
+{{Z64File2R|version=PAL MQ|rom-start=00EE1F40|rom-end=00EE2F30|size=FF0}}
+|ovl_En_Wonder_Item={{Z64File2|Filename=ovl_En_Wonder_Item}}
+{{Z64File2R|version=Debug|rom-start=00EEDE90|rom-end=00EEEE40|size=FB0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DE8C50|rom-end=00DE98A0|size=C50}}
+{{Z64File2R|version=PAL MQ|rom-start=00E86230|rom-end=00E86E80|size=C50}}
+|ovl_En_Ik={{Z64File2|Filename=ovl_En_Ik}}
+{{Z64File2R|version=Debug|rom-start=00E2AEF0|rom-end=00E2FB80|size=4C90}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DE98A0|rom-end=00DEDED0|size=4630}}
+{{Z64File2R|version=PAL MQ|rom-start=00DCB510|rom-end=00DCFB60|size=4650}}
+|ovl_Demo_Ik={{Z64File2|Filename=ovl_Demo_Ik}}
+{{Z64File2R|version=Debug|rom-start=00D3C990|rom-end=00D3E270|size=18E0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DEDED0|rom-end=00DEF3E0|size=1510}}
+{{Z64File2R|version=PAL MQ|rom-start=00CE8730|rom-end=00CE9C40|size=1510}}
+|ovl_En_Skj={{Z64File2|Filename=ovl_En_Skj}}
+{{Z64File2R|version=Debug|rom-start=00EB41D0|rom-end=00EB7DC0|size=3BF0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DEF3E0|rom-end=00DF2D10|size=3930}}
+{{Z64File2R|version=PAL MQ|rom-start=00E4EA90|rom-end=00E523D0|size=3940}}
+|ovl_En_Skjneedle={{Z64File2|Filename=ovl_En_Skjneedle}}
+{{Z64File2R|version=Debug|rom-start=00EB7DC0|rom-end=00EB8180|size=3C0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DF2D10|rom-end=00DF3020|size=310}}
+{{Z64File2R|version=PAL MQ|rom-start=00E523D0|rom-end=00E526E0|size=310}}
+|ovl_En_G_Switch={{Z64File2|Filename=ovl_En_G_Switch}}
+{{Z64File2R|version=Debug|rom-start=00DD8AA0|rom-end=00DDA940|size=1EA0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DF3020|rom-end=00DF4850|size=1830}}
+{{Z64File2R|version=PAL MQ|rom-start=00D7C300|rom-end=00D7DB20|size=1820}}
+|ovl_Demo_Ext={{Z64File2|Filename=ovl_Demo_Ext}}
+{{Z64File2R|version=Debug|rom-start=00D30A20|rom-end=00D314D0|size=AB0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DF4850|rom-end=00DF5190|size=940}}
+{{Z64File2R|version=PAL MQ|rom-start=00CDD5B0|rom-end=00CDDF00|size=950}}
+|ovl_Demo_Shd={{Z64File2|Filename=ovl_Demo_Shd}}
+{{Z64File2R|version=Debug|rom-start=00D4A870|rom-end=00D4CD00|size=2490}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DF5190|rom-end=00DF75A0|size=2410}}
+{{Z64File2R|version=PAL MQ|rom-start=00CF5660|rom-end=00CF7A70|size=2410}}
+|ovl_En_Dns={{Z64File2|Filename=ovl_En_Dns}}
+{{Z64File2R|version=Debug|rom-start=00DA5F40|rom-end=00DA74D0|size=1590}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DF75A0|rom-end=00DF8930|size=1390}}
+{{Z64File2R|version=PAL MQ|rom-start=00D4C7B0|rom-end=00D4DB40|size=1390}}
+|ovl_Elf_Msg={{Z64File2|Filename=ovl_Elf_Msg}}
+{{Z64File2R|version=Debug|rom-start=00D66150|rom-end=00D66D30|size=BE0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DF8930|rom-end=00DF8F20|size=5F0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D0F3B0|rom-end=00D0F9A0|size=5F0}}
+|ovl_En_Honotrap={{Z64File2|Filename=ovl_En_Honotrap}}
+{{Z64File2R|version=Debug|rom-start=00E10810|rom-end=00E11ED0|size=16C0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DF8F20|rom-end=00DFA470|size=1550}}
+{{Z64File2R|version=PAL MQ|rom-start=00DB1340|rom-end=00DB28A0|size=1560}}
+|ovl_En_Tubo_Trap={{Z64File2|Filename=ovl_En_Tubo_Trap}}
+{{Z64File2R|version=Debug|rom-start=00EDB740|rom-end=00EDC500|size=DC0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DFA470|rom-end=00DFB110|size=CA0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E749C0|rom-end=00E75660|size=CA0}}
+|ovl_Obj_Ice_Poly={{Z64File2|Filename=ovl_Obj_Ice_Poly}}
+{{Z64File2R|version=Debug|rom-start=00F42E80|rom-end=00F438C0|size=A40}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DFB110|rom-end=00DFBAC0|size=9B0}}
+{{Z64File2R|version=PAL MQ|rom-start=00ED6830|rom-end=00ED71E0|size=9B0}}
+|ovl_Bg_Spot03_Taki={{Z64File2|Filename=ovl_Bg_Spot03_Taki}}
+{{Z64File2R|version=Debug|rom-start=00C7C7E0|rom-end=00C7D170|size=990}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DFBAC0|rom-end=00DFC3B0|size=8F0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C2F380|rom-end=00C2FCA0|size=920}}
+|ovl_Bg_Spot07_Taki={{Z64File2|Filename=ovl_Bg_Spot07_Taki}}
+{{Z64File2R|version=Debug|rom-start=00C7E930|rom-end=00C7EFD0|size=6A0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DFC3B0|rom-end=00DFC970|size=5C0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C313C0|rom-end=00C319B0|size=5F0}}
+|ovl_En_Fz={{Z64File2|Filename=ovl_En_Fz}}
+{{Z64File2R|version=Debug|rom-start=00DD69A0|rom-end=00DD8AA0|size=2100}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DFC970|rom-end=00DFE980|size=2010}}
+{{Z64File2R|version=PAL MQ|rom-start=00D7A2F0|rom-end=00D7C300|size=2010}}
+|ovl_En_Po_Relay={{Z64File2|Filename=ovl_En_Po_Relay}}
+{{Z64File2R|version=Debug|rom-start=00E8D720|rom-end=00E8EF70|size=1850}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00DFE980|rom-end=00E00090|size=1710}}
+{{Z64File2R|version=PAL MQ|rom-start=00E293B0|rom-end=00E2AAC0|size=1710}}
+|ovl_Bg_Relay_Objects={{Z64File2|Filename=ovl_Bg_Relay_Objects}}
+{{Z64File2R|version=Debug|rom-start=00C77B50|rom-end=00C782E0|size=790}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E00090|rom-end=00E00840|size=7B0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C2AD30|rom-end=00C2B4E0|size=7B0}}
+|ovl_En_Diving_Game={{Z64File2|Filename=ovl_En_Diving_Game}}
+{{Z64File2R|version=Debug|rom-start=00DA4460|rom-end=00DA5F40|size=1AE0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E00840|rom-end=00E021F0|size=19B0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D4AE00|rom-end=00D4C7B0|size=19B0}}
+|ovl_En_Kusa={{Z64File2|Filename=ovl_En_Kusa}}
+{{Z64File2R|version=Debug|rom-start=00E51010|rom-end=00E525C0|size=15B0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E021F0|rom-end=00E036D0|size=14E0}}
+{{Z64File2R|version=PAL MQ|rom-start=00DEFF30|rom-end=00DF1410|size=14E0}}
+|ovl_Obj_Bean={{Z64File2|Filename=ovl_Obj_Bean}}
+{{Z64File2R|version=Debug|rom-start=00F3D6A0|rom-end=00F40080|size=29E0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E036D0|rom-end=00E05E60|size=2790}}
+{{Z64File2R|version=PAL MQ|rom-start=00ED1600|rom-end=00ED3D90|size=2790}}
+|ovl_Obj_Bombiwa={{Z64File2|Filename=ovl_Obj_Bombiwa}}
+{{Z64File2R|version=Debug|rom-start=00F40210|rom-end=00F40780|size=570}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E05E60|rom-end=00E063D0|size=570}}
+{{Z64File2R|version=PAL MQ|rom-start=00ED3F30|rom-end=00ED44A0|size=570}}
+|ovl_Obj_Switch={{Z64File2|Filename=ovl_Obj_Switch}}
+{{Z64File2R|version=Debug|rom-start=00F4BE30|rom-end=00F4DED0|size=20A0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E063D0|rom-end=00E08190|size=1DC0}}
+{{Z64File2R|version=PAL MQ|rom-start=00EDE8D0|rom-end=00EE06B0|size=1DE0}}
+|ovl_Obj_Elevator={{Z64File2|Filename=ovl_Obj_Elevator}}
+{{Z64File2R|version=Debug|rom-start=00F41720|rom-end=00F41BB0|size=490}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E08190|rom-end=00E08550|size=3C0}}
+{{Z64File2R|version=PAL MQ|rom-start=00ED5340|rom-end=00ED5700|size=3C0}}
+|ovl_Obj_Lift={{Z64File2|Filename=ovl_Obj_Lift}}
+{{Z64File2R|version=Debug|rom-start=00F44CF0|rom-end=00F457C0|size=AD0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E08550|rom-end=00E08F70|size=A20}}
+{{Z64File2R|version=PAL MQ|rom-start=00ED85A0|rom-end=00ED8FC0|size=A20}}
+|ovl_Obj_Hsblock={{Z64File2|Filename=ovl_Obj_Hsblock}}
+{{Z64File2R|version=Debug|rom-start=00F42780|rom-end=00F42E80|size=700}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E08F70|rom-end=00E09540|size=5D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00ED6260|rom-end=00ED6830|size=5D0}}
+|ovl_En_Okarina_Tag={{Z64File2|Filename=ovl_En_Okarina_Tag}}
+{{Z64File2R|version=Debug|rom-start=00E74D90|rom-end=00E766D0|size=1940}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E09540|rom-end=00E0AA20|size=14E0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E12230|rom-end=00E13730|size=1500}}
+|ovl_En_Yabusame_Mark={{Z64File2|Filename=ovl_En_Yabusame_Mark}}
+{{Z64File2R|version=Debug|rom-start=00EF8AD0|rom-end=00EF96D0|size=C00}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E0AA20|rom-end=00E0B0F0|size=6D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E8F4E0|rom-end=00E8FBB0|size=6D0}}
+|ovl_En_Goroiwa={{Z64File2|Filename=ovl_En_Goroiwa}}
+{{Z64File2R|version=Debug|rom-start=00E02880|rom-end=00E04F00|size=2680}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E0B0F0|rom-end=00E0D4B0|size=23C0}}
+{{Z64File2R|version=PAL MQ|rom-start=00DA4800|rom-end=00DA6BC0|size=23C0}}
+|ovl_En_Ex_Ruppy={{Z64File2|Filename=ovl_En_Ex_Ruppy}}
+{{Z64File2R|version=Debug|rom-start=00DC1000|rom-end=00DC22B0|size=12B0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E0D4B0|rom-end=00E0E570|size=10C0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D65AE0|rom-end=00D66BA0|size=10C0}}
+|ovl_En_Toryo={{Z64File2|Filename=ovl_En_Toryo}}
+{{Z64File2R|version=Debug|rom-start=00ED5FC0|rom-end=00ED6C30|size=C70}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E0E570|rom-end=00E0F200|size=C90}}
+{{Z64File2R|version=PAL MQ|rom-start=00E6F320|rom-end=00E6FFB0|size=C90}}
+|ovl_En_Daiku={{Z64File2|Filename=ovl_En_Daiku}}
+{{Z64File2R|version=Debug|rom-start=00D99720|rom-end=00D9AF10|size=17F0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E0F200|rom-end=00E10940|size=1740}}
+{{Z64File2R|version=PAL MQ|rom-start=00D40570|rom-end=00D41CB0|size=1740}}
+|ovl_En_Nwc={{Z64File2|Filename=ovl_En_Nwc}}
+{{Z64File2R|version=Debug|rom-start=00E72150|rom-end=00E72C20|size=AD0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E10940|rom-end=00E11380|size=A40}}
+{{Z64File2R|version=PAL MQ|rom-start=00E0FA30|rom-end=00E10450|size=A20}}
+|ovl_En_Blkobj={{Z64File2|Filename=ovl_En_Blkobj}}
+{{Z64File2R|version=Debug|rom-start=00D7B690|rom-end=00D7BD00|size=670}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E11380|rom-end=00E118E0|size=560}}
+{{Z64File2R|version=PAL MQ|rom-start=00D23750|rom-end=00D23CB0|size=560}}
+|ovl_Item_Inbox={{Z64File2|Filename=ovl_Item_Inbox}}
+{{Z64File2R|version=Debug|rom-start=00F34C00|rom-end=00F34D50|size=150}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E118E0|rom-end=00E11A40|size=160}}
+{{Z64File2R|version=PAL MQ|rom-start=00EC91C0|rom-end=00EC9320|size=160}}
+|ovl_En_Ge1={{Z64File2|Filename=ovl_En_Ge1}}
+{{Z64File2R|version=Debug|rom-start=00DE7550|rom-end=00DE97B0|size=2260}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E11A40|rom-end=00E13A70|size=2030}}
+{{Z64File2R|version=PAL MQ|rom-start=00D8A4C0|rom-end=00D8C4F0|size=2030}}
+|ovl_Obj_Blockstop={{Z64File2|Filename=ovl_Obj_Blockstop}}
+{{Z64File2R|version=Debug|rom-start=00F40080|rom-end=00F40210|size=190}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E13A70|rom-end=00E13C10|size=1A0}}
+{{Z64File2R|version=PAL MQ|rom-start=00ED3D90|rom-end=00ED3F30|size=1A0}}
+|ovl_En_Sda={{Z64File2|Filename=ovl_En_Sda}}
+{{Z64File2R|version=Debug|rom-start=00EAEE00|rom-end=00EB0640|size=1840}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E13C10|rom-end=00E15250|size=1640}}
+{{Z64File2R|version=PAL MQ|rom-start=00E499B0|rom-end=00E4AFE0|size=1630}}
+|ovl_En_Clear_Tag={{Z64File2|Filename=ovl_En_Clear_Tag}}
+{{Z64File2R|version=Debug|rom-start=00D8CBD0|rom-end=00D959F0|size=8E20}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E15250|rom-end=00E1DDC0|size=8B70}}
+{{Z64File2R|version=PAL MQ|rom-start=00D33CD0|rom-end=00D3C840|size=8B70}}
+|ovl_En_Niw_Lady={{Z64File2|Filename=ovl_En_Niw_Lady}}
+{{Z64File2R|version=Debug|rom-start=00E6FCB0|rom-end=00E71AC0|size=1E10}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E1DDC0|rom-end=00E1F6A0|size=18E0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E0DB10|rom-end=00E0F410|size=1900}}
+|ovl_En_Gm={{Z64File2|Filename=ovl_En_Gm}}
+{{Z64File2R|version=Debug|rom-start=00DF42C0|rom-end=00DF5150|size=E90}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E1F6A0|rom-end=00E203D0|size=D30}}
+{{Z64File2R|version=PAL MQ|rom-start=00D967A0|rom-end=00D974D0|size=D30}}
+|ovl_En_Ms={{Z64File2|Filename=ovl_En_Ms}}
+{{Z64File2R|version=Debug|rom-start=00E65D90|rom-end=00E66490|size=700}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E203D0|rom-end=00E20AC0|size=6F0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E04730|rom-end=00E04E20|size=6F0}}
+|ovl_En_Hs={{Z64File2|Filename=ovl_En_Hs}}
+{{Z64File2R|version=Debug|rom-start=00E24F80|rom-end=00E25B80|size=C00}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E20AC0|rom-end=00E21660|size=BA0}}
+{{Z64File2R|version=PAL MQ|rom-start=00DC5860|rom-end=00DC6400|size=BA0}}
+|ovl_Bg_Ingate={{Z64File2|Filename=ovl_Bg_Ingate}}
+{{Z64File2R|version=Debug|rom-start=00C61480|rom-end=00C618A0|size=420}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E21660|rom-end=00E219F0|size=390}}
+{{Z64File2R|version=PAL MQ|rom-start=00C16EF0|rom-end=00C17280|size=390}}
+|ovl_En_Kanban={{Z64File2|Filename=ovl_En_Kanban}}
+{{Z64File2R|version=Debug|rom-start=00E48010|rom-end=00E4B3C0|size=33B0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E219F0|rom-end=00E24B40|size=3150}}
+{{Z64File2R|version=PAL MQ|rom-start=00DE73B0|rom-end=00DEA500|size=3150}}
+|ovl_En_Heishi3={{Z64File2|Filename=ovl_En_Heishi3}}
+{{Z64File2R|version=Debug|rom-start=00E0C220|rom-end=00E0CCB0|size=A90}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E24B40|rom-end=00E25510|size=9D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00DAD070|rom-end=00DADA40|size=9D0}}
+|ovl_En_Syateki_Niw={{Z64File2|Filename=ovl_En_Syateki_Niw}}
+{{Z64File2R|version=Debug|rom-start=00EC7780|rom-end=00EC9930|size=21B0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E25510|rom-end=00E275A0|size=2090}}
+{{Z64File2R|version=PAL MQ|rom-start=00E61260|rom-end=00E632F0|size=2090}}
+|ovl_En_Attack_Niw={{Z64File2|Filename=ovl_En_Attack_Niw}}
+{{Z64File2R|version=Debug|rom-start=00D6E730|rom-end=00D6F980|size=1250}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E275A0|rom-end=00E28800|size=1260}}
+{{Z64File2R|version=PAL MQ|rom-start=00D16B10|rom-end=00D17D70|size=1260}}
+|ovl_Bg_Spot01_Idosoko={{Z64File2|Filename=ovl_Bg_Spot01_Idosoko}}
+{{Z64File2R|version=Debug|rom-start=00C7AB80|rom-end=00C7AE40|size=2C0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E28800|rom-end=00E28A10|size=210}}
+{{Z64File2R|version=PAL MQ|rom-start=00C2D950|rom-end=00C2DB60|size=210}}
+|ovl_En_Sa={{Z64File2|Filename=ovl_En_Sa}}
+{{Z64File2R|version=Debug|rom-start=00EAB540|rom-end=00EAD7D0|size=2290}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E28A10|rom-end=00E2AC80|size=2270}}
+{{Z64File2R|version=PAL MQ|rom-start=00E461D0|rom-end=00E48440|size=2270}}
+|ovl_En_Wonder_Talk={{Z64File2|Filename=ovl_En_Wonder_Talk}}
+{{Z64File2R|version=Debug|rom-start=00EEEE40|rom-end=00EEFC20|size=DE0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E2AC80|rom-end=00E2B310|size=690}}
+{{Z64File2R|version=PAL MQ|rom-start=00E86E80|rom-end=00E87510|size=690}}
+|ovl_Bg_Gjyo_Bridge={{Z64File2|Filename=ovl_Bg_Gjyo_Bridge}}
+{{Z64File2R|version=Debug|rom-start=00C47420|rom-end=00C47990|size=570}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E2B310|rom-end=00E2B810|size=500}}
+{{Z64File2R|version=PAL MQ|rom-start=00BFE240|rom-end=00BFE730|size=4F0}}
+|ovl_En_Ds={{Z64File2|Filename=ovl_En_Ds}}
+{{Z64File2R|version=Debug|rom-start=00DB3C20|rom-end=00DB4820|size=C00}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E2B810|rom-end=00E2C430|size=C20}}
+{{Z64File2R|version=PAL MQ|rom-start=00D597B0|rom-end=00D5A3D0|size=C20}}
+|ovl_En_Mk={{Z64File2|Filename=ovl_En_Mk}}
+{{Z64File2R|version=Debug|rom-start=00E62970|rom-end=00E637E0|size=E70}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E2C430|rom-end=00E2D2C0|size=E90}}
+{{Z64File2R|version=PAL MQ|rom-start=00E01480|rom-end=00E02310|size=E90}}
+|ovl_En_Bom_Bowl_Man={{Z64File2|Filename=ovl_En_Bom_Bowl_Man}}
+{{Z64File2R|version=Debug|rom-start=00D7CC60|rom-end=00D7E470|size=1810}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E2D2C0|rom-end=00E2E800|size=1540}}
+{{Z64File2R|version=PAL MQ|rom-start=00D24B80|rom-end=00D260C0|size=1540}}
+|ovl_En_Bom_Bowl_Pit={{Z64File2|Filename=ovl_En_Bom_Bowl_Pit}}
+{{Z64File2R|version=Debug|rom-start=00D7E470|rom-end=00D7EE60|size=9F0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E2E800|rom-end=00E2F170|size=970}}
+{{Z64File2R|version=PAL MQ|rom-start=00D260C0|rom-end=00D26A30|size=970}}
+|ovl_En_Owl={{Z64File2|Filename=ovl_En_Owl}}
+{{Z64File2R|version=Debug|rom-start=00E7FF90|rom-end=00E83E40|size=3EB0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E2F170|rom-end=00E32D10|size=3BA0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E1C2F0|rom-end=00E1FE90|size=3BA0}}
+|ovl_En_Ishi={{Z64File2|Filename=ovl_En_Ishi}}
+{{Z64File2R|version=Debug|rom-start=00E35030|rom-end=00E3E250|size=9220}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E32D10|rom-end=00E3BE60|size=9150}}
+{{Z64File2R|version=PAL MQ|rom-start=00DD4E20|rom-end=00DDDF70|size=9150}}
+|ovl_Obj_Hana={{Z64File2|Filename=ovl_Obj_Hana}}
+{{Z64File2R|version=Debug|rom-start=00F42480|rom-end=00F42780|size=300}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E3BE60|rom-end=00E3C170|size=310}}
+{{Z64File2R|version=PAL MQ|rom-start=00ED5F50|rom-end=00ED6260|size=310}}
+|ovl_Obj_Lightswitch={{Z64File2|Filename=ovl_Obj_Lightswitch}}
+{{Z64File2R|version=Debug|rom-start=00F457C0|rom-end=00F46E90|size=16D0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E3C170|rom-end=00E3D5A0|size=1430}}
+{{Z64File2R|version=PAL MQ|rom-start=00ED8FC0|rom-end=00EDA3F0|size=1430}}
+|ovl_Obj_Mure2={{Z64File2|Filename=ovl_Obj_Mure2}}
+{{Z64File2R|version=Debug|rom-start=00F48B60|rom-end=00F495F0|size=A90}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E3D5A0|rom-end=00E3DFC0|size=A20}}
+{{Z64File2R|version=PAL MQ|rom-start=00EDB9E0|rom-end=00EDC400|size=A20}}
+|ovl_En_Go={{Z64File2|Filename=ovl_En_Go}}
+{{Z64File2R|version=Debug|rom-start=00DF5150|rom-end=00DF9910|size=47C0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E3DFC0|rom-end=00E42600|size=4640}}
+{{Z64File2R|version=PAL MQ|rom-start=00D974D0|rom-end=00D9BB10|size=4640}}
+|ovl_En_Fu={{Z64File2|Filename=ovl_En_Fu}}
+{{Z64File2R|version=Debug|rom-start=00DD4400|rom-end=00DD5180|size=D80}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E42600|rom-end=00E43340|size=D40}}
+{{Z64File2R|version=PAL MQ|rom-start=00D77DF0|rom-end=00D78B30|size=D40}}
+|ovl_En_Changer={{Z64File2|Filename=ovl_En_Changer}}
+{{Z64File2R|version=Debug|rom-start=00D8BCB0|rom-end=00D8CBD0|size=F20}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E43340|rom-end=00E43D20|size=9E0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D332F0|rom-end=00D33CD0|size=9E0}}
+|ovl_Bg_Jya_Megami={{Z64File2|Filename=ovl_Bg_Jya_Megami}}
+{{Z64File2R|version=Debug|rom-start=00C68E70|rom-end=00C6A180|size=1310}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E43D20|rom-end=00E44F00|size=11E0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C1DBC0|rom-end=00C1EDB0|size=11F0}}
+|ovl_Bg_Jya_Lift={{Z64File2|Filename=ovl_Bg_Jya_Lift}}
+{{Z64File2R|version=Debug|rom-start=00C688E0|rom-end=00C68E70|size=590}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E44F00|rom-end=00E45450|size=550}}
+{{Z64File2R|version=PAL MQ|rom-start=00C1D670|rom-end=00C1DBC0|size=550}}
+|ovl_Bg_Jya_Bigmirror={{Z64File2|Filename=ovl_Bg_Jya_Bigmirror}}
+{{Z64File2R|version=Debug|rom-start=00C62420|rom-end=00C62EE0|size=AC0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E45450|rom-end=00E45C90|size=840}}
+{{Z64File2R|version=PAL MQ|rom-start=00C17CA0|rom-end=00C184F0|size=850}}
+|ovl_Bg_Jya_Bombchuiwa={{Z64File2|Filename=ovl_Bg_Jya_Bombchuiwa}}
+{{Z64File2R|version=Debug|rom-start=00C631E0|rom-end=00C63EE0|size=D00}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E45C90|rom-end=00E467C0|size=B30}}
+{{Z64File2R|version=PAL MQ|rom-start=00C18760|rom-end=00C192A0|size=B40}}
+|ovl_Bg_Jya_Amishutter={{Z64File2|Filename=ovl_Bg_Jya_Amishutter}}
+{{Z64File2R|version=Debug|rom-start=00C62000|rom-end=00C62420|size=420}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E467C0|rom-end=00E46B50|size=390}}
+{{Z64File2R|version=PAL MQ|rom-start=00C17910|rom-end=00C17CA0|size=390}}
+|ovl_Bg_Jya_Bombiwa={{Z64File2|Filename=ovl_Bg_Jya_Bombiwa}}
+{{Z64File2R|version=Debug|rom-start=00C63EE0|rom-end=00C64630|size=750}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E46B50|rom-end=00E47110|size=5C0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C192A0|rom-end=00C19860|size=5C0}}
+|ovl_Bg_Spot18_Basket={{Z64File2|Filename=ovl_Bg_Spot18_Basket}}
+{{Z64File2R|version=Debug|rom-start=00C86410|rom-end=00C87480|size=1070}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E47110|rom-end=00E48100|size=FF0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C38160|rom-end=00C39150|size=FF0}}
+|ovl_En_Ganon_Organ={{Z64File2|Filename=ovl_En_Ganon_Organ}}
+{{Z64File2R|version=Debug|rom-start=00DDEBE0|rom-end=00DE5D60|size=7180}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E48100|rom-end=00E4F100|size=7000}}
+{{Z64File2R|version=PAL MQ|rom-start=00D81D50|rom-end=00D88D90|size=7040}}
+|ovl_En_Siofuki={{Z64File2|Filename=ovl_En_Siofuki}}
+{{Z64File2R|version=Debug|rom-start=00EB1AA0|rom-end=00EB28C0|size=E20}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E4F100|rom-end=00E4FEB0|size=DB0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E4C3F0|rom-end=00E4D1A0|size=DB0}}
+|ovl_En_Stream={{Z64File2|Filename=ovl_En_Stream}}
+{{Z64File2R|version=Debug|rom-start=00EC16B0|rom-end=00EC1CC0|size=610}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E4FEB0|rom-end=00E50440|size=590}}
+{{Z64File2R|version=PAL MQ|rom-start=00E5BA00|rom-end=00E5BF90|size=590}}
+|ovl_En_Mm={{Z64File2|Filename=ovl_En_Mm}}
+{{Z64File2R|version=Debug|rom-start=00E637E0|rom-end=00E64EC0|size=16E0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E50440|rom-end=00E51A60|size=1620}}
+{{Z64File2R|version=PAL MQ|rom-start=00E02310|rom-end=00E03970|size=1660}}
+|ovl_En_Ko={{Z64File2|Filename=ovl_En_Ko}}
+{{Z64File2R|version=Debug|rom-start=00E4CE20|rom-end=00E51010|size=41F0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E51A60|rom-end=00E55BA0|size=4140}}
+{{Z64File2R|version=PAL MQ|rom-start=00DEBDF0|rom-end=00DEFF30|size=4140}}
+|ovl_En_Kz={{Z64File2|Filename=ovl_En_Kz}}
+{{Z64File2R|version=Debug|rom-start=00E525C0|rom-end=00E53BB0|size=15F0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E55BA0|rom-end=00E570B0|size=1510}}
+{{Z64File2R|version=PAL MQ|rom-start=00DF1410|rom-end=00DF29B0|size=15A0}}
+|ovl_En_Weather_Tag={{Z64File2|Filename=ovl_En_Weather_Tag}}
+{{Z64File2R|version=Debug|rom-start=00EE6E50|rom-end=00EE80C0|size=1270}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E570B0|rom-end=00E57FA0|size=EF0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E7F630|rom-end=00E80520|size=EF0}}
+|ovl_Bg_Sst_Floor={{Z64File2|Filename=ovl_Bg_Sst_Floor}}
+{{Z64File2R|version=Debug|rom-start=00C88610|rom-end=00C88C00|size=5F0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E57FA0|rom-end=00E58500|size=560}}
+{{Z64File2R|version=PAL MQ|rom-start=00C3A110|rom-end=00C3A670|size=560}}
+|ovl_En_Ani={{Z64File2|Filename=ovl_En_Ani}}
+{{Z64File2R|version=Debug|rom-start=00D699A0|rom-end=00D6A750|size=DB0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E58500|rom-end=00E59270|size=D70}}
+{{Z64File2R|version=PAL MQ|rom-start=00D12210|rom-end=00D12F80|size=D70}}
+|ovl_En_Ex_Item={{Z64File2|Filename=ovl_En_Ex_Item}}
+{{Z64File2R|version=Debug|rom-start=00DBFA90|rom-end=00DC1000|size=1570}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E59270|rom-end=00E5A3E0|size=1170}}
+{{Z64File2R|version=PAL MQ|rom-start=00D64960|rom-end=00D65AE0|size=1180}}
+|ovl_Bg_Jya_Ironobj={{Z64File2|Filename=ovl_Bg_Jya_Ironobj}}
+{{Z64File2R|version=Debug|rom-start=00C675E0|rom-end=00C68480|size=EA0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E5A3E0|rom-end=00E5B190|size=DB0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C1C510|rom-end=00C1D2C0|size=DB0}}
+|ovl_En_Js={{Z64File2|Filename=ovl_En_Js}}
+{{Z64File2R|version=Debug|rom-start=00E3F9E0|rom-end=00E40370|size=990}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E5B190|rom-end=00E5BB60|size=9D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00DDF6D0|rom-end=00DE00A0|size=9D0}}
+|ovl_En_Jsjutan={{Z64File2|Filename=ovl_En_Jsjutan}}
+{{Z64File2R|version=Debug|rom-start=00E40370|rom-end=00E451E0|size=4E70}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E5BB60|rom-end=00E60920|size=4DC0}}
+{{Z64File2R|version=PAL MQ|rom-start=00DE00A0|rom-end=00DE4E70|size=4DD0}}
+|ovl_En_Cs={{Z64File2|Filename=ovl_En_Cs}}
+{{Z64File2R|version=Debug|rom-start=00D984A0|rom-end=00D99720|size=1280}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E60920|rom-end=00E61B50|size=1230}}
+{{Z64File2R|version=PAL MQ|rom-start=00D3F340|rom-end=00D40570|size=1230}}
+|ovl_En_Md={{Z64File2|Filename=ovl_En_Md}}
+{{Z64File2R|version=Debug|rom-start=00E602C0|rom-end=00E62970|size=26B0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E61B50|rom-end=00E641C0|size=2670}}
+{{Z64File2R|version=PAL MQ|rom-start=00DFEE10|rom-end=00E01480|size=2670}}
+|ovl_En_Hy={{Z64File2|Filename=ovl_En_Hy}}
+{{Z64File2R|version=Debug|rom-start=00E26190|rom-end=00E29BD0|size=3A40}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E641C0|rom-end=00E67B00|size=3940}}
+{{Z64File2R|version=PAL MQ|rom-start=00DC69E0|rom-end=00DCA320|size=3940}}
+|ovl_En_Ganon_Mant={{Z64File2|Filename=ovl_En_Ganon_Mant}}
+{{Z64File2R|version=Debug|rom-start=00DDA940|rom-end=00DDEBE0|size=42A0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E67B00|rom-end=00E6BD20|size=4220}}
+{{Z64File2R|version=PAL MQ|rom-start=00D7DB20|rom-end=00D81D50|size=4230}}
+|ovl_En_Okarina_Effect={{Z64File2|Filename=ovl_En_Okarina_Effect}}
+{{Z64File2R|version=Debug|rom-start=00E747D0|rom-end=00E74D90|size=5C0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E6BD20|rom-end=00E6C0D0|size=3B0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E11E70|rom-end=00E12230|size=3C0}}
+|ovl_En_Mag={{Z64File2|Filename=ovl_En_Mag}}
+{{Z64File2R|version=Debug|rom-start=00E59B70|rom-end=00E5C0C0|size=2550}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E6C0D0|rom-end=00E6EFE0|size=2F10}}
+{{Z64File2R|version=PAL MQ|rom-start=00DF86C0|rom-end=00DFABE0|size=2520}}
+|ovl_Door_Gerudo={{Z64File2|Filename=ovl_Door_Gerudo}}
+{{Z64File2R|version=Debug|rom-start=00D4DC20|rom-end=00D4E290|size=670}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E6EFE0|rom-end=00E6F5D0|size=5F0}}
+{{Z64File2R|version=PAL MQ|rom-start=00CF87F0|rom-end=00CF8DE0|size=5F0}}
+|ovl_Elf_Msg2={{Z64File2|Filename=ovl_Elf_Msg2}}
+{{Z64File2R|version=Debug|rom-start=00D66D30|rom-end=00D67550|size=820}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E6F5D0|rom-end=00E6FA40|size=470}}
+{{Z64File2R|version=PAL MQ|rom-start=00D0F9A0|rom-end=00D0FE10|size=470}}
+|ovl_Demo_Gt={{Z64File2|Filename=ovl_Demo_Gt}}
+{{Z64File2R|version=Debug|rom-start=00D36D00|rom-end=00D3C990|size=5C90}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E6FA40|rom-end=00E75040|size=5600}}
+{{Z64File2R|version=PAL MQ|rom-start=00CE3120|rom-end=00CE8730|size=5610}}
+|ovl_En_Po_Field={{Z64File2|Filename=ovl_En_Po_Field}}
+{{Z64File2R|version=Debug|rom-start=00E89B70|rom-end=00E8D720|size=3BB0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E75040|rom-end=00E78A20|size=39E0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E259B0|rom-end=00E293B0|size=3A00}}
+|ovl_Efc_Erupc={{Z64File2|Filename=ovl_Efc_Erupc}}
+{{Z64File2R|version=Debug|rom-start=00D562E0|rom-end=00D56F00|size=C20}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E78A20|rom-end=00E79500|size=AE0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D00A70|rom-end=00D01560|size=AF0}}
+|ovl_Bg_Zg={{Z64File2|Filename=ovl_Bg_Zg}}
+{{Z64File2R|version=Debug|rom-start=00C8F920|rom-end=00C8FE90|size=570}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E79500|rom-end=00E79970|size=470}}
+{{Z64File2R|version=PAL MQ|rom-start=00C40F20|rom-end=00C41370|size=450}}
+|ovl_En_Heishi4={{Z64File2|Filename=ovl_En_Heishi4}}
+{{Z64File2R|version=Debug|rom-start=00E0CCB0|rom-end=00E0DDE0|size=1130}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E79970|rom-end=00E7A870|size=F00}}
+{{Z64File2R|version=PAL MQ|rom-start=00DADA40|rom-end=00DAE940|size=F00}}
+|ovl_En_Zl3={{Z64File2|Filename=ovl_En_Zl3}}
+{{Z64File2R|version=Debug|rom-start=00F090B0|rom-end=00F114B0|size=8400}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E7A870|rom-end=00E826C0|size=7E50}}
+{{Z64File2R|version=PAL MQ|rom-start=00E9F1B0|rom-end=00EA7000|size=7E50}}
+|ovl_Boss_Ganon2={{Z64File2|Filename=ovl_Boss_Ganon2}}
+{{Z64File2R|version=Debug|rom-start=00CC80C0|rom-end=00CD9CA0|size=11BE0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E826C0|rom-end=00E939B0|size=112F0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C781B0|rom-end=00C89500|size=11350}}
+|ovl_En_Kakasi={{Z64File2|Filename=ovl_En_Kakasi}}
+{{Z64File2R|version=Debug|rom-start=00E451E0|rom-end=00E46080|size=EA0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E939B0|rom-end=00E946F0|size=D40}}
+{{Z64File2R|version=PAL MQ|rom-start=00DE4E70|rom-end=00DE5BB0|size=D40}}
+|ovl_En_Takara_Man={{Z64File2|Filename=ovl_En_Takara_Man}}
+{{Z64File2R|version=Debug|rom-start=00ECD3F0|rom-end=00ECDDC0|size=9D0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E946F0|rom-end=00E94FB0|size=8C0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E66CB0|rom-end=00E67570|size=8C0}}
+|ovl_Obj_Makeoshihiki={{Z64File2|Filename=ovl_Obj_Makeoshihiki}}
+{{Z64File2R|version=Debug|rom-start=00F47130|rom-end=00F476C0|size=590}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E94FB0|rom-end=00E95440|size=490}}
+{{Z64File2R|version=PAL MQ|rom-start=00EDA540|rom-end=00EDA9D0|size=490}}
+|ovl_Oceff_Spot={{Z64File2|Filename=ovl_Oceff_Spot}}
+{{Z64File2R|version=Debug|rom-start=00F54C80|rom-end=00F55CF0|size=1070}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E95440|rom-end=00E96370|size=F30}}
+{{Z64File2R|version=PAL MQ|rom-start=00EE6CE0|rom-end=00EE7C10|size=F30}}
+|ovl_End_Title={{Z64File2|Filename=ovl_End_Title}}
+{{Z64File2R|version=Debug|rom-start=00F1B420|rom-end=00F1F6A0|size=4280}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E96370|rom-end=00E9A4A0|size=4130}}
+{{Z64File2R|version=PAL MQ|rom-start=00EB0920|rom-end=00EB4A40|size=4120}}
+|ovl_En_Torch={{Z64File2|Filename=ovl_En_Torch}}
+{{Z64File2R|version=Debug|rom-start=00ED3720|rom-end=00ED3810|size=F0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E9A4A0|rom-end=00E9A590|size=F0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E6CAD0|rom-end=00E6CBC0|size=F0}}
+|ovl_Demo_Ec={{Z64File2|Filename=ovl_Demo_Ec}}
+{{Z64File2R|version=Debug|rom-start=00D26B40|rom-end=00D2A5E0|size=3AA0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E9A590|rom-end=00E9DDF0|size=3860}}
+{{Z64File2R|version=PAL MQ|rom-start=00CD41B0|rom-end=00CD7A10|size=3860}}
+|ovl_Shot_Sun={{Z64File2|Filename=ovl_Shot_Sun}}
+{{Z64File2R|version=Debug|rom-start=00F5C8D0|rom-end=00F5D010|size=740}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E9DDF0|rom-end=00E9E4B0|size=6C0}}
+{{Z64File2R|version=PAL MQ|rom-start=00EEE3E0|rom-end=00EEEAA0|size=6C0}}
+|ovl_En_Dy_Extra={{Z64File2|Filename=ovl_En_Dy_Extra}}
+{{Z64File2R|version=Debug|rom-start=00DB62E0|rom-end=00DB6980|size=6A0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E9E4B0|rom-end=00E9EA30|size=580}}
+{{Z64File2R|version=PAL MQ|rom-start=00D5BE60|rom-end=00D5C400|size=5A0}}
+|ovl_En_Wonder_Talk2={{Z64File2|Filename=ovl_En_Wonder_Talk2}}
+{{Z64File2R|version=Debug|rom-start=00EEFC20|rom-end=00EF0CC0|size=10A0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E9EA30|rom-end=00E9F0D0|size=6A0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E87510|rom-end=00E87BB0|size=6A0}}
+|ovl_En_Ge2={{Z64File2|Filename=ovl_En_Ge2}}
+{{Z64File2R|version=Debug|rom-start=00DE97B0|rom-end=00DEB200|size=1A50}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00E9F0D0|rom-end=00EA0A70|size=19A0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D8C4F0|rom-end=00D8DE90|size=19A0}}
+|ovl_Obj_Roomtimer={{Z64File2|Filename=ovl_Obj_Roomtimer}}
+{{Z64File2R|version=Debug|rom-start=00F4BBF0|rom-end=00F4BE30|size=240}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EA0A70|rom-end=00EA0CC0|size=250}}
+{{Z64File2R|version=PAL MQ|rom-start=00EDE680|rom-end=00EDE8D0|size=250}}
+|ovl_En_Ssh={{Z64File2|Filename=ovl_En_Ssh}}
+{{Z64File2R|version=Debug|rom-start=00EB8180|rom-end=00EBA7A0|size=2620}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EA0CC0|rom-end=00EA32B0|size=25F0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E526E0|rom-end=00E54CD0|size=25F0}}
+|ovl_En_Sth={{Z64File2|Filename=ovl_En_Sth}}
+{{Z64File2R|version=Debug|rom-start=00EBD450|rom-end=00EC16B0|size=4260}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EA32B0|rom-end=00EA7360|size=40B0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E57940|rom-end=00E5BA00|size=40C0}}
+|ovl_Oceff_Wipe={{Z64File2|Filename=ovl_Oceff_Wipe}}
+{{Z64File2R|version=Debug|rom-start=00F579A0|rom-end=00F587C0|size=E20}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EA7360|rom-end=00EA80B0|size=D50}}
+{{Z64File2R|version=PAL MQ|rom-start=00EE97C0|rom-end=00EEA540|size=D80}}
+|ovl_Oceff_Storm={{Z64File2|Filename=ovl_Oceff_Storm}}
+{{Z64File2R|version=Debug|rom-start=00F55CF0|rom-end=00F579A0|size=1CB0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EB45A0|rom-end=00EB6140|size=1BA0}}
+{{Z64File2R|version=PAL MQ|rom-start=00EE7C10|rom-end=00EE97C0|size=1BB0}}
+|ovl_En_Weiyer={{Z64File2|Filename=ovl_En_Weiyer}}
+{{Z64File2R|version=Debug|rom-start=00EE80C0|rom-end=00EE9AE0|size=1A20}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EB6140|rom-end=00EB7B40|size=1A00}}
+{{Z64File2R|version=PAL MQ|rom-start=00E80520|rom-end=00E81F20|size=1A00}}
+|ovl_Bg_Spot05_Soko={{Z64File2|Filename=ovl_Bg_Spot05_Soko}}
+{{Z64File2R|version=Debug|rom-start=00C7D170|rom-end=00C7D480|size=310}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EB7B40|rom-end=00EB7E60|size=320}}
+{{Z64File2R|version=PAL MQ|rom-start=00C2FCA0|rom-end=00C2FFC0|size=320}}
+|ovl_Bg_Jya_1flift={{Z64File2|Filename=ovl_Bg_Jya_1flift}}
+{{Z64File2R|version=Debug|rom-start=00C618A0|rom-end=00C62000|size=760}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EB7E60|rom-end=00EB84F0|size=690}}
+{{Z64File2R|version=PAL MQ|rom-start=00C17280|rom-end=00C17910|size=690}}
+|ovl_Bg_Jya_Haheniron={{Z64File2|Filename=ovl_Bg_Jya_Haheniron}}
+{{Z64File2R|version=Debug|rom-start=00C66E00|rom-end=00C675E0|size=7E0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EB84F0|rom-end=00EB8CE0|size=7F0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C1BD20|rom-end=00C1C510|size=7F0}}
+|ovl_Bg_Spot12_Gate={{Z64File2|Filename=ovl_Bg_Spot12_Gate}}
+{{Z64File2R|version=Debug|rom-start=00C81C90|rom-end=00C82120|size=490}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EB8CE0|rom-end=00EB90F0|size=410}}
+{{Z64File2R|version=PAL MQ|rom-start=00C34320|rom-end=00C34730|size=410}}
+|ovl_Bg_Spot12_Saku={{Z64File2|Filename=ovl_Bg_Spot12_Saku}}
+{{Z64File2R|version=Debug|rom-start=00C82120|rom-end=00C82660|size=540}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EB90F0|rom-end=00EB95B0|size=4C0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C34730|rom-end=00C34BF0|size=4C0}}
+|ovl_En_Hintnuts={{Z64File2|Filename=ovl_En_Hintnuts}}
+{{Z64File2R|version=Debug|rom-start=00E0DDE0|rom-end=00E0F7F0|size=1A10}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EB95B0|rom-end=00EBAFE0|size=1A30}}
+{{Z64File2R|version=PAL MQ|rom-start=00DAE940|rom-end=00DB0370|size=1A30}}
+|ovl_En_Nutsball={{Z64File2|Filename=ovl_En_Nutsball}}
+{{Z64File2R|version=Debug|rom-start=00E71AC0|rom-end=00E72150|size=690}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EBAFE0|rom-end=00EBB600|size=620}}
+{{Z64File2R|version=PAL MQ|rom-start=00E0F410|rom-end=00E0FA30|size=620}}
+|ovl_Bg_Spot00_Break={{Z64File2|Filename=ovl_Bg_Spot00_Break}}
+{{Z64File2R|version=Debug|rom-start=00C782E0|rom-end=00C78480|size=1A0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EBB600|rom-end=00EBB7A0|size=1A0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C2B4E0|rom-end=00C2B680|size=1A0}}
+|ovl_En_Shopnuts={{Z64File2|Filename=ovl_En_Shopnuts}}
+{{Z64File2R|version=Debug|rom-start=00EB0640|rom-end=00EB15B0|size=F70}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EBB7A0|rom-end=00EBC6B0|size=F10}}
+{{Z64File2R|version=PAL MQ|rom-start=00E4AFE0|rom-end=00E4BEF0|size=F10}}
+|ovl_En_It={{Z64File2|Filename=ovl_En_It}}
+{{Z64File2R|version=Debug|rom-start=00E3E250|rom-end=00E3E3D0|size=180}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EBC6B0|rom-end=00EBC840|size=190}}
+{{Z64File2R|version=PAL MQ|rom-start=00DDDF70|rom-end=00DDE100|size=190}}
+|ovl_En_GeldB={{Z64File2|Filename=ovl_En_GeldB}}
+{{Z64File2R|version=Debug|rom-start=00DEBEF0|rom-end=00DF1330|size=5440}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EBC840|rom-end=00EC1BF0|size=53B0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D8EAD0|rom-end=00D93E80|size=53B0}}
+|ovl_Oceff_Wipe2={{Z64File2|Filename=ovl_Oceff_Wipe2}}
+{{Z64File2R|version=Debug|rom-start=00F587C0|rom-end=00F5A000|size=1840}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EC1BF0|rom-end=00EC3360|size=1770}}
+{{Z64File2R|version=PAL MQ|rom-start=00EEA540|rom-end=00EEBCB0|size=1770}}
+|ovl_Oceff_Wipe3={{Z64File2|Filename=ovl_Oceff_Wipe3}}
+{{Z64File2R|version=Debug|rom-start=00F5A000|rom-end=00F5B820|size=1820}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EC3360|rom-end=00EC4AB0|size=1750}}
+{{Z64File2R|version=PAL MQ|rom-start=00EEBCB0|rom-end=00EED400|size=1750}}
+|ovl_En_Niw_Girl={{Z64File2|Filename=ovl_En_Niw_Girl}}
+{{Z64File2R|version=Debug|rom-start=00E6EFF0|rom-end=00E6FCB0|size=CC0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EC4AB0|rom-end=00EC5580|size=AD0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E0D040|rom-end=00E0DB10|size=AD0}}
+|ovl_En_Dog={{Z64File2|Filename=ovl_En_Dog}}
+{{Z64File2R|version=Debug|rom-start=00DB1BC0|rom-end=00DB2DC0|size=1200}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EC5580|rom-end=00EC6730|size=11B0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D577C0|rom-end=00D58970|size=11B0}}
+|ovl_En_Si={{Z64File2|Filename=ovl_En_Si}}
+{{Z64File2R|version=Debug|rom-start=00EB15B0|rom-end=00EB1AA0|size=4F0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EC6730|rom-end=00EC6C30|size=500}}
+{{Z64File2R|version=PAL MQ|rom-start=00E4BEF0|rom-end=00E4C3F0|size=500}}
+|ovl_Bg_Spot01_Objects2={{Z64File2|Filename=ovl_Bg_Spot01_Objects2}}
+{{Z64File2R|version=Debug|rom-start=00C7AE40|rom-end=00C7B360|size=520}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EC6C30|rom-end=00EC70F0|size=4C0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C2DB60|rom-end=00C2E020|size=4C0}}
+|ovl_Obj_Comb={{Z64File2|Filename=ovl_Obj_Comb}}
+{{Z64File2R|version=Debug|rom-start=00F40780|rom-end=00F41040|size=8C0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EC70F0|rom-end=00EC7950|size=860}}
+{{Z64File2R|version=PAL MQ|rom-start=00ED44A0|rom-end=00ED4D00|size=860}}
+|ovl_Bg_Spot11_Bakudankabe={{Z64File2|Filename=ovl_Bg_Spot11_Bakudankabe}}
+{{Z64File2R|version=Debug|rom-start=00C80E80|rom-end=00C814F0|size=670}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EC7950|rom-end=00EC7F90|size=640}}
+{{Z64File2R|version=PAL MQ|rom-start=00C335B0|rom-end=00C33BF0|size=640}}
+|ovl_Obj_Kibako2={{Z64File2|Filename=ovl_Obj_Kibako2}}
+{{Z64File2R|version=Debug|rom-start=00F445F0|rom-end=00F44CF0|size=700}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EC7F90|rom-end=00EC8650|size=6C0}}
+{{Z64File2R|version=PAL MQ|rom-start=00ED7EE0|rom-end=00ED85A0|size=6C0}}
+|ovl_En_Dnt_Demo={{Z64File2|Filename=ovl_En_Dnt_Demo}}
+{{Z64File2R|version=Debug|rom-start=00DA74D0|rom-end=00DA86D0|size=1200}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EC8650|rom-end=00EC9370|size=D20}}
+{{Z64File2R|version=PAL MQ|rom-start=00D4DB40|rom-end=00D4E860|size=D20}}
+|ovl_En_Dnt_Jiji={{Z64File2|Filename=ovl_En_Dnt_Jiji}}
+{{Z64File2R|version=Debug|rom-start=00DA86D0|rom-end=00DA9EB0|size=17E0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EC9370|rom-end=00ECA880|size=1510}}
+{{Z64File2R|version=PAL MQ|rom-start=00D4E860|rom-end=00D4FD80|size=1520}}
+|ovl_En_Dnt_Nomal={{Z64File2|Filename=ovl_En_Dnt_Nomal}}
+{{Z64File2R|version=Debug|rom-start=00DA9EB0|rom-end=00DACFB0|size=3100}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00ECA880|rom-end=00ECD680|size=2E00}}
+{{Z64File2R|version=PAL MQ|rom-start=00D4FD80|rom-end=00D52B80|size=2E00}}
+|ovl_En_Guest={{Z64File2|Filename=ovl_En_Guest}}
+{{Z64File2R|version=Debug|rom-start=00E06E00|rom-end=00E07930|size=B30}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00ECD680|rom-end=00ECE020|size=9A0}}
+{{Z64File2R|version=PAL MQ|rom-start=00DA8A30|rom-end=00DA93D0|size=9A0}}
+|ovl_Bg_Bom_Guard={{Z64File2|Filename=ovl_Bg_Bom_Guard}}
+{{Z64File2R|version=Debug|rom-start=00C3D320|rom-end=00C3D5A0|size=280}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00ECE020|rom-end=00ECE240|size=220}}
+{{Z64File2R|version=PAL MQ|rom-start=00BF4A30|rom-end=00BF4C50|size=220}}
+|ovl_En_Hs2={{Z64File2|Filename=ovl_En_Hs2}}
+{{Z64File2R|version=Debug|rom-start=00E25B80|rom-end=00E26190|size=610}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00ECE240|rom-end=00ECE820|size=5E0}}
+{{Z64File2R|version=PAL MQ|rom-start=00DC6400|rom-end=00DC69E0|size=5E0}}
+|ovl_Demo_Kekkai={{Z64File2|Filename=ovl_Demo_Kekkai}}
+{{Z64File2R|version=Debug|rom-start=00D46610|rom-end=00D47AA0|size=1490}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00ECE820|rom-end=00ECFB00|size=12E0}}
+{{Z64File2R|version=PAL MQ|rom-start=00CF1850|rom-end=00CF2B40|size=12F0}}
+|ovl_Bg_Spot08_Bakudankabe={{Z64File2|Filename=ovl_Bg_Spot08_Bakudankabe}}
+{{Z64File2R|version=Debug|rom-start=00C7EFD0|rom-end=00C7F660|size=690}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00ECFB00|rom-end=00ED01A0|size=6A0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C319B0|rom-end=00C32050|size=6A0}}
+|ovl_Bg_Spot17_Bakudankabe={{Z64File2|Filename=ovl_Bg_Spot17_Bakudankabe}}
+{{Z64File2R|version=Debug|rom-start=00C858C0|rom-end=00C86100|size=840}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00ED01A0|rom-end=00ED0880|size=6E0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C37820|rom-end=00C37F10|size=6F0}}
+|ovl_Obj_Mure3={{Z64File2|Filename=ovl_Obj_Mure3}}
+{{Z64File2R|version=Debug|rom-start=00F495F0|rom-end=00F49DA0|size=7B0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00ED0880|rom-end=00ED1050|size=7D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00EDC400|rom-end=00EDCBD0|size=7D0}}
+|ovl_En_Tg={{Z64File2|Filename=ovl_En_Tg}}
+{{Z64File2R|version=Debug|rom-start=00ECE1F0|rom-end=00ECE910|size=720}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00ED1050|rom-end=00ED1720|size=6D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E67820|rom-end=00E67F00|size=6E0}}
+|ovl_En_Mu={{Z64File2|Filename=ovl_En_Mu}}
+{{Z64File2R|version=Debug|rom-start=00E66490|rom-end=00E66E00|size=970}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00ED1720|rom-end=00ED2040|size=920}}
+{{Z64File2R|version=PAL MQ|rom-start=00E04E20|rom-end=00E05740|size=920}}
+|ovl_En_Go2={{Z64File2|Filename=ovl_En_Go2}}
+{{Z64File2R|version=Debug|rom-start=00DF9910|rom-end=00DFFAA0|size=6190}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00ED2040|rom-end=00ED8060|size=6020}}
+{{Z64File2R|version=PAL MQ|rom-start=00D9BB10|rom-end=00DA1B50|size=6040}}
+|ovl_En_Wf={{Z64File2|Filename=ovl_En_Wf}}
+{{Z64File2R|version=Debug|rom-start=00EE9AE0|rom-end=00EEDE90|size=43B0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00ED8060|rom-end=00EDC370|size=4310}}
+{{Z64File2R|version=PAL MQ|rom-start=00E81F20|rom-end=00E86230|size=4310}}
+|ovl_En_Skb={{Z64File2|Filename=ovl_En_Skb}}
+{{Z64File2R|version=Debug|rom-start=00EB28C0|rom-end=00EB41D0|size=1910}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EDC370|rom-end=00EDDC60|size=18F0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E4D1A0|rom-end=00E4EA90|size=18F0}}
+|ovl_Demo_Gj={{Z64File2|Filename=ovl_Demo_Gj}}
+{{Z64File2R|version=Debug|rom-start=00D31FC0|rom-end=00D35F00|size=3F40}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EDDC60|rom-end=00EE1910|size=3CB0}}
+{{Z64File2R|version=PAL MQ|rom-start=00CDE720|rom-end=00CE23D0|size=3CB0}}
+|ovl_Demo_Geff={{Z64File2|Filename=ovl_Demo_Geff}}
+{{Z64File2R|version=Debug|rom-start=00D314D0|rom-end=00D31FC0|size=AF0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EE1910|rom-end=00EE2130|size=820}}
+{{Z64File2R|version=PAL MQ|rom-start=00CDDF00|rom-end=00CDE720|size=820}}
+|ovl_Bg_Gnd_Firemeiro={{Z64File2|Filename=ovl_Bg_Gnd_Firemeiro}}
+{{Z64File2R|version=Debug|rom-start=00C48220|rom-end=00C48800|size=5E0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EE2130|rom-end=00EE2670|size=540}}
+{{Z64File2R|version=PAL MQ|rom-start=00BFEEF0|rom-end=00BFF440|size=550}}
+|ovl_Bg_Gnd_Darkmeiro={{Z64File2|Filename=ovl_Bg_Gnd_Darkmeiro}}
+{{Z64File2R|version=Debug|rom-start=00C47990|rom-end=00C48220|size=890}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EE2670|rom-end=00EE2E30|size=7C0}}
+{{Z64File2R|version=PAL MQ|rom-start=00BFE730|rom-end=00BFEEF0|size=7C0}}
+|ovl_Bg_Gnd_Soulmeiro={{Z64File2|Filename=ovl_Bg_Gnd_Soulmeiro}}
+{{Z64File2R|version=Debug|rom-start=00C49B10|rom-end=00C4A400|size=8F0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EE2E30|rom-end=00EE3690|size=860}}
+{{Z64File2R|version=PAL MQ|rom-start=00C006A0|rom-end=00C00F00|size=860}}
+|ovl_Bg_Gnd_Nisekabe={{Z64File2|Filename=ovl_Bg_Gnd_Nisekabe}}
+{{Z64File2R|version=Debug|rom-start=00C499A0|rom-end=00C49B10|size=170}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EE3690|rom-end=00EE3800|size=170}}
+{{Z64File2R|version=PAL MQ|rom-start=00C00530|rom-end=00C006A0|size=170}}
+|ovl_Bg_Gnd_Iceblock={{Z64File2|Filename=ovl_Bg_Gnd_Iceblock}}
+{{Z64File2R|version=Debug|rom-start=00C48800|rom-end=00C499A0|size=11A0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EE3800|rom-end=00EE48F0|size=10F0}}
+{{Z64File2R|version=PAL MQ|rom-start=00BFF440|rom-end=00C00530|size=10F0}}
+|ovl_En_Gb={{Z64File2|Filename=ovl_En_Gb}}
+{{Z64File2R|version=Debug|rom-start=00DE5D60|rom-end=00DE7550|size=17F0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EE6060|rom-end=00EE7790|size=1730}}
+{{Z64File2R|version=PAL MQ|rom-start=00D88D90|rom-end=00D8A4C0|size=1730}}
+|ovl_En_Gs={{Z64File2|Filename=ovl_En_Gs}}
+{{Z64File2R|version=Debug|rom-start=00E04F00|rom-end=00E06E00|size=1F00}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EE7790|rom-end=00EE9630|size=1EA0}}
+{{Z64File2R|version=PAL MQ|rom-start=00DA6BC0|rom-end=00DA8A30|size=1E70}}
+|ovl_Bg_Mizu_Bwall={{Z64File2|Filename=ovl_Bg_Mizu_Bwall}}
+{{Z64File2R|version=Debug|rom-start=00C6B1B0|rom-end=00C6C960|size=17B0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EE9630|rom-end=00EEAB00|size=14D0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C1FBD0|rom-end=00C210A0|size=14D0}}
+|ovl_Bg_Mizu_Shutter={{Z64File2|Filename=ovl_Bg_Mizu_Shutter}}
+{{Z64File2R|version=Debug|rom-start=00C6DB70|rom-end=00C6E400|size=890}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EEAB00|rom-end=00EEB300|size=800}}
+{{Z64File2R|version=PAL MQ|rom-start=00C22220|rom-end=00C22A20|size=800}}
+|ovl_En_Daiku_Kakariko={{Z64File2|Filename=ovl_En_Daiku_Kakariko}}
+{{Z64File2R|version=Debug|rom-start=00D9AF10|rom-end=00D9C3C0|size=14B0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EEB300|rom-end=00EEC6C0|size=13C0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D41CB0|rom-end=00D43070|size=13C0}}
+|ovl_Bg_Bowl_Wall={{Z64File2|Filename=ovl_Bg_Bowl_Wall}}
+{{Z64File2R|version=Debug|rom-start=00C3DF30|rom-end=00C3E9B0|size=A80}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EEC6C0|rom-end=00EED040|size=980}}
+{{Z64File2R|version=PAL MQ|rom-start=00BF5510|rom-end=00BF5E90|size=980}}
+|ovl_En_Wall_Tubo={{Z64File2|Filename=ovl_En_Wall_Tubo}}
+{{Z64File2R|version=Debug|rom-start=00EE4C20|rom-end=00EE5350|size=730}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EED040|rom-end=00EED530|size=4F0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E7D730|rom-end=00E7DC20|size=4F0}}
+|ovl_En_Po_Desert={{Z64File2|Filename=ovl_En_Po_Desert}}
+{{Z64File2R|version=Debug|rom-start=00E88D20|rom-end=00E89B70|size=E50}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EED530|rom-end=00EEE2F0|size=DC0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E24BF0|rom-end=00E259B0|size=DC0}}
+|ovl_En_Crow={{Z64File2|Filename=ovl_En_Crow}}
+{{Z64File2R|version=Debug|rom-start=00D96E30|rom-end=00D984A0|size=1670}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EEE2F0|rom-end=00EEF990|size=16A0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D3DCA0|rom-end=00D3F340|size=16A0}}
+|ovl_Door_Killer={{Z64File2|Filename=ovl_Door_Killer}}
+{{Z64File2R|version=Debug|rom-start=00D4E290|rom-end=00D4F8E0|size=1650}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EEF990|rom-end=00EF0F00|size=1570}}
+{{Z64File2R|version=PAL MQ|rom-start=00CF8DE0|rom-end=00CFA350|size=1570}}
+|ovl_Bg_Spot11_Oasis={{Z64File2|Filename=ovl_Bg_Spot11_Oasis}}
+{{Z64File2R|version=Debug|rom-start=00C814F0|rom-end=00C81C90|size=7A0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EF0F00|rom-end=00EF1630|size=730}}
+{{Z64File2R|version=PAL MQ|rom-start=00C33BF0|rom-end=00C34320|size=730}}
+|ovl_Bg_Spot18_Futa={{Z64File2|Filename=ovl_Bg_Spot18_Futa}}
+{{Z64File2R|version=Debug|rom-start=00C87480|rom-end=00C87610|size=190}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EF1630|rom-end=00EF17D0|size=1A0}}
+{{Z64File2R|version=PAL MQ|rom-start=00C39150|rom-end=00C392F0|size=1A0}}
+|ovl_Bg_Spot18_Shutter={{Z64File2|Filename=ovl_Bg_Spot18_Shutter}}
+{{Z64File2R|version=Debug|rom-start=00C880D0|rom-end=00C88610|size=540}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EF17D0|rom-end=00EF1D20|size=550}}
+{{Z64File2R|version=PAL MQ|rom-start=00C39BC0|rom-end=00C3A110|size=550}}
+|ovl_En_Ma3={{Z64File2|Filename=ovl_En_Ma3}}
+{{Z64File2R|version=Debug|rom-start=00E58B10|rom-end=00E59B70|size=1060}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EF1D20|rom-end=00EF2C90|size=F70}}
+{{Z64File2R|version=PAL MQ|rom-start=00DF7710|rom-end=00DF86C0|size=FB0}}
+|ovl_En_Cow={{Z64File2|Filename=ovl_En_Cow}}
+{{Z64File2R|version=Debug|rom-start=00D959F0|rom-end=00D96E30|size=1440}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EF2C90|rom-end=00EF40F0|size=1460}}
+{{Z64File2R|version=PAL MQ|rom-start=00D3C840|rom-end=00D3DCA0|size=1460}}
+|ovl_Bg_Ice_Turara={{Z64File2|Filename=ovl_Bg_Ice_Turara}}
+{{Z64File2R|version=Debug|rom-start=00C60C60|rom-end=00C61480|size=820}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EF40F0|rom-end=00EF4920|size=830}}
+{{Z64File2R|version=PAL MQ|rom-start=00C166C0|rom-end=00C16EF0|size=830}}
+|ovl_Bg_Ice_Shutter={{Z64File2|Filename=ovl_Bg_Ice_Shutter}}
+{{Z64File2R|version=Debug|rom-start=00C60800|rom-end=00C60C60|size=460}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EF4920|rom-end=00EF4D90|size=470}}
+{{Z64File2R|version=PAL MQ|rom-start=00C16250|rom-end=00C166C0|size=470}}
+|ovl_En_Kakasi2={{Z64File2|Filename=ovl_En_Kakasi2}}
+{{Z64File2R|version=Debug|rom-start=00E46080|rom-end=00E46D90|size=D10}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EF4D90|rom-end=00EF54B0|size=720}}
+{{Z64File2R|version=PAL MQ|rom-start=00DE5BB0|rom-end=00DE62D0|size=720}}
+|ovl_En_Kakasi3={{Z64File2|Filename=ovl_En_Kakasi3}}
+{{Z64File2R|version=Debug|rom-start=00E46D90|rom-end=00E48010|size=1280}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EF54B0|rom-end=00EF6590|size=10E0}}
+{{Z64File2R|version=PAL MQ|rom-start=00DE62D0|rom-end=00DE73B0|size=10E0}}
+|ovl_Oceff_Wipe4={{Z64File2|Filename=ovl_Oceff_Wipe4}}
+{{Z64File2R|version=Debug|rom-start=00F5B820|rom-end=00F5C8D0|size=10B0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EF6590|rom-end=00EF7570|size=FE0}}
+{{Z64File2R|version=PAL MQ|rom-start=00EED400|rom-end=00EEE3E0|size=FE0}}
+|ovl_En_Eg={{Z64File2|Filename=ovl_En_Eg}}
+{{Z64File2R|version=Debug|rom-start=00DB6980|rom-end=00DB6B90|size=210}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EF7570|rom-end=00EF7720|size=1B0}}
+{{Z64File2R|version=PAL MQ|rom-start=00D5C400|rom-end=00D5C5B0|size=1B0}}
+|ovl_Bg_Menkuri_Nisekabe={{Z64File2|Filename=ovl_Bg_Menkuri_Nisekabe}}
+{{Z64File2R|version=Debug|rom-start=00C6B060|rom-end=00C6B1B0|size=150}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EF7720|rom-end=00EF7870|size=150}}
+{{Z64File2R|version=PAL MQ|rom-start=00C1FA80|rom-end=00C1FBD0|size=150}}
+|ovl_En_Zo={{Z64File2|Filename=ovl_En_Zo}}
+{{Z64File2R|version=Debug|rom-start=00F15F20|rom-end=00F186C0|size=27A0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EF7870|rom-end=00EF9E20|size=25B0}}
+{{Z64File2R|version=PAL MQ|rom-start=00EABA30|rom-end=00EADFF0|size=25C0}}
+|ovl_Obj_Makekinsuta={{Z64File2|Filename=ovl_Obj_Makekinsuta}}
+{{Z64File2R|version=Debug|rom-start=00F46E90|rom-end=00F47130|size=2A0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EFA2E0|rom-end=00EFA430|size=150}}
+{{Z64File2R|version=PAL MQ|rom-start=00EDA3F0|rom-end=00EDA540|size=150}}
+|ovl_En_Ge3={{Z64File2|Filename=ovl_En_Ge3}}
+{{Z64File2R|version=Debug|rom-start=00DEB200|rom-end=00DEBEF0|size=CF0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EFA430|rom-end=00EFAF80|size=B50}}
+{{Z64File2R|version=PAL MQ|rom-start=00D8DE90|rom-end=00D8EAD0|size=C40}}
+|ovl_Obj_Timeblock={{Z64File2|Filename=ovl_Obj_Timeblock}}
+{{Z64File2R|version=Debug|rom-start=00F4EBB0|rom-end=00F4F970|size=DC0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EFAF80|rom-end=00EFBBC0|size=C40}}
+{{Z64File2R|version=PAL MQ|rom-start=00EE12F0|rom-end=00EE1F40|size=C50}}
+|ovl_Obj_Hamishi={{Z64File2|Filename=ovl_Obj_Hamishi}}
+{{Z64File2R|version=Debug|rom-start=00F41BB0|rom-end=00F42480|size=8D0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EFBBC0|rom-end=00EFC410|size=850}}
+{{Z64File2R|version=PAL MQ|rom-start=00ED5700|rom-end=00ED5F50|size=850}}
+|ovl_En_Zl4={{Z64File2|Filename=ovl_En_Zl4}}
+{{Z64File2R|version=Debug|rom-start=00F114B0|rom-end=00F15F20|size=4A70}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00EFC410|rom-end=00F00E40|size=4A30}}
+{{Z64File2R|version=PAL MQ|rom-start=00EA7000|rom-end=00EABA30|size=4A30}}
+|ovl_En_Mm2={{Z64File2|Filename=ovl_En_Mm2}}
+{{Z64File2R|version=Debug|rom-start=00E64EC0|rom-end=00E65D90|size=ED0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00F00E40|rom-end=00F01C00|size=DC0}}
+{{Z64File2R|version=PAL MQ|rom-start=00E03970|rom-end=00E04730|size=DC0}}
+|ovl_Bg_Jya_Block={{Z64File2|Filename=ovl_Bg_Jya_Block}}
+{{Z64File2R|version=Debug|rom-start=00C62EE0|rom-end=00C631E0|size=300}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00F01C00|rom-end=00F01E70|size=270}}
+{{Z64File2R|version=PAL MQ|rom-start=00C184F0|rom-end=00C18760|size=270}}
+|ovl_Obj_Warp2block={{Z64File2|Filename=ovl_Obj_Warp2block}}
+{{Z64File2R|version=Debug|rom-start=00F50A00|rom-end=00F516B0|size=CB0}}
+{{Z64File2R|version=NTSC 1.0|rom-start=00F01E70|rom-end=00F029A0|size=B30}}
+{{Z64File2R|version=PAL MQ|rom-start=00EE2F30|rom-end=00EE3A60|size=B30}}
+|#default = Error
+}}
+|}

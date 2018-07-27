@@ -1,0 +1,9 @@
+Back in _____, I was looking into how the rendering process worked in Ocarina of Time, when I discovered an interesting bug. It turns out that the game will crash when it begins to render frame 2^31+2, or this gross looking number (show ‭2,147,483,650‬). I dub it the Zelda 64 Kill Frame. 
+
+Why does this happen? To understand, we first must talk about parallel framebuffers... I mean, the concept of multiple buffering.  
+
+In order to avoid graphical artifacts like screen tearing, or perhaps having to meet a strict video transmission schedule and risk sending an incomplete frame, Ocarina of Time reserves space for two "16-bit" RGB5A3 320x240 frame buffers at the tail end of ram (803B5000 and 803DA800, starts with 805 for DD). Due to the planned Disk Drive expansion, which requires the memory expansion pack, the start addresses for the frame buffers are stored at 80120FD0 and 80120FD4, instead of being hardcoded.
+
+The basic process of drawing and rendering a frame is fairly simple:
+
+We first start with frame 0. The CPU begins by generating a display list, a sequence of instructions for the RCP to process, for our first frame. When the CPU completes the display list, the frame counter is incremented, and the CPU moves on to generating the display list for the framebuffer at index 1. Meanwhile, the RCP begins parsing/processing the display list, creating a rendering of frame 0 which is stored in framebuffer 0.

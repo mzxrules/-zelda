@@ -1,0 +1,14 @@
+Tower Collapse Interior 7F10
+Deku Boss, 1740
+Deku Tree DA10
+Kokiri Forest 11240
+Lost Woods 10430 (dwarfed by Kokiri Forest)
+Zora River B560
+Zora's Domain 9820
+Zora's Fountain 116A0
+Lake Hylia 1B430
+Goron City A450
+Death Mountain Trail 1EA90
+Death Mountain Crater FEE0 (dwarfed by kokiri Forest)
+Kakariko 1C150
+Kakariko Graveyard (overwritten by Kakariko)

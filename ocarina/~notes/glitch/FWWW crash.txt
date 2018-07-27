@@ -1,0 +1,175 @@
+wrong warp crash
+801DA194
+
+80000B0C
+
+
+00B140:005F60 dmadata
+0110A0:103D30 code
+1C6E60:000030 LINK        SIZE 0015E0 NEXT 801C8470 PREV 00000000
+1C8470:000030 LINK        SIZE 012520 NEXT 801DA9C0 PREV 801C6E60
+1DA9C0:000030 LINK        SIZE 1D47A0 NEXT 803AF190 PREV 801C8470
+23A8C0:009F20 ROOM 00000000
+24D120:002280 AF 002E:  00020000 FILE: 00C55C10:00C57E90 INIT 8024EF30:00C57A20
+25F380:DA0C80 03 ROOM
+26E830:05BCE0 OB 0001    True 00F03000:00F5ECE0
+2CA510:00D330 OB 0002    True 00F5F000:00F6C330
+2D7840:037800 OB 0014    True 00F86000:00FBD800
+368830:01C150 02 SCENE
+368830:01C150 SCENE 01FF9000
+3AF190:000030 LINK      F SIZE 005E40 NEXT 00000000 PREV 801DA9C0
+
+801DA184 //room pointer
+1DA15C //room index
+11B982 //farore's wind
+11B9E8 //Transition Timer (1/60th second per unit)
+
+80080A3C //Load Room
+80080B5C //attempt to load room
+
+1F3582 //blue warp (fire)
+1EFA92 //blue warp (deku)
+
+800D61D0 //textbox input
+800E1244 //farore's wind warp confirm
+1DA2B8 //entrance next 
+
+
+
+Farore's Wind return result per frame.
+
+Function 800D61D0 is called whenever input to confirm a dialog is requested (A, B, C-Up). By breaking on this instruction, I was able to test each frame's result. Note that for blue warps, "frame" refers to the the blue warp timer's value (Instance + 0x182) when choosing to return to a FW point. Also note that the blue warp timer is updated before the textbox input request is performed. Testing was done on Fire Temple and Deku Tree's blue warps.
+
+Child Blue Warps (Exit Frame 0x65): 
+
+//Frame, Current Index, Next Index, Zoneout Type
+
+0x00-0x59 //restore farore's wind point (0x00-0x58 untested but assumed the same)
+0x5A-0x5A //wrong warp, Entrance Index Next = Destination
+0x5B-0x63 //destination, but with Farore's Wind coordinates
+0x64-0x96 //wrong warp (0x65-0x95 untested but assumed the same)
+0x97-0x97 //destination, but with Farore's Wind coordinates (normal void warp timing?)
+0x98-0x99 //destination
+
+Adult Blue Warps (Exit Frame 0xA1): 
+
+0x00-0x95 //restore farore's wind point (0x00-0x94 untested but assumed the same)
+0x96-0x96 //wrong warp
+0x97-0x9F //destination, but with Farore's Wind coordinates
+0xA0-0xB4 //wrong warp
+0xB5-0xB5 //destination, but with Farore's Wind coordinates
+0xB6-0xB7 //destination
+//End Game State
+
+Farore's Wind "Void Warps":
+
+0x00-0x00 //Confirmation Frame
+0x01-0x01 //Nothing
+0x02-0x02 //Link writes Zoneout Type = 3 (Farore's Wind), set the leave scene variable to 0x14, set next entrance index to FW destination
+0x03-0x0A //Nothing. More importantly, the y < -4000 check does not occur
+0x0B-0x0B //Copy next entrance index into current entrance index; Zoneout Type = 1 (Void), set leave scene variable to 0x14, set Next Entrance index to Void destination
+
+Other Notes: 
+
+Confirming the Farore's Wind Return Point triggers an 0xB (11) frame sequence. You can actually see a consistent pattern across all of them.
+
+
+
+Farore's Wind void out timing
+//y velocity = -30 per frame
+//y = -3671
+//~maximum height to void warp
+
+801C853C //global frame timer (intial 2AD, near end of frame)
+8011A5D0 //save context
+8011B934 //zoneout type
+2AD //confirm
+2AE //nothing
+2AF //Zoneout Type = Farore's Wind, set leave scene, set next entrance to FW
+2B0-2B7 //nothing
+2B8 //copy next entrance index into current entrance index
+//Zoneout Type = Void, set leave scene, set next entrance to Void
+
+//y = -3800
+2AD //confirm
+2AF //Zoneout Type = Farore's Wind, set leave scene, set next entrance to FW
+2B8 //copy
+
+
+
+
+//Update order is Link, Blue Warp, then Textbox Check
+
+//Fire Temple
+0x95 //restore fw
+0x96 //ww
+0x97 //fw "void warp" cutscene
+0x98 //fw "void warp" cutscene
+0x99 //fw "void warp" cutscene
+0x9A //fw "void warp" cutscene
+0x9B //fw "void warp" cutscene
+0x9C //fw "void warp" cutscene
+0x9D //fw "void warp" cutscene
+0x9E //fw "void warp" cutscene
+0x9F //fw "void warp" cutscene
+0xA0 //ww 
+0xA1 //ww
+0xA2 //ww
+0xA3 //ww
+0xA4 //ww
+0xA5 //ww
+0xA6 //ww
+0xA7 //ww
+0xA8 //ww
+0xA9 //ww
+0xAA //ww
+0xAB //ww
+0xAC //ww
+0xAD //ww
+0xAE //ww
+0xAF //ww
+0xB0 //ww
+0xB1 //ww
+0xB2 //ww
+0xB3 //ww
+0xB4 //ww
+0xB5 //fw "void warp" cutscene
+0xB6 //cutscene
+0xB7 //cutscene
+
+0xB from confirmation to warp
+
+//Deku Tree
+0x4A //restore fw
+0x59 //restore fw
+0x5A //ww, next is Destination
+0x5B //fw "void warp" cs
+0x62 //fw "void warp" cs
+0x63 //fw "void warp" cs
+0x64 //ww
+0x80 //ww
+0x96 //ww
+0x97 //fw "void warp" cs
+0x98 //cs
+0x99 //cs
+
+Timing for touching an exit:
+0x302 = Frame we hit that shit
+0x30C = Frame the game state is destructed (remember, post incrementation of frame counter)
+//
+0x42 = Frame we hit that shit
+0x4B = Entrance Next is copied over
+0x4C = Final Frame
+
+8038FC4C //code that sets up next entrance when touching an exit
+8009AF1C //gameplay game state "game engine update"
+//updates position of actors
+B478 //copy next entrance index to current entrance index
+
+0x148 = Next Entrance Set
+
+
+Casting FW:
+8011B970 = Zoneout Type 3 (Farore's Wind)
+0x314 //Farore's Wind Zoneout Restore created. XYZ is of Link's current location!
+0x394 //Farore's Wind Zoneout changed to void checkpoint

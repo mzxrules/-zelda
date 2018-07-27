@@ -1,0 +1,50 @@
+1ED920 next
+
+20DB50
+
+BP at 
+
+800CE2B4
+800CE060
+1E33DC
+1E3514
+
+801ED928 (ram)
+
+Dodongo Inhaled Bomb Death Animation handler 
+80873FCC (1E33DC)
+
+Actor instance + 0x0118 stores pointer to a bombchu 
+
+Bombchu Instance = 1ED740
+
+Death Animation treats the killing Bombchu Actor Instance + 0x1E8 as a signed short, which is beyond the Bombchu's allocated 0x1D4 per instance. As such, memnode + 0x08 (the Next Node pointer) is modified. It increments the top 2 bytes for 8 frames by 1.
+
+Notably, the dying Dodongo keeps hold of a reference to the bombchu that killed it after it has been deallocated. Deallocation occurs before incrementing the Instance + 0x1E8 variable for the 3rd time.
+
+
+
+Linking the "false" nodes:
+
+800CE2B4 - Our deallocate or free method
+
+E2D0 - Check if the node being deallocated begins with the magic 0x7373 sequence
+//If not, it appears that the system sets A0 = 003FFF01
+//This is related to the Status register
+//Then jumps to 80003CC0, before returning, causing the allocation to fail?
+
+E2F4 - Check if node is allocated, mark as deallocated if so
+//If not, same sequence as above, jump to 80003CC0, leave function?
+
+
+E33C - Beginning of manipulation of the next node
+
+E34C - If node->next == null, jump
+
+E35C - Test node->next.IsFree
+
+E368 - node->next.IsFree, test if node->next->next is not null
+
+E370 - node->next->next is not null, set node->next->next->prev = node!
+
+E38C - node->next = node->next->next, thus the first false node falls out of scope!

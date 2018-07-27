@@ -1,0 +1,177 @@
+Link Instance
+0x013C s8 //Equipped Tunic
+0x013D s8 //Equipped Sword?
+0x013E s8 //Equipped Shield (0 = none, 1 = Deku, 2 = Hylian, 3 = Mirror)
+0x013F s8 //Equipped Boots
+0x0140 s8 //Held Item (Button Index)
+0x0141 s8 //Held Item (Action Parameter)
+0x0142 s8 //Held Item (C-Item Ordering)
+0x0144 s8 //Held Item (Action Parameter)
+ FF = Shield?
+ 00 = Nothing
+ 03 = Sword
+ 08 = Bow
+ 09 = Fire Arrows
+ 0A = Ice Arrows
+ 0B = Light Arrows
+ 11 = Hookshot
+ 1D = Ocarina
+0x0148 u8? //1 if ? (possibly shield needs to go on Child Link's Back), 0 = neutral
+0x014B u8? //1 possibly if shield in hand?
+0x014D u8 //Right hand item? 08 = neutral, 09 = to heavy to shield, 0A = shielding
+0x014F u8 //current mask?
+0x0150 ptr //pointer to segment offset to display list, related to held item
+0x0154 ptr //pointer to segment offset to display list, related to held item
+0x0158 ptr //pointer to segment offset to display list, related to held item
+0x015C ptr //pointer to segment offset to display list, related to held item
+0x01A0 ptr //points to Title Card/Get Item Object File allocated space
+0x01A4 ? struct (at least 0x34 bytes), value is 0x16, related to animation buffer at 0x1F0, as game loads 5 * this bytes into 0x1F0
+0x01C4 ptr //points to Instance + 0x1F0
+0x01D4 function ptr, points to ?
+0x01D9 u8 //?
+0x01F0 byte[0x86] Current Link animation raw data
+0x0280 ?, current Link animation raw data 2 (possibly the sword?)
+0x039C Actor Instance ptr, held Actor //Hookshot for e.g.
+0x0424 s8  Get Item
+0x0426 s16 Get Item Rotate To Direction?
+0x0428 Actor Instance ptr, Interact Range Actor (getting items, bushes, rocks, bugs)
+0x0430 Actor Instance ptr "ride.actor" (Riding Actor)
+0x0434 u8 ?
+0x0438 Actor Collision struct 1
+0x0488 Actor Collision struct 2 //Body
+0x04D4 Actor Collision struct 3 //sword attacks?!
+  0x04EC Sword Attack type
+0x0554 Actor Collision struct 4 //sword attacks 2?!
+0x05D4 Actor Collision struct 5 //shielding
+0x0664 func ptr //Seems to be Link's primary action pointer?
+ //values
+ 80396E74 - Z-Targeted + Neutral (Enemy Stance?)
+ 803971F0 - Z + Neutral/Tossing Boomerang (Neutral Stance?)
+ 803975EC - Ground Idle/Default State
+ 8039780C - Z + BackRight/BackLeft, Decelerate while Z-Targeted
+ 80397F28 - Z + Back/Tossing Boomerang
+ 80398148 - Z?
+ 80398238 - Z?
+ 80398378 - Z-Targeted + Right/Left, Z+Full Right/Left
+ 803985DC - Entering "Ess Position"/Surfacing Water/"Spin" to snap into dir. when walking
+ 80398BC0 - Walking/Running
+ 80398CC4 - Walking/Running Forward + Z
+ 80399BF8 - Crouch Shielding/Crouch Stabbing
+ 8039A034 - Deflecting with Shield
+ 8039A180 - Hurt?/Bombed?
+ 8039A1F4 - Damage Knockback, launched into air
+ 8039A3D0 - Damage Knockback, On Ground
+ 8039A4B8 - Damage Knockback, Picking Self up off ground
+ 8039A760 - Died (Ground, Child)
+ 8039AB68 - Falling?/Detach from Vines/Backflipping/Sidehopping
+ 8039B15C - Rolling
+ 8039B548 - Jump Attack
+ 8039B8C8 - Holding Spin Attack
+ 8039BA60 - Holding Spin Attack + Walking Forward/Backward
+ 8039BD68 - Holding Spin Attack + Walking Left/Right
+ 8039C0C8 - Jump Climb Tall Ledge (Child)
+ 8039C334 - Complex Interaction (Mounting Vines or Ladder, Touching Liftable Collectible Item, Opening Chest, Enter Crawlspace, Initiate Talk with Shopkeeper, Climb Horse, Talk Ingo)
+ 8039C718 - Spawning into new area (Idle Walk?)/Touching a scene exit
+ 8039CAD0 - Lifting a Cucco
+ 8039CE98 - Failed Grab?
+ 8039CF40 - Launching Bombchu
+ 803A1BE8 - First Person View (C-Up, Slingshot, Bombchus, Boomerang)
+ 803A1F48 - Talking to Navi/Reading Sign
+ 803A2610 - Hanging from Ledge/Grabbing top of Vines
+ 803A2824 - Climbing from Ledge
+ 803A2944 - Climbing Vines/Ladder
+ 803A3024 - Climbing up from Ladder
+ 803A318C - Crawling in Crawl Space
+ 803A3248 - Exiting Crawl Space
+ 803A36D4 - Riding on Epona/Horse
+ 803A3E24 - Climb off Horse
+ 803A4068 - Float in Water (Idle)
+ 803A42A8 - Water (Swim)
+ 803A46A8 - Diving
+ 803A4C54 - Water (Surfacing?)
+ 803A4DD4 - Water Death (Child)
+ 803A4E34 - Pulling Ocarina
+ 803A5074 - ?
+ 803A5144 - Holding Collectible Item/Opening Chest
+ 803A554C - Drinking Potion (Red/Green/Blue)
+ 803A5BA0 - Holding Ruto's Note/Weird Egg
+ 803A6AA4 - Swing sword/Initiate Jump Attack
+ 803A6FCC - Casting Din's Fire/Farore's Wind
+ 803A967C - Stepping on Button/Cutscene
+0x0668 = ptr, collision properties table
+ 808512E8 -> 803A9C88 //adult?
+ 808513BC -> 803A9D5C //child
+0x066C = State Flags
+ & 0x8000 0000 = Disable Floor Collision
+ & 0x4000 0000 = ?
+ & 0x2000 0000 = Environment Frozen/Invulerable
+ & 0x1000 0000 = Using Non-Weapon Item
+ & 0x0800 0000 = Swimming
+ & 0x0400 0000 = Shielding 
+ & 0x0080 0000 = Riding Epona? (sll 8)
+ & 0x0000 0800 = Holding Item
+ & 0x0000 2000 = ?
+0x0670
+ & 0x8000 0000 = ?
+ & 0x1000 0000 = Is in Idle Animation 
+ & 0x0000 0400 = Is below water surface?
+ & 0x0000 0800 = Is diving?
+ & 0x0000 0020 = ? (& 0x0000 0060 set on grabbing vine state)
+ & 0x0000 0040 = ? (& 0x0000 0060 set on grabbing vine state)
+0x067C Navi Instance?
+0x0682 u8 ?
+0x0684 Actor within talk/target range of Link
+0x0688 float, distance from actor within talk/target range
+0x069D u8 ? (0x04 is some state, possibly talking?)
+0x06B4 f32 ? //probably height related?
+0x0828 float //probably XZ speed variable for below
+0x082C s16 //Sets Y Rotation to Link's XZ speed variable (instance + 0x68)
+0x081C ptr //Function pointer to ?
+0x0830 u16 ?
+0x0832 s8 Sword Animation Index
+0x0833 s8 Swiping Sword (FF Jump Attack, 01 Normal swipe?)
+0x0836 byte //Incremented every visual frame, 0-3, wraps. Index byte arrays at 0x837 and 0x83B
+0x0837 byte[4] //Contains rotation data 1?
+0x083B byte[4] //Contains rotation data 2?
+
+0x083F byte //?
+0x0850 s16 //?
+0x087E byte
+0x0880 s8 ?
+0x0891 u8
+0x089C float //wind speed (fans)
+0x08A0 short //wind direction (fans)
+0x08A8 float[3] x,y,z of sword swing tip/deku stick tip/deku stick flame base
+0x0920 float //draw routine, y component of something
+0x0944 float //draw routine, y component of something
+0x09D0 float[3] //xyz?
+0x0A63 byte
+0x0A64 ptr //function pointer to ?
+0x0A68 s8 //Invincibility Frames. Positive are "damage" invincibility, negative are "invisible" invincibility
+0x0A6A byte
+0x0A76 s8 //Possibly Dark Link health?
+0x0A77 byte
+
+
+
+1) The body collision cylinder has a secondary Y component, dependent on data created by draw routine
+2) Value = Avg. of 2 point's Y data - Link's current Y. Normally this is ~3, but with the glitch
+3) Value = 0 - ~450, or ~-450, causing the collsion to fail. 
+
+
+001DB094
+
+38C724 AE090664
+
+80097700
+80097740
+80097780
+800E8530
+
+
+//dark link hacks
+1E5440
+801E2E18 //init
+801E30C0 //update
+801E4AEC //draw
+800E8B90

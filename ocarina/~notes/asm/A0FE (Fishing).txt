@@ -1,0 +1,53 @@
+80A3BDE8  (T:801E9CE8) //Actor Main
+A298 //jr jump table at 801F3528
+B848 //leads to hooked fish logic
+
+80A3C850 -> 801EA750 //NOT A FUNCTION START (part of Actor Main)
+//Start of logic for checking time of day
+
+80A3801C (T:801E5F1C) //Draw
+//possibly related to drawing the hooked fish
+
+80A3BC28 (T:801E9B28) //Related to setting size of fish in tank
+
+80A44464 -> 801F2364 //not a function, sets fish length/weight digits
+448C //convert length to weight
+//F6 = length^2
+//F8 = constant 0.0036f
+//F10 = constant 0.5f
+//F4 = F6*F8
+//F6 = F4 + F10
+
+80A3D0A8 //80A45628 subroutine, fish seeking attention?
+80A3D3D8 -> 801EB2D8 //not a function, seems related to boosting catch rates
+
+
+== Save Context ==
+0xEC0 //Bit packed value
+forced to 0xFFFF EFFF
+& 0x7F00 0000 //fish size
+& 0x0000 1000 //Stole Hat
+& 0x0000 0800 //Gold Scale? or have fish?
+& 0x0000 0200 //Fished
+& 0x0000 0100 //Went fishing as a child
+
+== Instance ==
+
+Fish
+
+0x148 s16 //?, set to 7 when within the magic time span
+0x170 s16 //Splash Timer. Set to random 0 to 150 + 0xC8 when time of day falls between 0x3AAA to 0x3AC6 or 0xC000 to 0xC01C
+0x19C float //? possibly length?
+
+80206B40
+
+== Data ==
+80A44A58 u16 //Biggest Fish Length
+80A44A64 u16?
+80A44A68 u8 (set to 0 if Save Context + 0xEC0 & 0x1000 is 1, else 0)
+80A4570C float //?
+
+=== BSS Block ===
+80A47EE0 -> 801F5DE0 
+0038 ptr //Possibly "hooked" fish
+0048 f32[3] //possibly fishing line "hook" point

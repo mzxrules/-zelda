@@ -1,0 +1,36 @@
+B5E490 actor table
+  Format:
+    u32 vrom start
+	u32 vrom end
+	u32 vram start
+	u32 vram end
+	u32 file ram if loaded
+	u32 vram address of actor info
+	u32 ram address of file name
+	u8  ???
+	u8  ??? used by door actor (0009)
+	u8  instances active (ram)
+	u8  ???
+
+B743E0 ovl_kaleido_scope/ovl_player_actor table?
+  Format:
+    u32 file ram address
+	u32 vrom start
+	u32 vrom end
+	u32 vram start
+	u32 vram end
+	u32 ??? (ram reference to code.zasm?)
+	u32 ram pointer to file name
+	
+	
+801D8D20 Static graphic table //(doesn't map to B9CBD0 rom)
+  Format:
+    u32 static list length
+	u32 ???
+	u32 pointer to icon_item_static
+	u32 pointer to icon_item_24_static
+	u32 pointer to icon_item_field_static
+	u32 pointer to icon_item_*lang_static
+	u32 pointer to map_name_static
+	u32 pointer to gameplay_keep (0001)
+	

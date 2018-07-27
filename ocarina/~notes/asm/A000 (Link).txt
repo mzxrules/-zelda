@@ -1,0 +1,244 @@
+8038E594 //ovl_player_actor, sets variables for invincibility frames
+
+
+80831698 (T:8038A038) //Link, called when swapping held item?
+//A0 = Global Context
+//A1 = Link Instance
+//A2 = Action Parameter being swapped to
+
+80831A04 (T:8038A3A4) //Link, ?
+//related to lighting deku stick, launching bombchu
+//A0 = Global Context
+//A1 = Link Instance
+//A2 = ?, byte (0 this pass)
+
+
+
+80834000 (T:8038C9A0) //Use Item Function
+//A0 = Global Context
+//A1 = Link Instance
+//A2 = Item Index (Inventory)
+//use T address
+C9B8 jal	8038A0F8 //fetch Item Action Parameter Index
+C9D4 //branch CA14 if Link Instance + 0x144 and 0x141 aren't equal (action params)
+C9E8 //branch CA3C if Link is not holding an item
+CA3C //branch CA74 if Action Parameter is 0
+CA4C //branch CA78 if Link Instance + 0x66C flag 0x0100 0000 is not set
+CA84 //branch CB48 if Bombchu Bowling minigame chu count is not 0
+CA8C //branch CAAC if Action Parameter is not 06 (Deku Stick)
+CAB4 //branch CAD0 if Action Parameter is not 2E (Magic Bean)
+//A0 = Link Instance, A1 = Action Parameter
+CADC jal	80079D48 //Test if Action Parameter is Bomb (0) Bombchu (1), else -1
+CAF0 //branch CB48 if Action Parameter is not a Bomb or Bombchu
+CB50 //branch CBCC if Action Parameter is not 0x42 (Lens of Truth)
+CBD0 //branch CC14 if Action Parameter is not 0x1B (Deku Nut)
+//A0 = Link Instance, A1 = Action Parameter
+CC1C jal	80079BA8 //Test if Link is casting a magic spell
+CC30 //branch CCA0 if Action Parameter is not a magic spell
+CCA4 //branch CCD8 if Action Parameter is < 0x3A (likely tests for Action Parameter is not a Mask)
+CCDC //branch CCE8 if Action Parameter is < 0x1C (start of test if Action Parameter is Ocarina Item)
+CCEC //branch CD4C if Action Parameter is < 0x1F
+CD50 //branch CD88 if Action Parameter is not equal to Link Instance + 0x141
+CD64 //branch CE80 if Held Actor (Link Instance + 0x039C) is non-null
+//A0 = Link Instance, A1 = Action Parameter
+CD70 jal	80079D48 //Test if Action Parameter is Bomb or Bombchu
+CD7C //branch CE80 if Action Parameter is not a Bomb/Bombchu
+CE80
+//803A9E78 s32 = 1
+//803A9E74 s32 = 1
+
+80831758 (T:8038A0F8) //Get Item Action Parameter Index
+//A0 = Item Index (Inventory)
+//V0 = Item Action Parameter Index
+
+
+803A0328 //related to dying outside the temple of time crash?
+
+808470BC (T:8039FA5C) //Some beast of a function
+//A0 = Link Instance
+//A1 = Global Context
+//A2 = Buttons ptr
+//notes use T addressing
+0000 //Writes Link's XZ velocity (Instance + 0x68)
+0004 //Writes Link's XZ velocity direction (Instance + 0x32)
+07F0 //Branch 0824 if Link is not Shielding
+
+
+803A0000 //related to setting up Link's x,y,z velocity vectors
+
+
+
+803A72C8 //function called when hookshot hits hookable surface, handles animation/etc
+73A4 // begin zeroing "below water surface" flag at 0x672
+
+803A5B54 //spawning blue fire?
+
+80390DB8 //display navi dialog?
+
+803A99A8 //?
+9A74 //copy text id from Z-Target/Talking actor to Link
+
+80395018 //Interact with Actor
+//Handles logic for interacting with NPCs
+//A0 = Instance
+//A1 = Global Context
+
+8038A318 //Pull Out Hookshot
+//Spawns Hookshot Actor directly
+
+80830D94 (T:80389734) //?
+//called when opening chest
+//A0 = Link Instance
+
+808302C4 (T:80388C64) //Update Link's Y rotation by Animation Data
+//Increase Link's Y rotation by value stored at (Instance + 0x1F0) + 0x08
+//A0 = Link Instance
+
+80837140 (T:8038FAE0) //something related to touching an exit 
+
+80842BA8 (T:8039B548) //Related to Jump Attacking
+
+808322FC (T:8038AC9C) //Small relation to using items
+AD44 jal	8038A804 //? (ACTION SWAP RELATED)
+
+80831E64 (T:8038A804) //?
+//ACTION SWAP TEST TOP
+AA04 //Checks for item button input, storing selected button index in A3
+AA30 jal	80831D48 (T:8038A6E8) //Get Used Item (from Button Press)
+AA40 //branch AAC0 if Item Button was pressed
+AACC jal	8038C9A0 //Use Item Function
+
+
+80831D48 (T:8038A6E8) //Get Used Item
+//A0 = Global Context
+//A1 = Button Index
+//V0 = u8 Item (C-Item Indexing)
+//return -1 if button index is out of range
+//if Global Context + 0x11E5D (s8) > 0, return 9 (Bombchus)
+//if Global Context + 0x11E5D (s8) < 0, return -1
+A724 //Branch A770 if Button Index > 0
+//B button logic
+//T6 = Temp B (Save Context + 0x13E2)
+//If B can't be used, return -1
+//If B is 0x55 (Broken Goron Sword), return 0x3D (Goron's Sword)
+//Return B
+
+80834734 (T:8038D0D4) //State Related
+D1A8 jal	8038AC9C //Test Item Equip maybe?
+D1BC //branch D1D0 if State Func Pointer (Instance + 0x664) != 803A5074
+
+80833088 (T:8038BA28) //?
+//Instance + 0x81C func
+//A0 = Link Instance
+//A1 = Global Context
+//update Link Instance + 0x850
+BA4C jal	80079BD4 //Test if Link Action is the Hookshot/Longshot
+BA54 //branch BA70 if Link Action isn't Hookshot/Longshot
+BA70 jal	8038B154
+
+808327B4 (T:8038B154) //?
+//A0 = Global Context
+//A1 = Link Instance
+//V0 = 0 if checks fail, 1 if checks pass
+B178 //Return 0 if Instance + 0x66C  & 0x20C0 != 0
+B188 //Return 0 if Global Context + 0x11E5C != 0
+B198 //Return 0 if Link Instance + 0x141 != Instance + 0x144
+B1A4 //Return 0 if No Shield Equipped (Instance + 0x13E)
+B1AC //Test if Child Link has Hylian Shield equipped
+B1B4 //Return 0 if Hylian Shield equipped
+B1BC jal	8038A5C4
+B1C4 //return if above returns 0
+
+80831C24 (T:8038A5C4) //?
+//A0 = Link Instance
+//V0 = 
+//	1 if Instance + 66C & 0x0010 = 1
+//	1 if Instance + 0x66C & 0x40030000 > 1
+//	else 0
+A5C4 jal	80079478 //V0 = Instance + 0x66C & 0x0010
+A5DC //return 0 if V0 = 0
+A5E4 jal	8038A524
+
+
+80831B84 (T:8038A524) //?
+//A0 = Link Instance
+//V0 = 1 if Instance + 0x66C & 0x40030000 > 1, else 0
+
+80835C14 (T:8038E5B4) //Update Link's Health?
+//Possibly Deal Damage
+//A0 = Global Context
+//A1 = Link Instance
+//A2 = s16 Increment Health (e.g. -4 deals 1/4th heart damage)
+//V0 = ?
+E5C0 //return 1 if Instance + 0xA68 != 0
+E5D4 //return 1 if Actor Type != 2
+
+
+80835D08 (T:8038E6A8) //Link takes damage
+//A0 = Global Context
+//A1 = Link Instance
+//A2 = ?
+//A3 = f32?
+E6D0 //?
+E6E8 //Play Sfx 083F (Hurt)
+
+808363DC (T:8038ED7C) //?
+//A0 = Link Instance
+//A1 = Global Context
+EDC0 jal 80021600 //Calculate Link's effective height?, return result in F0
+EDC8 //F4 = Instance + 0x6B4 (?)
+EDCC //F6 = Link's Y scale
+//F8 = F4 * F6
+EDD4 //F10 = 8.0f
+EDE0 //F16 = F0 - 8.0f (60.0f this pass as Adult Link, not on Epona)
+EDE4 //A1 = 0x6805
+EDF0 //V0 = 1 if F16 < F8
+EDFC //branch EE3C if V0 = 1 and set A0 = Link Instance
+EE10 //branch EE3C if Instance + 0x88 & 0x0100 != 0
+EE18 //A0 = s32 at 803A9E44
+EE20 //branch EE3C if A0 = 9
+EE30 //branch EF44 and set V0 = Instance + 0x891 if Instance + 0x670 & 0x8000 0000 == 0 
+F300 jal 800347C8 //sidewall collision detection? //GLITCH START
+
+80838F6C (T:8039190C) // Load Object File
+//Loads gi object file
+//A0 = Link Instance
+//A1 = Object File Id
+
+8083C678 (T:80395018) //Item Giving NPC Interactions
+//checks if Link should get an item
+//A0 = Link
+//A1 = Global Context
+
+80845CB0 (T:8039E650) //Background Collision Detection
+E684 //branch E6A8 if instance +0x670 &>> 0x0004 0000 (Is Crawling) is not set
+E688 
+//F0 = 10f
+//F2 = 15f
+//F12 = 30f
+//branch E6C0 (E6BC)
+E6A8 
+//F0 = [Instance + 0x668]+0x38
+//F2 = 26f
+//F12 = [Instance + 0x668]+0x00
+
+== Data ==
+808514A4 (T:803A9E44) 0212E4 s32 ?
+803AAEF8 //Actor Collision struct 5, shielding data
+808512E8 -> 803A9C88 //adult properties (inst + 0x668)
+808513BC -> 803A9D5C //child properties (inst + 0x668)
+struct //age properties, size 0xD4
+{
+	/* 0x00 */ f32 unk; //collision
+	/* 0x38 */ f32 wallPushback; (18f adult, 14f child)
+	/* 0x92 */ u16 sfxOffset; 
+}
+
+
+808514D8 (T:803A9E78) s32 //set to 1 when Link is performing an action?
+80852248 (T:803AABE8) //Array defining button action index ordering (u16 * 4)
+
+
+803A9E54 s32 //conveyor surface speed
+803A9E54 s16 //?
+803A9E5C s16? //conveyor surface direction

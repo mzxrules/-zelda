@@ -1,0 +1,81 @@
+Explosive Blue Fire
+
+Debug this function: 8004CCC8
+at 8004CD80 is the line that sets us up the wall explosion
+
+Actors: 
+
+0059 - Bombable Wall (File: 1ED2C0, Instance 801EE160) (Dodongo's Cavern, main entrance, door to back right)
+00F0 - Blue Fire (File: 1DD530, Instance 801EE370)
+
+803A5B64 //creation of blue fire actor complete
+
+== Actor 0059 (Bombable Wall) ==
+809014C4 (T:801EDA84) //State Func, Sitting
+//A0 = Instance
+//A1 = Global Context
+DAA0 //check if wall should be destroyed. Return if not
+DAC4 JAL	80031638 //Delete self from Actor Poly Collision struct (Global Context + 7C0)
+
+
+=== Instance (Bombable Wall) ===
+0x13C i32 //?
+0x15C Collision Struct (+0x11 byte is checked to see if wall should be destroyed!)
+0x1DC State func ptr
+
+
+== Actor 00F0 (Blue Fire) ==
+80A2A294 (T:801F6C74) //Initializer
+//A0 = Instance
+//A1 = Global Context
+//
+//Determine what type to initialize, and initialize it?
+//Jump to 6CE4 (most types?)
+6D68 jal 80065BCC
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ RESUME DEBUGGING HERE
+
+80A2A124 (T:801F6B04) //Initializer, Type 0 Spawn
+//A0 = Instance
+//A1 = Global Context
+6B20 jal 80063F7C //initialize instance with variables at 801F7A4C
+6B80 jal 8004AB7C //initialize collision struct
+//A3 = 801F7A0C
+6B98 jal 8004ACEC //initialize collision struct with data at A3
+6BA4 jal 80050B00 //initialize xyz of cylinder
+//initialize width, height of cylinder
+6BF0 jal 801F6FF4 //initialize more things (State Data?)
+
+(T:801F6FF4) //Initialize State Data (Type 0 Spawn?)
+//A0 = Instance
+//Instance + 0x13C = 801F7018
+//Instance + 0x140 = 0x00FF
+//Instance + 0x142 = 0x00C8
+
+=== Data ===
+T:801F7A4C Stores array of instance initializer struct?
+T:801F7A78 Stores collision cylinder diameter? factor (4000.4)
+T:801F7A7C Stores collision cylinder height factor (8000.2)
+
+=== Instance ===
+0x13C Instance State functor
+0x14C Collision Struct
+0x19C Some struct?
+  00 = byte, ?
+  02 = short, x
+  04 = short, y
+  06 = short, z
+  08 = Red
+  09 = Blue
+  0A = Green
+  0C = short Alpha?
+
+
+Events: 
+
+Blue Fire Collision
+0x04 = ptr to Wall instance
+
+Wall Collision
+0x08 = ptr to Blue Fire instance
+
+//Normal collision detection test doesn't work?

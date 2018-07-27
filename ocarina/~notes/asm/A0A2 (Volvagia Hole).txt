@@ -1,0 +1,30 @@
+80969614 (T:801F1634) //?
+//Only known call to RNG
+
+8096766C (T:801EF68C) //Select Hole to pop out of
+//"mole" mode only?
+//A0 = Instance
+//A1 = Global Context
+F69C //T6 = Volvagia Flying pointer
+//Call some function
+F6C4 //T7 = 801EF784, func ptr
+//store at Instance + 0x180
+//F12 = float at 8096AB34 -> 801F2B54 (8.9f)
+F6D4 jal	80026D64 //generate random float between 0 and 8.9
+F6EC //T9 = floored result of above
+//T3 = 801F29A4, xyz coordinates that Volvagia will pop out of?
+//use T9 to index which hole to pop out of
+
+80967764 (T:801EF784) //?
+
+
+Instance Variables
+0x118 //Volvagia Flying pointer
+0x158 f32 //?
+0x180 s32 //function pointer
+0x188 s16 //?
+
+Data
+003A34 f32 8.9f //Hole probabilty
+003A38 f32 8.9f //Hole probabilty
+003884 coords[9] //xyz array (9 elements) that Volvagia will pop out of

@@ -1,0 +1,29 @@
+Song of Time	 00000001	 1
+Song of Storms	 00000010	 2
+Kokiri's Emerald 00000100	 4
+Goron's Ruby	 00001000	 8
+Zora's Sapphire	 00010000	 16
+Stone of Agony	 00100000	 32
+Gerudo's Card	 01000000	 64
+
+0-31, 64-95, 128+
+
+BA!@
+
+
+Empty bottle	 00010100
+Fairy		 00011000
+
+GS FLAG		 10000000	 128
+128+ is ok
+
+unimportant for now
+Fish		 00011001
+Blue fire †	 00011100
+Bug		 00011101
+Half-milk ††	 00011111
+
+Not factoring in SoT, if (bItem & 0x20 && bItem >= 0x80) { canBaIt = ((bItem & 31)-20) >= 0
+
+
+so if you want to BA something with Odd Potion with out the Gold Skultulla flag (0x80) but has the Stone of Agony (0x20) bit set, you need to RBA. Now the reason why (for example) items 32-53 cannot be BAed is not necessarily because a lower RBA B item value, but because

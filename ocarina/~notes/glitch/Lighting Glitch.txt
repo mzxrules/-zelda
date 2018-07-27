@@ -1,0 +1,12 @@
+Lighting corruption glitch
+
+https://go.twitch.tv/videos/187740468
+
+Faulting function is 80066610, which deallocates light reference.
+
+RA: 801DE308 = Navi, where she's deallocating her light
+
+8011BD8C is correct value for A0/A2, but is 80113D8C
+
+
+66610 SP dec by 0x18

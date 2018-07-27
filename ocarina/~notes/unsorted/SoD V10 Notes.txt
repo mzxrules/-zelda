@@ -1,0 +1,256 @@
+Since this thread has been ruined, imma fix r up
+
+[quote name="SoulofDeity" post="33305" timestamp="1365371126"]
+These are the notes I've been taking for OoT 1.0 (U), be it assembly hacking, rom poking, reverse engineering gameshark code, porting debug rom stuff, etc.
+It still a work in progress, but I hope it helps some of you people out there who don't like working with the debug rom :P
+[code=nocode:0]
+Terms and Definitions
+##########################################################################
+
+* All hexadecimal values are big endian
+* binary values are prefixed with %
+     eg. %00000101 is binary for 5
+* hexadecimal values are prefixed with $
+     eg. $10 is 16
+* decimal values either have no prefix or are prefixed with #
+     eg. 5 or #5 is 5
+* groups of bytes that are the same value types are surrounded
+  by brackets with a type prefix.
+     eg. %{00000000 00000010 00000101}	would be 3 binary values
+         #{0, 1, 5}			would be 3 decimal values
+         ${00 01 05}			would be 3 hexadecimal values
+
+BYTE      = 1 byte   = 8 bits   =       $00 -       $FF
+HALFWORD  = 2 bytes  = 16 bits  =     $0000 -     $FFFF
+WORD      = 4 bytes  = 32 bits  = $00000000 - $FFFFFFFF
+
+Segments
+----------------------------------------------------------------
+   $00 code			$01 code (same as $00)
+   $02 current scene		$03 current map
+   $04 gameplay keep		$05 field keep / dungeon keep
+   $06 current object		$07 link animation
+   $08 texture bank 1		$09 texture bank 2
+   $0A ???			$0B ???
+   $0C actor bank		$0D limb matrices
+   $0E ???			$0F ???
+
+ROM STUFF
+##########################################################################
+
+$00F03000 - $00F5ECE0	gameplay_keep.zdata
+$00F5F000 - $00F6C330	gameplay_field_keep.zdata
+$00F6D000 - $00F84AF0	gameplay_dangeon_keep.zdata
+$00F86000 - $00FBD800	object_link_boy.zobj
+$00FBE000 - $00FEAF80	object_link_child.zobj
+$00A87000 - $00B8AD30	code.zasm
+
+  Offset   Size  Description
+----------------------------------------------------------------
+   $00045E20   write the following data here to force game to check for
+               all 6 medallions [UNTESTED:  PORTED FROM DBG ROM]
+                      ${ 8E0200A4 3049003F 392A003F 1540001A }
+                      ${ 00000000 00000000 00000000 00000000 }
+   $00045F9E  2  $0000 = create normal files, $0001 = create 64dd files
+                 [DO NOT USE. IT'S A BROKEN FUNCTION, WILL CRASH GAME]
+   $0007F01A  2  default water temple water level
+   $0007FBAE  2  intro custscene exit number
+   $0007FBB3  2  start as $01=child link,  $00=adult link
+   $0007FBBA  2  intro cutscene number  $FFF? or $0000 (no cutscene)
+   $000D7184  4  navi normal color
+   $000D7194  4  navi npc color
+   $000D719C  4  navi enemy color
+   $000D71A4  4  navi sign color
+   $000D71AC  4  navi checkable color
+   $000D71BC  4  navi boss color
+   $000D7530     actor table
+   $000DEC64     cutscene table
+                 Entry Format:  ${ee ee ff ff oo oo oo oo}
+                    e = entrance index
+                    f = flags
+                    o = pointer to cutscene
+
+   $000E64DC  2  green rupee value
+   $000E64DE  2  blue rupee value
+   $000E64E0  2  red rupee value
+   $000E64E2  2  purple rupee value
+   $000E64E4  2  orange rupee value
+   $000E6A38  3  kokiri tunic color
+   $000E6A3B  3  goron tunic color
+   $000E6A3E  3  zora tunic color
+   $000E7C2E  2  small quiver capacity
+   $000E7C30  2  medium quiver capacity
+   $000E7C32  2  large quiver capacity
+   $000E7C36  2  small bomb bag capacity
+   $000E7C38  2  medium bomb bag capacity
+   $000E7C3A  2  large bomb bag capacity
+   $000E7C4C  2  child wallet capacity
+   $000E7C4E  2  adult wallet capacity
+   $000E7C50  2  giant wallet capacity
+   $000E7C56  2  small deku seed bag capacity
+   $000E7C58  2  medium deku seed bag capacity
+   $000E7C5A  2  large deku seed bag capacity
+   $000E7C5E  2  small deku stick capacity
+   $000E7C60  2  medium deku stick capacity
+   $000E7C62  2  large deku stick capacity
+   $000E7C66  2  small deku nut capacity
+   $000E7C68  2  medium deku nut capacity
+   $000E7C6A  2  large deku nut capacity
+   $000E7F58     object table
+   $000EA440     scene table
+
+$00BB11E0 - $00BCDB70	ovl_kaleido_scope.zactor
+  Offset   Size  Description
+----------------------------------------------------------------
+   $000165B4     item selectable table
+   $000165DC     item icon mode table
+
+$00BCDB70 - $00BF40D0	ovl_player_actor.zactor
+----------------------------------------------------------------
+   $000004E0  4  link's voice changer. value is ${34 18 ?? ??}
+         $0000 - $001F  adult link
+         $0020 - $003F  young link with some adult link sounds
+         $0043 - $004F  navi
+         $0050 - $0053  talon
+         $0054 - $0057  ingo
+         $0058 - $0059  great fairy
+         $005A - $0066  ruto with some navi sounds
+         $0067 - $0068  cursed skulltalla person
+         $0069 - $006E  young zelda
+         $006F - $0074  shiek with some navi sounds
+         $0075 - $0079  adult zelda
+         $007A - $007A  king zora
+
+   $00015C12  2  player state %{00000000 0000t0c0}
+                    t - is z-targetting
+                    c - is falling
+                 if you enable t at the same time as c, link
+                 swaps between falling and standing every frame,
+                 which has the neat effect of letting you walk
+                 through walls, and pressing 'z' will make you
+                 fall through the floor.
+
+   $00018A54  8  force link to be ${3C 0E 00 00 25 CE ?? ??}
+         $0000 - adult    $0001 - child
+
+$00DD1A00 - $00DD34B0	ovl_Obj_Oshihiki.zactor
+  Offset   Size  Description
+----------------------------------------------------------------
+
+   $00001186  2  block pushing speed
+   $000011CE  2  block pushing distance
+   $00001326  2  block pushing delay
+
+RAM STUFF
+##########################################################################
+
+Important Addresses
+----------------------------------------------------------------
+   $800110A0	code
+   $8011A5D0	savedata
+   $8011DC44	??? [possible memory pool for alloc]
+   $80120C38	segment table
+
+Functions
+----------------------------------------------------------------
+   $80003BCC	Used as a delay, called continously throughout
+                the entire game. <HOOKABLE>
+   $80002E80	DMA Transfer
+		   Arguments:	a0=ramAddr, a1=romAddr, a2=size
+
+Variables
+----------------------------------------------------------------
+; miscellaneous
+$8005703C	create file type $0000 = normal		HALFWORD
+                                 $0001 = 64DD
+$800900BC	default waterlevel for water temple	HALFWORD
+
+; savestate stuff
+$8011A600	health (20*16)				HALFWORD
+$8011A5FE	max health (20*16)			HALFWORD
+$8011A605	number of rupees			HALFWORD
+$8011A6A1	skulltulas killed			BYTE
+$8011A699	number of small keys			BYTE
+
+; item slots
+$8011A644	item slot 0  (default:deku sticks)	BYTE
+$8011A645	item slot 1  (default:deku nuts)	BYTE
+$8011A646	item slot 2  (default:bombs)		BYTE
+$8011A647	item slot 3  (default:fairy bow)	BYTE
+$8011A648	item slot 4  (default:fire arrow)	BYTE
+$8011A649	item slot 5  (default:din's fire)	BYTE
+$8011A64A	item slot 6  (default:fairy slingshot)	BYTE
+$8011A64B	item slot 7  (default:ocarina)		BYTE
+$8011A64C	item slot 8  (default:bombchus)		BYTE
+$8011A64D	item slot 9  (default:hookshot)		BYTE
+$8011A64E	item slot 10 (default:ice arrow)	BYTE
+$8011A64F	item slot 11 (default:farore's wind)	BYTE
+$8011A650	item slot 12 (default:boomerang)	BYTE
+$8011A651	item slot 13 (default:lens of truth)	BYTE
+$8011A652	item slot 14 (default:magic beans)	BYTE
+$8011A653	item slot 15 (default:megaton hammer)	BYTE
+$8011A654	item slot 16 (default:light arrow)	BYTE
+$8011A655	item slot 17 (default:nayru's love)	BYTE
+$8011A656	item slot 18 (default:bottle 1)		BYTE
+$8011A657	item slot 19 (default:bottle 2)		BYTE
+$8011A658	item slot 20 (default:bottle 3)		BYTE
+$8011A659	item slot 21 (default:bottle 4)		BYTE
+$8011A65A	item slot 22 (default:adult trade item)	BYTE
+$8011A65B	item slot 23 (default:child trade item)	BYTE
+
+; ammmunition
+$8011A65C	deku stick ammo				BYTE
+$8011A65D	deku nut ammo				BYTE
+$8011A65E	bomb ammo				BYTE
+$8011A65F	arrow ammo				BYTE
+$8011A662	slingshot ammo				BYTE
+$8011A664	bombchu ammo				BYTE
+$8011A66A	number of magic beans			BYTE
+
+; controller
+$801C84B4	control pad %{abzstgfh 00qwikjl}	HALFWORD
+		   a = a button		b = b button
+		   z = z trigger	s = start button
+		   q = l trigger	w = r trigger
+		   t = d-up button	g = d-down button
+		   f = d-left button	h = d-right button
+		   i = c-up button	k = c-down button
+		   j = c-left button	l = c-right button
+
+$801C84B6	analog stick x-axis			BYTE
+$801C84B7	analog stick y-axis			BYTE
+
+Item Slot Values
+----------------------------------------------------------------
+
+$00 deku sticks		$01 deku nuts		$02 bombs
+$03 fairy bow		$04 fire arrow		$05 din's fire
+$06 fairy slingshot	$07 fairy ocarina	$08 ocarina of time
+$09 bombchus		$0A hookshot		$0B longshot
+$0C ice arrow		$0D farore's wind	$0E boomerang
+$0F lens of truth	$10 magic beans		$11 megaton hammer
+$12 light arrow		$13 nayru's love	$14 empty bottle
+$15 red potion		$16 green potion	$17 blue potion
+$18 fairy		$19 fish		$1A full lon lon milk
+$1B ruto's letter	$1C blue flame		$1D bugs
+$1E big poe		$1F half lon lon milk	$20 poe
+$21 weird egg		$22 chicken		$23 zelda's letter
+$24 keaton mask		$25 skull mask		$26 spooky mask
+$27 bunny hood		$28 goron mask		$29 zora mask
+$2A gerudo mask		$2B mask of truth	$2C sold out
+$2D pocket egg		$2E pocket cucco	$2F cojiro
+$30 odd mushroom	$31 odd potion		$32 poacher saw
+$33 broken goron sword	$34 prescription	$35 eyeball frog
+$36 eye drops		$37 claim check		$38 powered fire arrow
+$39 powered ice arrow	$3A powered light arrow	$3B kokiri sword
+$3C master sword	$3D giant's knife	$3E deku shield
+$3F hylian shield	$40 mirror shield	$41 kokiri tunic
+$42 goron tunic		$43 zora tunic		$44 kokiri boots
+$45 iron boots		$46 hover boots		$47 small bullet bag
+$48 medium bullet bag	$49 large bullet bag	$4A small quiver
+$4B medium quiver	$4C large quiver	$4D small bomb bag
+$4E medium bomb bag	$4F large bomb bag	$50 goron bracelet
+$51 silver gauntlets	$52 golden gauntlets	$53 silver scale
+$54 golden scale	$55 broken giants knife	$56 adult wallet
+$57 giant wallet	$58 deku seeds		$59 fishing rod[/code]
+[/quote]

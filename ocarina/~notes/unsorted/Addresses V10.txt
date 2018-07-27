@@ -1,0 +1,105 @@
+80057030 - Load Save Function: file from file select menu
+800902F0 - Correct Spawn Point from save
+800FC090 - Spawn Entrance when reloading a save in a dungeon
+
+B7EA40 - Jump Table for changing spawn on save load
+
+89EC00 = Start of English Item_Name_Static
+
+
+Poly Format
+
+aabb bxcc  #w#h kels (repeats for each polygon type)?
+
+SRL 1E on left word, giving us
+ & C000 0000
+
+
+
+Reloading a save
+
+Branch if scene number < 0x1B
+Branch if scene number = 4F (Ganon Fight)
+Test if Link's House ($34)
+
+Change
+B06318 1061000E to 1000000F
+
+
+8009AACC Start of scene setup correction
+
+LB	T9 0X0000 (T8)
+ADDIU	AT,R0,0X0055 //check if scene 85
+BNEL	T9,AT, 0x8009AB1C (loads entrance index)
+SLL	T6,V1,0x2 //entrance offset by scene setup
+LW	T1,0x0004 (S2) S2 = 8011A5D0, loads link's age
+STLI	AT,V1,0x0004
+BNEL	T1,R0,0x8009AB1C //branch if cutscene setup
+SLL	T6,V1,0x2
+LHU	T2,0x0EDC (S2) //Load halfword from save
+ADDIU	V1,R0,0x0002
+ANDI	T3,T2,0x0100 //T3 now holds flag state
+BEQL	T3,R0,0x8009AB18 //if flag 0, jump
+SW	V1,0x1360 (S2) //Set scene setup
+ADDIU	V1,R0,0x0003 //set scene setup to 3
+BEQ	R0,R0,0x8009AB18
+SW	v1,0x1360 (S2)
+8009AB14:
+SW	v1,0x1360 (S2)
+8009AB18:
+SLL	T6,V1,0x2
+End of scene setup correction
+
+
+
+1EC9C0 - Warp actor
+
+Store Child Blue Warp counter in rupee count
+
+Change at CA3070
+964F 0182
+3C19 8091
+3C03 8012
+25F8 0001
+A658 0182
+
+To 
+3C03 8012
+3C19 8091
+946F A604
+25F8 0001
+A478 A604
+
+
+Store Adult Blue Warp counter in rupee count
+Change at CA3CB0
+to 
+
+3C038012
+3C188091
+946EA604
+25CF0001
+A46FA604
+
+A6580182 to A478A604
+
+801E9860 is v1.0 Phantom Ganon blue warp LHU
+801E9F1C in v1.0 Phantom Ganon has LHU
+
+
+Change CA436C to 
+946C0034
+
+v1.0 unmodified
+1EC9C0:
+
+LHU	T7,0x182(S2)
+LUI	T9,0x801F
+LUI	V1,0x8012
+ADDIU	T8,T7,0x0001
+SH	T8,0x0182(S2)
+LH	T9,0xF8D0(T9)
+
+CA3070:
+LHU	01111,12h,0x0182
+LUI	11001,0x8091

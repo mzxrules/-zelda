@@ -1,0 +1,9 @@
+Beamos:
+//testing done with Spirit Trial beamos as child
+
+0x210 int //Action Animation Timer (stores frames until attack, attack duration, stun duration)
+
+80929C8C (T:1E518C) //Called when stunned.
+
+80929FFC (T:1E54FC) //called every frame, seems to do detection for being hit
+5514 jal	800264C8 //A1 = Beamos Instance + 0x258

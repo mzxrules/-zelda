@@ -1,0 +1,135 @@
+BC7794 in decompressed 1.0
+first bytes: 0109 0900
+
+00 = Adult Only
+01 = Child only
+09 = Both
+
+Offsets for item usability:
+BF9B0C : Deku Sticks
+BF9B0D : Deku Nuts
+BF9B0E : Bombs
+BF9B0F : Bow
+BF9B10 : Fire Arrows
+BF9B11 : Din's Fire
+BF9B12 : Slingshot
+BF9B13 : Ocarina
+BF9B14 : Bombchus
+BF9B15 : Hookshot
+BF9B16 : Ice Arrows
+BF9B17 : Farore's Wind
+BF9B18 : Boomerang
+BF9B19 : Lens of Truth
+BF9B1A : Magic Beans
+BF9B1B : Megaton Hammer
+BF9B1C : Light Arrows
+BF9B1D : Nayru's Love
+BF9B1E : Bottle 1
+BF9B1F : Bottle 2
+BF9B20 : Bottle 3
+BF9B21 : Bottle 4
+BF9B22 : Adult Trade Slot
+BF9B23 : Child Trade Slot
+BF9B24 : Quiver Slot
+BF9B25 : Kokiri Sword
+BF9B26 : Master Sword
+BF9B27 : Big Goron Sword
+BF9B28 : Bomb Slot
+BF9B29 : Deku Shield
+BF9B2A : Hylian Shield
+BF9B2B : Mirror Shield
+BF9B2C : Gauntlet Slot
+BF9B2D : Kokiri Tunic
+BF9B2E : Goron Tunic
+BF9B2F : Zora Tunic
+BF9B30 : Scale Slot
+BF9B31 : Kokiri Boots
+BF9B32 : Iron Boots
+BF9B33 : Hover Boots
+
+Offsets for item highlight:
+BF9B34 : Deku Sticks
+BF9B35 : Deku Nuts
+BF9B36 : Bombs
+BF9B37 : Bow
+BF9B38 : Fire Arrows
+BF9B39 : Din's Fire
+BF9B3A : Slingshot
+BF9B3B : Ocarina
+BF9B3C : ????
+BF9B3D : Bombchus
+BF9B3E : Hookshot
+BF9B3F : Ice Arrows
+BF9B40 : ????
+BF9B41 : Farore's Wind
+BF9B42 : Boomerang
+BF9B43 : Lens of Truth
+BF9B44 : Magic Beans
+BF9B45 : Megaton Hammer
+BF9B46 : Light Arrows
+BF9B47 : Nayru's Love
+BF9B48 : Bottle 1
+BF9B49 : Bottle 2
+BF9B4A : Bottle 3
+BF9B4B : Bottle 4
+BF9B4C : ????
+BF9B4D : ????
+BF9B4E : ????
+BF9B4F : ????
+BF9B50 : ????
+BF9B51 : ????
+BF9B52 : ????
+BF9B53 : ????
+BF9B54 : ????
+BF9B55 : Weird Egg
+BF9B56 : Chicken
+BF9B57 : Zelda's Letter
+BF9B58 : Keaton Mask
+BF9B59 : Skull Mask
+BF9B5A : Spooky Mask
+BF9B5B : Bunny Hood
+BF9B5C : Goron Mask
+BF9B5D : Zora Mask
+BF9B5E : Gerudo Mask
+BF9B5F : Mask of Truth
+BF9B60 : SOLD OUT
+BF9B61 : Pocket Egg
+BF9B62 : Pocket Cucco
+BF9B63 : Cojiro
+BF9B64 : Odd Mushroom
+BF9B65 : Odd Potion
+BF9B66 : Poacher's Saw
+BF9B67 : Goron's Sword (Broken)
+BF9B68 : Prescription
+BF9B69 : Eyeball Frog
+BF9B6A : Eye Drops
+BF9B6B : Claim Check
+BF9B6F : Kokiri Sword
+BF9B70 : Master Sword
+BF9B71 : Big Goron Sword
+BF9B72 : Deku Shield
+BF9B73 : Hylian Shield
+BF9B74 : Mirror Shield
+BF9B75 : Kokiri Tunic
+BF9B76 : Goron Tunic
+BF9B77 : Zora Tunic
+BF9B78 : Kokiri Boots
+BF9B79 : Iron Boots
+BF9B7A : Hover Boots
+BF9B7B : Bullet Bag 30
+BF9B7C : Bullet Bag 40
+BF9B7D : Bullet Bag 50
+BF9B7E : Quiver 30
+BF9B7F : Quiver 40
+BF9B80 : Quiver 50
+BF9B81 : Bomb Bag 20
+BF9B82 : Bomb Bag 30
+BF9B83 : Bomb Bag 40
+BF9B84 : Goron Bracelet
+BF9B85 : Silver Gauntlets
+BF9B86 : Golden Gauntlets
+BF9B87 : Silver Scale
+BF9B88 : Golden Scale
+BF9B89 : ????
+BF9B8A : ????
+BF9B8B : ????

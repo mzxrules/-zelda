@@ -1,0 +1,14 @@
+24 8250 - Kokiri Forest no sky
+	01 B380 room 0
+	00 8560 room 1
+	00 5010 room 2
+
+	02 38E0 est. room allocation space
+	   DC10 delta
+27 9740 - OBJ 1
+
+Kak graveyard
+	02 04C0 est. room alloc space
+	
+
+lots of pots

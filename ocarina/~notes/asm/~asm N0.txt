@@ -1,0 +1,5670 @@
+800005A0 //main thread, Entrypoint
+//primary purpose is to initialize everything it seems, calls 800A1C50
+05AC jal	80000E6C //?
+05B4 jal	800048C0 //OSGetTime
+061C //Zero Initialize 80114DD0 to 8012BE30
+
+8000085C //DMA Rom to Ram
+//Does not decompress data (probably)
+//A0 = VRom Start
+//A1 = Destination VRam
+//A2 = Size
+
+80000D28 //DMA access (more immediate?)/
+//todo: figure args
+
+80000DF0 //DMA read function
+//A0 = Address to load into
+//A1 = Address to read from
+//A2 = Size
+
+80000E6C //main thread, initializes stuffs
+//Sets following variables (below aren't params)
+//A0 = 00007430, dmadata vrom address
+//A1 = 8000B140, dmadata ram address
+//A2 = 00005F60, dmadata size
+//T6 = 0000D390, dmadata end vrom address
+0E90 jal	8000085C //load dmadata table to ram
+
+
+800A1C50 //main thread, boot routine
+//calls 80051B50
+//a0 = ?, 0 this pass
+//
+//SP -0x140
+//
+1C58 //v0 = 8011D2A0
+//T6 = 0x140 //320
+//store s32 T6 at 8009E500 //framebuffer width
+//T7 = 0xF0 //240
+//store s32 T7 at 8009E504 //framebuffer height
+//A0 = 8000031C
+//8011D2A0+00 = void* 8000031C
+1C84 jal	80067440
+1C8C jal	800AF45C //initialize fault thread?
+//nop
+1C94 JAL	800AD410 //DD boot routine
+1C9C 
+//T9 = u8 at 80121211
+1CC4 JAL	800AD488 //Zeroes 80121210 if 80121211 is zero
+1CD4 //T1 and SP+0x2C = 801C6E60, main heap start
+1CD8 JAL	800A42F0 //Initialize Frame Buffers
+1CFC JAL	800CD390 //Allocates main heap
+1D04 JAL	80051B50 //Initializes the Static Context on the Heap
+1D10 //Load Static Context address to T4 (stored at 8011BA00)
+//some stuff I don't understand
+1D54 //begin initialize stack stuff? for "irqmgr"
+1D80 jal	80001890 //initialize stack stuff "irqmgr" (80120698 -> 80120B98)
+
+
+800A19C0 Not function start, but main game loop is here
+
+800AD410 //Disk Drive boot routine (called by A1C50)
+//Writes to 80121211, possibly stores whether the dd can be loaded from
+D418 LUI	T6, 0x8012
+D41C LBU	T6, 0x1210(T6)
+D420 LUI	V0, 0x00B9
+D424 ADDIU	A1, V0, 0xAD30 //A1 = B8AD30, or the disk drive code file start
+D428 BNEZ	T6, 800AD478 
+D42C LUI	A0, 0x801C
+D430 LUI	T7, 0x00BA
+D434 ADDIU	T7, T7, 0xDA40 //T7 = B9DA40, or disk drive code file end
+D438 SUBU	A2, T7, A1 //A2 = file size
+D43C JAL	80000DF0 //DMA read function
+D440 ADDIU	A0, A0, 0x6E80 //A0 = 801C6E80, or the heap start?
+
+
+80051B50 //Initializes the Static Context
+1B58 JAL	800CDA20 //Allocates block on the main heap
+1B5C ADDIU	A0, R0, 0x15D4 //Size of block
+//the rest of the code zero-initializes the entire space
+//notably, it appears that the "true" size is 0x15D2
+
+
+
+
+800CD320 //? Checks state of 80105430
+D320 LUI	V0, 0x8010
+D324 LW 	V0, 0x5430(V0)//load from 80105430
+
+D32C SW 	S0, 0x0014(SP)
+D330 SW 	S1, 0x0018(SP)
+D334 LUI	S0, 0x8010
+D338 SW 	RA, 0x001C(SP)
+D33C ADDIU	S0, S0, 0x5430 //S0 = 80105430
+D340 BEQ	V0, R0, 0x800CD374
+D344 OR 	S1, R0, R0 //S1 = 0
+
+D388 JR 	RA
+
+
+
+800CDA20 //mem, Allocates block to head of the main heap
+//A0 = Space to allocate
+//V0 = Ptr to allocated space
+DA28 SW 	A0, 0x0020(SP) //Store allocate space for later
+DA2C JAL	80003CC0 // osSetIntMask(OS_IM_NONE), disables interrupts
+DA30 ADDIU	A0, R0, 0x0001
+DA34 LUI	A0, 0x8013
+DA3C ADDIU	A0, A0, 0xBAA0 //A0 = 12BAA0
+DA40 JAL	800CE060
+DA44 LW 	A1, 0x0020(SP) //A1 = allocate space
+DA4C jal	8003CC0 // osSetIntMask, restores interrupt mask state
+
+
+800CDB00 //mem, Free Main Heap (8012BAA0)
+//De-allocates memory on main heap
+//A0 = ptr to block to free, not factoring in nodes (801DA9F0)
+DB0C JAL	80003CC0 //some very low-level function
+DB10 ADDIU	A0, R0, 0x0001
+DB14 LUI	A0, 0x8013
+DB18 SW 	V0, 0x001C(SP)
+DB1C ADDIU	A0, A0, 0xBAA0 //A0 = 8012BAA0, main heap reference
+DB20 JAL	800CE2B4
+DB24 LW 	A1, 0x0020(SP) //A1 = 801DA9F0
+DB28 JAL	80003CC0
+DB2C LW 	A0, 0x001C(SP)
+DB38 JR 	RA
+
+800CD390 //mem, Allocates main heap 
+//A0 = Block start (801C6E60)
+//A1 = Block size (001EE1A0)
+//starts by moving A0/A1 into A1/A2
+D3A4 LUI	A0, 0x8013
+D3A8 JAL	800CDD90
+D3AC ADDIU	A0, 0xBAA0 //A0 = 8012BAA0
+D3B0 JAL	800CD320
+D3B4 NOP
+//End
+D3C0 JR
+
+
+800CDD90 //mem, Creates a new free list with one node, and attaches the list to some structure
+//A0 = External Ptr (8012BAA0)
+//A1 = Address (801C6E60)
+//A2 = Size (001EE1A0)
+DD90 ADDIU	V0, A1, 0x000F
+DD94 ADDIU	AT, R0, 0xFFF0 //AT = -0x10
+DD98 AND	V0, V0, AT //V0 is aligned
+DD9C SUBU	T6, V0, A1 //Store delta
+DDA0 SUBU	A2, A2, T6 //if not aligned, sub size?
+DDA4 AND	A2, A2, AT //Round down size to nearest 0x10
+DDA8 ADDIU	T7, A2, 0xFFD0 //T2 = allocated block size - size of mem ll node
+DDAC ADDIU	T8, R0, 0x0001 //T1 = 1, block is free for subdivision
+DDB0 ADDIU	T9, R0, 0x7373 //Mem LL "header"?
+//populate the node
+DDB4 SW 	R0, 0x0008(V0)
+DDB8 SW 	R0, 0x000C(V0)
+DDBC SW 	T7, 0x0004(V0)
+DDC0 SH 	T8, 0x0002(V0)
+DDC4 SH 	T9, 0x0000(V0)
+DDC8 SW 	V0, 0x0000(A0) //store the re-mapped address
+DDCC SW 	A1, 0x0004(A0) //stores the original address sent into the function
+DDD0 JR 	RA
+DDD4 SW 	A2, 0x0008(A0) //stores block size
+//end
+
+800CE060 //mem, osMalloc
+//Allocates memory on free list. Called before 800CE2B4 func
+//A0 = ptr to free list reference
+//A1 = space size, not adjusted for alignment?
+//V0 = ptr to free space
+E06C LW 	A2, 0x0000(A0)//load first word in struct
+E070 ADDIU	T0, R0, 0xFFF0	//T0 = -0x10
+E074 ADDIU	T6, A1, 0x000F
+E084 LH 	T8, 0x0002 (A2)	//load "freed memory" byte, seek for free space
+E0A0 //begin to allocate the mem node
+
+
+800CE2B4 //mem, osFree
+// Marks a memory node as being free for re-use, and combines if next to free nodes
+//void osFree(void *region, void *addr);
+//A0 = ptr region (e.g. 8011BEF0, 8012BAA0)
+//A1 = Pointer to memory node's allocated space (rather than the node itself)
+//
+E2B4 ADDIU	SP, SP, 0xFFD8
+E2BC BEQ	A1, R0, 800CE3D4
+E2C0 OR 	A3, A0, R0 //A3 = 12BAA0 (what is this space)
+E2C4 LH 	T6, 0xFFD0(A1) //T6 = ? or 0x7373
+E2C8 ADDIU	AT, R0, 0x7373
+E2CC ADDIU	A1, A1, 0xFFD0 //A1 -= 0x30, A1 points to mem node
+E2D0 BEQ	T6, AT, 800CE2E8 //if the mem node is defined, branch
+E2D4 LUI	A0, 0x3F
+E2D8 JAL	80003CC0
+E2DC ORI	A0, A0, 0xFF01 //A0 = 003FFF01
+E2E0 BEQ	R0, R0, 800CE3D8 //jump to function end
+E2E4 LW 	RA, 0x0014(SP)
+//
+E2E8 LH 	T7, 0x0002(A1) //T7 = whether node is free or not
+E2EC ADDIU	T8, R0, 0x0001 
+E2F0 OR 	A0, R0, R0 //A0 = 0
+E2F4 BEQL	T7, R0, 800CE314
+E2F8 SH 	T8, 0x0002(A1) //Mark mem node A1's memory as being freed
+//
+E314 SW 	R0, 0x0010(A1) //zero out something? in the mem node's structure
+E318 SW 	R0, 0x0014(A1) //zero out something? in the mem node's structure
+E31C SW 	A3, 0x0028(SP) //store reference node on stack
+E320 JAL	80003CA0 //dunno what this does
+E324 SW 	A1, 0x0018(SP)
+E328 LW 	A1, 0x0018(SP)
+E32C LW 	A3, 0x0028(SP)
+E330 SW 	V0, 0x0018(A1) //save some number here to the ll
+E334 JAL 	800048C0
+E338 SW 	A3, 0x001C(A1) //save main ref
+E33C LW 	A1, 0x0018(SP) //A1 = actor space mem node ptr
+E340 LW 	A0, 0x0008(A1) //A0 = mem node next ptr
+E344 SW 	V0, 0x0020(A1) //dunno what this is still
+E348 SW 	V1, 0x0024(A1) //store instruction count
+E34C BEQL	A0, R0, 800CE394 //branch if mem node next is null
+E350 LW 	V1, 0x000C(A1) //if branched, V1 = mem node next ptr
+E354 LH 	T9, 0x0002(A0) //T9 = next node's free state
+E358 OR 	V0, A0, R0 //V0 = curnode->next
+E35C BEQL	T9, R0, 800CE394 //branch if next node is allocated
+E360 LW 	V1, 0x000C(A1) //if branched, V1 = mem node next ptr
+//next node is not allocating space
+E364 LW 	V1, 0x0008(A0) // v1 = mem node next's next node (curnode->next->next)
+E368 BEQL	V1, R0, 800CE378 //branch if memnode->next->next == null
+E36C LW 	T0, 0x0004(A1) //T0 = cur mem node's allocated size
+//
+E378 LW 	T1, 0x0004(V0) //T1 = next mem node's allocated size
+E37C ADDU	T2, T0, T1 //T2 = cur + next mem node's allocated size
+E380 ADDIU	T3, T2, 0x0030 //T3 = cur + next mem node's allocated size + node itself space
+E384 SW 	T3, 0x0004(A1) //update cur node's (un)allocated size
+E388 LW 	T4, 0x0008(V0) //T4 = (curnode->next->next ptr)
+E38C SW 	T4, 0x0008(A1) //curnode->next = curnode->next->next
+E390 LW 	V1, 0x000C(A1) //V1 = curnode->prev
+E394 BEQL	V1, R0, 800CE3D8 //branch if curnode->prev == null
+E398 LW 	RA, 0x0014(SP)
+E39C LH 	T5, 0x0002(V1) //T5 = curnode->prev.isfree
+E3A0 BEQL	T5, R0, 800CE3D8 //branch if node is not free
+E3A4 LW 	RA, 0x0014(SP)
+//
+E3DC JR 	RA
+
+800048C0 //osGetTime
+V0 = OSTime pointer
+//V1 = Instruction counter?
+
+80004D50 //Returns executed instruction count
+V0 = number of instructions executed
+
+800A1010 //mem, Allocates main heap memory for the graph thread (i.e. memory for the current game state)
+//Allocates "actor space" heap on main heap, and links to global context
+//Function related to allocating what is essentially 0x10 0000 bytes?
+A0 = region struct (801C8524 this pass)
+A1 = Size of space to allocate
+V0 = Address to space allocated
+//
+1010 ADDIU	SP, SP, 0xFFE8
+1014 SW 	RA, 0x0014(SP)
+1018 SW 	A1, 0x001C
+101C OR 	A2, A0, R0 //A2 = A0
+1020 LW 	A0, 0x001C (SP) //A0 = A1
+1024 SW 	A2, 0x0018(SP)
+1028 JAL	800CDA20 //Allocates memory on main heap, V0 = data start
+102C ADDIU	A0, A0, 0x0010
+1030 BEQ	V0, R0, 800A1068 //branch if allocation failed
+1034 LW 	A2, 0x0018(SP) //restore A2
+1038 LW 	T6, 0x001C(SP) //T6 = A0
+103C SW 	T6, 0x0008(V0) //heap.size
+1040 LW 	T7, 0x0010(A2) //load some reference to within global context
+1044 SW 	T7, 0x0004(V0) //save in heap
+1048 LW 	T8, 0x0010(A2) //
+104C SW 	V0, 0x0000(T8) //save heap offset to global context
+1050 SW 	V0, 0x0010(A2) //save heap offset to global context (not a duplicate)
+1054 SW 	A2, 0x0000(V0) //save global context ref to heap
+1058 LW 	T9, 0x0010(A2) //fuck if i know
+105C ADDIU	V0, V0, 0x0010 //move heap ref to where the first memnode will be
+1060 BEQ	R0, R0, 800A106C
+1064 SW 	T9, 0x0004(A2) //
+1074 JR 	RA
+
+800A0248 //Set Memory Allocation Handle
+//A0 = Allocation Struct ptr (801C8514, 0x74 into global context)
+//A1 = Address to set allocation memnode (801DAA00)
+//A2 = Size of space to allocate, including? memnode size (00100000, size of the space to allocate)
+//Allocation Struct looks like the following:
+//struct 
+//{
+// int size;
+// int* ramStart;
+// int* appendStart;
+// int* appendEnd;
+//}
+//
+0250 SW 	A1, 0x0004(A0) //store where first memnode will be
+0254 JAL	800A022C
+0258 SW 	A2, 0x0000(A0) //store space size
+025C LW 	RA, 0x0014(SP)
+0260 ADDIU	SP, SP 0x0018
+0264 JR 	RA
+
+800A022C //?
+A0 = Linkback reference (800A0248)
+022C LW 	V0, 0x0004(A0)
+0230 LW 	T6, 0x0000(A0)
+0234 SW 	V0, 0x0008(A0)
+0238 ADDU	T7, V0, T6 //T7 = address of space after the allocated space
+023C SW 	T7, 0x000C(A0)
+0240 JR 	RA
+
+8009A750  //MAIN GAME CONSTRUCTION ROUTINE
+//A0 = Global Context
+A750 ADDIU	SP, SP, 0xFF70
+A754 SW 	S2, 0x0028
+A758 LUI	S2, 0x8012
+A760 OR 	S1, A0, R0 //S1 = global context
+A764 ADDIU	S2, S2, 0xA5D0 // S2 = 8011A5D0, save loc
+A770 LW 	T6, 0x0000(S2) //get entrance index
+A774 ADDIU	AT, R0, 0xFFFF //AT, R0, 0xFFFF 
+A778 LW 	S0, 0x0000(S1) //S0 = 8011F290 //Graphics Context
+A77C BNE	T6, AT, 8009A7A8 //Branch if entrance index is valid
+A780 OR 	A0, S1, R0 //A0 = Global Context
+//entrance index is -1?
+A784 SW 	R0, 0x0000(S2)//Entrance index = 0
+A788 SW 	R0, 0x0098(S1)//Global context 0th = 0
+A78C LUI	T7, 0x8080
+A790 ADDIU	T7, T7, 0x37E8 //T7 = 808037E8, ovl_opening constructor function
+//investigate later
+//
+A7A8 LUI	A1, 0x001D
+A7AC JAL	800A0D38 //initialize "play" game state
+A7B0 ORI	A1, A1, 0x4790
+A7B4 LUI	V0, 0x8012
+A7B8 LW 	V0, 0x1220(V0)//v0 = value at 80121220
+A7BC BEQ	V0, R0, 8009A7D8 //branch if null
+
+A7D8 JAL	80099D0C //allocate space for ovl_player_actor/ovl_kaleido_scope
+A7DC OR 	A0, S1, R0 //A0 = S1, Global Context
+A7E0 ADDIU	A0, S1, 0x00B8 //A0 = Global Context + 0xB8
+A7E4 SW 	A0, 0x003C(SP) //store on stack for later
+A7E8 JAL	80091858 //Initializes the "VIEW" variables
+A7EC OR 	A1, S0, R0 //A1 = 8011F290
+A7F0 JAL	800C7548 //?
+A7F4 OR 	A0, R0, R0
+A7F8 JAL	8007D808
+A7FC NOP
+A800 OR 	A0, R0, R0 //begin zero-initializing camera struct data
+A804 OR 	V0, S1, R0 //V0 = global context
+A808 ADDIU	A0, A0, 0x0001
+A80C SLTI	AT, A0, 0x0004
+//null an array[4] of camera_struct ptrs, located at GC + 0x790
+A81C //A0 = Global Context + 0x1E0 //Camera Struct
+A820 //A2 = Global Context + 0x7C0 //?
+//Spawning Stuff Begins
+A914 lhu	v0, 0x1412(s2) //v0 = Next Cutscene Number
+//if v0 != 0xFFEF, copy 0x1412 to 0x0008 (Current Cutscene Number)
+//Next Cutscene Number is set to 0xFFEF if not already
+A92C //T1 = Cutscene Number
+//if T1 = 0xFFFD, zero SC + 0x0008
+A940 lhu	v0, 0x1416(s2) //v0 = next world time
+//if v0 != 0xFFFF, copy v0 into SC+0x000C (world time)
+// and SC + 141A (world time lighting)
+//v0 = world time
+A95C //Begin calculating the day/night flag (0 = day, 1 = night)
+A97C //End day/night flag being set
+A980 jal	80056D90 //Check and Initialize a specific set of cutscenes
+A988 //t3 = SC + 0x135C (Game Mode variable)
+//If game mode is not 0, or cutscene number (current) >= 0xFFF0
+//SC + 0x1360 = Cutscene Number & 0x000F + 4
+//else, standard day/night, child/adult
+AA2C //Start of special case sequence to change scene setup index for select scenes
+AB18 //Start of "true" entrance index calculation
+AB30 jal	8009CEEC
+AB64 JAL	80056C70 //On Entrance cutscene routine
+
+
+8009CEEC //Load Scene?
+//A0 = Global Context
+//A1 = Scene Index
+//A2 = Spawn Index
+//does stuff
+CFAC jal	8009CCE8 //load scene file into ram
+CFD8 jal	8009CDE8 //
+
+8009CDE8 //?, Scene Initialization
+//A0 = Global Context
+//A1 = Spawn number
+
+
+
+
+8007D808 //?
+//At 11BF60 is structure that is 0x24 bytes long, 4 records
+//At 800F7D50 there appears to be a display list
+D808 LUI	A0, 0x8012
+D80C ADDIU	A0, A0, 0xBF60 //8011BF60
+D810 OR 	V0, R0, R0 //V0 = 0
+D814 ADDIU	A1, R0, 0x0024 //A1 = 0x0024
+//loop
+D818 MULTU	V0, A1
+D81C ADDIU	V0, V0, 0x0001
+D820 SLL	V0, V0, 0x10
+D824 SRA	V0, V0, 0x10
+D828 SLTI	AT, V0, 0x0004
+D82C MFLO	T6 //T6 = MULT LO reg
+D830 ADDU	V1, A0, T6
+D834 SW 	R0, 0x0008(V1)
+D838 BNEZ	AT, 0x8007D818
+D83C SH 	R0, 0x001E(V1)
+D840 ADDIU	T7, R0, 0x0001
+D844 LUI	AT, 0x800F
+D848 SH 	T7, 0x7D20(AT) //800F7D20
+D84C LUI	AT, 0x800F
+D850 SH 	0, 0x7D24(AT)
+D854 JR 	RA
+
+800478B8 //?, related to initializing Camera Struct
+//A0 = Camera Struct Pointer
+//A1 = VIEW struct (master view)
+//A2 = ? (Global Context + 0x7C0 this pass)
+//A3 = Global Context
+//Call Function:
+//A0 = A2 (Global Context + 0x7C0 this pass)
+//A1 = 0
+//A2 = 0x16C
+78DC JAL	8000D5E30
+//another time
+
+800D5E30 //Initialize Memory (Custom Initial Value)
+//A0 = Start
+//A1 = Initial Value (for each byte)
+//A2 = Length
+//V0 = A0 
+
+
+800C7548 //?
+//A0 = ? (0 this pass)
+7550 ANDI	A0, A0, 0x00FF
+7554 LUI	AT, 0x8010
+7558 SB 	A0, 0x1958 //80101958
+755C LUI	T6, 0x8012
+7560 LHU	T6, 0x4E54 //80124E54
+7564 LUI	AT, 0x8010
+7568 SB 	A0, 0x1950(AT) //80101950
+756C ADDIU	AT, R0, 0x0001
+7570 SW 	RA, 0x0024(SP)
+7574 SW 	S2, 0x0020(SP)
+7578 SW 	S1, 0x001C(SP)
+757C BNE	T6, AT, 0x800C75C4
+7580 SW 	S0, 0x0018(SP)
+//
+75C4 LW 	RA, 0x0024(SP)
+75C8 LW 	S0, 0x0018(SP)
+75CC LW 	S1, 0x001C(SP)
+75D0 LW 	S2, 0x0020(SP)
+75D4 JR 	RA
+75D8 ADDIU	SP, SP, 0x0028
+
+
+80091858 //Initializes variables related to rendering the scene
+//A0 = "VIEW" struct ptr (Global Context + 0xB8 for game, + 0xA8 for ovl_title)
+//A1 = Graphics Context (11F290)
+//can be optimized quite a bit
+1858 ADDIU	SP, SP, 0xFFE8
+1860 //v0 = 800FC190
+186C //F2 = 1.0
+1874 //F4 = 60.0, FOV
+187C //F0 = 0
+1880 //F6 = 10.0 Fog Distance
+1888 //F8 = 12800, Z Depth?
+1890 //F10 = -1
+1898 //T6 = 0x00F0 //Screen Bottom
+189C //T7 = 0x0140 //Screen Right
+18A0 //T8 = "VIEW" literal
+//values are then saved to (A0), see global context
+18E8 T9, 0x0000(V0) //T9 = value at 800FC190, seems to be pointed at a dlist
+18EC T0, R0, 0x0007
+18F0 BEQL	T9, R0, 80091900
+18F4 SW 	R0, 0x0124(A0)
+18F8 SW 	R0, 0x0000(V0)
+18FC SW 	R0, 0x0124(A0)
+1900 JAL	80091CF0
+1904 SW 	T0, 0x0120
+1910 JR 	RA
+
+80091CF0 //Initializes more variables related to the VIEW
+//A0 = Ptr to the "VIEW" structure
+1D4C JR 	RA
+
+
+80099D0C //Sets ram start address for player_actor and kaleido_scope 
+//Note: both are assigned the same space
+//A0 = Global Context
+9D14 OR 	A2, A0, R0
+9D18 LUI	V0, 0x8010
+9D1C LUI 	A0, 0x8010
+9D20 OR 	A1, R0, R0 //A1 = 0, later the size of the larger overlay
+9D24 ADDIU	A0, A0, 0xE4B8 //A0 = 800FE4B8, table end
+9D28 ADDIU	V0, V0, 0xE480 //V0 = 800FE480, ovl ref to ovl_kaleido_scope
+9D2C LW 	T6, 0x0010(V0) //T6 = k_scope's vram end
+//loop. V0 = ref to k_scope first pass, player_actor second, to see which is bigger
+9D30 LW 	T7, 0x000C(V0) //T7 = k_scope's vram start
+9D34 ADDIU	V0, V0, 0x001C //V0 = 800FE49C, ovl ref to ovl_player_actor
+9D38 SUBU	V1, T6, T7	//V1 = ovl_kaleido_scope's size
+9D3C SLT	AT, A1, V1  //AT = Is overlay V0 (size V1) the largest?
+9D40 BEQ	AT, R0, 80099D4C //branch if V1 is <=0
+9D44 NOP
+9D48 OR 	A1, V1, R0 //A1 = largest found overlay
+9D4C BNEL	V0, A0, 80099D30
+9D50 LW 	T6, 0x0010(V0) //9D2C
+//loop is complete. A1 = the VRAM size of the larger of the two overlays
+//OPTIMIZATION: ovl_player_actor should always be larger
+9D54 JAL	800A01B8 //Gets start address for both, stored in V0
+9D58 ADDIU	A0, A2, 0x0074 //A0 = global context + 0x74
+9D5C LUI	AT, 0x8010
+9D60 SW 	V0, 0xE4B8(AT) //Store at 800FE4B8
+9D64 LUI	AT, 0x8010
+9D68 SW 	R0, 0xE4BC(AT) //null offset to overlay currently loaded
+9D6C LW 	RA, 0x0014(SP)
+9D70 ADDIU	SP, SP, 0x0018
+9D74 JR 	RA
+
+
+800A01D8 //allocate space on the Game State heap, from end (no memnodes)
+//Custom alignment
+//A0 = Global Context + 0x74
+//A1 = Size of space to allocate on the Game State heap
+//A2 = Alignment (-2 = 2 byte alignment, -4 = 4 byte etc.)
+//V0 = Address to allocate to
+
+800A01B8 //allocate space on the Game State heap, from end address (no memnodes)
+//0x10 byte aligned
+//A0 = Global Context + 0x74
+//A1 = Size of space to allocate on the Game State heap
+//V0 = Address to allocate to
+// Global Context + 0x80 = Main Heap end reserve address!
+01B8 LW 	T6, 0x000C(A0) //T6 = Actor Space heap addr end
+01BC ADDIU	AT, R0, 0xFFF0 //AT = FFFFFFF0
+01C0 AND	T7, T6, AT //T7 = Actor Space end rounded down to nearest 0x10 boundary
+01C4 SUBU	T8, T7, A1 //T8 = Where to allocate next space, not aligned
+01C8 AND	V0, T8, AT //V0 = Where to allocate next space, aligned
+01CC SW 	V0, 0x000C(A0) //Store next place to allocate
+01D0 JR 	RA
+
+
+800A0D38 //Initialize "play" game state?
+// Seems to deallocate the 0x10 0000ish space, and allocates "actor space"
+A0 = Global Context
+A1 = Allocate Size
+//
+0D40 SW 	A1, 0x0044(SP)
+0D44 OR 	A2, A0, R0
+0D48 LW 	T6, 0x0078(A2) //A2 = global context, T6 = "actor space" addr
+0D4C ADDIU	A0, A2, 0x0074
+0D50 SW 	A0, 0x0020(SP)
+0D54 SW 	A2, 0x0040(SP)
+0D58 JAL	800A026C //zero Main Heap Memory Allocation Handle
+//
+0D64 LW 	A1, 0x0028(SP) //A1 = Allocation addr
+0D68 ADDIU	A0, A2, 0x0084 //A0 = global context + 0x84
+0D6C JAL	800A107C //unlinks, de-allocates heap memory reserved for graph thread
+0D70 SW 	A0, 0x0024(SP)
+0D74 ADDIU	A0, SP, 0x0034
+0D78 ADDIU	A1, SP, 0x0030
+0D7C JAL	800CDBB8 //gets free memory info
+0D80 ADDIU	A2, SP, 0x002C
+0D84 LW 	V0, 0x0034(SP) //V0 = total free space on main heap?
+0D88 LW 	T7, 0x0044(SP) //T7 = Allocate size (1D4790 this pass)
+0D8C ADDIU	V0, V0, 0xFFF0 //V0 -= 0x10
+0D90 STLU	AT, V0, T7 // is V0 < T7
+0D94 BEQL	AT, R0, 800A0DA4
+0D98 LW 	A0, 0x0024(SP) //A0 = global context + 0x84
+//
+0DA4 JAL	800A1010 //allocates memory for game state, and links to global context, v0 = space addr
+0DA8 LW 	A1, 0x0044(SP) //A1 = 0D88 inst
+0DAC BEQ	V0, R0, 800A0DC8
+0DB0 OR 	A1, V0, R0 //v0 = "actor space" heap addr
+0DB4 LW 	A0, 0x0020(SP) //A0 = Global Context + 0x84
+0DB8 JAL	800A0248 //set memory allocation handle
+0DBC LW 	A2, 0x0044(SP) //A2 = Allocation size
+0DC0 BEQ	R0, R0, 800A0DEC
+0DC4 LW 	RA, 0x0014(SP)
+//
+0DEC ADDIU	SP, SP, 0x0040
+0DF0 JR 	RA
+
+
+
+800A0DF8 //Swap Game State
+//A0 = "Global Context" address
+//A1 = Function to execute during routine
+//A2 = Graphics Context (8011F290 this pass)
+0DF8 ADDIU	SP, SP, 0xFFE0
+0DFC SW 	S0, 0x0018(SP)
+0E00 OR 	S0, A0, R0 //S0 = Global Context
+0E04 SW 	RA, 0x001C(SP)
+0E08 SW 	A1, 0x0024(SP)//! Stored outside allocated stack!
+0E0C ADDIU	T6, R0, 0x0001 //T6 = 0x0001
+0E10 SW 	A2, 0x0000(S0)
+0E14 SW 	R0, 0x009C(S0)
+0E18 SW 	R0, 0x0004(S0)
+0E1C SW 	R0, 0x0008(S0)
+0E20 JAL	800048C0 //?
+0E24 SW 	T6, 0x0098(S0)
+0E28 SW 	R0, 0x000C(S0)
+0E2C SW 	R0, 0x0010(S0)
+0E30 JAL	800048C0
+0E34 NOP
+0E38 JAL	800A1118 //stores A0 at 0x00, 0x04, 0x10 (A0)
+0E3C ADDIU	A0, S0, 0x0084 // A0 = Global Context + 0x84
+0E40 JAL	800048C0
+0E44 NOP
+0E48 OR 	A0, S0, R0 //A0 = Global Context
+0E4C JAL	800A0CC8
+0E50 LUI	A1, 0x0010 //A1 = 0x0010 0000
+
+800A0CC8 //? function
+//seems to be called primarily to allocate a special 0x100000 space on the main heap 
+//A0 = global context
+//A1 = space to allocate?
+0CC8 ADDIU	SP, SP, 0xFFE8
+0CCC SW, RA, 0x0014(SP)
+0CD0 SW, A1, 0x001C(SP)
+0CF8 jal	800A0248 //set memory allocation handle
+
+
+800CDBB8 //Get Heap Free Space
+//seems to get mapped/unmapped heap space, and store on stack at
+//A0 = ptr to store total free space on heap? (SP + 0x34 this pass)
+//A1 = ptr to store total free space on heap? (SP + 0x30 this pass)
+//A2 = ptr to store total space allocated on heap (SP + 0x2C this pass)
+DBB8 ADDIU	SP, SP, 0xFFE8
+DBBC SW 	A1, 0x001C(SP)
+DBC0 OR 	A1, A0, R0
+DBC4 SW 	A0, 0x0018(SP)
+DBC8 SW 	RA, 0x0014(SP)
+DBCC OR 	A3, A2, R0
+DBD0 LUI	A0, 0x8013
+DBD4 LW 	A2, 0x001C(SP)
+DBD8 JAL	800CE688
+DBDC ADDIU	A0, A0, 0xBAA0 //A0 = 8012BAA0
+//
+DBE8 JR 	RA
+
+800CE688 //Get free space stats
+//Traverses free list to find all allocated space
+//A0 = Free List Handle ptr (8012BAA0 this pass)
+//A1 = int*, total free space on heap? (8011F194 this pass)
+//A2 = int*, total free space on heap (8011F190 this pass)
+//A3 = int*, total allocated space on heap, not factoring in memory nodes (8011F18C this pass )
+//
+//store 0 at addresses stored in A1-A3
+E694 LW 	V0, 0x0000(A0)//load heap ptr
+E698 BEQ	V0, R0, 800CE6F4 //break if null
+E69C NOP
+E6A0 LH 	T6, 0x0002(V0)//T6 = memnode.free
+//loop start
+A6A4 BEQL	T6, R0, 800CE6DC //branch if memnode is allocated
+E6A8 LW 	T1, 0x0000(A3)	
+//memnode not allocated
+E6AC LW 	T7, 0x0000(A2)
+E6B0 LW 	T8, 0x0004(V0) //T8 = memnode.space
+E6B4 ADDU	T9, T7, T8 //T9 = total free space
+E6B8 SW 	T9, 0x0000(A2) 
+E6BC LW 	T0, 0x0000(A1)
+E6C0 LW 	V1, 0x0004(V0) //V1 = memnode.space
+E6C4 SLTU	AT, T0, V1 //T0 < V1?
+E6C8 BEQL	AT, R0, 800CE6EC
+E6CC LW 	V0, 0x0008(V0)//V0 = memnode->next
+E6D0 BEQ	R0, R0, 800CE6E8
+E6D4 SW 	V1, 0x0000(A1)//
+//
+E6DC LW 	T2, 0x0004(V0)//T2 = memnode.space
+E6E0 ADDU	T3, T1, T2 //T3 = total allocated space
+E6E4 SW 	T3, 0x0000(A3)
+E6E8 LW 	V0, 0x0008(V0) //V0 = memnode->next
+E6EC BNEL	V0, R0, 800CE6A4 //branch if memnode->next is not null
+E6F0 LH 	T6, 0x0002(V0) //T6 = memnode->next.free
+E6F4 JR 	RA
+
+800CE6FC //Verify Free List Integrity
+//A0 = ptr to node
+//V0 = 1 if valid, else 0
+
+
+800A107C //De-Allocate graph thread heap memory
+A0 = ? Global Context + 0x84
+A1 = ? (actor space address (801DAA00))
+1084 OR 	A2, A0, R0
+1088 BEQL	A1, R0, 800A10BC //early branch out to function end
+1090 LW 	T6, 0xFFF0(A1) //T6 = ref1 to space
+1094 LW 	T7, 0xFFF4(A1) //T7 = ref2 to space
+1098 ADDIU	A0, A1, 0xFFF0 //A0 = 1DA9F0
+109C SW 	T6, 0x0000(T7) //the fuck is this... stores 801C8524, at 801C8524
+10A0 LW 	T9, 0xFFF0(A1)
+10A4 LW 	T8, 0xFFF4(A1)
+10A8 SW 	T8, 0x0004(T9)
+10AC LW 	T0, 0x0004(A2)
+10B0 JAL	800CDB00 //De-allocate game state heap
+10B4 SW 	T0, 0x0010(A2)
+10C0 JR 	RA
+
+
+800A026C //Zero Main Heap Memory Allocation Record
+//A0 = Global Context + 0x0074
+0274 JAL	80002E80
+0278 ADDIU	A1, R0, 0x0010
+//end?
+
+8009DA10 //?, related to zone outs in Tower Collapse
+//A0 = Global Context pointer
+DA10 ADDIU	SP, SP, 0xFFE8
+DA14 LUI	V1, 0x8012
+DA18 ADDIU	V1, V1, 0xA5D0 //8011A5D0
+DA1C SW 	RA, 0x0014(SP)
+DA20 ADDIU	T6, R0, 0xFFFF
+DA24 LUI	AT, 0x0001 //AT = 0x10000
+DA28 SW 	T6, 0x1364(V1) //zone out type?
+DA2C ADDU	AT, AT, A0 //AT = global context + 0x10000
+DA30 ADDIU	T7, R0, 0x0014 //20
+DA34 SB 	T7, 0x1E15(AT) //store 20 at global context + 0x11E15
+DA38 LH 	V0, 0x00A4(A0) //V0 = scene number
+DA3C ADDIU	AT, R0, 0x000E //AT = 0xE, Tower Collapse Interior scene number
+DA40 ADDIU	T8, R0, 0x043F //T8 = 0x43F
+DA44 BEQ	V0, AT, 8009DA64 //Scene = Tower Collapse Interior?
+DA48 ADDIU	A1, R0, 0x003C   //A1 = 0x003C
+DA4C ADDIU	AT, R0, 0x001A //AT = Tower Collapse Exterior scene number
+DA50 BEQ	V0, AT, 8009DA64 //branch if scene = Collapse Exterior
+DA54 ADDIU	AT, R0, 0x000F //scene = tower collapse interior exit?
+DA58 BEQ	V0, AT, 8009DA64
+DA5C ADDIU	AT, R0, 0x004F //Scene = ganon battle?
+DA60 BNE	V0, AT, 8009DA80
+DA64 LUI	AT, 0x0001
+//
+DA80 LW 	T9, 0x0000(V1) //Load entrance index
+DA84 LUI	AT, 0x0001
+DA88 ADDU	AT, AT, A0 //AT = global context + 0x10000
+DA8C SH 	T9, 0x1E1A(AT) //store entrance index at global context +0x11E1A
+DA90 LUI	AT, 0x0001
+DA94 ADDU	AT, AT, A0 //AT = global context + 0x10000
+DA98 ADDIU	T0, R0, 0x0002 ?
+DA9C SB 	T0, 0x1E5E(AT) //?
+//
+DAA8 JR 	RA
+
+8009D94C //Set Zoneout Spawn
+//A0 = Global Context
+//A1 = Zoneout Checkpoint Type (0-2)
+//A2 = Link Spawn Parameters
+D94C addiu	$sp,$sp,-40
+D950 sw 	$ra,36($sp)
+D954 sw 	a2,48($sp)
+D958 lh 	v0,0x00a4(a0) 		//v0 = scene number
+D95C li 	$at,60 				//at = scene number for fairy grotto
+D960 lw 	v1, 0x1C44(a0) 		//v1 = ptr to Link instance
+D964 beq	v0,$at,0x8009D9A8 	//return if fairy grotto
+D968 li 	$at,62 				//at = scene number for grottos
+D96C beq	v0,$at,0x8009D9A8 	//return if grotto
+D970 lui	a3,0x0001
+D974 lw 	t6,48($sp) 			//t6 = link spawn "variable"
+D978 addu	a3,a3,a0  			
+D97C lb 	a3,1CBC(a3) 		//A3 = Global Context + 0x11CBC
+D980 lui	v0,0x8012
+D984 lw 	v0,A5D0(v0) 		//v0 = entrance index
+D988 addiu	t7,v1,0x0024 		//t7 = link's xyz coordinate ptr
+D98C sw 	t7,0x14($sp) 
+D990 sw 	t6,0x10($sp) 		//save link's spawn variable
+D994 lh 	t8,0x00B6(v1) 		//get link's y rotation
+D998 sll	a2,v0,0x10 
+D99C sra	a2,a2,0x10 			//A2 = Entrance INdex
+D9A0 jal	0x8009D8DC
+D9A4 sw 	t8,0x18($sp) 		//store rotation
+D9A8 lw 	$ra,36($sp)
+D9AC addiu	$sp,$sp,40
+D9B0 jr 	$ra
+
+
+8009D8DC //Sets zoneout type 1-3 spawns
+//called by 8009D94C
+//800236B0 writes update for farore's wind spawn
+// y < -4000 zoneout tested
+//A0 = Global context
+//A1 = Zoneout Checkpoint Type (0-2)
+//A2 = Entrance Index
+//A3 = Room Number (Global Context + 0x11CBC)
+//SP + 0x10 = Link's Spawn Variable
+//SP + 0x14 = XYZ Pointer
+//SP + 0x18 = Rotation
+D8DC sw   	a2,8($sp)
+D8E0 sll  	a2,a2,16
+D8E4 sra  	a2,a2,16 		//convert entrance index to signed halfword
+D8E8 sll  	t6,a1,3 		//some offset from sram start?
+D8EC subu 	t6,t6,a1
+D8F0 lui  	t7,0x8012
+D8F4 addiu	t7,t7,0xA5D0 	//SRAM addr
+D8F8 sll  	t6,t6,2
+D8FC lw   	t8,20($sp) 		//load link's xyz coords
+D900 addu	v0,t6,t7
+D904 sh   	a2,0x1378(v0) 	//last surface entrance index
+D908 sb   	a3,0x137A(v0) 	//room number
+D90C lw   	t0,0(t8) 		//link x coordinate
+D910 lh   	t1,26($sp) 		//y rotation
+D914 lw   	t2,16($sp) 		//spawn param
+D918 sw   	t0,0x1368(v0) 	//link x coordinate
+D91C lw   	t9,4(t8) 		//link y coordinate
+D920 sw   	t9,136C(v0) 	//link's y coordinate
+D924 lw   	t0,8(t8) 		//link z coordinate
+D928 sh   	t1,0x1374(v0)
+D92C sh   	t2,0x1376(v0)
+D930 sw   	t0,0x1370(v0)	//link's z coordinate
+D934 lw   	t3,0x1D2C(a0)
+D938 sw   	t3,0x137C(v0)
+D93C lw   	t4,0x1D48(a0)
+D940 sw   	t4,0x1380(v0)
+D944 jr 	$ra
+D948 nop
+
+
+
+//****************** En_Item00.c **************************
+
+80012FB8 //En_Item00 draw function
+//
+3014 //draw piece of heart
+
+
+80013498 //Draw Piece of Heart
+//A0 = Actor Instance
+//A1 = Global Context
+
+
+80013530 //code, En_Item00, Convert to different item based on Link's Age
+//A0 = En_Item00 Item Id
+3544 //get Link's age
+3554 //A1 = 800F8F34
+
+
+80013678 //code, spawn En_Item00 Actor (Actor 0015)
+//A0 = Global Context
+//A1 = Ptr to x,y,z coordinate to spawn at?
+//A2 = Actor Variable // & 0x8000 and & 0x4000 have special meaning
+
+
+80013A84 //code, randomized item spawn
+
+
+//********* Particles.c **********
+
+80018A20 //Circle particles
+//A0 = 80114DE8
+//A1 = 8011A0E8
+//Deku Baba Hit (possibly green spots?f)
+//Jabu Jabu Hit
+
+
+8001ABDC //unknown
+//A0 = Graphics Context
+//
+//S0 = 80114DE0
+//S2 = 80115C38
+//S3 = 800E7AF0
+//
+
+
+8001B000 //Allocate Particles (Scene Constructor)
+//A0 = Global Context
+//A1 = Number of Particles to Allocate
+
+
+8001B0E4 //Deallocate Particles (Scene destructor)
+//A0 = Global Context
+
+
+8001B1A4 //Kill Particle
+//A0 = Particle Instance (live particle array at 80384980)
+
+
+8001B204 //Zero Particle Record
+//A0 = pointer to particle
+
+
+8001B468 //Spawn Particle
+//A0 = Global Context
+//A1 = Particle Effect Id
+//A2 = ? (0x80 this pass)
+//A3 = ptr to spawn coordinates 1?
+//SP + 0x4C = u8 ?
+B484 //Try Get Particle Free Slot. Return if no slot is available
+//increment particle index
+B4E0 jal 80066C38 //Allocate space for particle overlay
+B508 jal 800CCBB8 //Link Overlay
+
+
+8001B298 //Try Get Particle Free Slot
+
+
+8001B610 //Update/Execute Particle?
+//A0 = Global Context
+//A1 = Particle Slot
+
+
+8001B6B0 //Update/Execute Particles
+//A0 = Global Context
+
+
+8001B76C //Draw Particle
+//Execute Particle Instance + 0x28 function
+//A0 = Global Context
+//A1 = Particle Slot
+
+8001B7B0 //Draw Particles
+//A0 = Global Context
+
+8001BCE0 //Spawn Particle 0x00
+//A0 = Global Context
+//A1 = ? (5 this pass)
+//A2 = Ptr to struct on stack
+//A3 = Ptr to struct (803AAE14 this pass)
+//SP + 0x10 = Coords Ptr 3 (803AAE20 this pass)
+//SP + 0x14 = Color 1 ptr
+//SP + 0x18 = Color 2 ptr
+//SP + 0x1C = s16 ? (0x32 this pass, possibly timer)
+//SP + 0x20 = s16 ? (0x1E this pass)
+//SP + 0x24 = s16 ? (0x0A this pass)
+//SP + 0x28 = u8 ? (0 this pass)
+
+8001C6A8 //Spawn Particle 0x01 (Fairy Sparkles)
+
+
+8001CC7C //Particle 0x05 spawn (Bombs)
+
+
+8001EFF4 //Draw Drop Shadow
+//Wrapper for 8001EC44, sets A3 to 0404E740, SP+0x10 to 0
+//En_Item00 (piece of heart, probably others though)
+//A0 = Actor Instance
+//A1 = Display List Allocated data (POLY_OPA tail end)
+//A2 = Graphics Context
+
+
+8001F904 //code, graph, Navi Colors
+//Loads data from table at 800E8214 for setting Navi's Colors
+//A0 = (GC + 0x1C90)
+//A1 = Link Instance
+//A2 = Color Id
+
+
+//******************* Actor.c *****************************
+
+80020F04 //Physics, copy over some set of xyz and rotation
+//A0 = Actor Instance
+//A1 = float Y offset
+//add (0, A1, 0) to coords instance + 0x24, store at instance + 0x38
+//copy coords at Instance + 0x30, store at instance + 0x44
+
+
+80021124 //Physics, updates x,y,z coordinates of an actor!
+//Called before background collision check
+//A0 = Actor pointer
+//
+//F8 = 0.5f
+//T7 = Update Divisor
+
+800211A4 //Physics, updates x,y,z velocity vectors of an actor (instance +0x5C)
+//A0 = Actor pointer
+
+
+80021248 //Physics, ?
+//A0 = Actor Instance
+
+
+80021600 //Calculate Player Height?
+//Factors in riding on Epona
+//A0 = Link Instance
+//F0 = Player Height?
+1604 //at = 32f
+1610 //F2 = 0 if Link Instance + 0x66C not & 0x0080 0000 (Riding Epona)
+//else F2 = 32f
+1630 //at = 44f
+1634 //F6 = 44f if Link is a Child
+//else F4 = 68f
+//return F2 + F4 (Adult) or F2 + F6 (Child)
+
+
+80021660
+//A0 = Link Instance
+
+
+800214FC //Calculate the distance between two actors
+//Instance + 0x24 coordinates
+//A0 = Actor A
+//A1 = Actor B
+
+
+80021BE8 //Collision/Position Updating related
+//A0 = Actor Instance
+1C1C //load Y velocity
+
+
+80021E6C //code, graph, possibly primary actor collision call
+//A0 = Global Context
+//A1 = Actor Instance
+//A2 = float wallCheckHeight? (26f for Link)
+//A3 = float wallPushback? (18f/14f for Adult/Child Link)
+//SP+0x10 float ? (56f/40f for Adult/Child Link)
+//SP+0x14 int (type?)
+
+
+
+
+//************************** demo.c ***********************
+
+80052364 //Cutscene related
+//A0 = Global Context
+//A1 = Cutscene Struct (Global Context + 0x1D64)
+//If Cutscene Number (8011A5D8) is < 0xFFF0
+//Use Cutscene Struct + 0x08 to lookup func at 
+//800EFCD8 (0-9 valid indexes)
+
+
+80052D14 // Cutscene command 0x04 (lighting), parse action record
+//A0 = Global Context
+//A1 = Cutscene Struct (Global Context + 0x1D64)
+//A2 = ptr to 0x30 byte record
+//
+//If action frame != current cutscene frame, return
+//T9 = u8 at struct +0x01, decremented by 1
+//store at Global Context + 0x10AE3
+//store 1.0f at Global Context + 0x10AFC
+
+
+80052D54 // Cutscene: Check if new song should play
+//A0 = Global Context
+//A1 = Cutscene Struct
+//A2 = Data
+//
+//Checks if cs frame = trigger frame
+//If so, decrements action (so that it maps to the song ids)
+JAL 800C66B0
+
+
+80052E90 //Cutscene command 0x8C, parse action record
+//A0 = Global Context
+//A1 = Cutscene Struct (Global Context + 0x1D64)
+//A2 = ptr to 0xC byte record
+/{
+//
+//if start frame != current cutscene frame, return
+//T8 = u8 at Struct + 0x06 //hour
+//F0 = 0.02197266f ((24*60)/0x10000)
+//F6 = T8 
+2EBC //branch 2ED4 if T8 >= 0
+//F8 = 0x1 0000 0000 (f)
+2ED4 //T0 = u8 at struct + 0x07 //minutes
+//F10 = 60.0f
+//F8 = T0 + 1
+//F16 = (Struct + 0x06) * 60.0f
+//F6 = F8
+2EF0 //F18 = F16 / F0
+2EF4 //F10 = F6 / F0
+/}
+
+80052F34 // Parse Cutscene Command 0x3E8 data
+//A0 = Global Context
+//A1 = Cutscene Struct (Global Context + 0x1D64)
+//A2 = ptr to command record
+//
+3098 // Cutscene command 0x3E8 (exit command)'s jump table execution point
+//S0 = Global Context
+//V1 = Save Context
+80052F34:80054370 //Action 0x5F
+//V0 = Save Context + 0xEDC
+//branch 43C8 if player hasn't obtained Forest, Fire, or Water Medallions
+//else
+439C //store 0x53 at Global Context + 0x11E1A
+
+
+800558E0 //Cutscene Command 0x07. Camera Related
+//Command data is 0x18 bytes long!
+//A0 = Global Context
+//A1 = Cutscene Struct
+//A2 = Command Data Ptr
+//A3 = 0
+5900 lhu	v0, 0x0002(T0) //t0 points to command's data
+5904 lhu	a3, 0x0010(S0) //s0 = a1, so points to frame counter
+590C slt	at, v0, a3 //is v0 less than a3?
+5910 beql	AT, R0, 80055AA8 // skip cs if it's not
+//
+5918 lhu	t6, 0x0004(t0) //
+5920 //A0 = 8011BC50
+5924 slt	at, a3, t6 //is a3 less than t6?
+//
+5930 lhu	v1, 0x0000(a0)
+5934 slt	at, v1, v0 //is v1 < v0? skip ahead to 594C
+//else check if v1 is not less than 0xF000, terminate
+//
+594C lbu	T8, 0x001A(S0) //from cutscene struct
+5950 addiu	T7, R0, 0x0001 //T7 = 1
+5954 sb		t7, 0x001B(S0) //store 1
+5958 beq	t8, r0, 80055AA4 //terminate if 0
+595C sw 	a2, 0x0020(S0) //a2 = +8 at this point
+5960 lhu	t9, 0x0002(t0) //load command data 0x02
+//
+5968 sh		t9, 0x0000(a0) //store at 8011BC50
+596C lbu	t1, 0xBC30(t1) //load byte from 8011BC30
+
+
+80055F38 //Process Cutscene
+//A0 = Global Context
+//A1 = Cutscene Struct (Global Context + 0x1D64)
+//A2 = Cutscene Pointer
+/{
+//
+//Store Cutscene Commands at SP + 0x50
+//Store Cutscene Frames at SP + 0x40
+5FE0 //beginning of cutscene command check routine
+// 8010757C = jump table for processing cutscene commands in the 0x01-0x90 range (specifically, for determining if a command is relevant)
+//if command is -1, terminate cutscene parsing
+//if command is 1000, exit cutscene command
+//if command is anything else, it is functionally equivalent to the 0x0B identifier
+68E4 //return
+//Subroutines
+//S register purpose:
+//S0 = Iterator for processing a command's list
+//S1 = Pointer to where the command data is located
+//S2 = Cutscene Struct Addr
+//S3 = Global Context
+//S4 = Spot on stack where command's sublist count is stored
+//
+80055F38:800560D8 // music
+//JAL 80052D54
+80055F38:8005627C = Write pointer to "live" actor command at Cutscene Struct + 0x24
+80055F38:800562EC = Write pointer to "live" actor command at Cutscene Struct + 0x28
+80055F38:800567BC //Cutscene: ?
+//Id 0x07
+//JAL 800558E0
+80055F38:8005688C //Dummied out Cutscene Command
+//copy number of action records (actions) to SP + 0x48
+68A0 //V1 = actions
+//return if actions <= 0
+//loop if iterator S0 < actions
+/}
+
+
+
+
+
+80056D90 //Triggers Certain Conditional cutscenes
+//Handles the following cutscenes:
+//Learning Requiem, Starting Kakariko Fire -> Learning Nocturne,
+//Getting Fairy Ocarina, Starting Light Arrow cutscene sequence, Ganon's Tower Collapses cutscene
+//A0 = global context
+6D90 addiu 	$sp, $sp, 0xFFE0
+6D94 sw   	s0,24($sp)
+6D98 lui  	s0,0x8012
+6D9C addiu	s0,s0,0xA5D0 //s0 = 8011A5D0
+6DA0 sw 	$ra,28($sp)
+6DA4 sw 	a0,32($sp)
+6DA8 lw 	t6,0x135C(s0) //Load gamestate variable
+6DAC bnel	t6, $zero, 0x80056F88 //return
+6DB0 lw 	$ra,28($sp)
+6DB4 lw		t7, 0x1364(s0) //load zoneout state
+6DB8 bgtzl	t7, 0x80056F88 //return if zoneout state is > 0
+6DBC lw   	$ra,0x001C($sp)
+6DC0 lw    	t8, 0x0008(s0)
+6DC4 ori  	$at,$zero,0xFFF0
+6DC8 slt  	$at,t8,$at
+6DCC beql 	$at,$zero,0x80056F88 //return if cutscene number >= 0xFFF0
+6DD0 lw   	$ra,0x001C($sp)
+6DD4 lw 	t9, 0x0000(s0)
+6DD8 li   	$at,0x01E1 //Desert Colossus From Spirit Temple
+6DDC bnel 	t9,$at,0x80056E14
+6DE0 lw   	t2,0(s0)
+6DE4 ?    	0xEC457580
+6DE8 li 	a0,0x00AC
+6DEC bnel	v0,$zero,0x80056E14
+6DF0 lw 	t2,0(s0)
+6DF4 jal	0x800288E0
+6DF8 li 	a0,0x00AC
+6DFC li 	t0,0x0123
+6E00 ori	t1,$zero,0xFFF0
+6E04 sw 	t0,0(s0)
+6E08 beq	$zero,$zero,0x80056F84 //return
+6E14 addiu	at, r0, 0x00DB //Kakariko Ent 0
+6E18 bnel	t2, at, 80056E74 //branch if current entrance index is not 0x00DB
+6E74 addiu	at, r0, 0x05E0 //Lost Woods, from Kokiri Forest, headed to Hyrule
+6E78 bne	t8, at, 80056EB8 //branch if current entrance index is diff
+6EB8
+6EBC //v1 = 800F8BF0, Quest Screen Enumeration?
+6EC0 lw 	t1, 0x000C(v1) //Spirit Medallion
+6ECC beq	t2, r0, 80056F3C //branch if Spirit Medallion hasn't been obtained
+6EDC //branch if Shadow Medallion hasn't been obtained
+6EE8 //branch if Link isn't an adult
+6EF0 //check if Light Arrow cutscene was already viewed (event 0xC4)
+6EF8 //branch if viewed before
+6F00
+6F18 //branch if base entrance index doesn't spawn you in Temple of Time
+//set event C4, change base entrance index to 0x0053/cutscene to FFF8, return
+//anyway, the last check is for whether to play the Tower Collapse cutscene in the Ganon Battle Scene
+//that checks event C7, which is double-mapped to being captured the first time
+
+
+80056F98 // Set Cutscene Pointer
+//A0 = Global Context
+//A1 = Segment Address
+
+
+
+8005BD78 //?, loads jpn_message_data_static data into ovl_en_mag instance
+//Seems to load font data, possibly to display No Controller text?
+
+
+800CDC90 //Generate Next Random Number
+//V0 = randomly generated number
+//http://en.wikipedia.org/wiki/Linear_congruential_generator
+DC90 LUI	A0, 0x8010
+DC94 ADDIU	A0, A0, 0x5440
+DC98 LW 	V1, 0x0000(A0) //V1 = RNG seed
+DC9C LUI	AT, 0x0019
+DCA0 ORI	AT, AT, 0x660D //AT = 1664525, multiplier
+DCA4 MULTU	V1, AT
+DCA8 LUI	AT, 0x3C6E
+DCAC ORI	AT, AT, 0xF35F //AT = 1013904223, increment
+DCB0 MFLO	V1 //V1 = mult lo
+DCB4 ADDU	V0, V1, AT //V0 = new seed
+DCB8 JR 	RA
+DCBC SW 	V0, 0x0000(A0) //store seed
+
+
+800CDCC0 //Write RNG seed
+A0 = Seed Value
+
+DCC0 LUI	AT, 0x8010
+DCC4 JR 	RA
+DCC8 SW 	A0, 0x5440(AT) //80105440
+
+800CDCCC //Generates a random number between 0 inclusive and 1 exclusive
+//F0 = Value between 0 and 1
+DCCC ADDIU	SP, SP, 0xFFE0
+DCD0 SW 	RA, 0x0014(SP)
+DCD4 JAL	800CDC90 //Generate next number
+DCD8 NOP
+DCDC LUI	AT, 0x007F
+DCE0 ORI	AT, AT, 0xFFFF
+DCE4 AND	T6, V0, AT //low 23 bits of our RNG
+DCE8 LUI	AT, 0x3F80 //AT = 1.0 as float
+DCEC OR 	T7, T6, AT //T7 = Random number between 1 and just under 2
+DCF0 SW 	T7, 0x001C(SP)
+DCF4 LWC1	F4, 0x001C(SP)
+//Essentially, F4 is set to a random float between 1 and just under 2
+DCF8 MTC1	AT, F6 //F6 = 1.0
+DCFC LW 	RA, 0x0014(SP)
+DD00 ADDIU	SP, SP, 0x0020
+DD04 SUB.S	F2, F4, F6//F2 = random num between 0 and 1
+DD08 JR 	RA
+DD0C MOV.S	F0, F2
+
+
+80026D64 //Generates a random floating point between 0 and N exclusive
+//F12 = N, exclusive upper bound
+//F0 = result
+
+80026D90 //Multiplies value by a random scalar between -0.5 and 0.5 exclusive
+//F12 = Value
+
+80063BF0 //Generates random s16 number with range
+//Generates random integer between 0 and range (exlusive), and adds Offset
+//A0 = Offset (20)
+//A1 = Range (50)
+//V0 = result
+3BF0 ADDIU	SP, SP, 0xFFE8
+3BF4 SW 	RA, 0x0014(SP)
+3BF8 SW 	A0, 0x0018(SP)
+3BFC SW 	A1, 0x001C(SP) //off stack?
+3C00 JAL	800CDCCC
+3C04 NOP	
+3C08 LH 	T6, 0x001E(SP) //A1
+3C0C LH 	T1, 0x001A(SP) //A0
+3C10 LW 	RA, 0x0014(SP)
+3C14 MTC1	T6, F4 //F4 stores T6 binary value
+3C18 NOP
+3C1C CVT.S.W F6, F4 //convert to single from word
+3C20 MUL.S	F8, F0, F6 //multiply range by 0-1
+3C24 TRUNC.W.S F10, F8 //Truncate to word from single
+3C28 MFC1	T0, F10
+
+
+80063C44 //Generates random s16 number with range and multiplier
+//Generates random integer between 0 and range (exlusive), integer multiplies that by Multiplier, adds Offset
+//A0 = s16 Offset
+//A1 = s16 Multiplier
+//A2 = s16 Range
+//V0 = s16 result
+//
+//0C033724
+
+
+
+
+8008A194 //Gets some value from Gameplay Keep (link_animation?)
+//A0 = Segment Address (04003240 this pass)
+//V0 = u16 referenced by the segment address, minus 1
+//80120C38 = Segment Table
+
+
+
+
+800CAB18 //audio related?, called by En_Ta //Talon
+//A0 = ?
+//V0 = u16 (0x000 of 80124E54)
+//80128B60, 0x160 byte record array
+//80124E54, 0x264 byte record array
+
+800C666C //Speed up playback of minigame music sequence
+
+==== Project Tower Collapse ====
+Ganon sets Switch Perm 14
+Zelda sets Switch Temp 37 for Tower Collapse Sequence
+Zelda sets Switch Temp 36 for Tower Collapse Timer
+
+8002049C //Tests if a Switch Flag is set
+//A0 = Global Context
+//A1 = Flag Value
+//V0 = 0 if not set, or the bit's position if set
+
+
+800204D0 //Sets Switch Flag to 1
+//Values >= 0x20 always set temp flag word
+//A0 = Global Context
+//A1 = Flag Value
+
+80020510 //Sets Switch Flag to 0
+//A0 = Global Context
+//A1 = Flag Value
+
+80020554 //Tests if Unused? Scene Flag is set
+//A0 = Global Context?
+//A1 = Flag Value
+//V0 = 0 if not set, or the bit's position if set
+
+80020588 //Sets Unused? Scene Flag to 1
+//A0 = Global Context
+//A1 = Flag Value
+
+800205C8 //Sets Unused? Scene Flag to 0
+//A0 = Global Context
+//A1 = Flag Value
+
+8002060C //Tests if a Chest Flag is set
+//A0 = Global Context
+//A1 = Flag Value
+
+80020624 //Turns on a Chest Flag
+//A0 = Global Context
+//A1 = Flag Value
+
+80020640 //Test if a Room Clear Flag is set
+//A0 = Global Context
+//A1 = Flag Value
+//V0 = 0 if not set, or the bit's position if set
+
+80020658 //Sets Room Clear Flag to 1
+//A0 = Global Context
+//A1 = Flag Value
+
+80020674 //Sets Room Clear Flag to 0
+//A0 = Global Context
+//A1 = Flag Value
+
+800288B4 //Tests if event_chk_inf flag is set
+//A0 = event_chk_inf flag id
+//V0 = 0 if not set, non-zero if set
+
+800288E0 //Sets event_chk_inf flag
+//A0 = event_chk_inf flag id
+
+80028914 //Tests if inf_table flag is set
+//A0 = inf_table flag id
+//V0 = 0 if not set, non-zero if set
+
+80028940 //Sets inf_table flag
+//A0 = inf_table flag id
+
+
+80082790 //?
+//A0 = Global Context
+//Checks Switch Flag (Temp 37) for tower collapse
+//
+//Address 80085284 checks for Temp 37 
+
+
+
+80057030 //Copy bytes
+//A0 = Copy to Address
+//A1 = Copy from Address
+//A2 = Bytes to copy
+//V0 = Address copied to
+//If bytes to copy <= 0, no bytes will be copied
+
+
+
+
+8009D2F0 //Cutscenes?: Related to command 0x07
+//A0 = Global Context
+//A1 = 0x16 from Cutscene Struct
+//V0 is set to a pointer at 0x0790 + (4 * V1) from global context
+//V1 = either A1, or halfword at 0x07A0 + global context if A1 was -1 
+
+80047C38 //Initialize Camera?
+//A0 = Camera
+//A1 = Link Instance (possibly actor to follow?)
+
+80047E50 //Camera related, update main camera?
+//A0 = Camera ptr
+
+8004860C //Camera Related
+//A0 = ref ptr, 6 byte struct returned to calling function
+//A1 = Camera Ptr (Camera 1 this pass)
+//
+//A0 struct:
+//0x00 s32 ?
+//0x04 u16 ?
+//
+//800EEE74
+89F8 //start of logic related to a diving glitch
+//T0 = Camera + 0x142 (s16)
+//T3 = Camera + 0x144 (s16)
+8A0C //T2 = s32 [800EEE74 + (t0 * 8)]
+8A1C //T6 = s16 [T2 + (T3*8)]
+
+80049330 //Camera related, wrapper for 80048FCC
+//calls 80048FCC with A2 = 0
+//A0 = Camera ptr
+//A1 = s16 ?
+
+800495BC //Wrapper for 800493C8
+//A0 = Camera ptr (ref in Global Context + 0x0790)
+//A1 = Camera S (0x25 this pass)
+           //V0 = ?
+//sets A2 to 0, and calls 800493C8
+
+800493C8 //Camera related, possibly sets up camera behavior
+//A0 = Camera ptr (ref in Global Context + 0x0790)
+//A1 = Camera S (index to 800EEE70) (0x25 this pass), valid values range between 0x01 and 0x41
+//A2 = Camera M (0 this pass, set by 800495BC)
+//800EEE70 is a massive table that references sub-data
+
+80048FCC //Camera related
+//called by 800493C8
+//A0 = Camera ptr
+//A1 = ?
+//A2 = u8 ?
+
+
+80049A00 //Cutscene Camera
+//A0 = Cutscene Camera struct ptr
+//A1 = Focus Point Tween List
+//A2 = Camera Position Tween List
+//A3 = Pointer to actor to track (Link in this pass)
+
+???????? //Cutscene Command 0x03
+//Actions 0x01-0x23
+//Jump Table at 801072E0
+//0B
+800527EC = Instruction that sets cutscene frame check to play deku tree death sfx
+
+
+80065A14 // Heart animation?/low health sfx
+//A0 = Global Context
+5AB8 // Beeping heart sfx
+//Global Context: 801D8BBA = heart pulse
+//801D8BBC = Shrink/Grow?
+
+8007938C // Link Stuff (Check MM notes)
+//Possibly checks if Link can be interrupted?
+//A0 = Global Context
+//A1 = Link Instance
+//V0 = 1 if one check passes, 0 if all fail
+93AC // Return if Instance + 0x66C & 0x20000080 > 0
+93BC // Return if Instance + 0x434 (u8) > 0
+93D8 // Return if leaving the scene
+93E8 // Return if Instance + 0x66C & 0x01 > 0 
+93FC // Return if Instance + 0x682 & 0x80 > 0
+9414 // Return if Save Context + 0x13F0 = 0 
+//A0 = Link Instance, A1 = Link Instance + 0x144
+841C jal 80079BA8 //Test if Link is casting a magic spell (returns -1 if false)
+//return 0 if not casting a spell, 1 if so
+
+
+
+800646F0 //Play sfx (limited set)
+80064738 //Play sfx (limited set)
+//Identical asm
+//A0 = Sfx 
+
+80064780 //Play sfx (limited set)
+//used by medallions
+//A0 = Sfx
+
+800647D0 is possibly a library boundary?
+
+AFA40000
+
+800C66B0 //Cutscenes, plays a new song
+//A0 = Music Sequence Id
+//80101964 //Song track table? Each record is 1 byte, data appear to contain flags
+//80128B60 //Music related?
+//80128CC0 //Music related? (0x160 struct as per above)
+//
+//80124E54 //Audio related, 0x264 struct (music sequence 0)
+//801250B8 //Audio related, 0x264 struct (music sequence 1)
+//There are two other channels, at least in Chamber of Light
+//
+//some structure info:
+//0x0000 = sequence being played, FFFF for not being played
+//0x0004 = sequence loaded
+
+
+800B74F8 //Fetch data from some Music table
+//Reads from 801139B0, Music Related Table
+//Song Id indexes this table, each record is 2 bytes long
+//read in value is added to above address, creating pointer A, then another byte read is performed (the fuck?)
+//If this value is 0, V0 is set to 0
+//If this value is not 0, Pointer A + 1 is returned in V0
+
+==== Actor 0x00A6, Rauru ====
+1E27B0 = Actor File
+
+1E2AC0 //handles cutscene animations
+
+
+=====
+
+80022930 //?
+//A0 = Actor Instance
+//A1 = Global Context
+
+800271FC //Set NPC Dialog Response
+//A0 = Global Context
+//A1 = Actor Instance
+//A2 = ? (Actor Instance + 0x1D8 on kokiri girl sitting in shop)
+//A3 = ?
+
+800597C0 //Get NPC Mask Reaction
+//A0 = ?
+//A1 = ?
+//V0 = Lookup result. 
+
+80079B44 //code, graph, Get Link's current mask
+
+80079B54 //code, graph, Remove Link's Current Mask
+//zeroes mask byte
+
+
+800DCE14 //Display Text Box
+//Navi at least
+//A0 = Global Context
+//A1 = Text Id
+//A2 = Z-Targeted? Actor
+
+800DC838 //code, graph, Display Textbox Inner
+//Called on Navi C-Up at least
+//A0 = Global Context
+//A1 = Text Id
+
+
+800D6110 //Check if button press to continue dialog occurred?
+//A0 = Global Context
+//V0 = Button pressed
+
+80050B00 //Collision, copies an actor's coordinates, and saves them as halfwords
+//A0 = Actor Instance
+//A1 = Actor Collision Struct
+//Coordinates saved at Struct + 0x46 
+
+
+
+=== Exception Handler ===
+
+80000180 //Main exception handler
+
+
+
+=== Unfortunate Death Crash ===
+803A0328 == Start of the failure
+
+8002BAB0 = some exception? (interupt?)
+8009CAF0 = Game gives up when I step over (function seems related to display lists)
+8009C758 = Give up 2
+
+
+
+80080820
+800804D0
+
+80080430
+
+
+800AF64C 
+
+800AE710 = Infinite crash loop
+
+
+80080390
+0390	jal 	80034290 //offending function. Returns invalid pointer with crash
+
+80034290 //something for jpeg background for static, multi-background pre-rendered areas
+A0 = ? (801C8C60, global context + 0x7C0) 
+A1 = Jpeg frame index //(1C87C8) halfword, stored at Global Context + 0x7C0 + 0x148
+A2 = ?
+A3 = Global Context
+//A1 is being set to -1 when Link dies
+
+
+800A1248 // Jump Table for determining what "Game Context" to load into memory next
+A0 = Glboal Context
+V0 = Address to Game Context Overlay record to load
+
+800A0FA0 // Load 0xC (next context initialization) from "Global Context"
+
+8001EAF8 //mem, Deallocates a given "Game Context" from memory
+//A0 = Start address of record into the "Game Context" overlay
+
+800CCD38 // Possibly related to mapping an overlay to ram.
+//This fuction appears to allocate "Game Context" overlays
+//A0 = ROM Start
+//A1 = Rom End
+//A2 = VRam start
+//A3 = VRam end
+CD50 jal	800CDA68 //Allocate space for overlay at the tail end of the main heap
+CD74 jal	800CCBB8 //Dynamic Link Function
+
+800CCBB8 //Dynamic Linking Function (dlf)
+//Loads and Links Overlay Files
+//A0 = vrom start of file to load
+//A1 = vrom end of file to load
+//A2 = virtual start address of file to load
+//A3 = virtual end address of file to load
+//SP+0x10 = pointer to ram address to load overlay into
+//
+//load overlay to ram
+CC98 jal	800CC8F0 //performs linker relocation of overlay
+//bss initialization happens here
+CCF0 jal	80003440 //osWritebackDCache ?! Is this in error?
+CCFC jal	800041A0 //osInvalICache
+
+
+
+800CC8F0 //performs linker relocation of the overlay
+
+80066C10 //mem, Allocates Memory on Game State Block List (Head End) (CE060)
+80066C38 //mem, Allocates Memory on Game State Block List (Tail End) (CE17C)
+//Heap Reference Ptr = 8011BEF0
+//Called By Overlays
+//A0 = Space to Allocate
+//V0 = Ptr to allocated space, or null
+
+80066C60 //mem, ? on Game State Block List (CE514)
+//A0 = ?
+//A1 = ?
+80066C90 //mem, Free Memory on Game State Block List (CE2B4)
+//Heap Reference Ptr = 8011BEF0
+//A0 = Ptr to Space to Free (does not factor Block List Node)
+
+80066CB8 //mem, ? (CE060)
+//
+//A0 = Type Size?
+//A1 = Number of Records
+
+80066D10 //mem Get Game State Free Space Info (CE688)
+//A0 = int*, total free space on heap? (8011F194 this pass)
+//A1 = int*, total free space on heap (8011F190 this pass)
+//A2 = int*, total allocated space on heap, not factoring in memory nodes (8011F18C this pass )
+80066D48 //mem Verify Free List Integrity (800CE6FC)
+80066D6C //mem Create New Block List on Game State (800CDD90)
+80066D9C //mem (800CDDD8)
+80066DC0 //mem (800CDDF8)
+
+
+800CDA68 //mem, Allocates ram block to tail end of the Main Heap
+//Performs additional os calls to prevent interrupts?
+//A0 = Allocation Size
+//V0 = Pointer to start of allocated space, or null if allocation failed
+//
+//osSetIntMask (a0 = 1)
+//A0 = 8012BAA0
+//A1 = Allocation Size
+DA88 JAL	800CE17C //Allocate Memory (Tail End)
+
+800CE17C //mem, Allocates ram block to the tail end of a memory heap
+//A0 = Heap Reference Ptr (8012BAA0 this pass)
+//A1 = Allocation Size
+
+800CDDD8 //mem, 0s Free List Reference
+
+800720BC // Update Health
+//A0 = Global Context
+//A1 = s16 Increment Health (e.g. -4 deals 1/4th heart damage)
+//V0 = ?
+
+80108690 is some sort of jump table for performing the "filling hearts" animation stuffs?
+
+8009D894 // Copies permanent scene flags for the current scene from the global context into the save data
+//A0 = Global Context
+
+800905D4 // Save Game
+//Saves the current game data to SRAM
+//Redundant operations are performed to prevent data loss
+//IMPORTANT! Certain flags are written at the last minute by ovl_kaleido_scope before this function is called
+//ovl_kaliedo_scope 0x80827700 is save menu, other in ovl_kaliedo_scope is game over
+//A0 = Global Context + 0x1F74. Not sure what this does, but might be for threading stuffs?
+0600 //roughly where the checksum calculation begins
+0630 //store checksum
+0640 //roughly where a duplicate checksum calculation begins
+0670 //begin actual saving data to sram
+0694 //Save first copy of save data into slot 0-2
+0708 // Save second copy of save data into slot 3-5
+
+
+80091474 // Load/Save Data from/to SRAM (external function)
+//Called by the Save Game function, saves the game to one of the 6 file slots on sram
+//A0 = 0800 0000 (SRAM address) + offset to whatever data being saved/loaded
+//A1 = Copy to or Copy From address
+//A2 = Transfer Size (0x8000 maximum, 0x1450 for individual saves)
+//A3 = 0 if loading data, 1 if saving data
+14AC	JAL	80091310 // function call resets some buffer stuffs
+14C0	JAL 800913E8 // function call does ??
+
+
+800913E8 // Load/Save Data from/to SRAM (inner function)
+//A0 = Copy to/from address
+//A1 = Transfer Size
+//A2 = 0 if loading data, 1 if saving data
+
+
+80002E80 // Zeros Ram
+//A0 = start address
+//A1 = size of space to zero out
+// initializes some struct/buffer located at 800FC0B0, seems related to saving
+
+2E80 STLI	AT, A1, 0x000C
+2E84 BNEZ	AT, 80002EFC //jump if A1 < 0x000C
+2E88 SUBU	V1, R0, A0 //negate address
+2E8C ANDI	V1, V1, 0x0003 //grab low 2 bits
+2E90 BEQ	V1, R0, 80002EA0 //branch if low 2 bits are 0
+2E94 SUBU	A1, A1, V1 //A1 = bytes to shift A0 to the next alignment boundary
+//
+2E98 SWL	R0, 0x0000(A0)
+2E9C ADDU	A0, A0, V1
+//
+2EA0 ADDIU	AT, R0, 0xFFE0 //AT = -0x20
+2EA4 AND	A3, A1, AT
+2EA8 BEQ	A3, R0, 80002EDC
+2EAC SUBU	A1, A1, A3
+
+2EDC ADDIU	AT, R0, 0xFFFC
+2EE0 AND	A3, A1, AT //
+
+2F14 JR 	RA
+
+
+80003440 // Copies data from ram via cache?
+
+
+800FC0B0 is some struct related to saving.
+
+0x00 ptr is pointer to self
+0x04 int[2] appears to be a "magic" sequence
+0x0C ptr, is a pointer to ?, address space A8xx xxxx. Likely SRAM
+0x14 is start of 0x60 byte buffer, likely used for saving
+FC130 ptr appears to be some
+
+
+Address A800 0000 likely to write to SRAM 
+
+80071C14 //Routine used to check if Link should revive from a fairy
+
+
+
+0x80863D30 //ovl_en_girla, routine ran when buying a recovery heart
+
+
+800900EC // initalizes the save context to the title screen file
+
+
+8029F9F0 - The game's save data is copied here
+
+
+80090720 // Loads SRAM to RAM (8029F9F0) and verifies save file integrety 
+
+
+800902AC // Loads Save data
+//A0 = ?
+02F0 - Correct Spawn Point from save
+
+
+80090334 //?, seems to be some subroutine that determines where link spawns?
+
+80090C18 //Create New File Function
+0C4C //sets start entrance index
+0C50 //sets age
+0C54 //sets time of day
+0C58 //sets initial cutscene
+
+8008FFC0 //New File Function, inner
+//Creates a new file at 8011A5D0
+//Does not write to the first 0x1C bytes, or perform checksum (i think)
+FFD0 //zeroes out save context data from 0x1C -> 0x1354
+
+800808A0 //Initial Allocate Rooms
+//Calculates allocation space needed to load 2 room files
+//related to setting where to respawn
+09E4 LW 	V1, 0x1364(a0) //load zoneout var, a0 = 8011A5D0
+09E8 BLEZ	V1, 0x80080A04 //branch if  less than 0
+09EC SLL	T9, V1, 0x3
+09F0 SUBU	T9, T9, V1
+09F4 SLL	T9, T9, 0x2 //multiply t9 by 28
+08F8 ADDU	T5, A0, T9 //T5 = 
+
+8005BD78 //Used for initializing the "File Select" character set data?
+//In NTSC, jpn_message_data_static stores a sequence of characters used to map the file select and
+// "PRESS START/NO CONTROLLER" chars
+BD80	lui...
+BD84	addiu a3, a3, setting a3 to start segment address of "File Select" character set data
+
+BDB4	lui...
+BDBC	addiu t7, t7, setting a3 to the end segment address of the "File Select" character set data
+
+80022B04 //Get Trade Item Link is holding
+//A0 = Global Context
+//V0 = Link Instance + 0x0683
+
+80022BD4 //Give item routine
+//A0 = Actor instance //Actor giving item
+//A1 = Global Context
+//A2 = Get Item ID
+//A3 = float, max xz distance from actor to Link
+//SP+10 = float, max y distance from actor to Link
+//
+// -0x20
+//
+2BE4 //A3 = Link Instance
+2BEC //At = 0x003C7080 //Link State 0x66C Flag Mask
+//Return 0 if one of these flags is set
+2C08 jal	80079D74 //test action is bomb or bombchu?
+2C20 //t8 = Link's Held Actor ptr
+//Return 0 if Link is holding an actor
+2C2C //t9 = "interact" range actor
+2C30 //branch to 2C4C if A0 != t9
+2C48 //T0 = Link Instance + 0x66C (state flags)
+2C50 //AT = 0x20000800 //flag mask
+2C58 //return 0 if one of these flags is set
+2C70 //return 0 if Giving Actor xz distance from Link > Arg A3
+2C7C //F0 = Givin Actor Instance + 0x94
+2C8C //return 0 if Giving Actor y abs distance from Link > Arg SP+0x10
+2C94 //T2 = actor's y rotation
+2C98 //T3 = Link's y rotation
+//v0 = (s16)(T2 - T3)
+2CA8 //branch 2CB8 if V0 < 0
+	//if V0 < 0, V1 = 0 - V0
+	//else V1 = V0
+2CB8 //branch 2CD0 if Get Item Id != 0
+//T4 = u16 Link Instance + 0x426 //rotate to direction
+2CC8 //return 0 if not T4 < V1 
+//
+//Set Link Instance + 0x424 to Arg A2 //Give Item Id
+//Set Link Instance + 0x426 to V1 //rotation
+//Set Link Instance + 0x428 to Arg A0 //giving actor instance
+
+
+800C5E4C // Some sound-related function
+
+800CAA70 // Writes some sort of data to the audio buffer for background music
+//A0 = value to write to buffer
+
+
+800A1130 // Initializes data for rendering a new frame (gbi)
+//Switches frame buffers
+//A0 = gfx context (11F290)
+114C // t9 = 8016A640, where the two frames of gbi and other related data are located
+1150 // t7 = frame count  (gfx context + 0x2D8) %2
+//Two gbi display list buffers, containing 1 frame's worth of gbi
+//gbi buffer is 0x12410 bytes long per frame. Begins with magic number 1234
+1170 //S1 = Current pipe frame
+117C //Save "magic number" 0x1234 at current frame pipe + 0x0000
+1188 // save "magic number" 0x5678 at cur frame pipe + 0x12408
+1198 // initialize POLY_OPA_DISP (1) (BF00 bytes)
+11B0 // initialize POLY_XLU_DISP (2) (4000 bytes)
+11C8 // initialize OVERLAY_DISP (3) (2000 bytes)
+11E4 // initialize WORK_DISP (4) (0400 bytes)
+11F4 // starting portion of the "Zelda 64 Kill Screen" glitch
+
+
+8009FEC0 //Allocates Frame Display List Buffer
+//A0 = Memory Allocation Handle ptr
+//A1 = Allocate Start pointer
+//A2 = Allocate Size
+//wrapper for 800A0248
+
+
+8009FF00 //Check if microcode frame sub-buffer is full
+//wrapper for 800A0208
+
+800A43D8 //Returns Frame Buffer? address
+//A0 = gbi Buffer (0 or 1)
+//V0 = Frame buffer address
+//If A0 = 0, V0 = 803B5000 (stored at 80120FD0)
+//If A0 = 1, V0 = 803DA800 (stored at 80120FD4)
+//If A0 >= 2, V0 = 0
+
+
+
+800A01F4 //Get bytes remaining in frame display list sub-buffer
+//A0 = Sub-buffer struct start
+//V0 = number of bytes remaining in the buffer
+
+
+800A0208 //Check if microcode frame sub-buffer is full
+//A0 = Sub-buffer struct start
+//V0 = 1 if full, 0 if not full
+//calls 800A01F4
+
+
+800A0FB8 //Checks if Game State should be swapped
+//V0 = 0 if state should be swapped, 1 if not
+
+
+800A1688 //graph, Main Update function
+//code seems to eventually end the frame
+//
+16A4 jal	800A1130 //Initializes data for rendering a new frame (gbi)
+1834 // Increment 0x2D8, frame count 1
+1838 // Increment 0x2E8, frame count 2
+
+
+800A2058 //?
+//A0 = 8011D500
+
+
+800A1354 //code, graph, Start New Frame Task
+// contains code that invalidates a frame?
+//A0 = Graphics Context
+1368 JAL	800048C0 //osGetTime, v0,v1 = OSTime
+137C //T6,T7 = ld 8011D298 //OSTime
+1384 //S0 = 80120F98
+138C //T0,T1 = ld 80120F98 //OSTime
+139C //T8,T9 = V0,V1 - T6,T7
+13B0 //T4 = 80120F68
+13B8 //T2,T3 = T8,T9 - T0,T1
+13BC //SD T2,T3 to 80120F68
+13CC //A1 = OSMesgQueue at Graphics Context + 0x5C
+//T6, T7 = 0
+//T5 = 0x29A (666!)
+13E8 //A3 = 0x0861C468, 140625000‬, ~3 seconds
+13F0 jal	80005A70
+//A0 = 8011F2EC
+//A1 = 8011F1C4
+//A2 = 1
+1400 JAL	80002030 //osRecvMesg
+1408 JAL	800D0CD0 
+1410 lw 	t8, 0x0064(sp)
+1418 //if T8 != 0x29A (666!) branch to 1430
+//this seems to call some crash debugger code?
+//A0 = 80108DA0 //RCP is HUNG UP!!
+//A1 = 80108DB4 //Oh! MY GOD!!
+1428 JAL	800AF564 //Crash Debugger Entrypoint
+144C //JAL to function stored at Graphics Context + 0x2EC
+1460 //A0 = 80120F90 (OSTime stored here)
+14F8 //begin populating struct at Graphics Context + 0x88. Seems to be for initializing the RCP
+1564 //T4 = Working WORK_DISP pointer
+1570 //Graphics Context + 0x88 + 0x30 (Completed WORK_DISP start) = T4
+15B4 //V1 = Drop Frame variable?
+15C4 //Branch to 15F0 if V1's low bit is 0
+15E4 //Load 0x02E8, frame count 2
+15E8 //Subtract 1 from frame count 2
+15EC //Store frame count 2
+
+
+800ACAB0 //code, graph, return some RSP microcode start ptr
+//V0 = 800060B0
+
+800ACAC0 //code, graph, return some RSP microcode size
+//V0 = 0x160 (80006210 - 800060B0)
+
+800ACADC //code, graph, return some RSP microcode start ptr
+//V0 = 800E3F70? ( lw v0, 800FEE30(r0) )
+
+800ACAEC //code, graph, return some pointer?
+//likely RSP related
+//V0 = 801145C0? ( lw v0, 800FEE34(r0) ) 
+
+8005BF04 //code, graph, ? 
+//(func ptr to this part of Graphics Context)
+//A0 = Graphics Context
+//A1 = Global Context
+//A0 = lh (8011BCD6)
+//A1 = lh (8011BCD8)
+BF20 JAL	8005BED8 //Get Z-Buffer "Pixel"
+BF2C //store pixel at 800F1654, within fog/skybox territory
+BF30 JAL	80066804 //?
+
+8005BED8 //code, graph, Get Z-Buffer "Pixel"
+//A0 = X
+//A1 = Y
+//V0 = Pixel data (2 byte value)
+
+80066804 //code, graph, ?
+//A0 = Global Context
+
+800AF734 //code, Crash Debugger Entrypoint, Displays source + line of exception
+//A0 = source file str pointer
+//A1 = line the exception occurred 
+//Calls 800AF564
+
+
+800AF564 //code, graph, Crash Debugger Entrypoint
+//Displays small box exception
+//A0 = Str Pointer 1
+//A1 = Str Pointer 2 (can be null)
+// RCP is HUNG UP!!
+
+
+800015A0 //string related?
+800015BC //string related?
+800015D8 //Pushes A0-A3 to stack at SP+0x00 to +0x0C
+//Above are typically used with various text printing
+
+80005A70 //Unknown
+//A0
+//A1
+//A2,A3 = OSTime, sets duration until CPU interrupt (0x0861C468 or ~3 seconds this pass)
+
+800E1C10 // Initializes data related to the HUD, called on every scene load
+
+
+
+800D0570 //rendering, Creates the a projection matrix
+//A0 = Address to write gbi compatible projection matrix
+//A1 = ? (Global Context). Coincidentally, value is different depending on game context
+//A2 = Angle of View (float)
+//A3 = ?
+
+05A4 //JAL 800D0340
+05B0 //JAL 800D0730
+
+
+800D0C58 //rendering, Creates camera matrix
+//A0 = FDL pointer
+//A1 = Camera X
+//A2 = Camera Y
+//A3 = Camera Z
+
+
+
+800D0730 //Converts floating point matrix into gbi compatable matrix
+//A0 = 4x4 Matrix Ptr
+//A1 = FDL1 pointer
+
+800D0340 //related to creating the camera matrix
+//A0 = Address to store 4x4 Identity Matrix (SP + 0x28, +0x58 when func addiu's stack)
+//A2 = Angle of View (float)
+//Returns some matrix located at SP + 0x28
+//801764F8 testing purposes
+//
+0358 // store 4x4 Identity Matrix at A0
+0368 // load pi/180 to F6
+0374 // convert Angle of View from degrees to radians
+0380 // Divide Angle of View in radians by 2
+03C8 // Begin storing stuff in our matrix
+
+800D2CD0 //Performs some calculation on angle of view/2 (rad)
+//F12 = Angle of View/2 in radians
+//F0 = return value
+//
+2CD4 //V0 = Angle of View/2 in radians
+2CE0 //T6 = Sign, Exponent of Angle of View/2 in radians
+2D2C //F10 = Angle of View / 360 (with rounding errors)
+2D38 //F14 = Angle of View / 360 + 0.5
+2D4C //F6 = Angle of View / 360 + 1
+
+800CF470 //Performs some calculation on angle of view/2 (rad)
+//F12 = Angle of View/2 in radians
+//F0 = return value
+
+800D0830 //guMtxIdentF
+//Writes 4x4 identity matrix (floats) to a given address
+//A0 = address to write matrix
+
+
+8007B280 // Render Get Item Model
+//A0 = Global Context
+//A1 = Link instance
+//A2 = Constant 8011BF48
+//A3 = Get Item Model Id
+//
+B294 // T6 = Link Instance + 0x0683; given/get item address
+B2A0 // If T6 == 0, set F2 to 14, else set it to 06
+B2C4 // T8 = GI/Title Card space
+B2D8 // Update Segment 06 reference directly
+B2F0 // Completes writing the G_MOVEWORD Seg #6 to the 0x2C0 gfx context display list
+
+
+800A1684 // Main render function?
+
+
+8004ACEC // Initialize Collision From Data
+//A0 = Global Context
+//A1 = Some collision struct within actor instance
+//A2 = Actor Instance
+//A3 = Some collision struct, located within actor's overlay
+//V0 = 1
+//
+AD08 JAL	80049F50
+AD20 JAL	8004A194
+AD38 JAL	8004AB3C
+
+
+80049F50 // Initializes Cylinder/Simple Surface Collision Struct within Actor Instance
+//A0 = Global Context
+//A1 = Ptr to some collision struct (cylinder/simple surface type) within an actor instance
+//A2 = Actor Instance
+//A3 = Ptr to Some collision struct, located within actor's overlay
+//V0 = 1
+
+
+8004A194 // Initializes Collision Struct within Actor Instance
+//A0 = ?
+//A1 = Some Actor Instance Collision struct + 0x18
+//A2 = Ptr to Some Collision Struct + 0x08 (cylinder collision data?)
+//V0 = 1
+//
+A19C //S0 = A2
+A1C0 JAL	8004A030 //simply initializes more data
+A1D4 JAL 	8004A0AC //initializes more data
+
+8004AB3C // Initializes Collision Struct within Actor Instance
+//A0 = Global Context
+//A1 = Some Actor Instance collision struct + 0x40
+//A2 = Some Overlay collsion struct + 0x20
+
+
+8004A030 // Initializes Collision Struct within Actor Instance
+//A0 = Global Context
+//A1 = Actor Instance Collision Struct + 0x18
+//A2 = Overlay Collision Struct + ?
+//V0 = 1
+
+8004A0AC // Initializes Collision Struct within Actor Instance
+//A0 = Global Context
+//A1 = Actor Instance collision struct + 0x20
+//A2 = Overlay collision struct + 0x14
+//V0 = 1
+
+8004F80C // Possibly main collision detection routine
+
+8004D11C // Collision Detection related
+
+8004C3F4 // ?, seems to be used to check if Link should collide into enemies
+
+
+
+800A42F0 // Initializes Frame Buffers
+//A0 = Is Disk Drive Detected? 0 = no, 1 = yes
+43FC //lw 8000 0318, which contains the number of bytes of ram available to the system
+433C LUI	at, 0x0040
+4340 SLTU	at, v0, AT //ram is 4MiB unit
+
+
+
+
+
+
+800B773C // Initalizes data for Sequence playback
+//A0 = ?
+//A1 = Sequence to preload data
+//125630 Audio Context?
+//128B60 (audio context + 0x3530), some table indexed by A0
+//
+7780 //T8 = A0
+7794 //T9 = A0 * 0x160
+77A0 JAL 800BF12C //?
+77A8 //T0 = A1, sequence to preload
+77AC //V0 = Audio Context? + 0x283C //pointer to 801139B0, which contains some sort of table?
+77BC LHU S0, 0x0000(t2) //t2 = 801139B0 + seq*2
+77C4 LBU S1, 0x0000(t3) //t3 = t2+S0, S1 = ?, next to Instrument set
+
+//set bp at B77C8
+
+
+800B7A14 //Initalizes Instrument Set?
+//A0 = instrument set
+7A24 JAL 800B7D28
+//V0 = Audiobank 1 index (1 based?)
+//V1 = Audiobank 1 record pointer
+7A38 LBU t7, 0x3468(t6) //t7 = Audio Context (80125630) +0x3468 + V0
+7A5C //T9 = V0 * 0x14
+//!~~ Audio Context + 0x2844 (80190F60) contains a table for audiobank data. each record is 0x14 bytes!
+
+
+800B7D28 //Returns pointer to an Audio DMA table record
+//A0 = Audio DMA table id, valid range between 0 and 2
+//A1 = instrument set
+//V0 = Record index (1 based index)
+//V1 = Pointer to record
+
+800B7DB8 //Returns pointer to an Audio DMA table, called by 800B7D28
+//A0 = Audio DMA table id. 0 is Audioseq DMA, 1 is Audiobank DMA, 2 is Audiotable DMA
+//V0 returns pointer stored at 80127E60, 64, or 68 if A0 = 0 to 2; otherwise null 
+//V0 returns 80113B70, 80113740, 80114260 or null
+
+800A23FC //../padmgr.c
+
+800A25DC // padmgr, main logic?
+//A0 = input context
+
+‭111110100000‬.0000
+
+
+800D0160 //padmgr, Related to fetching input
+800D0270 //padmgr, Related to fetching input
+
+800D0660 //padmgr, Related to fetching input
+//A0 = ?, 1 this pass
+//A1 = ?, 8012BC20 this pass
+0670 lw 	t7, 0x0018(t6) //t7 = SI register A480 0018 (Signal Input status)
+
+
+80003B60 //boot, converts address to a hardware one
+//A0 = Address to Convert
+//V0 = hardware address
+
+80003DD0 //boot, performs a tlb lookup of an address?
+
+
+
+
+80000D28 //Load from DMA to RAM (no dmadata access?)
+//A0 = ?
+//A1 = Address to load into
+//A2 = Rom Address
+//A3 = Size
+
+800230A0 // Set 3D SFX?
+//A0 = Actor Instance to write 3D sfx to?, Link this time
+//A1 = SFX ID
+//Flips bit at 0x00080000 of Instance + 0x04 to it's 1 state
+
+800C806C //Global Play SFX (covers all SFX I believe?)
+//A0 = SFX ID
+//A1 = ?, Link Instance + 0xE4 this pass
+//A2 = ?, byte, 4 this pass
+//A3 = ?, 801043A0 this pass
+8084 //T8 = LBU 80124754 + (A0 >> 0xC) &F 
+8098 //V1 = 80104360, some struct
+// +0x0000 byte, seems to be read to insert sfx into buffer array
+// +0x0001 byte, seems to be related to above, possibly index of next sfx to process
+80A4 //T1 = 80122E90, some buffer where pending sfx are placed. Buffer records are 0x18 bytes. 0x100 records
+// +0x00, short = SFX Id
+// +0x04, word = A1
+// +0x08, byte = A2, byte
+// +0x10, ptr = ?, 801043A0 this pass
+// +0x14, ptr = ?, 801043A8 this pass
+80B4 //V0 = Address to write sfx record to
+80E0 //byte at 80104360 += 1
+80E4 jr	ra
+
+//SFX ID
+//& 0xF000 = sfx bank?, indexes pointer array at 80104368 
+//
+
+//8006F8AC Bottle Adventure
+
+
+8039E058 //Draw related function for ovl_kaleido_scope
+//A0 = Global Context
+E0A4 //T7 = Static Context
+E0AC //T6 = [8011D050] -> 8039F780
+E0B0 //T8 = Static Context + 0xF2E (short) //Highlighted Floor index * 2, not sure why * 2
+E0B8 //F30 = -36.0f
+E0D0 //T4 = T8 * 0xF6, or actually (T8/2 * 1EC)
+E0D4 //S3 = T6 + T4
+...
+E274 //T9 = S3 * 0x10
+
+
+
+800912C4 //Allocate SRAM space?
+//A0 = Global Context
+//A1 = Global Context + 0x1D0 (ovl_title this pass)
+//Set:
+//A0 = Global Context + 0x74
+//A2 = Global Context
+12D8 jal	800A01B8 //allocate 0x8000 bytes
+12DC //a1 = 0x8000
+12E4 sw 	v0, 0x0000(t6) //Store start address of sram? at Global Context (ovl_title) + 0x1D0
+
+8007EE5C //code, graph, gbi, Writes frame buffer/z-buffer initialization tasks for POLY_OPA, POLY_XLU, OVERLAY_DISP
+//A0 = Gfx Context
+//A1 = ?
+//A2 = ?
+//A3 = ?
+
+800223C8 //?, rendering
+//A0 = Stack reference (SP + 0xE0 this pass)
+//A1 = Stack reference (SP + 0xD4 this pass)
+//A2 = Stack reference (SP + 0xEC this pass)
+//A3 = Gfx Context
+23E0 jal	800221EC
+
+80082790 //?, related to scene rendering
+
+800A0BD0 //?, related to updating Game State
+0BF8 //Jump to Game State's update function
+
+80079200 // Initializes Static Context physics variables for Link 
+//called on every room load or jump into water
+//Link Instance + 0x13F stores equipped boots
+//values are 0, 
+9240 //branch if Link is an adult
+
+
+80020EB4 //Kill Actor
+//A0 = Actor Instance
+0EB4 lw t6, 0x0004(a0)
+0EBC //Null "Actor Main" (instance + 0x134)
+0EC0 //bitwise AND instance + 0x4 by 0xFFFF FFFE, store in T7
+0EC4 //Null "Actor Draw" (instance + 0x130)
+0EC8 sw t7, 0x0004(a0)
+
+80020ED4 //Actor Initialization,
+//Copy 0x14 bytes from Actor Instance + 0x08 to Instance + 0x24
+//A0 = Actor Instance
+
+80020FA4 //Update CPU Segment 0x06 to point to actor's defined object dependency
+//A0 = Global Context
+//A1 = Actor Instance
+//
+0FA4 lb 	t6, 0x001E(a1)
+0FC4 lw 	t9, 0x17B4(t9) //t9 = Global Context + 0x117B4 + (t6*0x44) //Object's loaded address
+0FD0 sw 	t0, 0x0C50(at) //update working object stored at 80120C50
+
+80020FDC //Actor Instance Initialization
+//Instance has been 0 initialized, init vars in overlay have been copied over,
+//actor has been bound to category
+//A0 = Actor Instance
+//A1 = Global Context
+
+8009CCE8 //Load file to Game State Heap
+//loads scene file, elf_message_* file
+//A0 = Global Context
+//A1 = Pointer to Start/End VROM address of the file to load
+CD10 jal	800A01B8 //Allocate space on heap for file
+CD28 jal	80000DF0 //DMA rom
+
+800595D0 //Parses an elf_message file
+//A0 = elf_message ram address
+9608 lbu	v0, t6 //load next instruction? into  v0
+960C andi	v0, v0, 0x00E0
+//jump table for handling the next code
+//
+//Code 0 handler
+9640 jal	800590E0
+
+
+800590E0 //parses elf_message code 0 of & E000 0000
+//A0 = elf_message current working record's ram address
+//V0 = 0 if message record shouldn't be used, 1 if should
+90E0 lbu	v1, 0x0000(a0) //v1 = byte 0 of record
+90E8 //A3 = save context
+90EC andi	v0, v1, 0x001E
+90F0 beq	v0, r0, 80059124
+//
+9124 lbu	a2, 0x0001(a0) //a2 = byte 1 of record
+9128 andi	t8, v1, 1 //capture & 1000 0000
+912C xori	t9, t8, 1
+9130 andi	t0, a2, 0x00F0 //capture another variable (event_chk_inf)
+9138 //t2 = &0F000 0000 capture, *2
+
+8005935C //parses elf_message code 1 of & E000 0000
+//seems unused since the initial data doesn't contain this code
+//A0 = pointer to pointer of current working elf_message record's ram address
+9388 bne	s2, t7, 800593C0 //Test if working record begins with 0x20 (code 1)
+//
+//if the above check is not equal
+9390 jal	800590E0 //son of a bitch
+//if v0 = 1, set s1 to 0
+//t8 = current working record pointer
+93A8 addiu	a1, t8, 0x0004
+93AC sw 	a1, 0x0000(s0)	//incremented pointer is saved to the stack
+93B0 lbu	t0, 0x0000(a1)	//load next record code
+93B8 beq	s2, t1, 80059390 //loop back if the next code is 0x20 (code 1)
+//
+93C0 //return v0 = 0 if s1 is zeroed
+
+80063CAC //Copies x,y,z floating point coordinates
+//A0 = Destination Address
+//A1 = Source Address
+
+80063D48 //Calculates difference between two f32 x,y,z vector (vector1 - vector2 = delta vector)
+//A0 = vector 1 pointer
+//A1 = vector 2 pointer
+//A2 = delta vector x,y,z pointer (result is returned here)
+
+
+809089E8 (T:801F91E8) //Actor 005E, torch actor
+80908C6C (T:801F946C) //where torch actor writes lit Deku Stick timer
+
+
+
+
+
+(T:8038F484) //Link, Jump Function?
+//A0 = Link Instance
+//A1 = Link Animation reference in Gameplay Keep?
+//A2 = New Y Velocity
+//A3 = Global Context
+//Calls (T:8038F3E0)
+
+(T:8038F3E0) //Jump Function?
+//A0 = Link Instance
+//A1 = Link Animation reference in Gameplay Keep?
+//A2 = New Y Velocity
+//A3 = Global Context
+//
+
+8008C1D8 //Jumping/Animation related?
+//A0 = Global Context
+//A1 = Link Instance + 0x1A4 this pass
+//A2 = Link Animation reference in Gameplay Keep?
+//A3 = New Y Velocity
+
+
+800264C8 //Collision, test if entity is being bombed
+//A0 = Global Context
+//A1 = Actor Collision Struct
+//V0 = Explosive instance that hit actor if hit
+
+800283BC //Attack Collision (sets redead-freeze variable in some cases)
+//A0 = Actor Instance
+//A1 = Actor Collision Struct + 0x18
+//A2 = ? (0 this pass) 
+//if A1 + 0x24 is a null pointer, set the byte at a0 + 0x116 to zero and return
+//if a1 + 0x24 is not null, it will contain a pointer to an address storing an actor collision struct + 0x18
+//  that is colliding into a1
+83BC lw 	v0, 0x0024(a1)	 //v0 = null or a ptr to some actor collision struct + 0x18
+83D0 beql	a2, r0, 80028400 //branch if param a2 is 0
+83D4 lw 	v1, 0x0000(v0)   //v1 = Attack Type
+//param a2 = 0
+8400 //seems to convert attacks as follows:
+//v1 &= 0000 0800?, store 0x01 in instance + 0x116
+//v1 &= 0000 1000?, store 0x02 in instance + 0x116
+//v1 &= 0000 4000?, store 0x04 in instance + 0x116
+//v1 &= 0000 8000?, store 0x08 in instance + 0x116 
+//(v1 << 16)  < 0?, store 0x10 in instance + 0x116
+//v1 &= 0000 2000?, store 0x20 in instance + 0x116
+//(v1 << 12)  < 0?, store 0x40 in instance + 0x116, then
+//					if a2 != 0 load from 0x0000(v0) and write to a0 instance + 0x110
+//else store 0x00 in instance + 0x116 and return
+
+800502F0 //Zeroes variables related to enemies with damage chart collision data
+//A0 = ptr to Actor Instance + 0x98
+//zeroes the following:
+//float 0x98+4
+//float 0x98+8
+//float 0x98+C
+//byte[4] 0x98+18
+
+
+8004BF40 //?
+//A0 = Global Context
+//A1 = GC + 0x11E60
+//A2 = Actor Collision Struct
+
+
+80080A3C //Load Room
+//A0 = Global Context
+//A1 = 801DA15C (Global Context + 0x11CBC)
+//A2 = Room Id
+
+
+800812F0 //Load Object File
+//Called by Scene Header Command 0x00 handler
+//A0 = Object Allocation Table
+//A1 = Object Id to load
+//A2 = Global Context
+//can be optimized by performing less multiplication
+
+
+800813D4 //Initialize Object Space, part of Scene Initialization
+//A0 = Global Context
+//A1 = Object Allocation Table (global context)
+13E8 //V0 = Current Scene Number
+13F4 //Branch to 0x1408 if V0 != 0x51 (Hyrule Field)
+//If Hyrule Field,
+//A0 = 0x13
+//A3 = 0xFA000
+140C //branch to 0x143C if V0 != 0x4F (Ganon Battle)
+//If Ganonbattle
+1414 //T6 = Scene Setup
+//If scene setup = 4, A3 = 0xFA000
+//else A3 = 0x11F800
+1440 //branch to 0x1450 if V0 != 0x17 (Spirit Temple Boss)
+//If Spirit Temple Boss
+//A3 = 0x106800
+1454 //branch to 0x1464 if V0 != 0x44 (Chamber of Sages)
+//A3 = 0x106800
+1468 //Branch to 0x147C if V0 != 0x18 (Ganondorf Boss)
+//If Ganondorf Boss
+//A3 = 0x106800
+//Else, A3 = 0xFA000
+//zero shit out
+14C0 //A1 = A3
+14C8 jal	800A01B8 //Allocate the "Object Space"
+14E8 jal	800812F0
+
+
+80081628 //Get Object Table Index
+//Locates object file reference in object table
+//A0 = Global Context + 0x117A4 //Object Table
+//A1 = s16 Object Number
+//V0 = Index, or -1 if not found
+
+
+80081688 //Test if object file dependency is loaded
+//A0 = Global Context + 0x117A4 //Object Allocation Table
+//A1 = Object Table Index (Actor Instance + 0x1E (07) this pass)
+//V0 = 1 if loaded, 0 if not
+
+
+800817A0 //Process Scene/Room Header
+//A0 = Global Context
+//A1 = Ptr to File in Ram
+
+
+80081824 //Process Scene Header Command 0x00
+//A0 = Global Context
+//A1 = 0x00 command start address for scene setup being loaded
+//
+
+80081900 //Process Scene Header Command 0x01
+//A0 = Global Context
+//A1 = 0x01 command start address for scene setup being loaded
+
+
+80081C38 //Scene Header Command 0x08
+//Global Context + 0x11CBF (u8) = data1
+//Global Context + 0x11CBE (u8) = data2 & 0xFF //Idle Animation/Heat Timer if 0x03
+//Global Context + 0x11C11 (u8) = data2 &>> 0x100 //Invisible (lens) actors?
+//Global Context + 0x104E4 (u16) = data2 &>> 0x400 //disable warp songs
+
+80081CD8 //Scene Header Command 0x0B
+1D28 //T9 = Segment Base Address of object list Seg Off
+1D3C //S2 = Ptr to Object List
+
+
+
+800820B0 //Process Scene Header Command 0x10
+
+
+800825D8 //Process Scene Header Command 0x17
+//A0 = Global Context
+//A1 = Command Address
+//V0 = Segment offset to cutscene
+
+
+
+80063630 //memset byte
+//A0 = Address
+//A1 = Size
+//A2 = Byte
+
+80063684 //coss Math, returns cosine of short rotation angle
+//Converts s16 rotation into Z axis normalized vector
+//A0 = s16 rotation
+//F0 = cosine of (a0)
+//80107A60 == 1/0x7FFF
+//Notes:
+//A0 = 8000 -> F0 = -1
+
+800636C4 //sins Math, returns sine of short rotation angle 
+//Converts s16 rotation into X axis normalized vector
+//A0 = s16 rotation
+//F0 = sine of (a0)
+//80107A64 == 1/0x7FFF
+
+800D2FA0 //Calculate Cosine
+//A0 = s16 rotation
+//V0 = Cosine * 0x7FFF
+//calls 800CF630
+
+800CF630 //Calculate Sine
+//A0 = s16 rotation
+//V0 = Sine * 0x7FFF
+
+803977C8 //check into this
+
+
+800DD464 //Dialog Related
+//Possibly tests dialog state
+//A0 = Dialog Engine Struct (801CA578 this pass)
+//V0 = 0 if no dialog?
+//add + 0x8000 to A0, this takes us into the textbox data area
+
+800D6110 //Dialog Related, confirm yes/no?
+//V0 = result?
+
+
+8002AD54 //code, graph, set actor head look-at direction?
+//A0 = Actor Instance
+//A1 = vector3_f32* look at point?
+//A2 = ptr to ? (Instance + 0x324 this pass)
+//A3 = ptr to ? (Instance + 0x32A this pass)
+
+
+8002B074 //code, graph, ?
+//Called by Great Fairy
+//A0 = Global Context
+//A1 = Actor* instance (Great Fairy this instance)
+//A2 = ptr to ? (Instance + 0x324 this pass)
+//A3 = ptr to ? (Instance + 0x32A this pass)
+//SP+0x10 float x
+//SP+0x14 float y
+//SP+0x18 float z
+//V0 = 1 if successful? else 0
+//
+//SP -0x38
+//
+//copy float x,y,z to Great Fairy Instance + 0x38
+//T1 = Link Instance
+//T0 = Cutscene State (CS struct + 0x08)
+B060 //branch B074 if cutscene state != 0
+B074 
+//T3 = Entrance Index 
+B07C //Branch B0D8 if Entrance Index == 0x00EE (Kokiri Forest Cutscene)
+//T4 = Actor Instance
+//A1 = arg A3
+//T5 = Actor Instance + 0x8A rotation y
+//T6 = Actor Instance + 0xB6 rotation y
+//V0 = T5-T6
+//V1 = Absolute value of V0
+B0C0 //branch B0D8 if V1 < 0x4300
+B0D8 //branch B0E8 if cutscene state != 0
+B0F4 //branch B120->B11C if Entrance Index != 0x00EE
+B11C
+//Copy vector3_f32 at Link Instance + 0x38 to SP+0x24
+B138 jal	8002AD54
+	//call with
+	//A0 = Actor Instance
+	//A1 = SP+0x24
+
+************************ bgcheck ******************
+
+8002B360 //code, graph, set Gctx + 0x7C0 + 0x48 table record
+//A0 = Ptr to record (4 byte record)
+//A1 = struct (contains s16 record to something?)
+//A2 = Polygon
+
+
+8002B38C //code, graph, 
+//Add record to Global Context + 0x7C0 +  0x48 table
+//A0 = Global Context + 0x804
+//A1 = Collision Hashtable Record (Table at Gctx+ 0x7C0 + 0x40)
+//A2 = Struct on Stack
+B3A0 jal	80030E58 //Get next free 0x48 table record
+B3C4 jal	8002B360 //Set 0x48 table record
+//write back to 0x40 record
+
+
+8002B4DC //Convert vector3_s16 to vector3_f32*
+//A0 = vector3_s16* input xyz
+//A1 = out vector3_f32* return value
+
+
+8002B520 //Convert vector3_f32 to vector3_s16
+//A0 = out vector3_s16* return value
+//A1 = vector3_f32* input xyz
+
+8002B564 //Get CollisionPoly Min Y
+//A0 = CollisionPoly* check
+//A1 = VertexArray* vtxArray
+//V0 = s16 Minimum Y
+//
+//V0 = 0x0A(A0) //Normal Y
+//branch B57C if V0 is 0x8001 (min) or 0x7FFF (max)
+//else branch B59C
+B59C
+//t1 = 0x06 (vertex record size)
+//V0 = VertexA id
+//V1 = VertexB id
+//A2 = VertexC id
+//T3 = VertexA record ptr
+//T5 = VertexB record ptr
+//A3 = VertexA y //minimum vertex y
+//T0 = VertexB y
+B5D4 //branch B5E4 if (VertexB y < VertexA y) == 0
+//A3 = VertexB y
+B5E4
+//T7 = VertexC record ptr
+
+
+8002B610 Get CollisionPoly Normal
+//Converts from short form to floating point
+//A0 = CollisionPoly* poly
+//A1 = out f32* normalX
+//A2 = out f32* normalY
+//A3 = out f32* normalZ
+//
+//80106A70 = (1f/0x7FFF)
+
+
+8002B824 //Get CollisionPoly Vertices
+//A0 = CollisionPoly* poly
+//A1 = vector3_s16* vertexArray
+//A2 = out vector3_f32* vertices //3 verts
+//
+//SP -0x18
+//
+//T6 = Arg A0
+//T0 = Arg A1
+//A1 = Arg A2
+//T8 = poly VertexA
+B858 jal	8002B4DC //convert vector3_s16 to vector3_f32
+	//call with
+	//A0 = ptr to vertex data
+	//A1 = Arg A2
+
+
+8002BA78 
+//A0 = CollisionPoly* poly
+//A1 = vector3_s16* vertexArray
+//A2 = f32 checkCoords x
+//A3 = f32 checkCoords z
+//SP+0x10 = ptr SP+0x78
+//SP+0x14 = F22/Arg SP+0x18
+//
+//SP -0x48
+//
+BA94 jal	8002B824 //get F32 Vertices
+	//call with 
+	//A0 = CollisionPoly* poly
+	//A1 = vector3_s16* vertexArray
+	//A2 = 80118C70 //store unpacked vertex data
+BAA8 jal	8002B610 //get f32 normals
+	//call with
+	//A0 = CollisionPoly* poly
+	//A1 = s32* SP+0x44 (NormX)
+	//A2 = f32* SP+0x40 (NormY)
+	//A3 = f32* SP+0x3C (NormZ)
+//F4 = NormY
+//F6 = NormZ
+//T6 = CollisionPoly*
+//T7 = CollisionPoly Plane Distance
+//F4 = Arg SP+0x14
+//F16 = checkCoords z
+//F18 = checkCoords x
+//T8 = Arg SP+0x10
+//F10 = CollisionPoly Plane Distance
+BB0C jal	800A6E8C
+	//call with
+	//A0 = 80118C70 (vertexA)
+	//A1 = 80118C7C (vertexB)
+	//A2 = 80118C88 (vertexC)
+	//A3 = f32 NormX
+	//SP+0x10 = f32 NormY
+	//SP+0x14 = f32 NormZ
+	//SP+0x18 = f32 CollisionPoly Plane Distance
+	//SP+0x1C = checkCoords z
+	//SP+0x20 = checkCoords x
+	//SP+0x24 = ptr Arg SP+0x10
+	//SP+0x28 = f32 Arg SP+0x14
+	
+
+8002BCAC //Check Collision with polygon
+//A0 = CollisionPoly* poly
+//A1 = Vertex* vertexArray
+//A2 = vector3_f32* prevCoords
+//A3 = vector3_f32* nextCoords
+//SP+0x10 = out ptr ? (SP+0x84 this pass)
+//SP+0x14 = s32 was CollisionType 0x08 bit set?
+//SP+0x18 = f32 ? (1f this pass)
+//V0 = Result (1 if successful, else 0)
+//
+//SP -0x38
+//
+//F14 = 0
+//T0 = prevCoords
+//T1 = nextCoords
+//F6 = s16 poly+0x0E //Distance
+BCDC //sw F6 at 80118D1C
+//T7 = s16 polyNormal.x
+//T8 = s16 polyNormal.y
+//T9 = s16 polyNormal.z
+//F0 = polyNormal.x
+//F2 = polyNormal.y
+//F12 = polyNormal.z
+//F6 = prevCoords.x
+//F8 = polyNormal.x * prevCoords.x
+//F10 = prevCoords.y
+//F4 = polyNormal.y * prevCoords.y
+//F10 = prevCoords.z
+//F6 = polyNormal.x * prevCoords.x + polyNormal.y * prevCoords.y
+//F8 = polyNormal.z * prevCoords.z
+BD24 //F10 = 1f/32767
+//F4 = polyNormal.x * prevCoords.x + polyNormal.y * prevCoords.y + polyNormal.z * prevCoords.z
+//F8 = f32 at 80118D1C (poly+0x0E)
+//F6 = F4 * 1f/32767
+//F4 = nextCoords.x
+//F10 = polyNormal.x * nextCoords.x
+BD44 //F18 = F6 + f32 at 80118D1C (poly+0x0E)
+//F6 = nextCoords.y
+//F4 = polyNormal.y * nextCoords.y
+//Fcond = 0 < F18 //prevCoords (on positive side of plane)
+//F6 = polyNormal.x * nextCoords.x + polyNormal.y * nextCoords.y
+//F10 = nextCoords.z
+//F4 = polyNormal.z * nextCoords.z
+//F10 = polyNormal.x * nextCoords.x + polyNormal.y * nextCoords.y + polyNormal.z * nextCoords.z
+BD64 //F6 = 1f/32767
+//F4 = F10 * 1f/32767
+//F16 = F4 + f32 at 80118D1C (poly+0x0E)
+BD6C //branch BD84 if Fcond is false (previous coords are not on positive side of plane)
+//Fcond = 0 < F16 //nextCoords
+BD7C //return 0 if Fcond is true (next coords are on positive side of plane)
+BD84
+//Fcond = F18 < 0 //prevCoords
+//T2 = s32 Args SP+0x14
+BD8C //branch BDA4 if Fcond is false (previous coords are not on negative side of plane)
+//Fcond = F16 < 0 //nextCoords
+BD9C //return 0 if Fcond is true (nextCoords are on negative side of plane )
+BDA4
+
+
+
+
+8002C05C //code, graph, add poly reference to collision lookup table
+//A0 = Global Context + 0x7C0
+//A1 = Lookup Record ptr
+//A2 = Polygon Array ptr (Collision Mesh)
+//A3 = Vertex Array ptr (Collision Mesh)
+
+
+8002C310 //collision
+//Detects Floors
+//A0 = Global Context + 0x7C0
+//A1 = u16 PolyIgnore flags (1 = )
+//A2 = Collision Sector Record ptr
+//A3 = s32* ? (deref value 0 this pass)
+//SP+0x10 = vector3_f32* checkCoords
+//SP+0x14 = f32 min (-32000f this pass)
+//SP+0x18 = f32 (1f this pass)
+//SP+0x1C = s32 (0 this pass) //Poly Inclusion?
+//F0 = ?
+//
+//SP -0x88
+//
+//S0 = Arg A1
+//S3 = Global Context + 0x7C0
+//S5 = 0xFFFF
+//F12 = Arg SP+0x14
+//V0 = Start floor CollisionPolyLink index
+//F20 = F12
+//T1 = (Arg A1) & 0x0007
+//T6 = Start floor CollisionPolyLink index * 4 (size of record)
+C368 //branch C378 if Collision Sector Floor list is not null
+C370 //return Arg SP+0x14
+C378
+//A1 = CollisionPolyLink table ptr (Global Context + 0x7C0 + 0x48)
+//A2 = Scene Collision Mesh ptr
+//T1 <<= 0xD (T1 * 0x2000?) (Arg A1)
+//F22 = Arg SP+0x18
+//S8 = SP+0x78
+//S7 = 6
+//S6 = Arg SP+0x1C
+//S4 = 6
+//S2 = Arg SP+0x10 //checkCoords
+//S1 = CollisionPolyLink* next
+//T0 = Collision Mesh Polygon Array ptr
+C3A4
+//V0 = PolyId
+//T8 = Arg SP+0x1C & 0x0001
+//S0 = PolyId * CollisionPoly size
+//V1 = CollisionPoly* at PolyId
+C3B8
+//T7 = CollisionPoly "flags" (Poly+0x02 & 0xE000 bits) & T1
+C3BC //branch C3DC if any mask captured CollisionPoly "flags" are set
+	//likely set V0 = u16 CollisionPoly +0x02 //next CollisionPolyLink Id
+//T3 = VertexA
+C3C4 //branch C3EC if Arg SP+0x1C & 0x0001 == 0
+//T9 = NormY
+C3D0 //branch C3EC if NormY >= 0
+//else, move to the next poly
+//V0 = next CollisionPolyLink Id
+C3DC //if V0 = 0xFFFF, return F20 (copied to F0)
+C3E4 //branch C3A4
+C3EC
+//LO = T3 by 6 (VertexA Id)
+//A1 = VertexArray ptr
+//F0 = [Arg SP+0x10]+0x04 (checkCoords y)
+//A0 = CollisionPoly* at PolyId
+//T4 = LO (VertexA Id * 6)
+//T5 = vector3_s16* vertexA
+//T6 = vertexA y
+//F6 = (float)vertexA y 
+C41C //branch C48C if F0 < F6 (checkCoords y < vertexA y) is false likely
+	//if so, A2 = [Arg SP+0x10]+0x00 (checkCoords x)
+C450 //branch C48C if checkCoords y < vertexB y is false likely
+	//if so, A2 = [Arg SP+0x10]+0x00 (checkCoords x)
+C480 //branch C514 if checkCoords y < vertexC y is true likely
+	//if so, return F20 in F0
+C48C
+//SP+0x5C = T1
+C498 jal	8002BA78
+	//call with
+	//A0 = CollisionPoly* poly
+	//A1 = vector3_s16* vertexArray
+	//A2 = f32 checkCoords x
+	//A3 = f32 checkCoords z
+	//SP+0x10 = SP+0x78
+	//SP+0x14 = F22/Arg SP+0x18
+
+
+8002C54C
+//A0 = Collision Sector Record ptr
+//A1 = Global Context + 0x7C0
+//A2 = u16 (2 this pass)
+//A3 = s32* ? (0 this pass)
+//SP+0x10 = vector3_f32* checkCoords
+//SP+0x14 = s32 ? (0x1C this pass) //bit flag
+//SP+0x18 = f32 ? (1f this pass)
+//SP+0x1C = f32 ? (-32000f this pass)
+//
+//SP -0x30
+//
+//S0 = Arg SP+0x14
+//F12 = Arg SP+0x1C
+//F2 = F12
+C574 //branch C5AC if Arg SP+0x1C & 0x0004 == 0
+//T7 = Arg SP+0x10
+//F4 = Arg SP+0x18
+C5A0 jal	8002C310
+	//call with 
+	//A0 = Global Context + 0x7C0
+	//A1 = u16 Arg A2
+	//A2 = Collision Sector Record ptr
+	//A3 = s32* ? (0 this pass)
+	//SP+0x10 = vector3_f32* checkCoords
+	//SP+0x14 = f32 Arg SP+0x1C
+	//SP+0x18 = f32 Arg SP+0x18 (1f this pass)
+	//SP+0x1C = s32 0
+
+
+
+8002C664 //Collision, Test ? related to setting wall poly an actor is colliding into
+//A0 = Global Context + 0x7C0
+//A1 = Pointer to polygon
+//A2 = float* x coordinate // SP + 0x0FC //xy coordinates?
+//A3 = float* z coordinate // SP + 0x104 //z coordinate?
+//SP + 0x10 = f32
+//SP + 0x14 = f32
+//SP + 0x18 = f32
+//SP + 0x1C = f32
+//SP + 0x20 = f32
+//SP + 0x24 = f32
+//SP + 0x28 = ptr to addr that stores collision poly surface reference
+
+8002D180 //collision, check Collision with CollisionPolyLink group
+//Helper for 8002D3A4
+//A0 = CollisionPolyLink* head (floors, walls, or ceilings)
+//A1 = Global Context + 0x7C0
+//A2 = u16 PolyIgnoreFlags
+//A3 = u16 PolyCheckOnlyFlags //if non-zero, only checks collisions with polys assigned with these flags?
+//SP+0x10 = vector3_f32* prevCoords
+//SP+0x14 = out? vector3_f32* nextCoords
+//SP+0x18 = out vector3_f32* finalCoords
+//SP+0x1C = out CollisionPoly**
+//SP+0x20 = ptr to ? (out?)
+//SP+0x24 = f32 ? (1f this pass)
+//SP+0x28 = s32 CollisionTypeFlags (0x1B this pass)
+//V0 = 1 if collision detected, else 0
+//
+//SP -0x98
+//
+//S2 = Global Context + 0x7C0
+//S8 = 0xFFFF
+//SP+0x78 = 0 (Result)
+//V0 = First CollisionPolyLink Id
+//T6 = Pointer to Scene Mesh
+//F20 = f32 Arg SP+0x24 (1f this pass)
+D1D0 //return 0 if V0 CollisionPolyLink == 0xFFFF
+D1E0
+//S6 = Pointer to Scene Polygon Array
+//A1 = Gctx + 0x7C0 + 0x48 ptr (CollisionPolyLink table)
+//T7 = V0 << 2
+//A3 = Gctx + 0x7C0 + 0x4C ptr (CollisionPoly tested table)
+//S7 = Arg SP+0x20
+//S5 = nextCoords
+//S4 = prevCoords
+//S3 = SP+0x84
+//S1 = ptr to (Gctx + 0x7C0 + 0x48)[CollisionPolyLink id]
+D200
+//V0 = s16 0x0000(s1) //poly id
+//AT = 1
+//T0 = u16 PolyIgnoreFlags
+//V1 = Gctx + 0x7C0 + 0x4C ptr + V0 (ptr to CollisionPoly tested record)
+//T8 = u8 0x0000(V1) //poly already tested this pass
+//A2 = Poly Id << 4
+//T9 = Pointer to Poly V0 data
+D218 //branch D250 if T8 = 1 //poly already checked
+//A0 = Poly V0 Vertex A
+//T1 = u16 PolyIgnoreFlags AND 0x07
+//T3 = Poly V0 Vertex A AND (T1 << 0xD)
+D230 //branch D250 if polygon matches any arg A2 PolyIgnoreFlags
+//V0 = u16 Arg A3
+D238 //branch D264 if Arg A3 == 0
+D264
+//Set Gctx + 0x7C0 + 0x4C ptr + V0 to 1 //have checked poly
+//T9 = ptr to Scene Collision Mesh
+//S0 = ptr to Poly Data
+D278	jal 8002B564 //Get CollisionPoly min Y
+	//call with 
+	//A0 = Ptr to CollisionPoly
+	//A1 = Ptr to VertexArray
+	//V0 = Poly Min Y
+D280
+//F6 = prevCoords y
+//A0 = Ptr to CollisionPoly
+//F0 = Poly Min Y
+//A2 = prevCoords
+D29C //branch D2B8->C if not prevCoords y < Poly min Y
+//F8 = nextCoords y
+D2B0 //if nextCoords Y < Min Y height of poly
+	 //return SP+0x78
+D2B8
+//T0 = Scene Collision Mesh ptr
+//T1 = CollisionTypeFlags (Arg SP+0x28) (0x1B this pass)
+D2D8 jal	8002BCAC //Check collision with poly
+	//call with
+	//A0 = CollisionPoly ptr
+	//A1 = VertexArray ptr
+	//A2 = prevCoords ptr
+	//A3 = nextCoords ptr
+	//SP+0x10 = SP+0x84
+	//SP+0x14 = (Arg SP+0x28 AND 0x08) > 0
+	//SP+0x18 = f32 Arg SP+0x24 (1f this pass)
+D2E0 
+//branch D34C if no collision detected
+//
+D34C
+//V0 = next CollisionPolyLink id
+D350 //return (SP+0x78) if next index == 0xFFFF
+//A1 = ptr at (Gctx+0x7C0+0x48)
+//T1 = V0 << 2
+//S1 = next CollisionPolyLink
+//A3 = ptr at Global Context + 0x7C0 + 0x4C
+D364 //branch D200
+
+
+
+8002D3A4 //collision, check Scene Mesh Collision?
+//A0 = Collision Sector data ptr
+//A1 = Global Context + 0x7C0
+//A2 = u16 PolyIgnoreFlags (2 this pass)
+//A3 = u16 ? (0 this pass)
+//SP+10 = vector3_f32* prevCoords
+//SP+14 = vector3_f32* nextCoords
+//SP+18 = vector3_f32* finalCoords
+//SP+1C = CollisionPoly**
+//SP+20 = f32 ? (1f this pass)
+//SP+24 = ptr to ? (out?)
+//SP+28 = s32 CollisionTypeFlags  (0x1B this pass)
+//V0 = 1 if collision detected, else 0
+//
+//SP -0x48
+//
+//S0 = A0 (Collision Sector data ptr)
+//S1 = Arg SP+0x28 (0x1B this pass)
+//V1 = 0
+D3CC //branch D438 if S1 and 0x2 == 0
+//Collision Type flag 0x02
+D3D4 //T7 = First Poly Id
+//at = 0xFFFF
+//A0 = Collision Sector data ptr
+D3E0 //branch D438 if Poly Id == 0xFFFF
+//SP+0x44 = 0
+D424 jal	8002D180 //Check Collision With Surface; floors 
+	//call with
+	//A0 = CollisionPolyLink* (floors)
+	//A1 = Global Context + 0x7C0
+	//A2 = u16 Arg A2 (PolyIgnoreFlags)
+	//A3 = u16 Arg A3
+	//SP+0x10 = prevCoords
+	//SP+0x14 = nextCoords
+	//SP+0x18 = finalCoords
+	//SP+0x1C = CollisionPoly**
+	//SP+0x20 = ptr to ? (out?) (arg SP+0x24)
+	//SP+0x24 = f32 ? (1f this pass)
+	//SP+0x28 = s32 type of collision? (0x1B this pass)
+//
+//V1 = SP+0x44
+D42C //Set V1 to 1 if V0 == 1
+//SP+0x44 = V1 
+D494 jal	8002D180 //Check Collision With Surface; walls 
+
+8002D838 //Get Collision Sector record
+//Doesn't test if coordinates fall within scene bounding box
+//A0 = Global Context + 0x7C0
+//A1 = ptr to CollisionPoly lookup table //[Global Context + 0x7C0 + 0x40]
+//A2 = vector3_f32* checkCoords
+//V0 = ptr to 6 byte Collision Sector record
+//s = A0
+//s.x,y,z begins at s + 0x1C //i.e. the x, y, z block dimensions of the collision subgrid
+D858 jal 8002D9B8 //returns p, a 3d index to the Collision Hash Table
+D864 //T6 = p.z, later becomes p.y
+     //T3 = p.x
+D86C //V1 = s.x
+D870 //T8 = s.y
+D878 //mult = p.z * s.x
+D898 //T9 = s.y * mult
+D8A8 //T0 = T9 * 6 //=p.z * s.x * s.y * 6
+D8AC //T2 = Scene Collision + 0x40 (ptr) + T0
+D8B8 //T4 = T3 * 6 //=p.x * 6
+D8BC //T5 = T2 + T4 
+D8C8 //T7 = p.y * (Scene Collision + 0x1C)
+D8D8 //T8 = T7 * 6 //=p.y * s.x * 6
+D8DC //V0 = address of 6 byte struct to return
+
+
+8002D8EC //Get Collision Sector record
+//Tests if coordinates fall within scene bounding box
+//A0 = Global Context + 0x7C0
+//A1 = ptr to CollisionPoly lookup table //[Global Context + 0x7C0 + 0x40]
+//A2 = vector3_f32* coords
+//V0 = ptr to 6 byte Collision Sector record
+//
+//SP -0x28
+//
+D904 jal	8002F0BC //check if Arg A2 is within scene bounding box
+	//call with 
+	//A0 = Global Context + 0x7C0
+	//A1 = vector3_f32* Arg A2
+D90C //branch D91C if V0 != 0 (Arg A2 is within scene bounding box)
+	 //else return null
+D91C
+D920 jal	8002D9B8 //get Collision Sector
+	//call with
+	//A0 = Global Context + 0x7C0
+	//A1 = vector3_f32* coords
+	//A2 = SP+0x1C (out collision sector xyz)
+
+
+8002D9B8 //code, graph, Get Collision Sector x,y,z index
+//returns index to Global Context + 0x7C0 + 0x40 table
+//[8003ADC8 Debug]
+//A0 = Global Context + 0x7C0 (Scene Collision)
+//A1 = vector3_f32* world space xyz to convert
+//A2 = out vector3_s32* collision sector xyz
+//
+//takes the coordinate, subtracts the min bounding box, then multiplies
+//by the "inverse" component in the scene collision data resulting in an
+//int[3] x,y,z value
+//then, the result is bound between 0 and the max defined in the Scene Collision minus 1
+
+
+8002EC70 //code, graph, initializes scene collision
+//A0 = Global Context + 0x7C0
+//A1 = Global Context
+
+
+8002F054 //Collision, Get Collision Mesh
+//called by 80034028
+//A0 = Global Context + 0x7C0
+//A1 = Complex Mesh Id. 0x32 = Scene Mesh
+//V0 = Collision Mesh Pointer
+//
+//V0 = if A1 == 0x32, return Scene Mesh pointer
+//else
+//if A1 not < 0x32, return null
+F074 sll	t6, a1, 0x1 // multiply a1 by 2
+F080 addu	t7, a0, t6  // t7 = Global Context + 0x7C0 + (A1*2)
+F084 lhu	t8, 0x13DC(t7) // load Global Context + 0x1B9C + (a1*2). This address likely stores whether a collision mesh is loaded
+F088 sll	t0, a1, 0x2  //t0 = a1*4
+F08C subu	t0, t0, a1   //t0 = a1*3
+F098 sll	t0, t0, 0x3  //t0 = a1*0x18
+F0A4 addu	t0, t0, a1   //t0 = a1*0x19
+F0A8 sll	t0, t0, 0x2  //t0 = a1*0x64
+F0AC addu	t1, a0, t0   //t1 = Global Context + 0x7C0 + (a1 * 0x64)
+F0B0 lw 	v0, 0x0058(t1) //load pointer to collision mesh
+
+
+8002F0BC //Detect if coordinates are within the bounding collision box for scene
+//A0 = Global Context + 0x7C0
+//A1 = xyz coordinates to check. 
+//V0 = 1 if within the bounding box, else 0
+//a "fudge" factor of +- 50 is added to the edges of the box
+
+
+8002F178 //Collision Detection, background floor raycast?
+//A0 = s32? (0 this pass)
+//A1 = Global Context + 0x7C0
+//A2 = u16? (2 this pass) //1, 2
+//A3 = out s32?* 
+//SP+0x10 = out s32*
+//SP+0x14 = vector3_f32* check coords?
+//SP+0x18 = Actor* (null this pass)
+//SP+0x1C = s32 (0x1C this pass, 6 in other passes)
+//SP+0x20 = f32 1f
+//
+//SP -0xB0
+//
+//F204 -> F244 will loop indefinitely if Link's Y coordinate is far too big, since floating point won't decrease in value
+F198 
+//F20 = -32000f
+//S0 = Global Context + 0x7C0
+//S2 = SP+0x98 (vector3_f32*)
+//S3 = Arg SP+0x14
+//S4 = u16 Arg A2
+//S6 = Arg A3
+//T7 = Arg SP+0x10
+//T6 = 0x32
+//F22 = -32000f
+F1D8 
+//store 0x32 at 0x0000(T7) //Arg SP+0x10
+//store 0 at 0x0000(S6) //Arg A3
+F1E0
+//Copy vector3_f32 at S3 to S2
+//S1 = ptr at Global Context + 0x7C0 + 0x40
+//S5 = s32 Arg SP+0x1C
+//F24 = f32 Arg SP+0x20
+F204
+//F4 = SP+0x98 y
+//F6 = Scene Mesh Min Y
+F21C //branch F290 (F28C) if F4 < F6,
+	//and set T0 = Arg A0
+//else
+F224 jal	8002D8EC
+	//A0 = Global Context + 0x7C0
+	//A1 = ptr at Global Context + 0x7C0 + 0x40
+	//A2 = vector3_f32* SP+0x98
+	//V0 = Collision Sector Record ptr
+//A0 = Collision Sector Record ptr
+F22C //branch F248 if V0 not null
+//F8 = SP+0x98 Y coordinate
+//F10 = Global Context + 0x7C0 + 2C (Collision Sector Y size)
+//SP+0x98 y = F8-F10
+F240 //branch F204
+F248
+F260 jal	8002C54C
+	//call with
+	//A0 = Collision Sector Record ptr
+	//A1 = Global Context + 0x7C0
+	//A2 = u16 Arg A2
+	//A3 = out s32* Arg A3
+	//SP+0x10 = vector3_f32* checkCoords
+	//SP+0x14 = s32 Arg+0x1C
+	//SP+0x18 = f32 Arg SP+0x20
+	//SP+0x1C = -32000f
+
+
+	
+	
+8002F4B8 //Collision, background floor raycast?
+//Wrapper for 8002F178
+//A0 = Global Context + 0x7C0
+//A1 = s32?*
+//A2 = out s32* ?
+//A3 = Actor*
+//SP+0x10 = vector3_f32* check coords?
+//
+//SP -0x30
+//
+F508 jal	8002F178
+	//call with 
+	//A0 = 0
+	//A1 = Global Context + 0x7C0
+	//A2 = 2
+	//A3 = ptr to ? (Arg A1)
+	//SP+0x10 = out s32* (Arg A2)
+	//SP+0x14 = vector3_f32* check coords? (Arg SP+0x10)
+	//SP+0x18 Actor* (Arg A3)
+	//SP+0x1C = 0x1C
+	//SP+0x20 = 1f
+
+8002F7B0 //Collision, background floor raycast?
+//Wrapper for 8002F178
+//A0 = Global Context + 0x7C0
+//A1 = ptr to ?
+//A2 = out s32* ?
+//A3 = vector3_f32* check coords?
+//
+//SP -0x30
+//
+F7FC jal	8002F178
+	//call with
+	//A0 = 0
+	//A1 = Global Context + 0x7C0
+	//A2 = 1
+	//A3 = ptr to ? (Arg A1)
+	//SP+0x10 = out s32* (Arg A2)
+	//SP+0x14 = ptr to ? (Arg A3)
+	//SP+0x18 = Actor* null
+	//SP+0x1C = 6
+	//SP+0x20 = 1f
+
+
+8002F8E0 //Collision, ?
+//some general purpose collision routine?
+//A0 = Global Context + 0x7C0
+//A1 = u16 PolyIgnoreFlags 
+//A2 = out ptr? 8011EEEC this pass
+//A3 = vector3_f32*, Actor Instance + 0x24 (suggested next? coordinates)
+//SP+0x10 = vector3_f32*, Actor Instance + 0x100 (previous? coordinates)
+//SP+0x14 = float, flat wall pushback? (18 this pass)
+//SP+0x18 = ptr, Actor Instance + 0x74
+//SP+0x1C = out s32*, 8011EEE8 this pass
+//SP+0x20 = Actor* instance
+//SP+0x24 = float, ceiling pushback? (26 this pass)
+//SP+0x28 = u8 unk (0 this pass) //Possibly Disable Wall Collision?
+//
+//Stack -= 0xE0
+//
+//F14 = 0
+//S0 = A2
+//T7 = arg SP+0x1C
+//T6 = 0x32
+//V1 = 0
+F90C //set arg+0x1C out to 0x32
+//T8 = ptr to Actor Instance + 0x74 struct
+F914 //zero 0x0000(t8)
+//T9 = Global Context + 0x7C0
+//T1 = Vector_f32* to Instance + 0x24 coords
+F920 //T0 = ptr to Collision Lookup Table (top)
+//SP + 0xDC = Collsion Lookup Table (top)
+F928 //copy Instance +0x24 coords to S0 ptr
+F940 //T5 = ptr to Instance + 0x100 coords
+//T4 = ptr to Instance + 0x24 coords
+//T6 = u8 arg SP+0x28 
+F968 //T7 = T6 and 0x01
+F95C //F0  = F4 - F6,  or change in X between inst+0x100 -> inst+0x24
+F970 //F12 = F8 - F10, or change in Y between inst+0x100 -> inst+0x24
+F978 //F2  = F18 - F4, or change in Z between inst+0x100 -> inst+0x24
+F96C //If change in X and change in Z == 0, branch FCB4 (FCB0 basically)
+F98C //If u8 arg SP+0x28 and 0x1, branch FCB0
+//F14 = arg SP+0x24, 26f this pass
+//F6 = F14 + Change in Y
+//F8 = 5f
+//A0 = Global Context + 0x7C0
+//A1 = arg A1
+//A2 = 0
+//A3 = ptr to inst+0x100 coordinates
+F9A8 //fcond = F6 < 5f; change in Y + Arg SP+0x24 < 5f
+//F6 = SP + 0x14, (flat wall pushback?)
+F9B8 //branch FB28 if fcond false
+//t3 = Inst+0x24 xyz ptr
+//t8 = Inst+0x24 xyz ptr
+//t2 = Actor ptr
+//F10 = 1
+F9F8 jal	80030274
+//called with args:
+	//A0 = Global Context + 0x7C0
+	//A1 = arg A1
+	//A2 = 0
+	//A3 = vector3_f32* prevCoords (ptr to inst+0x100 coordinates)
+	//SP+0x10 = vector3_f32* nextCoords (ptr to inst+0x24 coordinates)
+	//SP+0x14 = out vector3_f32* finalCoords (ptr to SP+0xA8)
+	//SP+0x18 = out CollisionPoly**  (ptr to SP+0xD0)
+	//SP+0x1C = out s32* Mesh Collision Id (ptr to SP+0xA4)
+	//SP+0x20 = actor ptr
+	//SP+0x24 = 1f
+	//SP+0x28 = 0x1B
+//
+FCB0
+
+
+8002FFE4 //code, wrapper for 8002F8E0
+//calls with A1 = 2
+
+8003004C //code, wrapper for 8002F8E0
+//calls with A1 = 1
+
+800300B8 
+
+80030274 //Check Background
+//A0 = Global Context + 0x7C0
+//A1 = u16 PolyIgnoreFlags (2 this pass)
+//A2 = u16 ? (0 this pass)
+//A3 = vector3_f32* prevCoords //(inst+0x100 coordinates)
+//SP+0x10 = vector3_f32* nextCoords //suggested next position (inst+0x24 coordinates)
+//SP+0x14 = out vector3_f32* finalCoords //finalized next position
+//SP+0x18 = out CollisionPoly**
+//SP+0x1C = out s32* Mesh Collision Id
+//SP+0x20 = Actor*
+//SP+0x24 = f32 ? //1f
+//SP+0x28 = s32 (0x1B this pass) //collision check type?
+//V0 = 1 if successful, else 0
+//
+//Stack -0xE0
+//S1 = nextCoords
+//S2 = arg A0
+//S6 = arg A3 
+//S7 = SP+0xA8 (nextCoords copy)
+02BC //start of copy nextCoords coods to SP+0xA8
+//T8 = 0x32
+//T9 = Arg SP+0x1C
+//set out Mesh Collision Id to 0x32
+//S0 = ptr at Global Context + 0x7C0 + 0x40
+//A0 = Global Context + 0x7C0 + 0x44
+//A1 = Number of Polygons within the scene mesh
+02EC jal	80033FF0 //zero init array at Global Context + 0x80C (by num polys)
+//
+02FC jal	8002D9B8 //get collision sector xyz
+	//call with
+	//A0 = Global Context + 0x7C0
+	//A1 = inst + 0x100 coords
+	//A2 = SP+0x00CC //previous collision sector xyz
+030C jal	8002D9B8
+	//call with
+	//A0 = Global Context + 0x7C0
+	//A1 = Ptr to next suggested position
+	//A2 = SP+0x00C0 //next suggested collision sector xyz	
+//
+//T1 = arg finalCoords
+//copy nextCoords to finalCoords address
+//V0 = prev suggested collision sector
+//V1 = next suggested collision sector
+//A3 = SP+0xD8
+//F4 = float 1e+38
+//T4 = arg SP+0x18 value (CollisionPoly**)
+//SP+0xB4 = f32 1e+38
+//SP+0xB8 = s32 0 //stores result
+0350 //s32 0x0000(t4) = 0 //set CollisionPoly* null
+0354 //start of check if prev collision sector == next collision sector
+//if sectors are equal, branch 0640, else branch 0384
+//
+0640 jal	8002F0BC //check if prev coordinates are within collision bounding box
+	//call with 
+	//A0 = Global Context + 0x7C0
+	//A1 = Previous Coordinates
+//return 0 if false
+065C jal	8002D838 //get collision sector reference
+	//call with 
+	//A0 = Global Context + 0x7C0
+	//A1 = ptr at Global Context + 0x7C0 + 0x40
+	//A2 = Previous Coordinates
+//V0 = Collision Sector data ptr for prev coords (and next)
+0664 //
+//S8 = Arg SP+0x28 
+//F20 = Arg SP+0x24
+//T6 = Arg finalCoords
+//T3 = Arg CollisionPoly**
+//T7 = SP+0xB4
+06A0 jal	8002D3A4 //Check Scene Mesh Collision
+	//call with
+	//A0 = Collision Sector data ptr
+	//A1 = Global Context + 0x7C0
+	//A2 = u16 Arg A1 (PolyIgnoreFlags)
+	//A3 = u16 Arg A2
+	//SP+10 = prevCoords ptr
+	//SP+14 = ptr to copy of nextCoords
+	//SP+18 = finalCoords ptr
+	//SP+1C = CollisionPoly**
+	//SP+20 = f32 Arg SP+0x24
+	//SP+24 = SP+0xB4
+	//SP+28 = arg SP+0x28 (0x1B this pass)
+//SP+0xB8 = V0
+06AC //branch 06C4 if V0 != 1
+06C8 //return SP+0xB8 if arg SP+0x28 & 0x10 == 0
+0708 jal	800338A8 //Check Actor Mesh Collision
+	//call with
+	//A0 = Global Context + 0x7C0
+	//A1 = u16 PolyIgnoreFlags
+	//A2 = arg A3 (prevCoords)
+	//A3 = SP+0xA8 (copy of nextCoords)
+	//SP+0x10 = out finalCoords
+	//SP+0x14 = out CollisionPoly**
+	//SP+0x18 = SP+0xB4
+	//SP+0x1C = out s32* Mesh Collision Id
+	//SP+0x20 = Actor*
+	//SP+0x24 = f32 arg+0x24
+//if V0 == 0, return SP+0xB8 (probably zero)
+//else return 1
+
+
+80030D94 //code, graph, zero initialize Mesh Collision lookup table
+//zeroes variables at Global Context + 0x804 to 0x810
+
+
+80030DAC //code, graph, initialize Collision lookup tables
+//A0 = Global Context
+//A1 = Global Context + 0x804
+//A2 = Records in Global Context + 0x808 table
+//A3 = Polygons to load
+
+
+80030E58 //code, graph, Get Next Free Collision Record
+//grabs next free record in Gctx + 0x7C0 + 0x48 table
+//A0 = Global Context + 0x804
+//V0 = Next Free Index
+
+
+80030EAC //code, graph, set Actor Mesh variables
+//Sets position, scale, rotation
+//A0 = Actor Mesh + 0x34 (scale 2)
+//A1 = vector3_f32* Scale (Actor Instance + 0x50)
+//A2 = vector3_s16* Rotation (Actor Instance + 0xB4)
+//A3 = vector3_f32* Position
+
+
+8003103C //Collision, Uninitializes Actor-based complex collision mesh
+
+
+8003109C //Collision, Initializes Actor-based complex collision mesh
+//A0 = Actor Mesh Record ptr (801C8CB4 seems to be ptr to first non-scene record)
+//A1 = Actor Instance
+//A2 = Collision Mesh Pointer
+//
+//v0 = scale xyz
+//V1 = Rotation xyz
+//A3 = Coord xyz
+
+80031264 //Collision, Test if Actor Mesh Collision
+//A0 = Mesh Collision Id
+//V0 = 1 if id between 0x00 and 0x31, else 0
+
+800313A4 //code, graph, DynaPolyInfo_setActor
+// Poly Collision Actor related
+//A0 = Global Context
+//A1 = Global Context + 0x810
+//A2 = Actor Index
+//A3 = ?
+//V0 = Mesh Collision Id.
+
+
+80031464 //code, graph, DynaPolyInfo_getActor
+// Get Poly Collision Actor reference
+//A0 = Global Context + 0x7C0
+//A1 = Mesh Collision Id.
+//V0 = null or Actor Instance bound to Poly Id
+
+
+80031638 //code, graph, DynaPolyInfo_delReserve
+//Removes Poly Collision Actor reference?
+//A0 = Global Context
+//A1 = Global Context + 0x810
+//A2 = Mesh Collision Id.
+164C JAL	80031264 //checks something related to the Poly Id
+1660 JAL 	80031464 //returns actor instance of the given Poly Id
+//if either of the above function calls returns null, immediately return
+
+
+800316D8 //code, graph, Update? Dynamic Collision Mesh
+//Related to Collision data overwrite glitch
+//A0 = Global Context
+//A1 = Global Context + 0x810
+//A2 = Mesh Collision Id.
+//A3 = s32* ? some struct on stack (8011F0C0 this pass, s32 value), contains number of actor vertex records stored?
+//SP + 0x10 = s32* ? (8011F0BC this pass)
+//
+//SP -0x168
+//
+//A3 = SP+0x108
+//S0 = Collision Mesh Id
+//S5 = Global Context + 0x810
+//T7 = Arg SP+0x10
+//T6 = S0 * 0x64
+//T8 = [Arg SP+0x10]
+1738 //S4 = Actor Collision Mesh 
+173C //0x810 record + 0xC (s16) = [8011F0BC]
+1744 //v0 = Actor
+1748 //S8 = Mesh
+1758 //0x810 record + 0x14 (s16) = [8011F0C0]
+//save actor xyz to A3 (SP + 0x108)
+178C jal	80030EAC //set Actor Mesh position, scale, rotation
+//
+//S8 = Actor Collision Mesh
+1914 //T3 = Vertices to load
+1950 //F20 = 1/Vertices
+196C //T5 = address to vertices
+1970 //loop startish for copying actor vertices into ram
+1974 jal	80063CCC //fetch vertice as f32 xyz
+1984 jal	8008ED08 //multiply with matrix, result stored at [S2]
+1998 //load A3 argument from stack, lw s32 at offset 0
+19A8 //A0 = Actor Mesh Vertex Table ptr + (6 * (existing vertices + current vertex index))
+//A1 = f32 vertex vector
+19AC jal	8002B520 //store f32 vertice as s16
+//after loading all vertices, update Actor Mesh record 0x54,0x56,0x58
+1AC0 //branch 1BA8 if mesh vertices <= 0 (vertices count stored in T9)
+1AD4 //loop startish for computing largest actor vertice delta? of some sort
+//S0 = i * 6
+//SP + 0xDC = vertice float xyz
+1ADC //T2 = 0x1C04 (0x13F4) vertice table record offset index
+1AF4 //T5 = ptr to Vertice being worked on
+//super fucking inefficient code simplified here:
+//copy s16 vertice to f32 vertice at SP + 0xDC
+1B6C jal	800A5538 //A0,A1 are f32 vector3s, returns distance squared in F0
+1B9C //branch 1AD4 if more vertices are to be processed
+1BC4 //save largest distance from ? as s16 to Actor Mesh + 0x5A
+//
+1BC8 //Load Poly Count from Actor Mesh data
+
+
+800320BC //code, graph, unk
+
+800338A8 //Poly Collision, Detect Collision with Actor Mesh Collision
+//A0 = Global Context + 0x7C0
+//A1 = u16 PolyIgnoreFlags
+//A2 = vector3_f32* prevCoords
+//A3 = vector3_f32* nextCoords (copy?) 
+//SP+0x10 = out? vector3_f32* finalCoords
+//SP+0x14 = out CollisionPoly**
+//SP+0x18 = SP+0xB4
+//SP+0x1C = out s32* Mesh Collision Id
+//SP+0x20 = Actor*
+//SP+0x24 = f32 ? (1f this pass)
+//V0 = 1 if successful, else 0 if false
+//
+//SP -0x98
+//
+//S2 = prevCoords
+//S3 = nextCoords
+//S4 = Global Context + 0x7C0
+//S8 = PolyIgnoreFlags
+//S6 = 0 (result)
+//S0 = 0 (loop iterator)
+//S1 = Global Context + 0x7C0 + (S0*2)
+//F20 = arg SP+0x24
+//S7 = actor*
+//S5 = SP+0x74
+3904
+//T6 = Actor Mesh S0 is loaded
+3914 //branch 3A18 if Actor Mesh isn't loaded
+3A18
+//S0 += 1
+//S1 += 2
+3A20 //branch 3904 if S0 != 50
+//return S6
+
+
+80033EF4 //code, graph, Poly Collision Actor related?
+//A0 = Segment Offset to Collision Data
+//A1 = ptr to store result?
+
+80033FF0 //Collision, Zero Global Context + 0x80C Array
+//Zeros A1 bytes, beginning at the array start
+//A0 = Global Context + 0x804
+//A1 = Number of Polys (in the scene?)
+//
+//V0 = ptr at Global Context + 0x80C
+//T6 = V0 + A1
+//if V0 >= T6 return; or rather, if array is 0 in length
+//write 0 at 0x0000(v0)
+//T7 = ptr at Global Context + 0x80C
+
+
+80034028 //Collision, Fetch poly surface type attribute
+//A0 = Global Context + 0x7C0, which stores the ptr to the collision header
+//A1 = Polygon*
+//A2 = Complex Mesh Id. 0x32 = Scene Mesh
+//A3 = 0 returns high word (+00), 1 returns low word (+04)
+//V0 = 0 if A1 is null, else returns high or low word
+//there's a crash in my boots https://www.twitch.tv/glankk/v/86399136?t=1h53m34s
+4038 JAL	8002F054 //if A2 = 0x32, V0 = pointer to scene collision header data
+
+
+800340A0 //Collision, poly surface, return?
+//Returns high word & 0x0000 00FF
+//A0 = Global Context + 0x7C0
+//A1 = Polygon*
+//A2 = Complex Mesh Id
+//V0 = result
+
+
+800343AC //Collision, poly surface, return?
+//Returns high word & 0x0000 1F00
+//A0 = Global Context + 0x7C0
+//A1 = Ptr to polygon detected
+//A2 = Complex Mesh Id
+//V0 = result (& 0x1F)
+
+
+800343D4 //Collision, poly surface, return?
+//Returns high word & 0x0003 E000
+//A0 = Global Context + 0x7C0
+//A1 = Ptr to polygon detected
+//A2 = Complex Mesh Id
+//V0 = result (& 0x1F)
+
+800343FC //Collision, poly surface, return?
+//Returns high word & 0x001C 0000
+//A0 = Global Context + 0x7C0
+//A1 = Ptr to polygon detected
+//A2 = Complex Mesh Id
+//V0 = result (& 0x7)
+
+80034424 //Collision, poly surface, return?
+//Returns high word & 0x03E0 0000
+//A0 = Global Context + 0x7C0
+//A1 = Ptr to polygon detected
+//A2 = Complex Mesh Id
+//V0 = result (& 0x1F)
+
+8003444C //Collision, poly surface
+//Returns s32 in table at 800EC020
+//A0 = Global Context + 0x7C0
+//A1 = Ptr to polygon detected
+//A2 = Complex Mesh Id
+//V0 = s32 stored in table at 800EC020
+//
+4454 jal	80034424 //v0 is used as an index to the table we retrieve a value from
+
+8003447C //collision, poly surface, ?
+//A0 = Global Context + 0x7C0
+//A1 = Ptr to polygon detected
+//A2 = Complex Mesh Id
+//V0 = return value of 8003444C and 0x01 == 1
+
+800344B0 //collision, poly surface, ?
+//A0 = Global Context + 0x7C0
+//A1 = Ptr to polygon detected
+//A2 = Complex Mesh Id
+//V0 = return value of 8003444C and 0x02 == 2
+
+800344E4 //collision, poly surface, ?
+//A0 = Global Context + 0x7C0
+//A1 = Ptr to polygon detected
+//A2 = Complex Mesh Id
+//V0 = return value of 8003444C and 0x04 == 4
+
+80034518 //Collision, poly surface, return? (duplicate?)
+//Returns high word & 0x3C00 0000
+//A0 = Global Context + 0x7C0
+//A1 = Ptr to polygon detected
+//A2 = Complex Mesh Id
+//V0 = result (& F)
+
+80034540 //Collision, poly surface, return? 
+//Returns high word & 0x3C00 0000
+//A0 = Global Context + 0x7C0
+//A1 = Ptr to polygon detected
+//A2 = Complex Mesh Id
+//V0 = result (& F)
+
+
+80034568 //Collision, poly surface, return? 
+//Returns high word & 0x4000 0000
+//A0 = Global Context + 0x7C0
+//A1 = Ptr to polygon detected
+//A2 = Complex Mesh Id
+//V0 = result (& 1)
+
+80034590 //Collision, poly surface, return? 
+//Returns high word & 0x8000 0000
+//A0 = Global Context + 0x7C0
+//A1 = Ptr to polygon detected
+//A2 = Complex Mesh Id
+//V0 = result
+
+800345B8 //Collision, poly surface, return? 
+//Returns low word & 0x0000 000F
+//A0 = Global Context + 0x7C0
+//A1 = Ptr to polygon detected
+//A2 = Complex Mesh Id
+//V0 = result 
+
+
+800345DC //collision related
+//A0 = Global Context + 0x7C0
+//A1 = Ptr to the polygon detected
+//A2 = Complex Mesh Id. 0x32 = Scene Mesh
+//jal 800345B8
+
+
+80034624 //Collision, poly surface, return? 
+//Returns low word & 0x0000 0030
+//A0 = Global Context + 0x7C0
+//A1 = Ptr to polygon detected
+//A2 = Complex Mesh Id
+//V0 = result
+
+8003464C //Collision, poly surface, return? 
+//Returns low word & 0x0000 07C0
+//A0 = Global Context + 0x7C0
+//A1 = Ptr to polygon detected
+//A2 = Complex Mesh Id
+//V0 = result
+
+80034674 //Collision, poly surface, return? 
+//Returns low word & 0x0001 F800
+//A0 = Global Context + 0x7C0
+//A1 = Ptr to polygon detected
+//A2 = Complex Mesh Id
+//V0 = result
+
+8003469C //Collision, poly surface, return? 
+//Returns low word & 0x0002 0000
+//A0 = Global Context + 0x7C0
+//A1 = Ptr to polygon detected
+//A2 = Complex Mesh Id
+//V0 = result
+
+80034778 //Collision, poly surface, return Conveyor Surface Speed
+//Returns low word & 0x001C 0000
+//A0 = Global Context + 0x7C0
+//A1 = Ptr to polygon detected
+//A2 = Complex Mesh Id
+//V0 = result
+
+
+800347A0 //Collision, poly surface, return Conveyor Surface Direction
+//Returns low word & 0x07E0 0000
+//A0 = Global Context + 0x7C0
+//A1 = Ptr to polygon detected
+//A2 = Complex Mesh Id
+//V0 = result
+
+
+800347C8 //Collision, Test if poly surface type is damage wall surface?
+//Checks if low word is & 0x0800 0000
+//A0 = Global Context + 0x7C0
+//A1 = Ptr to polygon detected
+//A2 = Complex Mesh Id
+47D0 jal 80034028 //return low word of polygon surface
+
+
+80035260 //code, graph, Poly Collision Actor related?
+//A0 = Actor Instance
+//A1 = ? (1 this pass)
+
+80035A94 //Collision, ?
+//A0 = Global Context + 0x7C0
+//A1 = vector3_f32* positionPrev?
+//A2 = ref vector3_f32* positionNext?
+//V0 = ? (GLITCHed in some cases due to s32 SP+0x44 not being initialized)
+//
+//if func_8003079C returns 0, it skips a call to func_8002F7B0 where the function would presumably set s32 SP+0x44
+//
+
+
+80035CBC //Collision, ?
+//Wrapper for 80035A94
+//Called by Camera NORM1()
+//A0 = Global Context + 0x7C0
+//A1 = vector3_f32* positionPrev?
+//A2 = ref vector3_f32* positionNext?
+//V0 = ?
+//
+//SP -0x48
+//
+//SP+0x20 = result xyz coords
+//calls wrapper with A2 = SP+0x20, but copies the result back to A2 anyway
+
+80025B84 //Probably Link's stupid ass eye blinking
+
+
+
+80002F20 //osCreateThread
+//calls to this function are preceded by the stack initializer (usually)
+//80001890
+//a0 = Thread Pointer
+//a1 = Thread Id
+//a2 = Entrypoint
+//a3 = Entrypoint argument
+//sp+10 is pointer to a stack
+//sp+14 is the priority argument (type OSPri)
+
+
+80001890 //boot, Initializes a stack for osCreateThread
+//possibly thread 4 stack this pass
+//A0 = Stack Struct ptr (80120B98 this pass)
+//A1 = Start Ptr (8011DD98 this pass)
+//A2 = End Ptr (8011F598 this pass)
+//A3 = Initial value to write from start->end (0 this pass)
+//SP+10 = ? (0x100 this pass)
+//SP+14 = string ptr (80108E10 this pass ("graph" str)
+//V0 = ?, 800062E0 if A0 is null
+//
+//A0 is pointer to some struct:
+18A4 sw 	a1, 0x0008(A0)
+18A8 sw 	a2, 0x000C(A0)
+18AC sw 	a3, 0x0010(A0)
+18BC sw 	t6, 0x0014(A0) //t6 = SP+10, 0x100
+18C4 sw 	t7, 0x0018(A0) //t7 = SP+14, pointer to str "graph"
+18C8 lw 	t8, 0x0000(V1) //v1 = 800062E4
+18CC sw 	r0, 0x0000(A0)
+18D0 sw 	t8, 0x0004(A0)
+
+//hack: 3AF198 3B0998
+
+800AD26C //irqmgr. Possibly the top level update function for the thread
+//seems to be called 60 fps?
+
+
+80005130 //boot, ?,  possibly enables kernel mode?
+5134 //t2 = 80006360, addr stores some earlier status register state?
+5138 lw 	t3, 0x0000(t2)
+
+
+800051A0 //boot, ?, possibly exits kernel mode?
+
+800894A4 //Draws Link?
+
+
+
+80001438 //Boot, Crash Debugger, Related to initializing "I LOVE YOU" menu?
+//called on boot
+144C //A0 = 800088A8
+1448 //A1 = 8000134C //I LOVE YOU menu? function
+1450 //A2 = 0
+1458 //A3 = 0
+1454 JAL	800AEF8C
+//returns
+
+
+
+
+80004220 //boot, osCreateMesgQueue
+//A0 = OSMesgQueue to initialize  (80121840 this pass, related to "fault" thread)
+//A1 = OSMesg array, used for storing messages (80121858 this pass)
+//A2 = count, number of messages the queue can hold  (1 this pass)
+//initializes the following structure at A0:
+//0x0000 = 80006330
+//0x0004 = 80006330
+//0x0008 = 0
+//0x000C = 0
+//0x0010 = A2 (word)
+//0x0014 = A1 (word)
+
+
+
+80067440 //?
+//A0 = ptr ? (8000031C this pass)
+
+
+800AF45C //code, main, initialize fault thread?
+//called by main's primary function after entrypoint
+//begin by writing  0xFFFA5A5A to stack entrypoint -0x28 to stack entrypoint
+F4D8 //a1 = 80121858 //seems related to the "fault" thread
+F4DC //a0 = 80121840
+F4E0 jal	80004220
+F4E4 //a2 = 1
+F514 jal	80001890 //initialize the "fault" thread stack
+F518 //a3 = 0
+F520 //t5 = 80121C68, fault "stack" low address
+F530 //a2 = 800AF190, crash debugger main?
+F538 //a0 = 80121290
+F53C //a1 = 2
+F540 jal	80002F20 //osCreateThread
+F544 //a3 = 0
+
+
+
+
+800AEF8C //Unknown Function (possibly printf related)
+//A0 = ptr to write data? 	(8011EED0 pass  A)  (800088A8 pass B)
+//A1 = function ptr? 		(8002420C pass  A)  (8000134C pass B)
+//A2 = ? 					(Actor ptr pass A)  (0 this pass)
+//A3 = ? 					(8010645C pass  A)  (0 this pass)
+//start by filling the stack with a magic string/garbage
+//0x20 bytes of 0xFFFA5A5A frop SP's init value
+EFB0 //S0 = A0
+EFC8 //A0 = 1
+EFC4 JAL	80003CC0 //returns COP0 Status register in V0
+EFD8 //store A1 at 0x0004(A0)
+EFE4 //store A2 at 0x0008(A0)
+EFEC //store A3 at 0x000C(A0)
+EFF0 //T9 = lw at 80121864 
+EFF4 //store T9 at 0x0000(A0)
+EFFC //store A0 at 80121864
+
+80003CC0 //Boot, osSetIntMask
+//Sets COP0's status register (among other things)
+//A0 = new register value
+//V0 = some status register result
+
+8002420C //Printf related, Print Actor Name?
+//A0 = Actor Instance
+//A1 = ?
+
+
+800ADB80 //Printf related, ?
+//A0 = value sw to 80121C88
+//A1 = value sw to 80121C8C
+
+800ADBF8 //Printf related possibly?
+//A0 = ?
+//A1 = ?
+//A2 = ?
+//A3 = ?
+
+800D1D00 //Printf?
+
+803B23B0 //MAP SELECT, n64dd_SetDiskVersion(1)
+//A0 = Global Context
+//A1 = Entrance Index? (Should always be 0?)
+//if 80121212 == 0 return
+//else jal 801C7F90 with A0 = 1 //n64dd_SetDiskVersion
+
+803B23E8 //MAP SELECT, n64dd_SetDiskVersion(0)
+//A0 = Global Context
+//A1 = Entrance Index? (Should always be 0?)
+//if 80121212 == 0 return
+//else jal 801C7F90 with A0 = 0 //n64dd_SetDiskVersion
+
+801C6E80 //n64dd, entrypoint
+801CE120 //n64dd, attempt to connect to disk drive?
+
+801C7F90 //n64dd, n64dd_SetDiskVersion
+//A0 = version? 0 for normal? 1 for ura?
+//
+//if a0 = 0, go to second branch
+//a0 != 1:
+//return if 801D9D48 lw != 0
+7FB0 jal	801C7E80
+//return
+//a0 == 0:
+//return if 801D9D48 lw == 0
+7FCC jal	801C7F24
+//return
+
+
+80002BA4 //Boot, Swap in registers from next thread?
+
+
+800ACFAC //irqmgr, ?
+//A0 = ?, 8011D968 this pass
+//A1 = ?, 8011D968 this pass
+
+CFBC lw 	s0, 0x0248(a0) //8011D570 this pass. Address + 0x10 = padmgr register struct
+CFCC //loop start
+CFE4 jal	80001E20
+CFF0 bnel	s0, r0, 800ACFCC
+
+800A3674 //sched, ?
+800A3244 //sched, ?
+800D5D50 //sched, ?
+800A313C //sched, ?
+800A2DC8 //sched, ?
+
+800A2918 //padmgr, ? possibly main thread loop
+//A0 = 8011D500, input context
+
+80001DF4 //boot, sends some sort of message?
+
+80001E20 //boot, osSendMesg
+//A0 = OSMesgQueue ptr (8011D558 this pass)
+//A1 = OSMesg ptr (8011D968 this pass)
+//A2 = flag (0 this pass)
+
+80001F70 //boot, osStopThread
+
+
+80002030 //boot, osRecvMesg
+//Receives message from thread, yielding control if message hasn't been delivered
+//A0 = OSMesgQueue ptr (8011D540 this pass)
+//A1 = OSMesg ptr (0 this pass, a structure on the stack in other passes)
+//A2 = ?, 1 this pass
+//V0 = -1 if no thread to swap to?
+
+80002B94 //Swap thread register contexts for something?
+//A0 = ?, 8011D558 this pass
+//V0 = Thread Register Context (8011D580 this pass, for padmgr)
+2B94 lw 	v0, 0x0000(a0)
+2B98 lw 	t9, 0x0000(v0)
+2B9C jr 	ra
+2BA0 sw 	t9, 0x0000(a0)
+
+80002A4C //boot, swap threads?
+//handles register swapping
+
+
+
+800AF190 //code, fault, thread main function
+//executes crash debugger
+//start by writing FFFA5A5A to 80121C00 -> 80121C58 on stack
+F244 jal	80002030 //gives control to another thread, until an exception occurs?
+
+
+800ADEF8 //code, Crash Debugger Screen 1?
+
+800AD984 //fault, Crash Debugger, Draw Crash Bar top level
+
+800AD984 //fault, Crash Debugger, draw Red Bar
+D9A8 jal	800AD930
+D9AC //a0 = 0xF801  (RGB16 Red)
+
+800AD9C0 //fault, Crash Debugger, draw Yellow Bar
+D9E4 jal	800AD930
+D9E8 ori	a0, r0, 0xFFC1 //(RGB16 Yellow)
+
+800AD930 //fault, Crash Debugger, Draw Error Bar
+//drawn to 803B7800 (buffer at 3B5000, each pixel is 2 bytes, bar drawn to (16,10))
+//A0 = Color
+D96C jal	800AD6B4
+
+800AD6B4 //fault, Crash Debugger, Draw Error Bar Inner
+
+
+8000134C //Boot, Crash Debugger related?
+1420 //A0 = 8000664C, pointer to "I LOVE YOU" string
+
+
+800AE6BC //Function related to the crash debugger
+E744 jal	800A279C	//input related code on fault thread
+//relevant pad info seems to be transfered to 80121230
+800AE808 //Jump to a specific part of the input sequence.
+//8010977C contains a jump table containing 0xB items
+//V1 = combined input
+//V0 = new buttons this frame
+
+800A0BA0 //Controller Stuffs
+//A0 = Global Context
+//wrapper for 800A279C
+//
+800A279C //fault, crash debugger/Input Related?
+//A0 = 8011D500 this pass
+//A1 = Global Context + 0x14, controller 1 button struct
+//A2 = ?, 1 pass A
+//A1 = 80121230 pass B
+//A2 = ?, 0 pass B
+//input data is transferred to 80121230?
+
+80003FB0 //boot, threading related
+//A0 = ?, 0x0A this pass
+//A1 = OSMesgQueue
+//A2 = ?, 0x01 this pass
+3FD8 //t8 = 80009DE0
+3FE0 //t9 = a0 * 8 + t8
+3FE4 //store t9 SP + 0x20
+3FE8 //store OSMesgQueue ptr to 0x0000(t9)
+3FFC //store a2 to 0x0004(t9)
+
+800AB510 //Create x,y,z transformation and apply rotation on Float Matrix Stack
+//F12 = x
+//F14 = y
+//A2 = z
+//A3 = ptr to u16 rotation
+//
+// ------
+//cos y rot,  , -(sine y rot), 0
+// , , , 0
+// , , , 0
+// x, y, z, 1
+// -- Matrix Generated with 0 x,z rotation --
+// cos y rot, 0, -(sine y rot), 0
+// 0, 1, 0, 0
+// sine y rot, 0, cos y rot, 0
+// x, y, z, 1
+//
+B538 jal	800636C4 //sine
+B544 jal	80063684 //cosine
+//F4 = -(sine y rot)
+//F6 = actor x
+//F2 = 1.0f
+//F12 = cos y
+//F16 = 0
+//S1 = Actor Instance + 0xB4
+B594 //
+
+
+800AB6BC //graph, guMtxF2L 
+//convert float matrix to fixed point matrix
+//A0 = ptr to float matrix (derefs pointer at 80121204 -> 80224200 this pass)
+//A1 = pointer to where to write matrix data
+B6C0 //F0 = 65536
+B6C8 lwc1	f4, 0x0000(a0)
+//v0 = a1
+//v1 = a1+0x20
+//multiply f0 and f4, store in f6
+B6D8 TRUNC.W.S	f8, f6 
+B6DC mfc1	t8, f8
+B6F0 //work on 1,2
+B710 //work on 1,3
+B730 //work on 1,4
+B750 //.. 2,1
+B770 //.. 2,2
+B790 //.. 2,3
+//For understanding crash potentials
+//Function is called by the following:
+//800AB8D8, (RA 800AB8F0) which draws gbi
+//8009C0A8, (RA 8009C3DC) unknown, but big function
+
+800AB958 //graph, Multiplies the Top Matrix Stack matrix with a Vector3
+//Matrix Stack Matrix * Vector3
+//A0 = Vector3 to multiply
+//A1 = Vector3 result
+//
+//V0 = Top level matrix
+//F6  = 0x00 (a0)
+//F16 = 0x04 (a0)
+//F4  =	0x00 (v0)
+//F10 = 0x10 (v0)
+//
+//F8  = 0x00 (v0) * 0x00 (a0)
+//F6  = 0x20 (v0)
+//F18 = 0x10 (v0) * 0x04 (a0)
+//F10 = 0x08 (a0)
+B980 
+//F16 = 0x20 (v0) * 0x08 (a0)
+//F4 = [0x00 (v0) * 0x00 (a0)] + [0x10 (v0) * 0x04 (a0)]
+//
+//F18 = 0x30 (v0)
+//F8 = [0x00 (v0) * 0x00 (a0)] + [0x10 (v0) * 0x04 (a0)] + [0x20 (v0) * 0x08 (a0)]
+//F6 = [0x00 (v0) * 0x00 (a0)] + [0x10 (v0) * 0x04 (a0)] + [0x20 (v0) * 0x08 (a0)] + [0x30 (v0)]
+
+
+
+
+
+8009AF1C //gameplay game state "game engine update"
+//updates position of actors
+//A0 = Global Context
+AFB4 //T1 = Global Context + 0x11E15 (exit scene)
+B0A4 //Logic for looking up exit transition effect 
+B0F4 //T4 = Transition Animation
+B104 //Test if the background music should keep playing (V0 = 0 to fade out, V0 = 1 to keep)
+B138 jal 8009A2B0 //Initialize transition animation
+B3DC //Jal Global Context + 0x12414 //Transition Animation func
+B3EC //? (T0 = Global Context + 0x123F0)
+B414 //Jal Global Context + 0x123F8 //Transition Animation func
+B440 //branch if fading in (Gctx + 0x11E15 == 0xEC)
+B448 //Start of Game State switch logic
+//Zero Global Context + 0x98 (starts state swap)
+//load Game Mode (Save Context + 0x135C) and see if it's file select
+B478 //copy next entrance index to current entrance index
+B544 //use Global Context + 0x1241B to index jump table at 80108D38
+
+8009A2B0 //Initialize Transition Animation
+//A0 = Global Context
+//A1 = Transition Animation
+A2D4 jal 80002E80 //zero 0x250 bytes at Global Context + 0x121C8
+//A0 = Global Context + 0x121C8
+//V0 = Transition Animation
+//A2 = Global Context
+
+8009C0A8 //gameplay game state "draw update"
+//calls "draw update" functions for everything
+//begins by initializing "segment" table at 80120C38
+C128 //begin writing segment address (00, 04, 05, 02) initialization for object files across the 3 DISP lists
+C2F4 jal 8007EE5C //a0 = gfx context, a2 is 0, initialize Z-Buffer stuff
+C300 jal 8009A574 //Initialize POLY_OPA fog
+C308 jal 8009A574 //Initialize POLY_XLU fog
+C460 jal 80091858 //Initialize VIEW struct?
+
+
+800ABA10 //Float Matrix Copy
+//Note: Poorly Optimized? Copies twice to same address!
+//A0 = Destination
+//A1 = Source
+
+800AA6B0 //Initialize a 0x500 byte "scratch" space for storing Matrix info
+//A0 = Global Context
+//Saves start address to 80121200
+//Saves append address to 80121204
+A6B8 //A2 = A0
+A6BC //A0 = Global Context + 0x74, heap management
+A6C0 jal	800A01B8 //allocates 0x0500 bytes to game state
+A6C4 addiu	a1, r0, 0x0500
+A6CC //V1 = 80121204
+A6D0 sw 	v0, 0x0000(v1) //store start address of whatever at 80121204
+A6D8 sw 	v0, 0x1200(at) //store start address of whatever at 80121200
+
+800A04C4 //audio, audio thread entrypoint
+//A0 = Arguments, 80120C78
+//Arg + 00 = 8011D968
+//Arg + 04 = 8011D2A8
+
+800C7DD4 //audio, ?
+//Calls 800B8654 with args A0 = 0, A1 = 0
+
+800B8654 //audio, ?
+8660 //S1 = 80125630, Audio Context? Audio Context is 0x6450 bytes long!
+8668 //store 0 at 8012BA80 (this is near heap allocation info)
+8680 //Zero Initialize the Audio Context, 0x6450 bytes long
+869C //lw from 80000300 (storing 1 this pass) to v0
+//Switch case on v0. 4 cases for 0, 1, 2, and default
+86EC //case 1 and case default (default sets t7 to 0x3C)
+86F0 //lwc1 f8, word at 80109868 (16.713)
+//audio ctx + 0x2964 sw =  0x3C (case 0, 1, default) or 0x32 (case 2)
+//audio ctx + 0x2960 = 16.713f
+8700 JAL	800BBDD8 //initializes 3 OSMesgQueues
+8708 to 8728 //audio ctx + 0x2974 = short[3], store 0x000A in all
+//audio ctx
+//2620 s32 = 0
+//289C s32 = 0
+//28A0 s32 = 0
+//28A4 s32 = 0
+//28A8 s32 = 0
+//289A s8  = 0
+//28B8 s32 = 0
+//28F4 s32 = 0
+//2944 s32 = 0
+8758 //initialize OSMesgQueue 80127C18
+8770 //initialize OSMesgQueue 80127500
+8788 //initialize OSMesgQueue 80127450
+87A0 //initialize OSMesgQueue 801274A8
+87AC JAL	80005680
+//v0 = 80009EA0 when it returns
+//audio ctx + 1E18 = v0
+
+
+
+800BBDD8 //audio, wrapper for 800BAFB4
+800BAFB4 //audio, initializes OSMesgQueues
+//audio ctx + 0x5BD8 = byte array? related to following array
+//audio ctx + 0x5BE4 = ptr array[3?] to OSMesgQueues initialized by this function
+
+
+80005680 //audio, ?
+
+80001DB0 //audio, ?
+
+80097740 // Link, Update Routine (Primary Wrapper)
+803A0968 // Link, Update Routine
+//A0 = Link Instance
+//A1 = Global Context
+0974 // V1 = Save Context
+0984 lh 	t6, 0x13C4(v1)
+0990 bgez	t6, 803A0A40 //branch if t6 >= 0
+0A40 //Begin Testing Interact State
+0A40
+0AAC //Begin copying input data to the stack
+
+80097780 // Link, Draw Routine (Primary, Wrapper)
+803A1020 // Link, Draw Routine (Having warped in from warp song, branched to by primary draw routine)
+
+80099DBC // Converts player/pause overlay virtual address to ram address
+
+8039FA5C //Link, ?, called by update routine after input state copy
+
+
+8038A2DC //A3 = pointer to thing to pick up :O
+
+803A4A10 //Link, ?, Called after pressing A to close dialog for getting an item
+
+8038C69C //Link, Sets Link State
+//Updates func ptr at 0x0664
+//A0 = Global Context
+//A1 = Link Instance
+//A2 = Function Pointer (Link's State)
+//A3 = ?
+
+
+8039C334 //Link, State Logic ("Complex Action" State)
+//A0 = Link Instance
+//A1 = Global Context
+C344 lw 	t6, 0x670(a2) //a2 = Link Instance
+C348 //A1 = Link Instance + 0x1A4, Link animation data?
+C350 //ori t6 by 0x60, save to 0x670(a2)
+C358 jal	0x8008BCA4
+C35C //A0 = Global Context
+//On Return, 
+//A0 = Link Instance
+//A1 = Global Context
+//A2 = Link Instance
+C368 lw 	t8, 0x66C(a2) //t8 = State Flags 0x66C
+C374 //branch to C394 if Link isn't holding an item (0x66C [2] & 0x08)
+... //if branch not taken, something item related happens
+C394 jal	8038D0D4
+
+
+8038D0D4 //Link, State Logic?, called by 8039C334
+//A0 = Link Instance
+//A1 = Global Context
+
+
+8008B4C4 //Fetch Link Animation from ROM
+//A0 = Global Context
+//A1 = Segment offset to animation (0x4, Gameplay Keep reference I think)
+//A2 = ? (39 this pass)
+//A3 = 16?, possibly limbs?
+
+8008BCA4 //code, Link Related?, Function Pointer delegate?
+//A0 = Global Context
+//A1 = Link animation data this pass?
+//Loads Function pointer at 0x0030(a1) and calls it.
+
+8008BD84 //code, Link Animation Related?, Called by 8008BF00
+//A0 = Global Context
+//A1 = Link Instance + 0x1A4
+BDB8 jal	8008B4C4 //
+
+
+8008BF00 //code, Link Related?, Called by 8008BCA4
+//A0 = Global Context
+//A1 = Link Instance + 0x1A4
+BF0C //T6 = Static Context
+BF18 //T7 = Framerate Divisor 
+BF30 //F14 = 0.5 * Framerate Divisor (1.5 since 20FPS)
+
+
+803975EC //Link, ?, State Logic (Standing Idle)
+
+8039A034 //Link, ?, State Logic (Shield is deflecting a hit)
+//A0 = Link Instance
+//A1 = Global Context
+A04C jal	8038DC84
+A060 //branch if Link Instance + 0x83F != 0
+A06C jal	8038D0D4
+
+8038D0D4 //Link, ?, called by 8039A034
+//A0 = Link Instance
+//A1 = Global Context
+
+
+8038DC84 //Link, Possibly updates recoil velocity, Called by 8039A034
+//A0 = Link Instance
+//A1 = Global Context
+DC94 //T6 = Static Context
+DC9C //F8 = 100f
+//F6 = Static Context + 0x006A
+//A0 = Link Instance + 0x828
+//A1 = 0
+//A2 = [Static Context + 0x006A] / 100f
+DCC0 jal	8006385C
+
+8006385C //Performs some sort of physics related calculation
+//A0 = Ptr to float velocity component
+//A1 = ?, 0 this pass. If data pointed to by A0 is less than this, A2 is negated before adding
+//A2 = Velocity Delta (float). Added to velocity component
+//V0 = 0 if ? (perhaps if velocity component is non-zero?), else 1
+
+8039C344 //Link, State Logic, Complex Interaction
+//handles a number of oddball interactions
+//A0 = Link Instance
+//A1 = Global Context
+C350 //sw 0x0060 in Link Instance + 0x670
+
+
+80388D20 //Link, Clear Lifting Actor state
+//Seems to be used to wipe the currently held actor out of Link's hands
+//Called when doing the following: 
+//pulling/dropping explosives, reading signs, pulling out/putting away sword, swing bottle, etc.
+//A0 = Global Context
+//A1 = Link Instance
+//If Instance + 0x39C is null, return
+//Else if Instance + 0x141 equals 0x10 or 0x11 (80079BD8), return
+8D50 //begin wiping out the lifted actor variables
+//if Link Instance + 0x141 < 0x13 (80079D74), return
+//Call 8038A3A4, with A2 = 0
+
+8038FAE0 //Link, unknown, seems to run every frame
+//Contains a number of interesting checks
+
+
+
+
+80079BD4 //code, graph, Tests if Link Item action is Hookshot or Longshot action
+//Instance + 0x141
+//A0 = Actor Instance
+//V0 = 1 if Instance + 0x141 xor 0x10 or 0x11 = 0 (Hookshot or Longshot, else 0
+
+80079D74 //code, graph, Tests if Action is Bomb or Bombchu, wrapper for 80079D48
+//A0 = Link instance
+//V0 = 0 if Bomb, 1 if Bombchu, -1 otherwise
+//calls 80079D48 with A1 = Instance + 0x141 (byte)
+
+
+80079D48 //code, graph, Tests if Action Parameter is Bomb or Bombchu
+//A0 = Link Instance this pass
+//A1 = Action Parameter
+//V0 = 0 if Bomb, 1 if Bombchu, -1 otherwise
+9D4C //V0 = A1 - 18 
+
+
+8009A574 //code, graph, Dlist draw, Write Fog Settings Wrapper Top
+//Wrapper for 8007DF4C
+//A0 = Global Context
+//A1 = DList current ptr
+//RGB bytes pulled from Global Context + 0x7AF to B1
+//Unknown halfword pulled from Global Context + 0x7B2
+8007DF4C //code, graph, Dlist draw, Write Fog Settings Wrapper
+//Wrapper for 8007DC40
+8007DC40 //code, graph, DList draw, Write Fog Settings
+//A0 = DList current ptr
+//A1 = Fog Red (byte)
+//A2 = Fog Blue (byte)
+//A3 = Fog Green (byte)
+//SP+10 = Fog Alpha (0 this pass)
+//SP+14 = ? (0x3E4 this pass)
+//SP+18 = ? (0x3E8 this pass)
+//Stack +=8
+//V0 = DList Next ptr
+
+8005D3A4 //code, graph, some big ass function
+//Goddamn this thing takes up 0.18% of ram
+//A0 = Glboal Context
+//A1 = Ptr to Global Context + 0x10A24
+//A2 = Ptr to Global Context + 0x7A8 (fog/lighting related)
+//A3 = Ptr to Global Context + 0x10760
+//SP+10 = Ptr to Global Context + 0x20D8
+//SP+14 = Ptr to Global Context + 0x10A20
+//SP+18 = Ptr to Graphics Context
+
+
+
+
+8039542C //not function, Link actor, weird subroutine
+5444 //Checks if lifted actor is actor is actor 0x014E, liftable rock
+
+80AB372C //actor 0x14E, Rock Broken, Spawn Random Drop
+//Large rocks can't drop random drops
+80AB3854 //actor 0x14E, Spawn Bugs
+//Called when rock is lifted while bug flag is set
+
+800AA7F4 //code, graph, Graphics related, Model Matrix, create/apply x,y,z transformation
+//creates/applies transformation to matrix pointed to by 80121204
+//F12 = X?
+//F14 = Y?
+//A2 = float Z?
+//A3 = 0 initializes new matrix, 1 performs the transformation on stored matrix
+A8E0 jal	8008F82C //Initialize positional matrix
+
+8008F82C //code, graph, Graphics matrix buffer, Initializes positional matrix
+//A0 = Float Matrix Start Ptr (pass in dereferenced 80121204) 
+//A1 = float x
+//A2 = float y
+//A3 = float z
+
+800AA8FC //code, graph, Graphics related, Model Matrix, create/apply x,y,z scalar transformation
+//creates/applies transformation to matrix pointed to by 80121204
+//F12 = x
+//F14 = y
+//A2 = float z
+//A3 = 0 initializes new matrix, 1 performs the transformation on stored matrix
+A9C4 jal	8008F4A8 //Initialize scalar matrix
+
+8008F4A8 //code, graph, Graphics matrix buffer, Initializes Scalar Matrix
+//A0 = Float Matrix Start Ptr (pass in dereferenced 80121204)
+//A1 = float x scale
+//A2 = float y scale
+//A3 = float z scale
+
+800AAF00 //code, graph, Graphics matrix buffer, create/apply rotational matrix
+//creates/applies transformation to matrix pointed to by 80121204
+//A0 = u16 x rotation
+//A1 = u16 y rotation
+//A2 = u16 z rotation
+//A3 = 0 initializes new matrix, 1 performs the transformation on stored matrix
+
+8008F50C //code, graph, Graphics matrix buffer, Initializes Rotation Matrix
+//A0 = Float Matrix Start Ptr (pass in dereferenced 80121204)
+//A1 = u16 x rotation
+//A2 = u16 y rotation
+//A3 = u16 z rotation
+
+800AB900 //code, graph, graphics Create matrix on POLY_OPA_DISP
+//A0 = Graphics Context
+//decrements POLY_OPA_DISP append_end by -0x40
+jal 800AB8D8
+
+
+800AB8D8 //code, graph, graphics Move and convert float matrix to fixed point matrix from matrix buffer
+//A0 = fixed point matrix destination
+//matrix buffer 80121204
+//A0 = deref matrix at 80121204
+//A1 = fixed point matrix destination
+jal	800AB6BC //convert float matrix to fixed point matrix
+
+80024F98 //Bind Actor to Category
+//A0 = Global Context + 0x1C24 (Actor Category Struct)
+//A1 = Actor
+//A2 = Category Id
+
+
+80025110 //code, graph, Spawn Actor
+//A0 = Global Context + 0x1C24
+//A1 = Global Context
+//A2 = s16 Actor Id
+//A3 = float x
+//SP+0x10 = float y
+//SP+0x14 = float z
+//SP+0x18 = rotx
+//SP+0x1C = roty
+//SP+0x20 = rotz
+//SP+0x24 = s16 var
+//V0 = Pointer to new actor, or null if allocation failed
+525C //Test if actor's object file dependency is loaded
+52A8 //Allocate space for instance
+52F8 jal 80063630 //0 initialize instance
+
+
+800253F0 //Spawn Attached Actor
+//Calls 80025110
+//A0 = Global Context + 0x1C24 (Actor Category Struct)
+//A1 = Actor Instance new actor will attach to
+//A2 = Global Context
+//A3 = s16 Actor Id
+//SP + 0x10 = float x
+//SP + 0x14 = float y
+//SP + 0x18 = float z
+//SP + 0x1C = s16 rotx
+//SP + 0x20 = s16 roty
+//SP + 0x24 = s16 rotz
+//SP + 0x28 = s16 var
+//V0 = Pointer to new actor, or null if allocation failed
+//
+//New actor + 0x118 will be set to A2
+//Existing Actor + 0x11C will be set to the new actor's ptr
+//the new actor will be bound to the existing actor's room unless spawned actor is global (room = -1)
+
+
+
+8004CCC8 //code, graph, Collision detection related?
+
+80063F7C //code, graph, Instance Init, Initialize Variable Chain
+//A0 = Actor Instance
+//A1 = Ptr to instance initializer data
+//see 80063FF4 chain
+//Format: 
+// (v >> 0x1F) & 1  == Continue Parsing
+// (v >> 0x1C) & 7  == Type
+// (v >> 8) & 0x7FF == Offset
+// v & 0xFFFF       == Value. 
+3F9C //S2 = 800F19F0, some function table (used for initializing actor instance types?)
+3FB4 //grab & 0x7800 0000. use as index to func table at S2
+3FC0 //jalr 800F19F0 + (grab <<2) //initialize instance variable
+//
+80063FF4 //code, graph, Instance Init 0, Set Byte
+80064010 //code, graph, Instance Init 1, Set Byte
+8006402C //code, graph, Instance Init 2, Set Halfword
+80064048 //code, graph, Instance Init 3, Set Halfword
+80064064 //code, graph, Instance Init 4, Set Word
+80064080 //code, graph, Instance Init 5, Set Word
+8006409C //code, graph, Instance Init 6, Set Float (int to float)
+800640C0 //code, graph, Instance Init 7, Set Float (int to float / 1000)
+800640F0 //code, graph, Instance Init 8, Set Vector3D<float> (int to float)
+8006411C //code, graph, Instance Init 9, Set Vector3D<float> (int to float)/1000)
+80064154 //code, graph, Instance Init A, Set Vector3D<short> 
+//A0 = Actor Instance
+//A1 = Instance Initializer Data
+// referenced by 80063F7C
+
+
+8004A484 //code, graph, unknown
+//collision initialization related
+
+8004A874 //code, graph, Initialize Collision Group Struct
+//Possibly Cylinder Group Type
+//A0 = Global Context
+//A1 = Ptr to Actor Collision Struct
+//A2 = Actor Instance
+//A3 = Ptr to Actor Overlay Collision Struct
+//SP+0x10 = Ptr to Collision Body Array
+A89C	jal	80049F50
+
+
+
+8004AB7C //code, graph, Initialize Collision Struct
+//A0 = Global Context
+//A1 = Ptr to Actor Collision Struct
+AB90 jal	80049E70 //Initialize 0x00 to 0x18 of Collision Struct
+ABA0 jal	8004A0D4 //Initialize 0x18 to 0x40 of Collision Struct
+ABB0 jal	8004AACC //Initialize 0x40 to 0x4C of Collision Struct
+
+
+
+
+
+80049E70 //code, graph, Initialize Collision Struct (first 0x18)
+//A0 = Global Context
+//A1 = Actor Collision Struct
+//copy 0x18 bytes from 800EF9A0 to struct
+
+8004A0D4 //code, graph, Initialize Collision Struct (+0x18)
+//A0 = Global Context
+//A1 = Actor Collision Struct + 0x18
+//copy 0x28 bytes from 800EF9CC
+A128 jal	80049FF4
+A138 jal	8004A068
+
+80049FF4 //code, graph, Initialize Collision Struct (+0x18) Helper
+//Initializes 0x8 bytes using 800EF9B8
+//A0 = Global Context
+//A1 = Actor Collision Struct + 0x18
+//V0 = 1
+
+8004A068 //code, graph, initialize collision struct (+0x20)
+//A0 = Global Context
+//A1 = Actor Collision Struct + 0x20
+//copy 0xC bytes from 800EF9C0
+
+8004AACC //code, graph, initialize collision struct (+0x40)
+//Initializes 0xC bytes copying from 800EFA0C
+//Poor Optimization
+//A0 = Global COntext
+//A1 = Actor Collision Struct + 0x40
+
+
+8004BD50 //code, graph, CollisionCheck_setAT
+//Subscribe to collision pool 1, non-complex poly types
+//Called directly by actors
+//A0 = Global Context
+//A1 = 801DA300 //collision body groups
+//A2 = Collision Body Ptr
+//V0 = 0 or -1 based on 801DA302 lowest bit?
+
+8004BE30 //code, graph, Collision, CollisionCheck_setAT?
+//maybe unused
+
+8004BF40 //code, graph, CollisionCheck_setAC
+//Subscribe to collision pool 2, non-complex poly types
+//Called directly by actors
+//A0 = Global Context
+//A1 = 801DA300 //collision body groups
+//A2 = Collision Body Ptr
+//V0 = 0 or -1 based on 801DA302 lowest bit?
+
+8004C020 //code, graph, Collision, CollisionCheck_setAC?
+//maybe unused
+
+8004C130 //code, graph, CollisionCheck_setOT
+//Subscribe to collision pool 3, non-complex poly types
+//Called directly by actors
+//A0 = Global Context
+//A1 = 801DA300 //collision body groups
+//A2 = Collision Body Ptr
+//V0 = 0 or -1 based on 801DA302 lowest bit?
+C148 jal 8009DB54 //Test if Global Context + 0x7B8 is > 0
+//if above check fails, return
+//load byte at Collision struct + 0x15, and use it to index
+//a functor array at 800EFAB8
+C184 //jalr functor, initializes body for next collision test?
+C198 //test if actor pointer in collision body is null
+C1A4 //test if actor's main update function ptr is not null
+C1BC //test if collision OT count < 50
+C1CC //t0 = 801DA302?
+
+8004C210 //code, graph, Collision, Unknown?
+//maybe unused, next function at 8004C320
+
+8004ADD4 //code, graph, collision, ?
+//part of 8004C130
+//Collision Body + 0x15 == 1 functor (potentially Cylinder Body?)
+//A0 = Global Context
+//A1 = Collision Body Ptr
+//V0 = 1
+ADE8 jal 80049FCC
+ADF8 jal 8004A27C
+//end 
+
+80049FCC //code, graph, collision, ?
+//A0 = Global Context
+//A1 = Collision Body Ptr
+//zero Collision Body + 0x0C
+//zero 0x02 bit on Collision Body + 0x12
+//zero 0x01 bit on Collision Body + 0x13
+//end
+
+8004A27C //code, graph, collision, ?
+//A0 = Global Context
+//A1 = Collision Body Ptr + 0x18
+//zero 0x02 bit on Collision Body + 0x18 + 0x17
+//end
+
+8009DB54 //code, Collision? Test if Global Context + 0x7B8 is > 0
+//V0 = 1 if check passes
+
+
+80024AB4 //code, graph, Draw Actors 
+//Draw Actors, Particles
+//A0 = Global Context
+//A1 = 801CA0C4 (Actor Table Struct)
+//
+//S8 = pointer to actor category table record to process
+//main loop start
+4B08 //s0 = ptr to first actor in category
+4B14 //branch if category is empty
+4B18 //S3 = 801DA200
+//a0 = 801DA200
+//a1 = actor instance + 0x24 (xyz coords)
+//a2 = actor instance + 0xE4 
+//a3 = actor instance + 0xF0
+4B28 jal 8008EC20 //perform some vector transformation
+4B34 //test if actor should play sfx, branch if no
+4B3C jal 80024540 //play sfx?
+4B48 jal 800249B8 //test something?
+//above sets v0
+//if v0 = 1
+//  Actor Instance + 0x04 |= 0x0040
+//if v0 = 0
+//  Actor Instance + 0x04's 0x0040 bit is zeroed
+//zero instance + 0x0115
+4B7C //branch to end of processing the actor if actor constructor is not null
+4B88 //branch to end of processing actor if actor draw function is null
+//test Instance + 0x0004 (stored in v0)
+//if v0 & 0x60 == 0, end processing of actor
+4BA0 //if v0 & 0x80 == 0 branch to 4BE4
+4BE4
+//A0 = Global Context
+//A1 = Actor Instance
+4BE8 jal 80024280
+
+
+
+80065D60 //Write Lighting Display Lists
+//Writes to POLY_OPA and POLY_XLU dlists
+//A0 = Light data ptr
+//A1 = Graphics Context
+//data at 80175758?
+//DB020000 00000030 // G_MOVEWORD (G_MW_NUMLIGHT #00, 00000030)
+//DC08060A 80175768 // G_MOVEMEM G_MV_LIGHT: +0x30 size 0x10
+//DC08090A 80175778 // G_MOVEMEM G_MV_LIGHT: +0x48 size 0x10
+//DC080C0A 80175760 // G_MOVEMEM G_MV_LIGHT: +0x60 size 0x10
+
+
+8006650C //actor_draw, Write scene ambient light to POLY_OPA_DISP append end
+//A0 = Global Context + 0x7A8 (lstr)
+//A1 = Graphics Context
+//V0 = Ptr to written data
+//
+//A0 = Graphics Context
+//A1 = red (gctx + 0x7A8 + 0x04)
+//A2 = green (gctx + 0x7A8 + 0x05)
+//A3 = blue (gctx + 0x7A8 + 0x06)
+jal 800667BC
+
+800667BC //draw, Write Light Data to POLY_OPA_DISP append end
+//A0 = Graphics Context
+//A1 = u8 Red
+//A2 = u8 Green
+//A3 = u8 Blue
+//V0 = ptr to result data
+
+
+800249B8 //code, graph, Possibly tests if actor should be drawn
+//wrapper for 800249DC
+//A0 = Global Context
+//A1 = Actor Instance
+//V0 = 1 if check passes, 0 otherwise
+49C4 jal 800249DC
+800249DC //code, graph, ?
+//a0 = Global Context
+//a1 = actor instance
+//a2 = actor instance + 0xE4
+//a3 = float at actor instance + 0xF0
+
+80024540 //code, graph, play actor sfx?
+//A0 = Actor Instance
+
+8008EC20 //code, graph, ? (Matrix transformation?)
+//Performs some sort of transformation on actor's xyz coord vector
+//Possibly setting up vector? for testing if actor is in "draw" range
+//store 4 float result at a1 (3), a2 (1)
+//a0 = 801DA200
+//a1 = actor instance + 0x24 (xyz coords)
+//a2 = actor instance + 0xE4 
+//a3 = actor instance + 0xF0
+
+800619CC //code, graph, update rain count
+//Updates the number of rain drops that should be drawn
+//A0 = Global Context
+
+8007FFA8 //code, graph, draw pre-rendered background?
+
+16A788
+176608
+
+8007FC54 //code, graph, draw?
+//Note: T1 = Room Header Type 1 offset
+//A0 = SP + 0x98
+//A1 = s32, T1 + 0x08 //image ptr
+//A2 = s32, T1 + 0x10
+//A3 = u16, T1 + 0x14 //background width
+//SP+0x10 = u16, T1 + 0x16 //background height
+//SP+0x14 =  u8, T1 + 0x18 //imageFmt
+//SP+0x18 =  u8, T1 + 0x19 //imageSiz
+//SP+0x1C = u16, T1 + 0x1A //imagePal
+//SP+0x20 = u16, T1 + 0x1C //imageFlip
+//SP+0x24 = float
+//SP+0x28 = float
+
+8007F558 //code, graph, Room Command 0x0A, Type 0
+80080820 //code, graph, Room Command 0x0A, Type 1
+8007F744 //code, graph, Room Command 0x0A, Type 2
+
+
+
+8008CEBC //code, graph, Unknown
+//animation related
+CED0 //T6 = ptr to Static Context
+CEDC //T7 = Static Context + 0x110, frame divisor
+CEF4 //F14 = T7 * constant at 80108AB4 (0.333f) //affects owl's bobbing animation
+
+
+
+
+800A5538 //Compute Distance Squared
+//A0 = Ptr to f32 vector3 (xyz)
+//A1 = Ptr to f32 vector3
+//F0 = define A2 = (A0 - A1), return (A2.a)^2 + (A2.b)^2 + (A2.c)^2
+5540 jal	80063D48 //Calculate A0 - A1, store in A2
+5548 jal	800A54E4 //F0 = (A2.a)^2 + (A2.b)^2 + (A2.c)^2
+
+800A54E4 //Return a^2 + b^2 + c^2
+//A0 = f32 vector3 ptr
+//F0 = a^2 + b^2 + c^2
+
+
+800A6A28
+//A0 = vector3_f32* vertexA
+//A1 = vector3_f32* vertexB
+//A2 = vector3_f32* vertexC
+//A3 = f32 checkCoords z
+//SP+0x10 = f32 checkCoords x
+//SP+0x14 = f32 (0f)
+//SP+0x18 = Arg SP+0x28
+//SP+0x1C = NormY
+//V0 = 1 if success, else 0
+//
+//SP -0x70
+//
+
+
+800A6E8C //?, Polys
+//A0 = vector3_f32* vertexA
+//A1 = vector3_f32* vertexB
+//A2 = vector3_f32* vertexC
+//A3 = f32 NormX
+//SP+0x10 = f32 NormY
+//SP+0x14 = f32 NormZ
+//SP+0x18 = f32 CollisionPoly Plane Distance
+//SP+0x1C = f32 checkCoords z
+//SP+0x20 = f32 checkCoords x
+//SP+0x24 = ptr ?
+//SP+0x28 = f32 ?
+//V0 = 1 if success, else 0
+//
+//SP -0x28
+//
+//F12 = NormY
+//F4 = 0.008f
+//F0 = abs(NormY)
+//A3 = checkCoord z
+//F6 = checkCoords x
+6EB4 //branch 6EC4 if not abs(NormY) < 0.008f
+	//else return 0
+6EC4
+//F8 = 0
+//F10 = Arg SP+0x28
+6ED8 jal	800A6A28
+	//call with
+	//A0 = vector3_f32* vertexA
+	//A1 = vector3_f32* vertexB
+	//A2 = vector3_f32* vertexC
+	//A3 = f32 checkCoords z
+	//SP+0x10 = f32 checkCoords x
+	//SP+0x14 = f32 (0f)
+	//SP+0x18 = Arg SP+0x28
+	//SP+0x1C = NormY
+//
+6EE0 //return 0 if V0 = 0
+//F16 = NormX
+//F4 = checkCoords x
+//F18 = -NormX
+//F8 = NormZ
+
+
+
+
+80063CCC //code, graph, Convert s16 Vertice to f32
+//A0 = Result Vertice XYZ ptr (f32)
+//A1 = Actor Mesh Vertices ptr
+
+8008ED08 //code, graph, Translate Vertex
+//A0 = Translation Matrix
+//A1 = Vertice XYZ ptr (f32)
+//A2 = Result Vector ptr (xyz f32)
+
+
+
+800BD3C0 //code, audio, ?
+//A0 = 801B08A4 this pass, 801B0984 another pass 801ACDC4 another time
+//SP-0x08 = 0 this pass //(-0x08? wha)
+//SP-0x10 = 801B0B08 this pass
+//
+D40C //
+//V0 = 8012B1F8
+//V1 = 8012B1E8
+//A1 = 8012B1D8
+//A2 = 8012B1C8
+D414 //S1 = SP+0x48
+D418 //S2 = SP+0x40
+
+Seems to check 4 somethings?, and if nothing is found, no real action taken?
+
+800C0628 //code, audio, does something?
+//related to playing the Ocarina
+//A0 = ptr to some struct
+//800C07B0 is hit when ending a note by letting go of a button without contacting another
+//800C09FC is on playing a new note?
+//800C0DFC is also on playing a new note, happens later?
+//80109A94 is a jump table that affects what action happens?
+
+800BD69C //code, audio, delete?
+//looks like it's "deleting" a0 from a doubly linked list
+//A0 = some struct ptr
+
+800BF1E8 //code, audio, ?
+//A0 = 8012B1D8 this pass?
+
+
+80027854 //code, possibly used to get an NPC to "look" at something?
+//A0 = Actor Instance
+//A1 = ptr (Anju Instance + 0x278 this pass)
+//A2 = s16 ? (2 this pass)
+//A3 = s16 ? (4 this pass)
+//
+7884 //V1 = 800E83C0 + * (a2 * 0x18)
+//800E83C0 is at least 6 records
+//0x00 s16
+//0x02 s16
+//0x04 s16
+//0x06 s16
+//0x08 s16
+//0x0A s16
+//0x0C u8 ? //u16 //?
+//0x10 float //?
+//0x14 s16 //?
+789C jal	8002764C
+78AC //T0 = SP+0x38
+//copy 0xE bytes of the 800E83C0 struct to T0
+
+
+
+8002764C //code, ?
+//A0 = Actor Instance
+//A1 = ptr (Anju Instance + 0x278 this pass)
+//A2 = float ? (170.0f this pass)
+//A3 = s16 ? (3FFC this pass)
+//SP+0x10 = s16 ? (4 this pass)
+//V0 = ? (same type as SP+0x10)
+//if SP+0x10 != 0, return SP+0x10
+
+8008C9C0 //code, ? 
+//animation related?
+//A0 = Animation Struct (Anju + 0x13C this pass, Archery Gerudo + 0x188)
+//V0 = 1 if ?, else 0
+//executes A0 + 0x30
+
+8008CD74 //code, ?
+//called by 8008C9C0
+//animation related
+//A0 = Animation Struct (Anju + 0x13C this pass)
+//V0 = 1 if ?, else 0
+CD80 //T6 = Static Context
+CD88 //F8 = 1.0f/3 //80108AAC
+CD8C //T7 = frame divisor
+
+8008CEBC //code, ?
+//called by 8008C9C0
+
+80022BB0 //code, Is Actor Held?
+//A0 = Actor Instance
+//V0 = 0 if Instance + 0x118 is null, else 1
+
+8007EB84 //code, graphics, animate tile
+//Generates G_SETTILESIZE commands at the tail end of the POLY_OPA dlist
+//E8, F2, E8, F2, DF command sequence
+//A0 = Graphics Context
+//A1 = ? (tile descriptor one?)
+//A2 = upper left S-axis
+//A3 = upper left T-axis
+//SP+0x10 = width (whole units)
+//SP+0x14 = height (whole units)
+//SP+0x18 = Tile Descriptor Two
+//SP+0x1C = upper left S-axis 2
+//SP+0x20 = Upper left T-axis 2
+//SP+0x24 = width (whole units)
+//SP+0x28 = height (whole units)
+
+80092490 //code, graphics, possibly draw VIEW struct?
+
+
+800502A8 //code, actors, initializes "damage chart" part of actor
+//Actor 0000, 0018, most enemies?
+
+
+800502F0 //code, actors, initializes "damage chart" part of actor
+//Actor 0125
+
+8005031C //code, actors, initializes "damage chart" part of actor
+//Actor 0095
+
+80050344 //code, actors, initializes "damage chart" part of actor
+//Actor 0095
+
+80050370 //code, actors, initializes "damage chart" part of actor
+//Actor 0095
+
+800A0290 //code, ?
+//related to 7 element table at 800FE4E0
+
+800C9320 //code, ?
+
+
+80063EB8 //Calculates the distance between two points
+//A0 = Coordinates A ptr
+//A1 = Coordinates B ptr
+
+80079AF8 //Get Strength Upgrade Power Level
+V0 = 0 if no upgrade, 1 if Child and Upgrade > 0, or value if Adult 
+//800F8C88 = Strength Upgrade capture value
+
+800CD860 //?
+//F12 = ?
+//F6 = F12 * F12
+//F4 = 1
+//F0 = 1 - F6
+//F14 = SQRT(1 - F12^2)
+jal 800CD76C
+
+800CD76C //?
+//F12 = ?
+//F14 = SQRT(1 - F12^2)
+//F0 = result in radians. for convenience, they'll be reported in degrees
+//
+//F20 = F12
+//Test if F12 = 0
+//If false, jump to D7A8
+//Test if F14 = 0
+//If false, jump to D7A8
+//  F12 and F14 are 0
+//Return 0
+D7A8 //nop
+D7AC //Test if F14 = 0
+//if true: (i.e. F12 != 0 and F14 = 0)
+// (If F12 < 0) { F0 = -90 else F0 = 90; return; }
+//if false, jump to D7DC
+D7DC //check if F14 < 0
+D7E0 //branch D844 if above is false
+
+D844 jal 800CD648 //F12 = F12/F14
+
+800CD648 //?
+//F12 = ?
+//
+//F16 = 1
+//F2 = 0
+//V0 = 1
+D660 //Branch D674 if 1 < F12 is false and set F4 = -1
+//If 1 < F12
+//F12 = 1 / F12
+//Branch D694
+D674 //V0 = 0
+D680 //Branch D694 if F12 < -1 is false
+//If F12 < -1
+//V0 = -1
+//F12 = 1 / F12
+//
+D694
+D698 //F0 = F12^2
+D69C //F14 = 24
+D6A0 //V1 = 24
+D6A4 //F18 = F14^2 (576)
+D6A8 //F10 = 2*F14 (48)
+//V1 -= (20)
+//F10 += 1 (49.0f)
+//F18 *= F0 (F0 * 24^2)
+//F14 -= 1 (23)
+//F8 = F14^2 (529.0f)
+//F10 += F2 (0 first pass)
+//F6 = F14 + F14 (46.0f)
+//F8 *= F0 (1.732f)
+//F2 = F18 / F10 (0.03849f)
+//F6 += 1 (47)
+//F14 -= 1 (22)
+//F10 = F14^2 (484)
+//F6 += F2 (47.03849f)
+//F18 = F14 * 2 (44)
+//F10 *= F0 (1.58906f)
+//F2 = F8/F6 (0.0368265)
+//F18 += 1 (45)
+//F14 -= 1 (21)
+//F6 = F14^2 (441)
+//F18 += F2 (45.03683)
+//F8 = 2 * F14 (42)
+//F6 *= F0 (1.444098)
+//F2 = F10/F18 (0.03419133)
+//F8 += 1 (43)
+//F14 -= 1 (20)
+//F8 += F2 (43.03519)
+//F2 = F6/F8 (0.03355622)
+D714 //branch D6A4 if V1 != 0 (essentially, if rolled, this loop would iterate 24 times)
+//
+//D6A4 to D714 loop Simplified:
+//
+//float f0 = f12 * f12;
+//float f2 = 0;
+//for (float f14 = 24; f14 > 0; f14--)
+//{
+//	float f18 = f14 * f14 * f0;
+//	float f10 = 2 * f14 + 1 + f2;
+//	f2 = f18/f10;
+//}
+//return f2;
+//Steps can be simplified as such, where S is next step, s is previous step, i is current loop
+//S = i^2*x/(2i+s+1)
+
+
+
+
+
+8004C59C //Collision?
+//A0 = Global Context
+//A1 = colAT hitbox pointer
+//A2 = ? (some coords, on stack this pass)
+
+
+
+80027620 //Unknown
+//A0 = s16?
+//V0 = s16 from table at 800E83D4 (0x18 bytes per record, offset 0x00)
+
+80079854 //Update Bottle Contents
+//updates Link's Action state
+//A0 = Global Context
+//A1 = Link Instance
+//A2 = Item Index
+//A3 = Action Parameter
+
+80071B7C //Update Bottle Contents
+//A0 = Global Context
+//A1 = Item Slot Index (C-Item)
+//A2 = u8 Button Index (0 = B, 1 = C-Left, 2 = C-Down, 3 = C-Right)
+1BA4 //T7 = Button Inventory Slot
+1BA8 //AT = 26, Whole Bottle of Milk
+
+8006FB50 //Update Button Texture
+//A0 = Global Context
+//A1 = u16 Button Index
+
+
+8006FDCC //Item Giving Routine
+//800F8F34 (inventory slot table)
+//A0 = Global Context
+//A1 = Item Index
+//
+//T2 = Inventory Slot Table ptr
+FDF0 //T4 = u8 at Invent Slot Table + Item Index (OUT OF BOUNDS ACCESS!)
+FDF4 //AT = item < 0x8A
+FE04 //branch FE20 if true, V0 = Slot offset
+0364 //Is Bomb Bag 20
+0390 //branch 03DC if no bomb bag
+
+800719E0 //Update Select Trade Items
+//Ruto Bottle -> Bottle, Egg -> Chicken/Cojiro
+//A0 = Global Context
+//A1 = Old Item Index
+//A2 = New Item Index
+//Scans inventory for slot to update based on old index, rather than using a fixed slot
+
+8007943C //Link Busy?
+//A0 = Global Context
+//V0 = 1 if true, 0 if false
+9448 jal 8007938C //Link Busy State? of some sort?
+//return 1 if above returns 1
+//else return 1 if Link Instance + 0x69D == 4
+
+80079764 //Update Link Instance's Equipment
+
+8008921C //Draw Link Limb?
+//A0 = Global Context
+//A1 = Limb Index (1 this pass)
+//A2 = Limb Data Pointer (obj 15 + 0x377A0 this pass)
+//A3 = Link Instance + 0x1F0 (animation data)
+
+
+800CFDF4 //padmgr, osSendMesg wrapper
+//Sets:
+//A0 = 8012BC08, A1 = A2 = 0
+
+800D0DF0 //padmgr, ?
+//Sends message?
+
+800D0E74 //padmgr, wrapper for 800CFF90
+//A0 = Input Context (8011D500)
+//calls 800CFF90 with the following:
+//A0 = SP + 0x001F
+//A1 = Input Context
+
+800CFF90 //padmgr, ?
+//A0 = ? (points to stack)
+//A1 = Input Context (8011D500)
+
+800A2000 //padmgr, osRecvMesg wrapper
+//A0 = Input Context (8011D500)
+//Sets:
+//A0 = Input Context + 0x28
+//A1 = SP + 0x1C
+//A2 = 1
+
+800A2030 //padmgr, osSendMesg wrapper
+//A0 = Input Context (8011D500)
+//A1 = 80120F10 (threading related)
+//
+//Sets:
+//A0 = Input Context + 0x28
+//A2 = 1
+
+800A2300 //padmgr, ?
+//A0 = Input Context
+
+800CFC04 //padmgr
+//A0 = 80120F10
+//A1 = Input Context + 0x2BC
+//A2 = ? (0 this pass)
+
+80000B0C //dmamgr, DMA read
+
+800D61D0 //Textbox input, select choice?
+//Called with Farore's Wind
+
+8009D9B8 //Set Zoneout Type 1
+//A0 = Global Context
+
+8006D8E0 //zoning out related
+//A0 = writeback value?
+
+800C7684 //audio related?
+//A0 = 0x14 this pass
+7690 //V0 = A0 * 3
+
+8005B860 //Logic related to pausing/pause menu
+
+800B1ED0 //audio, ?
+
+80066610 //Unload Light Source
+//A0 = Global Context
+//A1 = Global Context + 0x7A8
+//A2 = Light Source ll Record ptr (8011BD98 this pass)
+//
+6620 //return if A2 = null
+//V0 = 0x0004(A2)
+//if v0 != null
+//  0x0008(V0) = 0x0008(A2)
+//
+//V0 = 0x0008(A2)
+//if (v0 != null)
+//{ 
+//   0x0004(V0) = 0x0004(A2)
+//}
+665C jal	800663C0
+
+800663C0 //Unload Light Source (inner)
+//Called by 80066610
+//A0 = ?, Pointer to record in table at 8011BD60 (starts at +0x8)
+//  (A0 = A2 param from 80066610)
+//
+//If A0 = null, return
+//V0 = 8011BD60
+//V1 = 0xC
+63DC //t0 = index of A0
+63F0 //dec s32 at 8011BD60 by 1
+63F4 //t1 = t0 / 0x0C (int division)
+63FC //sw t1, 0x0004(8011BD60)
+
+//8011BD60 //Address of some light source table, 0xC records?!
+//0x00 = Number of Elements?
+//0x04 = ?
+//0x08 = Array of elements, 0xC bytes per, 0x20 records
+//each record is the following:
+//  0x00 ptr //Pointer to light source data
+//  0x04 ptr //Points to next record in doubly-linked list
+//  0x08 ptr //points to prev record in doubly-linked list
+
+80066298 //Draw, Lighting, Completes Light Source Record Data
+//Jump table stored on stack!
+//A0 = Light Data on DISP append end
+//A1 = Light Source ll record (last element)
+//A2 = Light Position ptr
+
+
+80066804 //Lighting engine related
+//Seems to iterate over active light sources 
+
+
+80065BCC //code, Update Light Source (Wrapper for 80065B70)
+//A0 = Blue Fire Instance + 0x19C
+//A1 = short x
+//A2 = short y
+//A3 = short z
+//SP + 0x13 = byte Red (0x9B this pass)
+//SP + 0x17 = byte Green (0xD2 this pass)
+//SP + 0x1B = byte Blue (0xFF this pass)
+//SP + 0x1E = short Alpha? (0 this pass)
+//end
+
+80065B70 //code, Initialize Flame Light?
+//A0 = Blue Fire Instance + 0x19C
+//A1 = short x
+//A2 = short y
+//A3 = short z
+//SP + 0x13 = byte Red (0x9B this pass)
+//SP + 0x17 = byte Green (0xD2 this pass)
+//SP + 0x1B = byte Blue (0xFF this pass)
+//SP + 0x1E = short Alpha? (0 this pass)
+//SP + 0x23 = byte ? (0 this pass)
+//initializes some data at this location (see blue fire for more info)
+//SP + 0x23 written first, then x,y,z
+5BB4 jal 80065C98
+//end
+
+80065C98 //code, Initialize Flame Color
+//writes RGBA to A0 + 0x08 (note alpha is short)
+//Called by 80065B70
+//A0 = Blue Fire Instance + 0x19C
+//A1 = byte Red (0x9B this pass)
+//A2 = byte Green (0xD2 this pass)
+//A3 = byte Blue
+//SP + 0x10 = short Alpha?
+//end
+
+800665B0 //code, Lighting, Bind Light Source
+//Initialize Light?
+//A0 = Global Context
+//A1 = Global Context + 0x7A8
+//A2 = Light Source Pointer (801D8EFA this pass)
+//V0 = Pointer to Light Source Record initialized
+65C0 jal	80066334
+
+80066334 //code, Lighting, Allocate Light Source Reference Record
+//V0 = Pointer to free Light Source Reference record, or null if no free space is available
+6344 //return 0 if number of lights > 0x20 (32)
+
+
+
+8008D1C4 //Animate, called by Volvagia (Hole) actor
+//A0 = Animation Struct (e.g. Volvagia Hole + 0x13C)
+//A1 = Animation segment offset (0600C1D0)
+
+80022F84 //Play Sound Effect (Actor)
+//A0 = Actor Instance (Link this pass)
+//A1 = Sound Effect Id
+
+
+80022FFC //Play surface sound effect
+//A0 = Global Context
+//A1 = Actor Instance
+
+
+80023D70 //Update Actors
+//A0 = Global Context
+//A1 = Global Context + 0x1C24
+3DC4 //Check if  Global Context + 0x11DEB > 0 (num actors to spawn)
+//if < 0, set to zero and skip
+//else, load the list of actors at Global Context + 0x11DF8
+//calling 800255C4
+40D8 //Run actor's main routine
+
+
+80024280 //code, Actor_draw
+//A0 = Global Context
+//A1 = Actor Instance
+//
+//A0 = stack ptr (SP+0x40)
+//A1 = func ptr
+//A2 = Actor ptr
+//A3 = ptr to string "Actor_draw"
+42AC jal	800AEF8C //printf?
+42BC jal	8006650C //initalize lighting
+//A0 = V0 = pointer to lighting data
+//A1 = Global Context + 0x7A8 value
+//A2 = Actor Coords if Instance + 0x4 & 0x40 0000 = 0, or null
+42E8 jal	80066298 //complete light record
+42F4 jal	80065D60 //write Lighting movemems
+//branch 435C(8) if Instance + 0x4 & 0x1000 = 0
+4358 
+//F18 = inst + 0xBC //shifts model by model units
+//F6 = inst + 0x54 //scale y
+//F8 = inst + 0x28 //actor y
+//F12 = inst + 0x24 //actor x
+//F4 = F18 * scale y
+//A2 = inst + 0x2C //actor z
+//A3 = ptr inst + 0xB4
+//F14 = inst+0xBC * actor y * scale y
+4374 jal	800AB510 // Generate Positional Matrix on matrix stack?
+4388 jal	800AA8FC // Apply Scalar Matrix to stack matrix
+4394 jal	80020FA4 // Update CPU Segment 06 reference
+439C //Write Movemem seg 06 to POLY_OPA/POLY_XLU
+4410
+
+
+
+
+800255C4 //Spawn Scene Header 0x01 record actor
+//converts an actor spawn record into 
+//A0 = Global Context + 0x1C24
+//A1 = Actor Spawn Record ptr (scene header 0x00 and 0x01 type actors)
+//A2 = Global Context
+
+
+800A0318 //audio, ?
+
+800BA5A0 //audio, ?
+//wrapper for BA5C0
+
+800BA5C0 //audio, ?
+//function loads rcp microcode for audio processing
+AA34 //begin loading audio microcode
+
+800CF7BC //sched, ?
+//A0 = some address
+F7C8 jal	800CF6A0 //copy data to 8012BAC0, convert to physical addr
+F900 jal	800D05D0
+
+
+800CF6A0 //sched, ?
+//A0 = Probably some address to copy data from into 8012BAC0
+//V0 = 8012BAC0
+//8012BAC0, contains 0x40 bytes of data
+//Converts all addresses to physical addresses
+
+800D05D0 //sched, Transfer to/from RCP
+//A0 = 0 = Write to RDRAM, 1 = Read into I/DMEM
+//A1 = SP_MEM_ADDR_REG
+//A2 = Address to Read/Write?
+//A3 = Read Length
+//V0 = -1 if SP_STATUS_REG dma busy, dma full, or io full, else 0
+05EC jal	800D23F0 //check SP_STATUS_REG for dma busy, full, io full
+//return if V0 = 1
+
+800D23F0 //sched, Check SP_STATUS_REG
+//V0 = 1 if dma busy, dma full, or io full
+
+800CF94C //sched, Start RCP Task
+//Waits for SP_STATUS_REG  to not be dma busy, dma full, io full
+//Sets SP_STATUS_REG = 0x125
+
+800D5A90 //Set SP_STATUS_REG
+//A0 = value
+
+
+800900EC //Probably initializes Title Screen event flags
+
+
+8005BCE4 //Load nes_font_static character
+
+
+80023234 //Seems to set the variables pertaining to displaying the Farore's Wind sprite
+
+800B70C8 //Initializes Audiobank, Audioseq, and Audiotable pointer tables for fast DMA access
+//A0 = Table Address
+//A1 = VRom File Start
+//A2 = ?, always 0?
+
+
+800DA30C //Dialog
+B550 //Get next dialog character (English?)
+BC9C //Process code 0x1D (English, fish weight)
+
+
+80095CEC // Related to loading Skyboxes into memory
+
+800570C0 //Draw Get Item
+//A0 = Global Context
+//A1 = s16 Get Item Model Id (0 = Bottle)
+//
+//Index 0x24 record size table at 800EFE30
+//
+
+
+800582C0 //Draw Get Item (two param)
+//A0 = Global Context
+//A1 = s16 Get Item Model Id
+//write to POLY_OPA_DISP
+//DE000000 800F8200 // G_DL Jump and Link
+//DA380003 801881A8 // G_MTX (G_MTX_MODEL_VIEW, G_MTX_LOAD, G_MTX_PUSH)
+//DE000000 06000CA0 // G_DL Jump and Link
+//write to POLY_XLU_DISP
+//DE000000 800F8200 // G_DL Jump and Link
+//DA380003 80175D58 // G_MTX (G_MTX_MODEL_VIEW, G_MTX_LOAD, G_MTX_PUSH)
+//DE000000 06000F08 // G_DL Jump and Link
+
+
+
+
+80022960 //NPC Request Trade Item
+//A0 = Actor Instance
+//A1 = Global Context
+//A2 = float (distance?)
+//A3 = float (distance?)
+//SP + 0x10 = Trade Item Index
+//V0 = 0 if request can't be sent, 1 if request successful
+//
+//V1 = Link Instance
+//return 0 if (Link Instance + 0x04) & 0x0000 0100 != 0
+2990 //branch 0x29B0 if Trade Item Index == 0
+299C jal	8007943C //test if Link is busy?
+29A8 //if above is true, return 0
+29B4 //if Actor Instance + 0x10C != 0, set Link Instance + 0x684 to Actor Instance,
+     //and jump to 2A10
+29D0 //return 0 if Actor Instance + 0x94 > Arg3
+//F0 = actor's distance to Link
+//F6 = Link Instance + 0x688
+//F8 = Arg2
+//return 0 if F6 < F0
+//return 0 if F8 < F0 
+2A10 //set link instance + 0x684 to actor instance
+//F10 = actor instance + 0x90 (distance from Link)
+//Link Instance + 0x688 = F10
+//Link Instance + 0x683 = Trade Item Index
+//return 1
+
+80022A34 //NPC Request Trade Item
+//wrapper for 80022960
+//A0 = Actor Instance
+//A1 = Global Context
+//A2 = float (distance?)
+//A3 = Trade Item Index
+
+80022A68 //NPC Request Trade Item related
+//Wrapper for 80022A34, sets A3 to 0
+//A0 = Actor Instance
+//A1 = Global Context
+//A2 = float (distance?)
+
+80022A90 //NPC Request Trade Item related
+//Wrapper for 80022A68
+//A0 = Actor Instance
+//A1 = Global Context
+//
+//F8 = 50.0f
+//F6 = (s16) Actor Instance + 0x98
+//A2 = F6 + F8
+
+
+80051E60 //Possibly "Static Context" related
+//debug rom func_80063E90
+
+
+
+
+80078F80 //Pathway related
+//A0 = Global Context
+//A1 = s16 ?
+//A2 = s16 ?
+//V0 = ?
+//
+//return null if A1 = A2
+//T6 = ptr at A0 + 0x11E08
+//t7 = a1 * 8
+
+
+80063534 //Set next entrance, Warp Songs
+//A0 = Global Context
+354C //zero byte at 800F1640, custom time-based environment lighting settings
+3550 //t7 = s16 8011A5D0 + 0x1394, warp song destination in this context
+359C //start of an unusual series of impossible checks
+//if next entrance matches any of the entrance indexes checked, set the event flag related
+//to visiting that area
+
+
+80038A14 //Camera, NORM1()
+936C //critical fuck you check
+
+
+
+
+
+
+
+
+
+
+
+
+
+800CCA38 //NOT A FUNCTION START
+//mips32 relocation
+//T6 = mips32r and 0x3FF FFFF
+//T7 = is t6 left shifted
+//T8 = proper address

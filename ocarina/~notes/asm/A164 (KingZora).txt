@@ -1,0 +1,17 @@
+80AD5DBC //called every frame?
+//Seems to check if Adult Trade item is >= eyeball frog
+//A0 = Global Context
+//A1 = King Zora instance
+//V0 = ? (result stored at King Zora instance + 0x010E)
+
+5DE0	slti	at, t8, 0x0035
+5DE4	bnel	at, $zero, 0x80AD5E60 //if adult trade slot's value is less than eyeball frog
+5DE8	sb	t9, 0x0683(v1) //Link's Instance + 0x683, seems to be an identifier for trade items
+
+
+80AD6BD8 //?
+//A0 = King Zora Instance
+//A1 = Global Context
+
+80AD6C44 //Give item routine (1F7744 this test)
+6C84	jal	80022B04	//sets v0 to byte at Link Instance + 0x683

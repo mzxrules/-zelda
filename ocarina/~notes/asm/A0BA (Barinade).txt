@@ -1,0 +1,13 @@
+Barinade Marinade
+
+
+80990890 (T:801EDF70) //Function for processing ?,
+// probably the electricity particle effects
+E240 //check if should loop
+
+809934C0 (T:801F0BA0) //BSS, some struct at least 0x58 bytes
+each struct is 0x58 bytes, 0x190 records
+0x26 //s16, random value between 0x6F and 0x7F exclusive
+
+801F7C60
+

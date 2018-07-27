@@ -1,0 +1,18 @@
+OoT-Jap Charset
+
+00-09 = 0-9
+0A-14 = Buttons in this order: B, C, L, R, Z, C-U, C-D, C-L, C-R, Down Arrow, Joystic
+
+
+
+
+Lowercase c = 199
+Ascii lowercase c = 99
+
+Uppercase T = 190
+Ascii uppercase T = 84
+
+
+Text Files (*.txt)|*.txt|All Files (*.*)|*.*
+
+SRA file|*.sra|VC file|*.vc|All Files|*.*

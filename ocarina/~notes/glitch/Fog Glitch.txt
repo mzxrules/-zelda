@@ -1,0 +1,111 @@
+Fog Glitch:
+Two "Fog" Glitches actually:
+
+1) Skybox changes to it's cloudy version when triggering cloudy Kakariko and leaving quickly
+2) Green Fog in Hyrule Field when triggering Kakariko rain
+
+
+Notable Addresses:
+
+8009BFF4, call to 8005D3A4 function, which among other things seems to calculate fog intensity stuff
+
+8011B993 //if zero, this will zero out the 800F1640 value. Set to 1 when touching exits.
+
+801C8C48 + 04 stores final lighting RGB
+801C8C48 + 07 stores final fog RGB
+
+801D8EC4 //struct related to fog or lighting stuff
+  1E byte //?, if 0, the 1F byte is factored in?
+  1F byte //Current Time Environment Index //byte, the state of which causes the glitch!!!
+  20 byte //Time-Environment index to transition to if different?
+  21 byte //?, maybe "isTransitioning"?
+  22 short //Transition countdown
+  24 short // Transition start?
+  98 (801D8F5C) //ptr inc +2 with each loop, stores some secondary RGB coloring
+  CF //ptr inc +1 with each loop, stores the primary RGB coloring
+  
+800F1640 //byte, state of which triggers the glitch on exiting an area
+00 = Normal
+01 = Cloudy Hyrule Field
+02 = ?
+03 = ?
+04 = ?
+05 = Kakariko/Graveyard Rain 
+800F1644 //byte, stores environment setting, but seems to never be read?
+
+800F1654 //short, z-buffer pixel data. Source X,Y halfwords located 8011BCD6,8011BCD8?
+  
+800F1658 //Table for Time-Based lighting ()
+//There are at least 5 records that are 0x2A bytes
+//Record data:
+  00 ushort //time begin
+  02 ushort //time end
+  04 Lighting Setting Index A
+  05 Lighting Setting Index B
+
+8005D6E8  //Part of 8005D3A4, section decides whether to use our unusual lighting
+//S0 = 801D8EC4
+D6E8 bnel v0, at, 8005D6FC //V0 = 0x00BF(S0), AT = 0xFF
+D704 //A1 = 0xFF I think
+D710 //T3 = Save Context + 0x141A (think that's the "visual" time, separate from game time)
+D72C //A2 = 0x001F(S0) * 0x2A + 800F1658
+...
+D78C //T8 = 0x001F(S0)
+D7B0 //T9 = 0x001F(S0) * 0x2A + 800F1658
+...
+D7CC //T9 = 0x001F(S0)
+D7D4 //T4 = 8011A5D0
+D7EC //T8 = 0x001F(S0) * 0x2A + 800F1658
+D7F8 //T2 = Pointer to Environment Settings List
+...
+D888 //T6 = 0x001F(S0)
+D8A4 //T7 = 0x001F(S0) * 0x2A + 800F1658
+D8A8 //V1 = T7 + T1 (T1 might be some variable related to time)
+D8AC lbu	t8, 0x0004(v1) //t8 = Environment Setting A to tween
+D8C4 //T9 = t8 * 0x16 + Environment Lists Pointer
+D8C8 //T7 = T9 + V0 (v0 = times looped)
+D90C //T8 = Environment Setting B to tween
+
+8005F0A4 //LH, LBU to retrieve two color intensities? Added together to make the fog color channel
+
+lh 	t6, 801D8EC4 + 0x98 (801D8F5C) //ptr inc +2 with each loop, stores some secondary RGB coloring
+lbu t8, 801D8EC4 + 0xCF //ptr inc +1 with each loop, stores the primary RGB coloring
+
+8005EA20 //start of a loop for setting RGB color
+
+8005EE1C //possibly beginning of setting color settings?
+
+EE40 //T9 = T8 * 0x16!!
+//T2 = Pointer to Environment List
+//T8 = Environment List Setting
+//Fuck, this part of the code is skipped over completely when the glitch is active,
+// or rather when some scene setting is enabled?
+
+Deku Tree, 376F70 is scene header. +02 byte in data block stores fog setting
+
+801D8EE2 //byte, stores whether fog is enabled or not? Probably more accurate to say that the fog is handled by "the environment" when 0, handled by the Environment List settings in the scene when 1
+
+
+//Actor 0165 (Rain). Below is spawned during rainy Kakariko
+a 801EADA4 //middle of a function that sets variables related to environment settings
+AF 0165:  00000100 FILE: 00E570B0:00E57FA0 INIT 801EB770:00E57DD0
+Start 801EAA50 Off: 000354 VRom: 00E57404 VRam: 80AD75C4
+80AD7460 (T:801EAC40) //Called when Link is positioned outside of "rain"
+
+
+
+8005BF48 //code, graph, Initialize lighting environment settings?
+//Another massive function
+C21C lbu 	t9, 0x13C3(a1)// (a1 = Save Context)
+C228 //branch to C344 if t9 is 0
+C240 //branch to C33C (functionally same as above) if word at save context + 0x1360 (scene setup) < 4
+C248 //load byte at 800F1640 (variable address) to T2
+C254 //branch to C2DC if T2-1 is >= 5
+C368 //Jump to register in T3 (jump table at 801079B0, five options)
+8005C2B8 //Initializes certain environment settings variables
+//notably, around 5C2B8, forces "environment setting" 4?
+
+
+
+
+800F18DC //Maybe, just maybe skybox related

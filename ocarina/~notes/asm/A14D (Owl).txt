@@ -1,0 +1,17 @@
+Instance: 
+02C8 //start of some struct?
+ + 0x10 float //?
+ + 0x18 float //?
+ + 0x30 funcptr //?
+03CC ptr // points to Instance + 0x2C8 this pass
+03FC funcptr // dialog trigger, executed second
+0400 funcptr // handles some behavior, executed first
+
+Hyrule Field addr (801E3020)
+80AB1A38 (T:801E5738) //Actor Main
+5758 jal 80050B00 //update collision cylinder's xyz
+5770 jal 8004C130 //CollisionCheck_setOT
+
+80AB18D8 (T:801E55D8) //unknown, instance + 0x400 func
+80AAFFF4 (T:801E3CF4) //? dialog (Kakariko), instance + 0x3FC func
+80AAFF0C (T:801E3C0C) //0x206A dialog, instance + 0x3FC func

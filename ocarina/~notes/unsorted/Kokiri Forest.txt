@@ -1,0 +1,18 @@
+-31,100,1073,-32768,Start
+-29.72,100,1022.87,-32768,LadderTop
+-28.87,-80,988.65,0,LadderBottom
+-28.87,0,425.4,-27968,
+-448.8307,0,-196.7753,-26248,Near Mido's
+-595.748,0,-136.0624,-3266,Facing Path To Sword
+-783.6201,120,1036.7,0,Crawl Space (Main)
+-784.3799,120,1393,-32768,Crawl Space (Rolling Rock)
+-784.3799,120,1526.5,16320,Rolling Rock Maze 1
+-583.7207,120,1533.695,0,Rolling Rock Maze 2
+-559.7516,120,1879.308,16848,Rolling Rock Maze 3
+-236.8339,120,1856.065,498,Rolling Rock Maze 4
+-250.0944,120,1530.61,-16142,Rolling Rock Maze 5
+-782.128,120,1045,23,Crawl Space (Main, Enter on A)
+-718.5391,120,336.2859,-15776,Facing Know-It-All Bros Entrance
+46.6527,0,-195.102,16063,Jumping Stones (West Side)
+636.0706,0,-131.4392,15295,Jumping Stones (East Side)
+839.7229,0,-285.8123,32351,Shop (Straight Ahead)

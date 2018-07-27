@@ -1,0 +1,108 @@
+00200f70 notes iQue chi
+
+8000ABA0 //?, size 84A0
+
+
+80000400 //program entrypoint
+//wipe 8000ABA0 (0x84A0 bytes)
+//set SP = 8000B5E0
+//Jump 80000484
+
+80000450 //Wipe Ram
+//wipes to 0x80800000
+
+
+80000590 //Load game thread stuff
+
+
+80087390 //Load Object File
+//A0 = Object Ctx (Global Context)
+//A1 = Object Number
+
+80096F04 //create new save
+
+80096280 [80091474] //Load/Save from/to SRAM
+//A0 = SRAM Address (starts at 0800 0000)
+//A1 = Copy to or copy from address
+//A2 = Transfer Size
+//A3 = 0 if loading data, 1 if saving data
+
+80006EC4 //low level save to SRAM (iQue)
+//A0 = Save Data ptr address
+//A1 = Copy to address
+//A2 = Transfer Size
+
+
+80000E14 //DMA read Function (NTSC 1.0 0xDF0 equivalent)
+//A0 = Address to load into
+//A1 = VROM Start
+//A2 = Size
+
+80003400 //Zero Initialize Ram
+//A0 = Start ptr
+//A2 = Size
+
+80004D90 //exception handler
+80005670 //thread context swap
+
+
+
+80005800 //status reg toggle?
+
+80009F30 //OSThread -1?
+800107E8 //OSThread 0x00 (PImgr?)
+80011A00 //OSThread 0x00 (VImgr?)
+8000AC10 //OSThread 0x01 
+8012D7D8 //OSThread 0x02
+8000B5E0 //OSThread 0x03
+801299C8 //OSThread 0x04
+//Stack Start/End = 80129B78, 8012B378
+
+
+801290F8 //OSThread 0x05
+80129360 //OSThread 0x07
+8012CD00 //OSThread 0x0A
+8000C298 //OSThread 0x12
+801297E0 //OSThread 0x13
+
+80009F38 //thread queue?
+
+80000604 //OSThread 0x01 entrypoint
+
+
+80000D60 //dma read?
+80000BB0 //DMA read?
+
+800A7BE0 [800A1C50] //main thread, boot routine
+//initializes shit like the heap
+//code file entrypoint
+
+800AA100 [800A42F0] //initializes Frame Buffers
+
+80002F70 [80001890] //boot, initialize stack for osCreateThread
+
+80003830 [80002F20] //osCreateThread
+//a0 = Thread Pointer
+//a1 = Thread Id
+//a2 = Entrypoint
+//a3 = Entrypoint argument
+//sp+0x10 ptr to stack 
+//sp+0x14 priority argument (type OSPri)
+
+800B5824 [800AF45C] //main thread, initialize fault thread
+
+
+8006DF50 [80067440] //unknown, low level stuff
+
+800D2C48 //Allocate Heap? (possibly System Heap specific)
+800D50A8 //Related to Allocate System Heap
+
+System Heap Ref (80137E50)
+801D4430 //Static Context
+801D5A20 //Global Context
+801E7F60 //actor heap node
+801E7F70 //Link Instance
+
+//8012AE58 data within graph stack
+
+8002C7CC //spawn actor?

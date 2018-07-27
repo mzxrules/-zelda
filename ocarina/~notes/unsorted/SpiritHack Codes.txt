@@ -1,0 +1,57 @@
+ASM tweaks
+//Enable on boot or savestate restoration
+//Applies Pause hack + doesn't remove fw warp points
+81053254 0000
+81053256 0000
+8109C58A 0000
+
+Spawn in Spirit Temple
+8111A5D2 0082
+
+Play Cutscene
+8111A5DA FFFD
+
+All Items
+
+8111A644 0001
+8111A646 0203
+8111A648 0405
+8111A64A 0608
+8111A64C 090B
+8111A64E 0C0D
+8111A650 0E0F
+8111A652 1011
+8111A654 1213
+
+8111A66C 7777
+8111A674 30FF
+8111A676 FFFF
+
+Infinite Ammo
+50001001 0000
+8011A65C 0063
+
+Have Magic
+D011A60C 0001
+8011A60A 0001
+8011A60C 0001
+8011A603 0060
+
+Bottles
+//combine with all items if you care
+8111A656 1816
+
+Link's Age
+//00 = Adult, 01 = Child
+//Sets age on scene reload
+801DA288 00??
+
+L to Levitate
+D01C84B5 0020
+811DAA90 40CB
+D01C84B5 0030
+811DAA90 40CB
+
+Instant OoBs
+811DAA3C C57A
+811DAA58 C57A

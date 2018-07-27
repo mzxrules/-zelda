@@ -1,0 +1,29 @@
+Header cmd pointers in order of occurance 
+
+# - list length given
+! - always exists
+
+Scenes 
+ 
+18: 00000070
+00: 000000A4 #!
+0E: 00000164 #
+04: 00000184 #
+06: 0000019C 
+13: 000001B4
+0F: 000001CC #
+0D: 0000030C
+
+After first scene file comes collision file/header
+Collision header is at "end" of the file
+
+
+if (hasCameraData)
+	return (int)(HeaderOffset + HEADER_SIZE - CameraDataOffset);
+else
+	return (int)(HeaderOffset + HEADER_SIZE - VerticesOffset); 
+
+03: 00008918  !
+
+Cutscenes are at HeaderOffset + HEADER_SIZE
++ Padding to next line

@@ -1,0 +1,68 @@
+1C84A0 context
+1EF370 - Title Screen logo actor (171)
+1F42B0 - Instance
+
+0x44 = HOLDING 0x4A = HOLDING (1 frame delay til set, 1 frame delay til release), 0x50 = Pressed This Frame 0x56 = Released this frame
+
+
+F7DC LHU	A2, 0044 (A0) Load controller 3 button input (buttons)
+F7E4 LW		T6, 630C (A3) Load previous controller 3 input (buttons)
+F7E8 ANDI 	A2, A2, 0xFF3F (bitwise and)
+
+F7F0 BNE	A2, T6, 801EF830 (branch if new input is different)
+F7F4 ADDIU	T2, R0, 0x0010 (T2 = 0x10) (perhaps frames until next input?)
+F830 SW		T2, 0x6311 (AT) (2025C0 = 0x00000010)
+F834 SW		A2, 0x630D (AT) (2025BC = 3rd controller button input)
+F838 LH		V1, 0x6306 (A3) (2025B6) (Load index to next input checked)
+
+F844 SLTI	AT, V1, 0x0004
+F848 BEQ	AT, R0, 801EF890 (branch if past first dpad input)
+F84C SLL	T7, V1, 0x2 (T7 has offset to next input checked)
+
+things happen
+
+F858 LW		T4, 0x20C4(T4) (T4 = 801F20C4 + V1*4)
+F864 AND	T5, T4, A2 (T4 = 800 in this pass) 
+F868 BEQ	T5, R0, 801EF87C (branch if T5 != 0x0800)
+
+F870 SH		T6, 0x6307 (AT) (2025B6 = T6)
+??
+
+INPUT CHAIN >= 4
+F890 ADDU	V0, V0, T7 (start building input check chain?)
+F894 LW		V0, 0x20C4 (V0) = Load next input check
+F898 LHU	T8, 0x0050 (A0) = Load input (from just pressed address)
+F89C ADDIU	T0, V1, 0x0001 (increment input counter, store in T0)
+F8A4 AND	T9, T8, V0 = Check input, store result T9
+F8A8 BNE	T9, V0, 801EF8BC (branch on mismatch)
+F8B4 BEQ	801EF8CC
+F8B8 LH		V1, 0x6306 (A3) Load input chain index
+
+F8CC ADDIU	AT, R0, 0x000E (Load input chain index for next branch)
+F8D0 BNEL	V1, AT, 801EF8F0 (Branch if INPUT CHAIN < 0xE)
+F8D4 LW		RA, 0x0014 (SP) (SKIPPED)
+
+
+JAL
+F370 ADDIU	SP, SP, 0xFFE0 (protect stack)
+
+
+801F20C4
+THE CODE
+
+0800 D-UP
+0400 D-DOWN
+0200 D-LEFT
+0100 D-RIGHT
+1000 START
+4000 B
+0004 C-DOWN
+0020 L
+0001 C-RIGHT
+0002 C-LEFT
+8000 A
+0008 C-UP
+0010 R
+2000 Z
+0000
+0000

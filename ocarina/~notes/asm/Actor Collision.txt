@@ -1,0 +1,160 @@
+Collision Struct (Overlay):
+//803AAE7C for Link
+//0x2C bytes long, not the only type of collision struct
+0x00	byte	//?
+0x01	byte	//?
+0x02	byte	//?
+0x03	byte	//?
+0x04	byte	//?
+0x05	byte	//?
+0x08	byte	//?
+0x0C	int 	//? (FFCF FFFF, used to compare to Link's FFCF FFFF?)
+0x10	byte	//?
+0x11	byte	//Damage dealt when touched
+0x14	int 	//? (FFCF FFFF)
+0x18	byte	//?
+0x19	byte	//?
+0x1C	byte	//?
+0x1D	byte	//?
+0x1E	byte	//?
+0x20	int?	//Contains cylinder radius or diameter
+0x24	int?	//?
+0x28	int?	//? (thought this struct was only 0x24 bytes)
+
+Common Collision Struct (Actor Instance): (0x4C bytes long?)
+//To simplify, CSO = Collision Struct (Overlay) reference
+//801DAEB8 for Link
+0x00	ptr 	//Actor Instance
+0x04	ptr 	//Colliding Actor Instance Type 1?
+0x08	ptr		//Colliding Actor Instance Type 2?
+0x0C	ptr		//Colliding Actor Instance Type 3?
+0x10	byte	//CSO 0x01
+0x11	byte	//CSO 0x02 //if & 0x0002, is detecting a Deku Nut hit?
+0x12	byte	//CSO 0x03, bitwise-and compared to opposing collision's 0x13 byte
+0x13	byte	//CSO 0x04, bitwise-and compared to opposing collision's 0x12 byte
+0x14	byte	//CSO 0x00
+0x15	byte	//CSO 0x05, possibly body type?
+				//references function pointer, start location at 800EFAB8
+                //used to reference function pointer, start location at 800EFB4C.
+				//Basically, on left compare to right, left's value * 0x10 + right's value * 0x04 = pointer look up
+				
+//Type 0, Cylinder Collection?
+0x18	int 	//Number of Cylinders
+0x1C	ptr 	//Cylinder Array Start
+
+//Type 1, Simple Cylinder
+//There are direct pointers to +0x18 into the struct being stored
+0x18	int 	//CSO 0x0C //Attack Identifier!
+0x1C	byte	//CSO 0x10
+0x1D	byte	//CSO 0x11, Damage Dealt when touched/Stun Timer
+0x20	int 	//CSO 0x14 (FFCF FFFF)
+0x24	byte	//CSO 0x18, Effect when collided into?
+0x25	byte	//CSO 0x19
+0x2C	byte	//CSO 0x08
+0x2D	byte	//CSO 0x1C
+0x2E	byte	//CSO 0x1D
+0x2F	byte	//CSO 0x1E
+0x34	ptr		//stores pointer to Collision Struct in some situations
+0x3C	ptr 	//stores pointer to Collision Struct + 0x18 of colliding entity
+//everything below seems to depend on the type of collision shape being used
+//Cylinder based collision
+0x40	short	//CSO 0x20 Cylinder Radius
+0x42	short	//CS0 0x22 Cylinder Height
+0x44	short	//CSO 0x24 Cylinder Y Shift? For certain types (non complex meshes?) of collisions?
+0x46	short	//Cylinder X
+0x48	short	//Cylinder Y
+0x4A	short	//Cylinder Z
+
+
+800EFB0C //jump table for collision checks?
+
+
+Global Context:
+801DA300, start of Collision Group AT (Gohma, Skullwalltulas)
+0x11E60 short	//elements in array to process this frame
+0x11E64 ptr 	//first element in array 
+
+801DA3CC, start of Collision Group AC (more inclusive, seems to follow actor category order, only one with 3d heart actor)
+0x11F2C int 	//element in array to process this frame
+
+//1DA4C0, start of Collision Group OT (contains the most actors in Deku Tree)
+
+
+
+Collision Stuffs
+
+1E7770 where Gohma collision data is located
+
+3AAE84 (offset 22324), collision data related to link?!
+
+
+breakpoint at 8005021C
+breakpoint at 8009BD34
+
+
+=== BGCHECK ===
+
+
+//Format for actor collision mesh record in gctx:
+0x0000 ptr = Actor Instance
+0x0004 ptr = Collision Mesh Ptr
+0x0014 float = Actor X scale
+0x0018 float = Actor Y scale
+0x001C float = Actor Z scale
+0x0020 short = Actor X rotation
+0x0022 short = Actor Y rotation
+0x0024 short = Actor Z rotation
+0x0028 float = Actor X Coord
+0x002C float = Actor Y Coord
+0x0030 float = Actor Z Coord
+//yes I know, duplicates. not sure why
+0x0034 float = Actor X scale
+0x0038 float = Actor Y scale
+0x003C float = Actor Z scale
+0x0040 short = Actor X rotation
+0x0042 short = Actor Y rotation
+0x0044 short = Actor Z rotation
+0x0048 float = Actor X Coord
+0x004C float = Actor Y Coord
+0x0050 float = Actor Z Coord
+
+
+hi
+& 0x0003 E000 //0x1F, unk
+lo
+
+
+
+
+
+aabb bxcc	#w#h kels 
+
+
+Some notes on Link
+
+When y gravity is approx less than -10f (displayed, -15f in one frame), Link will begin colliding into the floor as if it were a wall
+
+-4 velocity, -10f acceleration = -14f * 3/2 = -21
+
+When y gravity is approx less than -13.330f (displayed, -20f in one frame, Link will "ground clip" through walls
+
+-4 velocity + -13.330f acceleration = -17.330f * 3/2 = -25.995
+
+Rather, when Link's y velocity is -26, a groundclip will occur
+
+
+=== SCENE COLLISION MESH ===
+Gctx + 0x7C0 + 0x48 is ptr to CollisionPoly chain table. Each record is 4 bytes:
+
+u16 polyId; //CollisionPoly Id
+u16 nextId; //next record in the chain
+
+
+80118C70 //Vertex Points (vector3_f32) for poly (certain functions)
+
+
+80030274 arg SP+0x28 CollisionTypeFlags
+0x10 //Check Actor Meshes
+0x04 //Check Ceilings
+0x02 //Check Floors
+0x01 //Check Walls

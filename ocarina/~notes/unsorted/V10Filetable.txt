@@ -1,0 +1,1511 @@
+﻿Index	VRom Start	VRom End	Filename	Description
+0	00000000	00001060	makerom	
+1	00001060	00007430	boot	
+2	00007430	0000D390	dmadata	File Table
+3	0000D390	00029DE0	Audiobank	
+4	00029DE0	00079470	Audioseq	
+5	00079470	004D9F40	Audiotable	
+6	004D9F40	00556240		
+7	00557000	007BCC30	link_animetion	
+8	007BD000	008458A0	icon_item_static	
+9	00846000	00851400	icon_item_24_static	
+10	00852000	0085D930	icon_item_field_static	
+11	0085E000	0085FD80	icon_item_dungeon_static	
+12	00860000	00863300	icon_item_gameover_static	
+13	00864000	00871C80	icon_item_jpn_static	
+14	00872000	0087FC80	icon_item_nes_static	
+15	00880000	008BD800	item_name_static	Item name textures used in the pause menu. 122 textures per language
+16	008BE000	008DF800	map_name_static	
+17	008E0000	008E5700	do_action_static	
+18	008E6000	008EA180	message_static	
+19	008EB000	00925350		
+20	00926000	00927200	message_texture_static	
+21	00928000	0092C580	nes_font_static	
+22	0092D000	00965130	nes_message_data_static	English Textbox Text
+23	00966000	00966F60	staff_message_data_static	Credits Text
+24	00967000	00975350		
+25	00976000	00A64110		
+26	00A65000	00A86DE0		
+27	00A87000	00B8AD30	code	Contains game's main codebase
+28	00B8AD30	00B9DA40	*z_n64dd.c	N64 Disk Drive related code
+29	00B9DA40	00B9E400	ovl_title	
+30	00B9E400	00BA1160	ovl_select	
+31	00BA1160	00BA12C0	ovl_opening	
+32	00BA12C0	00BB11E0	ovl_file_choose	
+33	00BB11E0	00BCDB70	ovl_kaleido_scope	Pause Screen actor
+34	00BCDB70	00BF40D0	ovl_player_actor	Link
+35	00BF40D0	00BFAC30	ovl_map_mark_data	Minimap Icon Data for Dungeons 0-9
+36	00BFAC30	00C004E0	ovl_En_Test	Stalfos
+37	00C004E0	00C02E00	ovl_En_GirlA	Shops
+38	00C02E00	00C04410	ovl_En_Part	Dissipating Flames
+39	00C04410	00C05200	ovl_En_Light	Decorative Flames
+40	00C05200	00C06030	ovl_En_Door	Standard Door
+41	00C06030	00C07B60	ovl_En_Box	Chest
+42	00C07B60	00C0BCF0	ovl_En_Poh	Poe
+43	00C0BCF0	00C0E2D0	ovl_En_Okuta	Octorok
+44	00C0E2D0	00C0F1A0	ovl_En_Bom	Bomb
+45	00C0F1A0	00C10BB0	ovl_En_Wallmas	Wall Master
+46	00C10BB0	00C13950	ovl_En_Dodongo	Dodongo
+47	00C13950	00C15AC0	ovl_En_Firefly	Keese
+48	00C15AC0	00C21CE0	ovl_En_Horse	Epona
+49	00C21CE0	00C233D0	ovl_En_Arrow	Arrows
+50	00C233D0	00C27D90	ovl_En_Elf	Fairies
+51	00C27D90	00C2B0C0	ovl_En_Niw	Cucco
+52	00C2B0C0	00C2DE60	ovl_En_Tite	Tektite
+53	00C2DE60	00C2F8D0	ovl_En_Reeba	Leever
+54	00C2F8D0	00C32FD0	ovl_En_Peehat	Peahat
+55	00C32FD0	00C33FA0	ovl_En_Holl	Room Change Plane
+56	00C33FA0	00C340D0	ovl_En_Scene_Change	(unknown actor)
+57	00C340D0	00C3ABC0	ovl_En_Zf	Lizafos
+58	00C3ABC0	00C3B150	ovl_En_Hata	Wooden Post with Red Cloth
+59	00C3B150	00C44C30	ovl_Boss_Dodongo	King Dodongo
+60	00C44C30	00C4ABB0	ovl_Boss_Goma	Gohma
+61	00C4ABB0	00C4E9B0	ovl_En_Zl1	Child Zelda (at window)
+62	00C4E9B0	00C51860	ovl_En_Viewer	Nightmare Cutscene Actors
+63	00C51860	00C544F0	ovl_En_Goma	Gohma Larva
+64	00C544F0	00C547F0	ovl_Bg_Pushbox	Alpha Cube
+65	00C547F0	00C55C10	ovl_En_Bubble	Shabom (Bubble Enemy)
+66	00C55C10	00C57E90	ovl_Door_Shutter	Lifting Dungeon Door
+67	00C57E90	00C59D30	ovl_En_Dodojr	Baby Dodongo
+68	00C59D30	00C5A8C0	ovl_En_Bdfire	King Dodongo's Fire
+69	00C5A8C0	00C5B180	ovl_En_Boom	Returning Boomerang
+70	00C5B180	00C5D8E0	ovl_En_Torch2	Dark Link
+71	00C5D8E0	00C5FBB0	ovl_En_Bili	Biri (Electrified Jellyfish)
+72	00C5FBB0	00C61A00	ovl_En_Tp	Electric Tailparisans
+73	00C61A00	00C64670	ovl_En_St	Skulltula
+74	00C64670	00C679D0	ovl_En_Bw	Torch Slug
+75	00C679D0	00C69630	ovl_En_Eiyer	Stinger
+76	00C69630	00C69FC0	ovl_En_River_Sound	Ambient Sound Effects
+77	00C69FC0	00C6C5E0	ovl_En_Horse_Normal	Normal Horse
+78	00C6C5E0	00C72BC0	ovl_En_Ossan	Shopkeeper
+79	00C72BC0	00C74210	ovl_Bg_Treemouth	Great Deku Tree's Jaw
+80	00C74210	00C74F50	ovl_Bg_Dodoago	Dodongo's Cavern "Mega Dodongo"
+81	00C74F50	00C757A0	ovl_Bg_Hidan_Dalm	Megaton Statue
+82	00C757A0	00C75FD0	ovl_Bg_Hidan_Hrock	Huge Stone Spike Platform (Fire Temple)
+83	00C75FD0	00C76D50	ovl_En_Horse_Ganon	Ganon's Horse
+84	00C76D50	00C77E40	ovl_Bg_Hidan_Rock	Stone Blocks (Fire Temple)
+85	00C77E40	00C78A20	ovl_Bg_Hidan_Rsekizou	Spinning Stone Flamethrower
+86	00C78A20	00C79E70	ovl_Bg_Hidan_Sekizou	Stationary Flamethrower Statue
+87	00C79E70	00C7AD90	ovl_Bg_Hidan_Sima	Stone Platform (Fire Temple)
+88	00C7AD90	00C7B1F0	ovl_Bg_Hidan_Syoku	Stone Elevator (Fire Temple)
+89	00C7B1F0	00C81950	ovl_En_Xc	Sheik?
+90	00C81950	00C823F0	ovl_Bg_Hidan_Curtain	Flame Circle
+91	00C823F0	00C83500	ovl_Bg_Spot00_Hanebasi	Drawbridge Objects
+92	00C83500	00C87640	ovl_En_Mb	Moblins
+93	00C87640	00C88AB0	ovl_En_Bombf	Bombflower
+94	00C88AB0	00C89210	ovl_Bg_Hidan_Firewall	Proximity Activated Fire Wall
+95	00C89210	00C8BF60	ovl_Bg_Dy_Yoseizo	Great Fairy
+96	00C8BF60	00C90690	ovl_En_Zl2	Adult Zelda (Cutscene)
+97	00C90690	00C90B60	ovl_Bg_Hidan_Fslift	Hookshotable Elevator (Fire Temple)
+98	00C90B60	00C90C40	ovl_En_OE2	Targetable Blue Spot
+99	00C90C40	00C913F0	ovl_Bg_Ydan_Hasi	Deku Tree Puzzle Elements
+100	00C913F0	00C91AD0	ovl_Bg_Ydan_Maruta	Rotating Spike Cylinder (Deku Tree)
+101	00C91AD0	00C96840	ovl_Boss_Ganondrof	Phantom Ganon
+102	00C96840	00C98C40	ovl_En_Am	Armos Statue
+103	00C98C40	00C9C6E0	ovl_En_Dekubaba	Deku Baba (Snapping)
+104	00C9C6E0	00C9C880	ovl_En_M_Fire1	Deku Nuts (Link)
+105	00C9C880	00C9DE70	ovl_En_M_Thunder	Spin Attack
+106	00C9DE70	00C9E4C0	ovl_Bg_Ddan_Jd	Rising Stone Platform (Dodongo's Cavern)
+107	00C9E4C0	00C9F330	ovl_Bg_Breakwall	Bombable Wall
+108	00C9F330	00CA0900	ovl_En_Jj	Lord Jabu-Jabu
+109	00CA0900	00CA13F0	ovl_En_Horse_Zelda	Zelda's Horse
+110	00CA13F0	00CA1CE0	ovl_Bg_Ddan_Kd	Stone Stairs
+111	00CA1CE0	00CA5F80	ovl_Door_Warp1	Warp Portals
+112	00CA5F80	00CA6BB0	ovl_Obj_Syokudai	Torch
+113	00CA6BB0	00CA6FA0	ovl_Item_B_Heart	Heart Container
+114	00CA6FA0	00CA87A0	ovl_En_Dekunuts	Deku Scrub
+115	00CA87A0	00CA8930	ovl_Bg_Menkuri_Kaiten	Large Rotating Stone Ring
+116	00CA8930	00CA8DC0	ovl_Bg_Menkuri_Eye	Eye Statue Switch
+117	00CA8DC0	00CAB460	ovl_En_Vali	Bari (Big Jellyfish)
+118	00CAB460	00CAC5F0	ovl_Bg_Mizu_Movebg	Water Temple Platforms / Dragonhead Statues
+119	00CAC5F0	00CAD2C0	ovl_Bg_Mizu_Water	Large Water Square
+120	00CAD2C0	00CAE020	ovl_Arms_Hook	Hookshot
+121	00CAE020	00CB0950	ovl_En_fHG	Phantom Ganon's Horse
+122	00CB0950	00CB1620	ovl_Bg_Mori_Hineri	Twisted Hallway Room
+123	00CB1620	00CB52F0	ovl_En_Bb	Bubble (Flying Skull Enemy)
+124	00CB52F0	00CB6090	ovl_Bg_Toki_Hikari	Temple of Time Windows
+125	00CB6090	00CB66A0	ovl_En_Yukabyun	Flying Floor Tile
+126	00CB66A0	00CB7CF0	ovl_Bg_Toki_Swd	Master Sword
+127	00CB7CF0	00CBA310	ovl_En_Fhg_Fire	Phantom Ganon's Lighting Attack
+128	00CBA310	00CBA6F0	ovl_Bg_Mjin	Warp Pad
+129	00CBA6F0	00CBAC70	ovl_Bg_Hidan_Kousi	Metal Gate
+130	00CBAC70	00CBADD0	ovl_Door_Toki	Invisible Wall
+131	00CBADD0	00CBBC60	ovl_Bg_Hidan_Hamstep	Stone Steps and Platforms (Fire Temple)
+132	00CBBC60	00CBC120	ovl_En_Bird	Brown Bird
+133	00CBC120	00CBD2F0	ovl_En_Wood02	Greenery
+134	00CBD2F0	00CBD770	ovl_En_Lightbox	Large Noisy Stone
+135	00CBD770	00CBDAB0	ovl_En_Pu_box	Stone Cube
+136	00CBDAB0	00CBED50	ovl_En_Trap	Sliding Spiked Metal Trap
+137	00CBED50	00CBEEA0	ovl_En_Arow_Trap	Proximity Arrow Trap (incomplete)
+138	00CBEEA0	00CBEFA0	ovl_En_Vase	Orange Pot (Alpha)
+139	00CBEFA0	00CC2960	ovl_En_Ta	Talon
+140	00CC2960	00CC4790	ovl_En_Tk	Dampe (Gravedigging Tour)
+141	00CC4790	00CC50C0	ovl_Bg_Mori_Bigst	Large Round Platform (Forest Temple)
+142	00CC50C0	00CC5BB0	ovl_Bg_Mori_Elevator	Forest Temple Elevator
+143	00CC5BB0	00CC6210	ovl_Bg_Mori_Kaitenkabe	Forest Temple Rotating Walls
+144	00CC6210	00CC6B80	ovl_Bg_Mori_Rakkatenjo	Forest Temple Falling Ceiling
+145	00CC6B80	00CC8430	ovl_En_Vm	Beamos
+146	00CC8430	00CCDF30	ovl_Demo_Effect	Spiritual Stones
+147	00CCDF30	00CD1BE0	ovl_Demo_Kankyo	Temple of Time Objects
+148	00CD1BE0	00CD28C0	ovl_Bg_Hidan_Fwbig	Large Flame Wall
+149	00CD28C0	00CD5CA0	ovl_En_Floormas	Floormaster
+150	00CD5CA0	00CD71B0	ovl_En_Heishi1	Castle Courtyard Guards
+151	00CD71B0	00CD9A60	ovl_En_Rd	Redead
+152	00CD9A60	00CDE750	ovl_En_Po_Sisters	Meg (Poe Sister)
+153	00CDE750	00CE0040	ovl_Bg_Heavy_Block	Golden Gauntlets Rock
+154	00CE0040	00CE1E70	ovl_Bg_Po_Event	Poe Puzzle Block
+155	00CE1E70	00CE2E80	ovl_Obj_Mure	Butterflies
+156	00CE2E80	00CE65F0	ovl_En_Sw	Skullwalltula
+157	00CE65F0	00CED920	ovl_Boss_Fd	Flying Volvagia
+158	00CED920	00CF0B40	ovl_Object_Kankyo	Environmental Effects (Fairy Sprites?)
+159	00CF0B40	00CF25E0	ovl_En_Du	Darunia
+160	00CF25E0	00CF52A0	ovl_En_Fd	Flare Dancer
+161	00CF52A0	00CF70A0	ovl_En_Horse_Link_Child	Young Epona
+162	00CF70A0	00CF7710	ovl_Door_Ana	Hole in Ground Exit
+163	00CF7710	00CF8A60	ovl_Bg_Spot02_Objects	Graveyard Actors
+164	00CF8A60	00CF9120	ovl_Bg_Haka	Gravestone
+165	00CF9120	00CFAE20	ovl_Magic_Wind	Farore's Wind
+166	00CFAE20	00CFD0F0	ovl_Magic_Fire	Din's Fire
+167	00CFD0F0	00D04790	ovl_En_Ru1	Child Princess Ruto
+168	00D04790	00D084C0	ovl_Boss_Fd2	Hole Volvagia
+169	00D084C0	00D091D0	ovl_En_Fd_Fire	Fireball
+170	00D091D0	00D0ACA0	ovl_En_Dh	Dead Hand
+171	00D0ACA0	00D0BC70	ovl_En_Dha	Dead Hand's Hand
+172	00D0BC70	00D0CB50	ovl_En_Rl	Rauru
+173	00D0CB50	00D0D6B0	ovl_En_Encount1	Enemy Spawner
+174	00D0D6B0	00D10E90	ovl_Demo_Du	Sage Darunia (Cutscene)
+175	00D10E90	00D14E00	ovl_Demo_Im	Impa
+176	00D14E00	00D15510	ovl_Demo_Tre_Lgt	Treasure Chest Light
+177	00D15510	00D16CC0	ovl_En_Fw	Flare Dancer Core Creature
+178	00D16CC0	00D173D0	ovl_Bg_Vb_Sima	Volvagia Platform
+179	00D173D0	00D18570	ovl_En_Vb_Ball	Volvagia Rocks
+180	00D18570	00D18970	ovl_Bg_Haka_Megane	Shadow Temple Fake Walls
+181	00D18970	00D19030	ovl_Bg_Haka_MeganeBG	Platforms (Shadow Temple)
+182	00D19030	00D19A70	ovl_Bg_Haka_Ship	Shadow Temple Ship
+183	00D19A70	00D1A690	ovl_Bg_Haka_Sgami	Spinning Scythe Trap
+184	00D1A690	00D1C890	ovl_En_Heishi2	Hyrulian Guards
+185	00D1C890	00D1DAC0	ovl_En_Encount2	Falling Rock Spawner
+186	00D1DAC0	00D1EBD0	ovl_En_Fire_Rock	Flying Rubble
+187	00D1EBD0	00D1FCC0	ovl_En_Brob	Flobbery Muscle Block (Jabu-Jabu)
+188	00D1FCC0	00D21580	ovl_Mir_Ray	Sun Block Switch
+189	00D21580	00D21A90	ovl_Bg_Spot09_Obj	Gerudo Valley Objects
+190	00D21A90	00D22360	ovl_Bg_Spot18_Obj	Statue from Darunia's room 
+191	00D22360	00D30B50	ovl_Boss_Va	Barinade
+192	00D30B50	00D31570	ovl_Bg_Haka_Tubo	Giant skull jar (blue flames on top, ejects key when destroyed)
+193	00D31570	00D32B40	ovl_Bg_Haka_Trap	Shadow Temple objects
+194	00D32B40	00D335E0	ovl_Bg_Haka_Huta	Coffin lid
+195	00D335E0	00D347D0	ovl_Bg_Haka_Zou	Statue and Wall (Shadow Temple)
+196	00D347D0	00D34A20	ovl_Bg_Spot17_Funen	Crater smoke cone
+197	00D34A20	00D357C0	ovl_En_Syateki_Itm	Shooting Gallery Game
+198	00D357C0	00D36580	ovl_En_Syateki_Man	Shooting Gallery man 
+199	00D36580	00D36820	ovl_En_Tana	Shop shelves
+200	00D36820	00D3ADF0	ovl_En_Nb	Nabooru
+201	00D3ADF0	00D46390	ovl_Boss_Mo	Morpha 
+202	00D46390	00D477D0	ovl_En_Sb	Shell Blade 
+203	00D477D0	00D4A2E0	ovl_En_Bigokuta	Big Octo
+204	00D4A2E0	00D4BBD0	ovl_En_Karebaba	Withered Deku Baba
+205	00D4BBD0	00D4CEA0	ovl_Bg_Bdan_Objects	Lord Jabu-Jabu objects 
+206	00D4CEA0	00D4F9C0	ovl_Demo_Sa	Saria Cutscenes? Receiving medallion
+207	00D4F9C0	00D50720	ovl_Demo_Go	Gorons (Cutscene)
+208	00D50720	00D53480	ovl_En_In	Ingo
+209	00D53480	00D54D80	ovl_En_Tr	Koume  and Kotake
+210	00D54D80	00D562C0	ovl_Bg_Spot16_Bombstone	Dodongo Cavern Entrance Rock
+211	00D562C0	00D57190	ovl_Bg_Hidan_Kowarerukabe	Bombable walls (Fire Temple)
+212	00D57190	00D57A50	ovl_Bg_Bombwall	2D bombable wall (Defunct?)
+213	00D57A50	00D5A7D0	ovl_En_Ru2	Adult Ruto (Defunct?)
+214	00D5A7D0	00D5AE10	ovl_Obj_Dekujr	Deku Tree Sprout
+215	00D5AE10	00D5AFE0	ovl_Bg_Mizu_Uzu	Water noise 
+216	00D5AFE0	00D5C3F0	ovl_Bg_Spot06_Objects	Lake Hylia Objects
+217	00D5C3F0	00D5D330	ovl_Bg_Ice_Objects	Movable ice block
+218	00D5D330	00D5DB10	ovl_Bg_Haka_Water	Bottom of The Well Water Changer
+219	00D5DB10	00D5EB70	ovl_En_Ma2	Adult Malon
+220	00D5EB70	00D60210	ovl_En_Bom_Chu	Bombchu 
+221	00D60210	00D612E0	ovl_En_Horse_Game_Check	Horseback Games
+222	00D612E0	00D74360	ovl_Boss_Tw	Twinrova
+223	00D74360	00D76880	ovl_En_Rr	Like-Like
+224	00D76880	00D78750	ovl_En_Ba	Tentacle from inside Lord Jabu-Jabu
+225	00D78750	00D79240	ovl_En_Bx	Blocking tentacle from inside Lord Jabu-Jabu
+226	00D79240	00D7A4F0	ovl_En_Anubice	Anubis Statue
+227	00D7A4F0	00D7B2B0	ovl_En_Anubice_Fire	Fire thing (possibly from Anubis, only appears when cutscene mode is off)
+228	00D7B2B0	00D7BB70	ovl_Bg_Mori_Hashigo	Forest Temple ladder (with object 0073)
+229	00D7BB70	00D7C0F0	ovl_Bg_Mori_Hashira4	Forest Temple elements (with object 0073)
+230	00D7C0F0	00D7C730	ovl_Bg_Mori_Idomizu	Invisible geometry (Defunct?)
+231	00D7C730	00D7CCE0	ovl_Bg_Spot16_Doughnut	Death Mountain cloud ring
+232	00D7CCE0	00D7E110	ovl_Bg_Bdan_Switch	Switch from inside Lord Jabu-Jabu
+233	00D7E110	00D7F3F0	ovl_En_Ma1	Child Malon (Defunct?)
+234	00D7F3F0	00DA1660	ovl_Boss_Ganon	Ganondorf Boss (with objects 017C + 017D)
+235	00DA1660	00DADB80	ovl_Boss_Sst	Bongo Bongo
+236	00DADB80	00DAF4B0	ovl_En_Ny	Spike enemy
+237	00DAF4B0	00DB1F40	ovl_En_Fr	Song Frogs
+238	00DB1F40	00DB2950	ovl_Item_Shield	Deku shield
+239	00DB2950	00DB3B80	ovl_Bg_Ice_Shelter	Red Ice
+240	00DB3B80	00DB4D70	ovl_En_Ice_Hono	Blue Flame
+241	00DB4D70	00DB5540	ovl_Item_Ocarina	Ocarina of Time
+242	00DB5540	00DB6D90	ovl_Magic_Dark	Nayru's Love 
+243	00DB6D90	00DB9AA0	ovl_Demo_6K	Sages, Balls of Light (Cutscene)
+244	00DB9AA0	00DB9D70	ovl_En_Anubice_Tag	Anubis
+245	00DB9D70	00DBADF0	ovl_Bg_Haka_Gate	Shadow Temple Truth Spinner
+246	00DBADF0	00DBB130	ovl_Bg_Spot15_Saku	Hyrule castle fence (looks like the one inside the castle; green)
+247	00DBB130	00DBB8B0	ovl_Bg_Jya_Goroiwa	Giant rolling boulder
+248	00DBB8B0	00DBBF60	ovl_Bg_Jya_Zurerukabe	Sliding, climbable brick wall (Spirit Temple)
+249	00DBBF60	00DBDC80	ovl_Bg_Jya_Cobra	Rotating Cobra mirror (Spirit Temple)
+250	00DBDC80	00DBE030	ovl_Bg_Jya_Kanaami	Climbable Metal Grating (Fire Temple)
+251	00DBE030	00DD1A00	ovl_Fishing	Fishing Pond Minigame (Both Man and Fish)
+252	00DD1A00	00DD34B0	ovl_Obj_Oshihiki	Movable Block
+253	00DD34B0	00DD3930	ovl_Bg_Gate_Shutter	Death Mountain Trail Gate
+254	00DD3930	00DD4D10	ovl_Eff_Dust	Sparklies gathering together
+255	00DD4D10	00DD4FB0	ovl_Bg_Spot01_Fusya	Windmill sails
+256	00DD4FB0	00DD5BB0	ovl_Bg_Spot01_Idohashira	Kakariko village well crossbeam
+257	00DD5BB0	00DD5EC0	ovl_Bg_Spot01_Idomizu	Kakariko village well water
+258	00DD5EC0	00DD6810	ovl_Bg_Po_Syokudai	Golden torch stand (granite base)
+259	00DD6810	00DD8E50	ovl_Bg_Ganon_Otyuka	Falling Platform (Ganondorf Fight)
+260	00DD8E50	00DD9C30	ovl_Bg_Spot15_Rrbox	Milk crate
+261	00DD9C30	00DD9DC0	ovl_Bg_Umajump	Lon Lon Ranch Obstacle Fence
+262	00DD9DC0	00DDC2E0	ovl_En_Insect	Bugs
+263	00DDC2E0	00DDD8B0	ovl_En_Butte	Butterfly
+264	00DDD8B0	00DDF9C0	ovl_En_Fish	Fish
+265	00DDF9C0	00DE0A00	ovl_Bg_Spot08_Iceblock	Zora's Fountain Ice Blocks
+266	00DE0A00	00DE12D0	ovl_Item_Etcetera	GI Collectables (Shields, Bottles)
+267	00DE12D0	00DE3190	ovl_Arrow_Fire	Fire Arrow
+268	00DE3190	00DE5070	ovl_Arrow_Ice	Ice Arrow
+269	00DE5070	00DE6F60	ovl_Arrow_Light	Light Arrow
+270	00DE6F60	00DE7C60	ovl_Obj_Kibako	Small Wooden Crate (Alpha giant, liftable fish)
+271	00DE7C60	00DE8C50	ovl_Obj_Tsubo	Breakable pot
+272	00DE8C50	00DE98A0	ovl_En_Wonder_Item	Invisible collectible 
+273	00DE98A0	00DEDED0	ovl_En_Ik	Iron Knuckle
+274	00DEDED0	00DEF3E0	ovl_Demo_Ik	Iron Knuckle Armor Pieces
+275	00DEF3E0	00DF2D10	ovl_En_Skj	Skullkid
+276	00DF2D10	00DF3020	ovl_En_Skjneedle	Skullkid Needle Attack?
+277	00DF3020	00DF4850	ovl_En_G_Switch	Silver Rupee/Large Rotating Pot
+278	00DF4850	00DF5190	ovl_Demo_Ext	Vortex (Koume/Kotake Kidnap Nabooru)
+279	00DF5190	00DF75A0	ovl_Demo_Shd	Bongo Bongo Shadow
+280	00DF75A0	00DF8930	ovl_En_Dns	Deku salesman (already out?)
+281	00DF8930	00DF8F20	ovl_Elf_Msg	Navi information spot
+282	00DF8F20	00DFA470	ovl_En_Honotrap	Stone Eye Flamethrower
+283	00DFA470	00DFB110	ovl_En_Tubo_Trap	Flying Pot
+284	00DFB110	00DFBAC0	ovl_Obj_Ice_Poly	Switch Covering Ice
+285	00DFBAC0	00DFC3B0	ovl_Bg_Spot03_Taki	Zora's River waterfall
+286	00DFC3B0	00DFC970	ovl_Bg_Spot07_Taki	Zora's Domain waterfall
+287	00DFC970	00DFE980	ovl_En_Fz	Frezzard
+288	00DFE980	00E00090	ovl_En_Po_Relay	Dampe's Ghost
+289	00E00090	00E00840	ovl_Bg_Relay_Objects	Rotating windmill mechanism
+290	00E00840	00E021F0	ovl_En_Diving_Game	Zora diving game
+291	00E021F0	00E036D0	ovl_En_Kusa	Liftable & cutable, respawning grass clump
+292	00E036D0	00E05E60	ovl_Obj_Bean	Bean planting spot
+293	00E05E60	00E063D0	ovl_Obj_Bombiwa	Brown boulder
+294	00E063D0	00E08190	ovl_Obj_Switch	Switches (make puzzle solved sound when triggered, one-time only)
+295	00E08190	00E08550	ovl_Obj_Elevator	Huge stone elevator (Alpha)
+296	00E08550	00E08F70	ovl_Obj_Lift	Square, collapsing platform
+297	00E08F70	00E09540	ovl_Obj_Hsblock	Stone Hookshot target
+298	00E09540	00E0AA20	ovl_En_Okarina_Tag	Play Ocarina here spot
+299	00E0AA20	00E0B0F0	ovl_En_Yabusame_Mark	Horseback Archery target (hitbox)
+300	00E0B0F0	00E0D4B0	ovl_En_Goroiwa	Rolling Boulder
+301	00E0D4B0	00E0E570	ovl_En_Ex_Ruppy	Sparkling Rupee
+302	00E0E570	00E0F200	ovl_En_Toryo	Head Carpenter
+303	00E0F200	00E10940	ovl_En_Daiku	Carpenter (Gerudo Valley?)
+304	00E10940	00E11380	ovl_En_Nwc	Non-solid round creatures (Alpha!)
+305	00E11380	00E118E0	ovl_En_Blkobj	Dark Link's illusion room
+306	00E118E0	00E11A40	ovl_Item_Inbox	Unknown
+307	00E11A40	00E13A70	ovl_En_Ge1	White clothed Gerudo
+308	00E13A70	00E13C10	ovl_Obj_Blockstop	Block Checkpoint
+309	00E13C10	00E15250	ovl_En_Sda	Dynamic Shadow for Link (Alpha? Check in Spirit Temple under light), works for all values except 1
+310	00E15250	00E1DDC0	ovl_En_Clear_Tag	Enemy Arwing (Alpha!)
+311	00E1DDC0	00E1F6A0	ovl_En_Niw_Lady	Kakariko Cucco lady
+312	00E1F6A0	00E203D0	ovl_En_Gm	Lockable blue arrow spot
+313	00E203D0	00E20AC0	ovl_En_Ms	Bean seller
+314	00E20AC0	00E21660	ovl_En_Hs	Carpenter's son (ignores you)
+315	00E21660	00E219F0	ovl_Bg_Ingate	Ingo's Gates
+316	00E219F0	00E24B40	ovl_En_Kanban	Square signpost
+317	00E24B40	00E25510	ovl_En_Heishi3	Hyrule Castle guard
+318	00E25510	00E275A0	ovl_En_Syateki_Niw	Hopping Cucco, not solid
+319	00E275A0	00E28800	ovl_En_Attack_Niw	Attacking Cucco, not solid
+320	00E28800	00E28A10	ovl_Bg_Spot01_Idosoko	Stone Blocking the Well Entrance
+321	00E28A10	00E2AC80	ovl_En_Sa	Saria
+322	00E2AC80	00E2B310	ovl_En_Wonder_Talk	Checkable spot, Navi hovers over it in green hue (has the bean seller’s 10 rupee please text)
+323	00E2B310	00E2B810	ovl_Bg_Gjyo_Bridge	Rainbow Bridge
+324	00E2B810	00E2C430	ovl_En_Ds	Potion Shop hag
+325	00E2C430	00E2D2C0	ovl_En_Mk	Lakeside Professor
+326	00E2D2C0	00E2E800	ovl_En_Bom_Bowl_Man	Bombchu Bowling alley lady
+327	00E2E800	00E2F170	ovl_En_Bom_Bowl_Pit	Bombchu Bowling Pit
+328	00E2F170	00E32D10	ovl_En_Owl	Kaepora Gaebora
+329	00E32D10	00E3BE60	ovl_En_Ishi	Small rock (may cause glitched graphics in certain places)
+330	00E3BE60	00E3C170	ovl_Obj_Hana	Grave flower
+331	00E3C170	00E3D5A0	ovl_Obj_Lightswitch	Sun Emblem Trigger (Spirit Temple)
+332	00E3D5A0	00E3DFC0	ovl_Obj_Mure2	Groups of small dispensers
+333	00E3DFC0	00E42600	ovl_En_Go	Goron (Cutscene?)
+334	00E42600	00E43340	ovl_En_Fu	Windmill man
+335	00E43340	00E43D20	ovl_En_Changer	Freezes when touch
+336	00E43D20	00E44F00	ovl_Bg_Jya_Megami	Large stone face (Spirit Temple)
+337	00E44F00	00E45450	ovl_Bg_Jya_Lift	Chain Platform (Spirit Temple)
+338	00E45450	00E45C90	ovl_Bg_Jya_Bigmirror	Large Circular Mirror (Spirit Temple)
+339	00E45C90	00E467C0	ovl_Bg_Jya_Bombchuiwa	Light blocking rock (Bombchu; Spirit Temple)
+340	00E467C0	00E46B50	ovl_Bg_Jya_Amishutter	Circular metal grating (Spirit Temple)
+341	00E46B50	00E47110	ovl_Bg_Jya_Bombiwa	Bombable rock wall (Spirit Temple)
+342	00E47110	00E48100	ovl_Bg_Spot18_Basket	Giant three sided Goron statue
+343	00E48100	00E4F100	ovl_En_Ganon_Organ	Ganon's Organ and surroundings
+344	00E4F100	00E4FEB0	ovl_En_Siofuki	Water spout
+345	00E4FEB0	00E50440	ovl_En_Stream	Whirlpool effect
+346	00E50440	00E51A60	ovl_En_Mm	Running man (Child Link version)
+347	00E51A60	00E55BA0	ovl_En_Ko	Kokiri
+348	00E55BA0	00E570B0	ovl_En_Kz	King Zora
+349	00E570B0	00E57FA0	ovl_En_Weather_Tag	Proximity Rain/Weather Effects
+350	00E57FA0	00E58500	ovl_Bg_Sst_Floor	Bongo Bongo's Drum
+351	00E58500	00E59270	ovl_En_Ani	Kakariko village rooftop man
+352	00E59270	00E5A3E0	ovl_En_Ex_Item	Lost Woods Slingshot Game
+353	00E5A3E0	00E5B190	ovl_Bg_Jya_Ironobj	Iron Knuckles Room Stuff (Spirit Temple)
+354	00E5B190	00E5BB60	ovl_En_Js	Magic carpet man
+355	00E5BB60	00E60920	ovl_En_Jsjutan	Flying Carpet
+356	00E60920	00E61B50	ovl_En_Cs	Graveyard boy
+357	00E61B50	00E641C0	ovl_En_Md	Mido
+358	00E641C0	00E67B00	ovl_En_Hy	Market NPCs
+359	00E67B00	00E6BD20	ovl_En_Ganon_Mant	? (seems to slow down the game a bit, but only in free-roaming mode)
+360	00E6BD20	00E6C0D0	ovl_En_Okarina_Effect	Rain and lightning
+361	00E6C0D0	00E6EFE0	ovl_En_Mag	Makes map blue
+362	00E6EFE0	00E6F5D0	ovl_Door_Gerudo	Metal grate door (Navi says you have the wrong kind of key, boss door?)
+363	00E6F5D0	00E6FA40	ovl_Elf_Msg2	Targetable Navi spot, green (variable values match that of actor 11B)
+364	00E6FA40	00E75040	ovl_Demo_Gt	Ganon's Tower Collapsing
+365	00E75040	00E78A20	ovl_En_Po_Field	Big Poe
+366	00E78A20	00E79500	ovl_Efc_Erupc	Lava particle fountain (Death Mountain panorama)
+367	00E79500	00E79970	ovl_Bg_Zg	Metal bars (Ganon's Castle)
+368	00E79970	00E7A870	ovl_En_Heishi4	Hyrule guard
+369	00E7A870	00E826C0	ovl_En_Zl3	Adult Zelda (Non-Cutscene)
+370	00E826C0	00E939B0	ovl_Boss_Ganon2	Ganon
+371	00E939B0	00E946F0	ovl_En_Kakasi	Pierre the Scarecrow
+372	00E946F0	00E94FB0	ovl_En_Takara_Man	Treasure Chest game man
+373	00E94FB0	00E95440	ovl_Obj_Makeoshihiki	Push Block (Has Savepoint?)
+374	00E95440	00E96370	ovl_Oceff_Spot	Sun's Song effect
+375	00E96370	00E9A4A0	ovl_End_Title	The End message
+376	00E9A4A0	00E9A590	ovl_En_Torch	Grotto Treasure Chest
+377	00E9A590	00E9DDF0	ovl_Demo_Ec	Ranch NPCs (End Cutscene)
+378	00E9DDF0	00E9E4B0	ovl_Shot_Sun	Song of Storms Fairy
+379	00E9E4B0	00E9EA30	ovl_En_Dy_Extra	Spiral Beams (Great Fairy Fountains)
+380	00E9EA30	00E9F0D0	ovl_En_Wonder_Talk2	Checkable spot, disappears after use
+381	00E9F0D0	00EA0A70	ovl_En_Ge2	Patrolling Gerudo
+382	00EA0A70	00EA0CC0	ovl_Obj_Roomtimer	Timer
+383	00EA0CC0	00EA32B0	ovl_En_Ssh	Cursed Skulltula people
+384	00EA32B0	00EA7360	ovl_En_Sth	Uncursed Skulltula People
+385	00EA7360	00EA80B0	ovl_Oceff_Wipe	Zelda's Lullaby effect
+386	00EA80B0	00EA88E0		
+387	00EA88E0	00EA8F50		
+388	00EA8F50	00EA9370		
+389	00EA9370	00EA9CA0		
+390	00EA9CA0	00EAA030		
+391	00EAA030	00EAA5E0		
+392	00EAA5E0	00EAAAD0		
+393	00EAAAD0	00EAAF50		
+394	00EAAF50	00EAB4B0		
+395	00EAB4B0	00EAB960		
+396	00EAB960	00EABBC0		
+397	00EABBC0	00EABE50		
+398	00EABE50	00EAC520		
+399	00EAC520	00EACAB0		
+400	00EACAB0	00EAD0F0		
+401	00EAD0F0	00EAD490		
+402	00EAD490	00EADB60		
+403	00EADB60	00EADE90		
+404	00EADE90	00EAE3A0		
+405	00EAE3A0	00EAE730		
+406	00EAE730	00EAEC80		
+407	00EAEC80	00EAFC00		
+408	00EAFC00	00EB0030		
+409	00EB0030	00EB01E0		
+410	00EB01E0	00EB1270		
+411	00EB1270	00EB16B0		
+412	00EB16B0	00EB1EC0		
+413	00EB1EC0	00EB25C0		
+414	00EB25C0	00EB2D00		
+415	00EB2D00	00EB30C0		
+416	00EB30C0	00EB3570		
+417	00EB3570	00EB3A50		
+418	00EB3A50	00EB3FE0		
+419	00EB3FE0	00EB4460		
+420	00EB4460	00EB45A0		
+421	00EB45A0	00EB6140	ovl_Oceff_Storm	Song of Storm's effect
+422	00EB6140	00EB7B40	ovl_En_Weiyer	Stinger
+423	00EB7B40	00EB7E60	ovl_Bg_Spot05_Soko	2D square texture
+424	00EB7E60	00EB84F0	ovl_Bg_Jya_1flift	Stone platform (Defunct?)
+425	00EB84F0	00EB8CE0	ovl_Bg_Jya_Haheniron	Black particle fountain (lasts for only a second)
+426	00EB8CE0	00EB90F0	ovl_Bg_Spot12_Gate	Gerudo Fortress wooden gate
+427	00EB90F0	00EB95B0	ovl_Bg_Spot12_Saku	Gerudo Fortress training area gate
+428	00EB95B0	00EBAFE0	ovl_En_Hintnuts	Green Deku Scrub (text seems to vary depending on the area you're in)
+429	00EBAFE0	00EBB600	ovl_En_Nutsball	Deku Scrub's Nut Attack
+430	00EBB600	00EBB7A0	ovl_Bg_Spot00_Break	Drawbridge (Broken)
+431	00EBB7A0	00EBC6B0	ovl_En_Shopnuts	Grounded Sales Scrub
+432	00EBC6B0	00EBC840	ovl_En_It	Dampe Game Collectables
+433	00EBC840	00EC1BF0	ovl_En_GeldB	Gerudo Fighter
+434	00EC1BF0	00EC3360	ovl_Oceff_Wipe2	Epona's Song effect
+435	00EC3360	00EC4AB0	ovl_Oceff_Wipe3	Saria's Song effect 
+436	00EC4AB0	00EC5580	ovl_En_Niw_Girl	Girl chasing Cucco (Defunct?)
+437	00EC5580	00EC6730	ovl_En_Dog	Dog (note: it is possible to make this spawn an infinite number of dogs)
+438	00EC6730	00EC6C30	ovl_En_Si	Golden Skulltula token
+439	00EC6C30	00EC70F0	ovl_Bg_Spot01_Objects2	Semi-built shooting gallery (Defunct?)
+440	00EC70F0	00EC7950	ovl_Obj_Comb	Beehive (graphics glitch in certain areas)
+441	00EC7950	00EC7F90	ovl_Bg_Spot11_Bakudankabe	Desert Colossus Bombable Wall (Nayru's Love)
+442	00EC7F90	00EC8650	ovl_Obj_Kibako2	Large Crate
+443	00EC8650	00EC9370	ovl_En_Dnt_Demo	Trigger for Deku Mask Panel (wear a mask to start the cutscene)
+444	00EC9370	00ECA880	ovl_En_Dnt_Jiji	Deku Mask panel Head Judge
+445	00ECA880	00ECD680	ovl_En_Dnt_Nomal	Deku Panel
+446	00ECD680	00ECE020	ovl_En_Guest	Man in purple pants and white top (may cause crashes in some areas)
+447	00ECE020	00ECE240	ovl_Bg_Bom_Guard	Bombchu Bowling Alley Game
+448	00ECE240	00ECE820	ovl_En_Hs2	Carpenter's Son (Child Link version)
+449	00ECE820	00ECFB00	ovl_Demo_Kekkai	Ganon's Tower magic barrier
+450	00ECFB00	00ED01A0	ovl_Bg_Spot08_Bakudankabe	Zora's Fountain Bombable wall
+451	00ED01A0	00ED0880	ovl_Bg_Spot17_Bakudankabe	Explodable Crater Wall
+452	00ED0880	00ED1050	ovl_Obj_Mure3	Tower of Rupees
+453	00ED1050	00ED1720	ovl_En_Tg	Entwined lovers (Honey & Darling)
+454	00ED1720	00ED2040	ovl_En_Mu	Haggling townspeople
+455	00ED2040	00ED8060	ovl_En_Go2	Gorons
+456	00ED8060	00EDC370	ovl_En_Wf	Wolfos
+457	00EDC370	00EDDC60	ovl_En_Skb	Hyrule Field Stalchild
+458	00EDDC60	00EE1910	ovl_Demo_Gj	Ganon Battle rubble
+459	00EE1910	00EE2130	ovl_Demo_Geff	Chunk of stone (non-solid, Ganon's Tower rubble?)
+460	00EE2130	00EE2670	ovl_Bg_Gnd_Firemeiro	Sinking lava platform (Ganon's Castle)
+461	00EE2670	00EE2E30	ovl_Bg_Gnd_Darkmeiro	Ice block
+462	00EE2E30	00EE3690	ovl_Bg_Gnd_Soulmeiro	Web blocked light window
+463	00EE3690	00EE3800	ovl_Bg_Gnd_Nisekabe	2D stone wall
+464	00EE3800	00EE48F0	ovl_Bg_Gnd_Iceblock	Large square ice block (Defunct?)
+465	00EE48F0	00EE6060	ovl_Bg_Ydan_Sp	Webs
+466	00EE6060	00EE7790	ovl_En_Gb	Poe collector and surroundings
+467	00EE7790	00EE9630	ovl_En_Gs	Gossip stone
+468	00EE9630	00EEAB00	ovl_Bg_Mizu_Bwall	Bombable stone wall
+469	00EEAB00	00EEB300	ovl_Bg_Mizu_Shutter	Metal gate
+470	00EEB300	00EEC6C0	ovl_En_Daiku_Kakariko	Carpenters (Defunct?)
+471	00EEC6C0	00EED040	ovl_Bg_Bowl_Wall	Bombchu Bowling alley wall 
+472	00EED040	00EED530	ovl_En_Wall_Tubo	Bombchu Bowling Alley Wall 2
+473	00EED530	00EEE2F0	ovl_En_Po_Desert	Desert Wasteland Poe Guide
+474	00EEE2F0	00EEF990	ovl_En_Crow	Guay
+475	00EEF990	00EF0F00	ovl_Door_Killer	Fake door
+476	00EF0F00	00EF1630	ovl_Bg_Spot11_Oasis	Desert Colossus Oasis
+477	00EF1630	00EF17D0	ovl_Bg_Spot18_Futa	Lid to Goron Jar
+478	00EF17D0	00EF1D20	ovl_Bg_Spot18_Shutter	Goron room door
+479	00EF1D20	00EF2C90	ovl_En_Ma3	Adult Malon (Ranch)
+480	00EF2C90	00EF40F0	ovl_En_Cow	Cow
+481	00EF40F0	00EF4920	ovl_Bg_Ice_Turara	Icicles
+482	00EF4920	00EF4D90	ovl_Bg_Ice_Shutter	2D Ice bars (for a door?)
+483	00EF4D90	00EF54B0	ovl_En_Kakasi2	Green Navi spot
+484	00EF54B0	00EF6590	ovl_En_Kakasi3	Bonooru the Scarecrow
+485	00EF6590	00EF7570	ovl_Oceff_Wipe4	Song of Time effect
+486	00EF7570	00EF7720	ovl_En_Eg	Zelda's Path in Tower Collapse Escape?
+487	00EF7720	00EF7870	ovl_Bg_Menkuri_Nisekabe	Circular piece of stone wall
+488	00EF7870	00EF9E20	ovl_En_Zo	Zora
+489	00EF9E20	00EFA2E0		
+490	00EFA2E0	00EFA430	ovl_Obj_Makekinsuta	Skulltula Sprouting from Bean Plant
+491	00EFA430	00EFAF80	ovl_En_Ge3	Gerudo giving you membership card
+492	00EFAF80	00EFBBC0	ovl_Obj_Timeblock	Time block
+493	00EFBBC0	00EFC410	ovl_Obj_Hamishi	Bronze boulder
+494	00EFC410	00F00E40	ovl_En_Zl4	Child Zelda
+495	00F00E40	00F01C00	ovl_En_Mm2	Running Man (Adult)
+496	00F01C00	00F01E70	ovl_Bg_Jya_Block	Young Link Silver Block (Spirit Temple)
+497	00F01E70	00F029A0	ovl_Obj_Warp2block	Time Block Spawning Spot (Navi Target)
+498	00F03000	00F5ECE0	gameplay_keep	Shared assets for actors
+499	00F5F000	00F6C330	gameplay_field_keep	Shared assets for actors outside of dungeons
+500	00F6D000	00F84AF0	gameplay_dangeon_keep	Shared assets for actors inside dungeons
+501	00F85000	00F85010	gameplay_object_exchange_static	
+502	00F86000	00FBD800	object_link_boy	
+503	00FBE000	00FEAF80	object_link_child	
+504	00FEB000	00FF1000	object_box	
+505	00FF1000	01004180	object_human	
+506	01005000	01008C80	object_okuta	
+507	01009000	0100E0E0	object_poh	
+508	0100F000	01019070	object_wallmaster	
+509	0101A000	01037530	object_dy_obj	
+510	01038000	010398C0	object_firefly	
+511	0103A000	01043940	object_dodongo	
+512	01044000	010480A0	object_fire	
+513	01049000	0104B540	object_niw	
+514	0104C000	0104FA30	object_tite	
+515	01050000	01051EF0	object_reeba	
+516	01052000	01053C90	object_peehat	
+517	01054000	010838E0	object_kingdodongo	
+518	01084000	01091F10	object_horse	
+519	01092000	010A83A0	object_zf	
+520	010A9000	010C7200	object_goma	
+521	010C8000	010DC3C0	object_zl1	
+522	010DD000	010E1220	object_gol	
+523	010E2000	010E30C0	object_bubble	
+524	010E4000	010E60F0	object_dodojr	
+525	010E7000	010EB770	object_torch2	
+526	010EC000	010F1850	object_bl	
+527	010F2000	010F3CF0	object_tp	
+528	010F4000	010F8710	object_oA1	
+529	010F9000	010FEBB0	object_st	
+530	010FF000	01101260	object_bw	
+531	01102000	01105420	object_ei	
+532	01106000	0110FFC0	object_horse_normal	
+533	01110000	011166B0	object_oB1	
+534	01117000	01119150	object_o_anime	
+535	0111A000	0111B6C0	object_spot04_objects	
+536	0111C000	01124760	object_ddan_objects	
+537	01125000	0113CD20	object_hidan_objects	
+538	0113D000	01149090	object_horse_ganon	
+539	0114A000	0114F6D0	object_oA2	
+540	01150000	01151C10	object_spot00_objects	
+541	01152000	011661A0	object_mb	
+542	01167000	01168A00	object_bombf	
+543	01169000	01177800	object_sk2	
+544	01178000	0117E810	object_oE1	
+545	0117F000	01184060	object_oE_anime	
+546	01185000	0118AA70	object_oE2	
+547	0118B000	01194080	object_ydan_objects	
+548	01195000	011A8000	object_gnd	
+549	011A8000	011ADB50	object_am	
+550	011AE000	011B19C0	object_dekubaba	
+551	011B2000	011B4130	object_oA3	
+552	011B5000	011B6730	object_oA4	
+553	011B7000	011B86B0	object_oA5	
+554	011B9000	011BAA00	object_oA6	
+555	011BB000	011BC550	object_oA7	
+556	011BD000	011C8AC0	object_jj	
+557	011C9000	011CA7B0	object_oA8	
+558	011CB000	011CB520	object_oA9	
+559	011CC000	011D00E0	object_oB2	
+560	011D1000	011D5490	object_oB3	
+561	011D6000	011D7870	object_oB4	
+562	011D8000	011DF160	object_horse_zelda	
+563	011E0000	011E5060	object_opening_demo1	
+564	011E6000	011E8CB0	object_warp1	
+565	011E9000	011E9640	object_b_heart	
+566	011EA000	011ED660	object_dekunuts	
+567	011EE000	011F5120	object_oE3	
+568	011F6000	011FAFD0	object_oE4	
+569	011FB000	01203B10	object_menkuri_objects	
+570	01204000	012095C0	object_oE5	
+571	0120A000	0120CE50	object_oE6	
+572	0120D000	0120FA60	object_oE7	
+573	01210000	012133D0	object_oE8	
+574	01214000	01216F10	object_oE9	
+575	01217000	012199D0	object_oE10	
+576	0121A000	0121D1F0	object_oE11	
+577	0121E000	012217C0	object_oE12	
+578	01222000	01226850	object_vali	
+579	01227000	01229EB0	object_oA10	
+580	0122A000	0122B5C0	object_oA11	
+581	0122C000	01237320	object_mizu_objects	
+582	01238000	01248DE0	object_fhg	
+583	01249000	01252B50	object_ossan	
+584	01253000	012584F0	object_mori_hineri1	
+585	01259000	0125AA40	object_Bb	
+586	0125B000	01263450	object_toki_objects	
+587	01264000	012654F0	object_yukabyun	
+588	01266000	01276D80	object_zl2	
+589	01277000	01278290	object_mjin	
+590	01279000	0127A000	object_mjin_flash	
+591	0127A000	0127B000	object_mjin_dark	
+592	0127B000	0127C000	object_mjin_flame	
+593	0127C000	0127D000	object_mjin_ice	
+594	0127D000	0127E000	object_mjin_soul	
+595	0127E000	0127F000	object_mjin_wind	
+596	0127F000	01280B60	object_mjin_oka	
+597	01281000	0129E6B0	object_haka_objects	
+598	0129F000	012A1DA0	object_spot06_objects	
+599	012A2000	012AAD50	object_ice_objects	
+600	012AB000	012AE630	object_relay_objects	
+601	012AF000	012B24C0	object_mori_hineri1a	
+602	012B3000	012B7400	object_mori_hineri2	
+603	012B8000	012BE0B0	object_mori_hineri2a	
+604	012BF000	012C7A10	object_mori_objects	
+605	012C8000	012D1E00	object_mori_tex	
+606	012D2000	012D7600	object_spot08_obj	
+607	012D8000	012D8010	object_warp2	
+608	012D9000	012DBFE0	object_hata	
+609	012DC000	012DE1A0	object_bird	
+610	012DF000	012E77D0	object_wood02	
+611	012E8000	012E9F40	object_lightbox	
+612	012EA000	012EB600	object_pu_box	
+613	012EC000	012EE3E0	object_trap	
+614	012EF000	012F0590	object_vase	
+615	012F1000	01303230	object_im	
+616	01304000	013123F0	object_ta	
+617	01313000	0131EE50	object_tk	
+618	0131F000	0133BB20	object_xc	
+619	0133C000	0133FF70	object_vm	
+620	01340000	0135DDB0	object_bv	
+621	0135E000	01364AF0	object_hakach_objects	
+622	01365000	01365AA0	object_efc_crystal_light	
+623	01366000	01366D00	object_efc_fire_ball	
+624	01367000	01367010	object_efc_flash	
+625	01368000	013692D0	object_efc_lgt_shower	
+626	0136A000	0136B7D0	object_efc_star_field	
+627	0136C000	01370350	object_god_lgt	
+628	01371000	01372280	object_light_ring	
+629	01373000	01375910	object_triforce_spot	
+630	01376000	0137B140	object_medal	
+631	0137C000	01388D10	object_bdan_objects	
+632	01389000	013956E0	object_sd	
+633	01396000	013A4FF0	object_rd	
+634	013A5000	013B33C0	object_po_sisters	
+635	013B4000	013B5AE0	object_heavy_object	
+636	013B6000	013C7A00	object_gndd	
+637	013C8000	013D8270	object_fd	
+638	013D9000	013EB630	object_du	
+639	013EC000	013F3DE0	object_fw	
+640	013F4000	013FCB20	object_horse_link_child	
+641	013FD000	01413620	object_spot02_objects	
+642	01414000	01415460	object_haka	
+643	01416000	01429A80	object_ru1	
+644	0142A000	0142DC90	object_syokudai	
+645	0142E000	0143FA90	object_fd2	
+646	01440000	014490C0	object_dh	
+647	0144A000	01451B50	object_rl	
+648	01452000	014532F0	object_efc_tw	
+649	01454000	01454010	object_demo_tre_lgt	
+650	01455000	01455A20	object_gi_key	
+651	01456000	01457D00	object_mir_ray	
+652	01458000	01459AA0	object_brob	
+653	0145A000	0145D680	object_gi_jewel	
+654	0145E000	01476890	object_spot09_obj	
+655	01477000	01483A10	object_spot18_obj	
+656	01484000	0148B5C0	object_bdoor	
+657	0148C000	0148D830	object_spot17_obj	
+658	0148E000	01491A20	object_shop_dungen	
+659	01492000	014AA1E0	object_nb	
+660	014AB000	014B2C70	object_mo	
+661	014B3000	014B5CA0	object_sb	
+662	014B6000	014B6D20	object_gi_melody	
+663	014B7000	014B71F0	object_gi_heart	
+664	014B8000	014B8D10	object_gi_compass	
+665	014B9000	014BA010	object_gi_bosskey	
+666	014BB000	014C0370	object_gi_medal	
+667	014C1000	014C21C0	object_gi_nuts	
+668	014C3000	014D8230	object_sa	
+669	014D9000	014DA7B0	object_gi_hearts	
+670	014DB000	014DBCB0	object_gi_arrowcase	
+671	014DC000	014DCE60	object_gi_bombpouch	
+672	014DD000	014F5C50	object_in	
+673	014F6000	01508E30	object_tr	
+674	01509000	0150A500	object_spot16_obj	
+675	0150B000	01511560	object_oE1s	
+676	01512000	01516E00	object_oE4s	
+677	01517000	01521640	object_os_anime	
+678	01522000	015228F0	object_gi_bottle	
+679	01523000	015236C0	object_gi_stick	
+680	01524000	01525160	object_gi_map	
+681	01526000	015365A0	object_oF1d_map	
+682	01537000	015468D0	object_ru2	
+683	01547000	01547D50	object_gi_shield_1	
+684	01548000	0154B510	object_dekujr	
+685	0154C000	0154D1D0	object_gi_magicpot	
+686	0154E000	0154ECB0	object_gi_bomb_1	
+687	0154F000	015578A0	object_oF1s	
+688	01558000	01561EF0	object_ma2	
+689	01562000	01563B70	object_gi_purse	
+690	01564000	0156EF70	object_hni	
+691	0156F000	015A8BB0	object_tw	
+692	015A9000	015A9E00	object_rr	
+693	015AA000	015ACBF0	object_bxa	
+694	015AD000	015B09A0	object_anubice	
+695	015B1000	015B2340	object_gi_gerudo	
+696	015B3000	015B4B10	object_gi_arrow	
+697	015B5000	015B56A0	object_gi_bomb_2	
+698	015B6000	015B7320	object_gi_egg	
+699	015B8000	015B8DF0	object_gi_scale	
+700	015B9000	015BA070	object_gi_shield_2	
+701	015BB000	015BC560	object_gi_hookshot	
+702	015BD000	015BDBB0	object_gi_ocarina	
+703	015BE000	015BF470	object_gi_milk	
+704	015C0000	015C8D80	object_ma1	
+705	015C9000	015D9100	object_ganon	
+706	015DA000	015F37B0	object_sst	
+707	015F4000	015F6170	object_ny	
+708	015F7000	016024B0	object_fr	
+709	01603000	01603C60	object_gi_pachinko	
+710	01604000	01604DA0	object_gi_boomerang	
+711	01605000	01605D30	object_gi_bow	
+712	01606000	01607180	object_gi_glasses	
+713	01608000	016098D0	object_gi_liquid	
+714	0160A000	01611700	object_ani	
+715	01612000	01615BA0	object_demo_6k	
+716	01616000	016172C0	object_gi_shield_3	
+717	01618000	01618E00	object_gi_letter	
+718	01619000	0161AD00	object_spot15_obj	
+719	0161B000	01637140	object_jya_obj	
+720	01638000	01639860	object_gi_clothes	
+721	0163A000	0163A8C0	object_gi_bean	
+722	0163B000	0163B950	object_gi_fish	
+723	0163C000	0163CB80	object_gi_saw	
+724	0163D000	0163DCC0	object_gi_hammer	
+725	0163E000	0163EC10	object_gi_grass	
+726	0163F000	0163F8C0	object_gi_longsword	
+727	01640000	01642490	object_spot01_objects	
+728	01643000	0164D150	object_md	
+729	0164E000	016539C0	object_km1	
+730	01654000	0165A8E0	object_kw1	
+731	0165B000	01667040	object_zo	
+732	01668000	016706E0	object_kz	
+733	01671000	01672470	object_umajump	
+734	01673000	016734C0	object_masterkokiri	
+735	01674000	01676CA0	object_masterkokirihead	
+736	01677000	01677110	object_mastergolon	
+737	01678000	016787A0	object_masterzoora	
+738	01679000	0167E6B0	object_aob	
+739	0167F000	0169F5D0	object_ik	
+740	016A0000	016A59B0	object_ahg	
+741	016A6000	016A89D0	object_cne	
+742	016A9000	016AA9F0	object_gi_niwatori	
+743	016AB000	016B3E30	object_skj	
+744	016B4000	016B4C80	object_gi_bottle_letter	
+745	016B5000	016B9190	object_bji	
+746	016BA000	016BE290	object_bba	
+747	016BF000	016BFC10	object_gi_ocarina_0	
+748	016C0000	016C4780	object_ds	
+749	016C5000	016CBFB0	object_ane	
+750	016CC000	016D1CC0	object_boj	
+751	016D2000	016D3660	object_spot03_object	
+752	016D4000	016DAD30	object_spot07_object	
+753	016DB000	016DE4D0	object_fz	
+754	016DF000	016E3F20	object_bob	
+755	016E4000	016EE4B0	object_ge1	
+756	016EF000	016EFE50	object_yabusame_point	
+757	016F0000	016F1BC0	object_gi_boots_2	
+758	016F2000	016F2AC0	object_gi_seed	
+759	016F3000	016F4280	object_gnd_magic	
+760	016F5000	016F6390	object_d_elevator	
+761	016F7000	016F8760	object_d_hsblock	
+762	016F9000	016FA800	object_d_lift	
+763	016FB000	016FD6E0	object_mamenoki	
+764	016FE000	016FF8A0	object_goroiwa	
+765	01700000	01707160	object_toryo	
+766	01708000	01710870	object_daiku	
+767	01711000	01711DA0	object_nwc	
+768	01712000	01725890	object_blkobj	
+769	01726000	017262D0	object_gm	
+770	01727000	0172ADD0	object_ms	
+771	0172B000	01731270	object_hs	
+772	01732000	017331F0	object_ingate	
+773	01734000	01736420	object_lightswitch	
+774	01737000	01737380	object_kusa	
+775	01738000	017399F0	object_tsubo	
+776	0173A000	0173B960	object_gi_gloves	
+777	0173C000	0173C850	object_gi_coin	
+778	0173D000	0173E7B0	object_kanban	
+779	0173F000	017405F0	object_gjyo_objects	
+780	01741000	017510C0	object_owl	
+781	01752000	01757E00	object_mk	
+782	01758000	0175ECA0	object_fu	
+783	0175F000	0175FDF0	object_gi_ki_tan_mask	
+784	01760000	01760A90	object_gi_redead_mask	
+785	01761000	01761CE0	object_gi_skj_mask	
+786	01762000	01762F00	object_gi_rabit_mask	
+787	01763000	01764860	object_gi_truth_mask	
+788	01765000	01766170	object_ganon_objects	
+789	01767000	01767DB0	object_siofuki	
+790	01768000	01768A80	object_stream	
+791	01769000	01771070	object_mm	
+792	01772000	01775B90	object_fa	
+793	01776000	0177A670	object_os	
+794	0177B000	0177B970	object_gi_eye_lotion	
+795	0177C000	0177CB80	object_gi_powder	
+796	0177D000	0177DCD0	object_gi_mushroom	
+797	0177E000	0177F2A0	object_gi_ticketstone	
+798	01780000	01780990	object_gi_brokensword	
+799	01781000	01786F30	object_js	
+800	01787000	0178F550	object_cs	
+801	01790000	01790C20	object_gi_prescription	
+802	01791000	01791BF0	object_gi_bracelet	
+803	01792000	017924D0	object_gi_soldout	
+804	01793000	01794110	object_gi_frog	
+805	01795000	017B4440	object_mag	
+806	017B5000	017B59A0	object_door_gerudo	
+807	017B6000	017C95F0	object_gt	
+808	017CA000	017CC8F0	object_efc_erupc	
+809	017CD000	017D8610	object_zl2_anime1	
+810	017D9000	017E3AE0	object_zl2_anime2	
+811	017E4000	017E57B0	object_gi_golonmask	
+812	017E6000	017E7630	object_gi_zoramask	
+813	017E8000	017E9400	object_gi_gerudomask	
+814	017EA000	0181E7F0	object_ganon2	
+815	0181F000	018257C0	object_ka	
+816	01826000	0182AFF0	object_ts	
+817	0182B000	0182C200	object_zg	
+818	0182D000	0182EE70	object_gi_hoverboots	
+819	0182F000	0182FE80	object_gi_m_arrow	
+820	01830000	01834270	object_ds2	
+821	01835000	01841930	object_ec	
+822	01842000	018575F0	object_fish	
+823	01858000	01858650	object_gi_sutaru	
+824	01859000	01859C50	object_gi_goddess	
+825	0185A000	0185FC00	object_ssh	
+826	01860000	01866BD0	object_bigokuta	
+827	01867000	0186E2C0	object_bg	
+828	0186F000	018702F0	object_spot05_objects	
+829	01871000	018733C0	object_spot12_obj	
+830	01874000	01874B00	object_bombiwa	
+831	01875000	01878140	object_hintnuts	
+832	01879000	0187D880	object_rs	
+833	0187E000	0187FE20	object_spot00_break	
+834	01880000	01889EF0	object_gla	
+835	0188A000	0188E590	object_shopnuts	
+836	0188F000	0189A6F0	object_geldb	
+837	0189B000	018A4C90	object_gr	
+838	018A5000	018AC2A0	object_dog	
+839	018AD000	018AF660	object_jya_iron	
+840	018B0000	018B2280	object_jya_door	
+841	018B3000	018B3010		
+842	018B4000	018B5A90	object_spot11_obj	
+843	018B6000	018B70C0	object_kibako2	
+844	018B8000	018BB7D0	object_dns	
+845	018BC000	018BEE30	object_dnk	
+846	018BF000	018BFFE0	object_gi_fire	
+847	018C0000	018C0BF0	object_gi_insect	
+848	018C1000	018C1BD0	object_gi_butterfly	
+849	018C2000	018C2DB0	object_gi_ghost	
+850	018C3000	018C3FB0	object_gi_soul	
+851	018C4000	018C74F0	object_bowl	
+852	018C8000	018CEA40	object_po_field	
+853	018CF000	018DDD10	object_demo_kekkai	
+854	018DE000	018DF050	object_efc_doughnut	
+855	018E0000	018E1050	object_gi_dekupouch	
+856	018E2000	018EDC40	object_ganon_anime1	
+857	018EE000	018FE530	object_ganon_anime2	
+858	018FF000	019137F0	object_ganon_anime3	
+859	01914000	01914800	object_gi_rupy	
+860	01915000	01918C90	object_spot01_matoya	
+861	01919000	0191B1E0	object_spot01_matoyab	
+862	0191C000	01922FA0	object_po_composer	
+863	01923000	0192DE50	object_mu	
+864	0192E000	01938500	object_wf	
+865	01939000	0193D810	object_skb	
+866	0193E000	01948720	object_gj	
+867	01949000	01949FB0	object_geff	
+868	0194A000	0194D970	object_haka_door	
+869	0194E000	0194EA80	object_gs	
+870	0194F000	0195B900	object_ps	
+871	0195C000	0195D150	object_bwall	
+872	0195E000	0195F0D0	object_crow	
+873	01960000	01964EB0	object_cow	
+874	01965000	01967210	object_cob	
+875	01968000	01968D20	object_gi_sword_1	
+876	01969000	0196ABE0	object_door_killer	
+877	0196B000	0196B970	object_ouke_haka	
+878	0196C000	0196CB60	object_timeblock	
+879	0196D000	01989E20	object_zl4	
+880	0198A000	0198BB00	g_pn_01	
+881	0198C000	0198DB00	g_pn_02	
+882	0198E000	0198FB00	g_pn_03	
+883	01990000	01991B00	g_pn_04	
+884	01992000	01993B00	g_pn_05	
+885	01994000	01995B00	g_pn_06	
+886	01996000	01997B00	g_pn_07	
+887	01998000	01999B00	g_pn_08	
+888	0199A000	0199BB00	g_pn_09	
+889	0199C000	0199DB00	g_pn_10	
+890	0199E000	0199FB00	g_pn_11	
+891	019A0000	019A1B00	g_pn_12	
+892	019A2000	019A3B00	g_pn_13	
+893	019A4000	019A5B00	g_pn_14	
+894	019A6000	019A7B00	g_pn_15	
+895	019A8000	019A9B00	g_pn_16	
+896	019AA000	019ABB00	g_pn_17	
+897	019AC000	019ADB00	g_pn_18	
+898	019AE000	019AFB00	g_pn_19	
+899	019B0000	019B1B00	g_pn_20	
+900	019B2000	019B3B00	g_pn_21	
+901	019B4000	019B5B00	g_pn_22	
+902	019B6000	019B7B00	g_pn_23	
+903	019B8000	019B9B00	g_pn_24	
+904	019BA000	019BBB00	g_pn_25	
+905	019BC000	019BDB00	g_pn_26	
+906	019BE000	019BFB00	g_pn_27	
+907	019C0000	019C1B00	g_pn_28	
+908	019C2000	019C3B00	g_pn_29	
+909	019C4000	019C5B00	g_pn_30	
+910	019C6000	019C7B00	g_pn_31	
+911	019C8000	019C9B00	g_pn_32	
+912	019CA000	019CBB00	g_pn_33	
+913	019CC000	019CDB00	g_pn_34	
+914	019CE000	019CFB00	g_pn_35	
+915	019D0000	019D1B00	g_pn_36	
+916	019D2000	019D3B00	g_pn_37	
+917	019D4000	019D5B00	g_pn_38	
+918	019D6000	019D7B00	g_pn_39	
+919	019D8000	019D9B00	g_pn_40	
+920	019DA000	019DBB00	g_pn_41	
+921	019DC000	019DDB00	g_pn_42	
+922	019DE000	019DFB00	g_pn_43	
+923	019E0000	019E1B00	g_pn_44	
+924	019E2000	019E3B00	g_pn_45	
+925	019E4000	019E5B00	g_pn_46	
+926	019E6000	019E7B00	g_pn_47	
+927	019E8000	019E9B00	g_pn_48	
+928	019EA000	019EBB00	g_pn_49	
+929	019EC000	019EDB00	g_pn_50	
+930	019EE000	019EFB00	g_pn_51	
+931	019F0000	019F1B00	g_pn_52	
+932	019F2000	019F3B00	g_pn_53	
+933	019F4000	019F5B00	g_pn_54	
+934	019F6000	019F7B00	g_pn_55	
+935	019F8000	019F9B00	g_pn_56	
+936	019FA000	019FBB00	g_pn_57	
+937	019FC000	019FE200	z_select_static	
+938	019FF000	01A01E50	nintendo_rogo_static	
+939	01A02000	01A3B5C0	title_static	File Select textures
+940	01A3C000	01A3FB00	parameter_static	Static UI textures (hud hearts, c-buttons for songs)
+941	01A40000	01A4C000	vr_fine0_static	Skybox at Sunrise
+942	01A4C000	01A4C100	vr_fine0_pal_static	Color palette for skybox vr_fine0
+943	01A4D000	01A59000	vr_fine1_static	Skybox at Daytime
+944	01A59000	01A59100	vr_fine1_pal_static	Color palette for skybox vr_fine1
+945	01A5A000	01A66000	vr_fine2_static	Skybox at Dusk
+946	01A66000	01A66100	vr_fine2_pal_static	Color palette for skybox vr_fine2
+947	01A67000	01A73000	vr_fine3_static	Skybox at Night
+948	01A73000	01A73100	vr_fine3_pal_static	Color palette for skybox vr_fine3
+949	01A74000	01A80000	vr_cloud0_static	
+950	01A80000	01A80100	vr_cloud0_pal_static	
+951	01A81000	01A8D000	vr_cloud1_static	
+952	01A8D000	01A8D100	vr_cloud1_pal_static	
+953	01A8E000	01A9A000	vr_cloud2_static	
+954	01A9A000	01A9A100	vr_cloud2_pal_static	
+955	01A9B000	01AA7000	vr_cloud3_static	
+956	01AA7000	01AA7100	vr_cloud3_pal_static	
+957	01AA8000	01AB8000	vr_holy0_static	
+958	01AB8000	01AB8100	vr_holy0_pal_static	
+959	01AB9000	01AC9000		
+960	01AC9000	01AC9100	vr_holy1_pal_static	
+961	01ACA000	01B0A000		
+962	01B0A000	01B0A800		
+963	01B0B000	01B4B000		
+964	01B4B000	01B4B800		
+965	01B4C000	01B8C000		
+966	01B8C000	01B8C800		
+967	01B8D000	01BCD000		
+968	01BCD000	01BCD800		
+969	01BCE000	01C0E000		
+970	01C0E000	01C0E800		
+971	01C0F000	01C3F000		
+972	01C3F000	01C3F600		
+973	01C40000	01C70000		
+974	01C70000	01C70600		
+975	01C71000	01CA1000		
+976	01CA1000	01CA1600		
+977	01CA2000	01CC2000		
+978	01CC2000	01CC2400		
+979	01CC3000	01D03000		
+980	01D03000	01D03800		
+981	01D04000	01D44000		
+982	01D44000	01D44800		
+983	01D45000	01D75000		
+984	01D75000	01D75600		
+985	01D76000	01DB6000		
+986	01DB6000	01DB6800		
+987	01DB7000	01DD7000		
+988	01DD7000	01DD7400		
+989	01DD8000	01DF8000		
+990	01DF8000	01DF8400		
+991	01DF9000	01E19000		
+992	01E19000	01E19400		
+993	01E1A000	01E3A000		
+994	01E3A000	01E3A400		
+995	01E3B000	01E5B000		
+996	01E5B000	01E5B400		
+997	01E5C000	01E7C000		
+998	01E7C000	01E7C400		
+999	01E7D000	01EBD000		
+1000	01EBD000	01EBD800		
+1001	01EBE000	01EEE000		
+1002	01EEE000	01EEE600		
+1003	01EEF000	01F0F000		
+1004	01F0F000	01F0F400		
+1005	01F10000	01F10070		
+1006	01F11000	01F11010		
+1007	01F12000	01F27140	ddan_scene	Dondogo's Cavern
+1008	01F28000	01F438A0	ddan_room_0	
+1009	01F44000	01F4DB00	ddan_room_1	
+1010	01F4E000	01F55DA0	ddan_room_2	
+1011	01F56000	01F63DC0	ddan_room_3	
+1012	01F64000	01F6D850	ddan_room_4	
+1013	01F6E000	01F73EE0	ddan_room_5	
+1014	01F74000	01F76400	ddan_room_6	
+1015	01F77000	01F7E6D0	ddan_room_7	
+1016	01F7F000	01F88400	ddan_room_8	
+1017	01F89000	01F94550	ddan_room_9	
+1018	01F95000	01F9CE50	ddan_room_10	
+1019	01F9D000	01F9F080	ddan_room_11	
+1020	01FA0000	01FA8730	ddan_room_12	
+1021	01FA9000	01FAB480	ddan_room_13	
+1022	01FAC000	01FAE490	ddan_room_14	
+1023	01FAF000	01FB1850	ddan_room_15	
+1024	01FB2000	01FB7550	ddan_room_16	
+1025	01FB8000	01FE2220	spot00_scene	Hyrule Field
+1026	01FE3000	01FF8230	spot00_room_0	
+1027	01FF9000	02015150	spot01_scene	Kakariko Village
+1028	02016000	0201FF20	spot01_room_0	
+1029	02020000	0202BC80	spot02_scene	Kakariko Graveyard
+1030	0202C000	0202E660	spot02_room_0	
+1031	0202F000	0204CE60	spot02_room_1	
+1032	0204D000	02058560	spot03_scene	Zora River
+1033	02059000	02066980	spot03_room_0	
+1034	02067000	0206E500	spot03_room_1	
+1035	0206F000	02080240	spot04_scene	Kokiri Forest
+1036	02081000	0209C380	spot04_room_0	
+1037	0209D000	020A5560	spot04_room_1	
+1038	020A6000	020AB010	spot04_room_2	
+1039	020AC000	020C0D60	spot05_scene	Sacred Forest Meadow
+1040	020C1000	020CAF00	spot05_room_0	
+1041	020CB000	020E6430	spot06_scene	Lake Hylia
+1042	020E7000	020F1620	spot06_room_0	
+1043	020F2000	020FB820	spot07_scene	Zora's Domain
+1044	020FC000	021022F0	spot07_room_0	
+1045	02103000	0210F9A0	spot07_room_1	
+1046	02110000	021216A0	spot08_scene	Zora's Fountain
+1047	02122000	0212A150	spot08_room_0	
+1048	0212B000	0213C160	spot09_scene	Gerudo Valley
+1049	0213D000	021455D0	spot09_room_0	
+1050	02146000	02156430	spot10_scene	Lost Woods
+1051	02157000	021595F0	spot10_room_0	
+1052	0215A000	02162430	spot10_room_1	
+1053	02163000	02167BF0	spot10_room_2	
+1054	02168000	0216DAB0	spot10_room_3	
+1055	0216E000	021704D0	spot10_room_4	
+1056	02171000	02177FF0	spot10_room_5	
+1057	02178000	0217BAF0	spot10_room_6	
+1058	0217C000	0217E5C0	spot10_room_7	
+1059	0217F000	02181670	spot10_room_8	
+1060	02182000	02185BE0	spot10_room_9	
+1061	02186000	0219F4E0	spot11_scene	Desert Colossus
+1062	021A0000	021AC7C0	spot11_room_0	
+1063	021AD000	021BCE80	spot12_scene	Gerudo Fortress
+1064	021BD000	021CE5C0	spot12_room_0	
+1065	021CF000	021DB0A0	spot12_room_1	
+1066	021DC000	021E1E30	spot13_scene	Haunted Wasteland
+1067	021E2000	021E2910	spot13_room_0	
+1068	021E3000	021F5A40	spot13_room_1	
+1069	021F6000	0220E500	spot15_scene	Hyrule Castle
+1070	0220F000	0221C1C0	spot15_room_0	
+1071	0221D000	0223BA90	spot16_scene	Death Mountain Trail
+1072	0223C000	02246C90	spot16_room_0	
+1073	02247000	02256EE0	spot17_scene	Death Mountain Crater
+1074	02257000	0225D880	spot17_room_0	
+1075	0225E000	02270350	spot17_room_1	
+1076	02271000	0227B450	spot18_scene	Goron City
+1077	0227C000	0228E7D0	spot18_room_0	
+1078	0228F000	02295200	spot18_room_1	
+1079	02296000	022A79B0	spot18_room_2	
+1080	022A8000	022C5CF0	spot18_room_3	
+1081	022C6000	022C8670	market_day_scene	Market - Child Day
+1082	022C9000	022CE870	market_day_room_0	
+1083	022CF000	022D1630	market_night_scene	Market - Child Night
+1084	022D2000	022D77A0	market_night_room_0	
+1085	022D8000	022F2970	HIDAN_scene	Fire Temple
+1086	022F3000	022FA2C0	HIDAN_room_0	
+1087	022FB000	023079E0	HIDAN_room_1	
+1088	02308000	02317FD0	HIDAN_room_2	
+1089	02318000	0231A4E0	HIDAN_room_3	
+1090	0231B000	02322890	HIDAN_room_4	
+1091	02323000	0232D230	HIDAN_room_5	
+1092	0232E000	02334FA0	HIDAN_room_6	
+1093	02335000	023389E0	HIDAN_room_7	
+1094	02339000	02342AC0	HIDAN_room_8	
+1095	02343000	0234B770	HIDAN_room_9	
+1096	0234C000	023644A0	HIDAN_room_10	
+1097	02365000	023687C0	HIDAN_room_11	
+1098	02369000	0236BB80	HIDAN_room_12	
+1099	0236C000	02378BE0	HIDAN_room_13	
+1100	02379000	0237B260	HIDAN_room_14	
+1101	0237C000	0237D1D0	HIDAN_room_15	
+1102	0237E000	02389970	HIDAN_room_16	
+1103	0238A000	02393140	HIDAN_room_17	
+1104	02394000	02397B80	HIDAN_room_18	
+1105	02398000	0239C1E0	HIDAN_room_19	
+1106	0239D000	023A3D10	HIDAN_room_20	
+1107	023A4000	023AC4C0	HIDAN_room_21	
+1108	023AD000	023B3B00	HIDAN_room_22	
+1109	023B4000	023BAD20	HIDAN_room_23	
+1110	023BB000	023C0540	HIDAN_room_24	
+1111	023C1000	023C7AE0	HIDAN_room_25	
+1112	023C8000	023CE8A0	HIDAN_room_26	
+1113	023CF000	023E4F90	Bmori1_scene	Forest Temple
+1114	023E5000	023F2BC0	Bmori1_room_0	
+1115	023F3000	023F8B60	Bmori1_room_1	
+1116	023F9000	02408A30	Bmori1_room_2	
+1117	02409000	0240CA10	Bmori1_room_3	
+1118	0240D000	024102B0	Bmori1_room_4	
+1119	02411000	024145E0	Bmori1_room_5	
+1120	02415000	0241E4C0	Bmori1_room_6	
+1121	0241F000	02432000	Bmori1_room_7	
+1122	02432000	02449B70	Bmori1_room_8	
+1123	0244A000	02454190	Bmori1_room_9	
+1124	02455000	0245A3E0	Bmori1_room_10	
+1125	0245B000	02465BD0	Bmori1_room_11	
+1126	02466000	0246E3E0	Bmori1_room_12	
+1127	0246F000	02477AB0	Bmori1_room_13	
+1128	02478000	0247DBB0	Bmori1_room_14	
+1129	0247E000	02480690	Bmori1_room_15	
+1130	02481000	02485FA0	Bmori1_room_16	
+1131	02486000	0248F150	Bmori1_room_17	
+1132	02490000	02491340	Bmori1_room_18	
+1133	02492000	02492510	Bmori1_room_19	
+1134	02493000	02494300	Bmori1_room_20	
+1135	02495000	02496780	Bmori1_room_21	
+1136	02497000	02498DE0	Bmori1_room_22	
+1137	02499000	024A6A10	ydan_scene	Deku Tree
+1138	024A7000	024BC2F0	ydan_room_0	
+1139	024BD000	024C1150	ydan_room_1	
+1140	024C2000	024C7E30	ydan_room_2	
+1141	024C8000	024DC1A0	ydan_room_3	
+1142	024DD000	024E1BD0	ydan_room_4	
+1143	024E2000	024EA320	ydan_room_5	
+1144	024EB000	024EFEC0	ydan_room_6	
+1145	024F0000	024F8910	ydan_room_7	
+1146	024F9000	024F9D00	ydan_room_8	
+1147	024FA000	025038A0	ydan_room_9	
+1148	02504000	02508D80	ydan_room_10	
+1149	02509000	02510170	ydan_room_11	
+1150	02511000	025148F0	kenjyanoma_scene	Chamber of Sages
+1151	02515000	02528110	kenjyanoma_room_0	
+1152	02529000	0253B7A0	tokinoma_scene	Temple of Time
+1153	0253C000	025531E0	tokinoma_room_0	
+1154	02554000	0255B0D0	tokinoma_room_1	
+1155	0255C000	0255DB60	link_home_scene	Link's House
+1156	0255E000	02585C80	link_home_room_0	
+1157	02586000	02586980	kokiri_shop_scene	Kokiri Shop
+1158	02587000	025B7C90	kokiri_shop_room_0	
+1159	025B8000	025CDCF0	MIZUsin_scene	Water Temple
+1160	025CE000	025E3C80	MIZUsin_room_0	
+1161	025E4000	025EE160	MIZUsin_room_1	
+1162	025EF000	025F4B90	MIZUsin_room_2	
+1163	025F5000	025FB710	MIZUsin_room_3	
+1164	025FC000	02601FE0	MIZUsin_room_4	
+1165	02602000	0260C5F0	MIZUsin_room_5	
+1166	0260D000	026182C0	MIZUsin_room_6	
+1167	02619000	0261E550	MIZUsin_room_7	
+1168	0261F000	0262CCD0	MIZUsin_room_8	
+1169	0262D000	02634FE0	MIZUsin_room_9	
+1170	02635000	0263AFB0	MIZUsin_room_10	
+1171	0263B000	0263F9B0	MIZUsin_room_11	
+1172	02640000	02646D90	MIZUsin_room_12	
+1173	02647000	02647A00	MIZUsin_room_13	
+1174	02648000	0264EE60	MIZUsin_room_14	
+1175	0264F000	02656430	MIZUsin_room_15	
+1176	02657000	0265AAD0	MIZUsin_room_16	
+1177	0265B000	02663A20	MIZUsin_room_17	
+1178	02664000	026680C0	MIZUsin_room_18	
+1179	02669000	0266C930	MIZUsin_room_19	
+1180	0266D000	02673740	MIZUsin_room_20	
+1181	02674000	0267B4A0	MIZUsin_room_21	
+1182	0267C000	026850F0	MIZUsin_room_22	
+1183	02686000	02686CC0	kokiri_home_scene	Know-it-all Brothers
+1184	02687000	026B2C30	kokiri_home_room_0	
+1185	026B3000	026C0820	kakusiana_scene	Grottos
+1186	026C1000	026C82A0	kakusiana_room_0	
+1187	026C9000	026CE190	kakusiana_room_1	
+1188	026CF000	026D18C0	kakusiana_room_2	
+1189	026D2000	026D7130	kakusiana_room_3	
+1190	026D8000	026DF960	kakusiana_room_4	
+1191	026E0000	026E46E0	kakusiana_room_5	
+1192	026E5000	026EAA70	kakusiana_room_6	
+1193	026EB000	026EEFD0	kakusiana_room_7	
+1194	026EF000	026F2630	kakusiana_room_8	
+1195	026F3000	026F8AD0	kakusiana_room_9	
+1196	026F9000	026FEA30	kakusiana_room_10	
+1197	026FF000	027076B0	kakusiana_room_11	
+1198	02708000	0270FE50	kakusiana_room_12	
+1199	02710000	02716ED0	kakusiana_room_13	
+1200	02717000	027173E0	entra_scene	Market Entrance - Child Day
+1201	02718000	0273DB70	entra_room_0	
+1202	0273E000	027537C0	bdan_scene	Inside Jabu Jabu's Belly
+1203	02754000	02758070	bdan_room_0	
+1204	02759000	0275EE90	bdan_room_1	
+1205	0275F000	027681D0	bdan_room_2	
+1206	02769000	02770160	bdan_room_3	
+1207	02771000	02775050	bdan_room_4	
+1208	02776000	0277C020	bdan_room_5	
+1209	0277D000	02781240	bdan_room_6	
+1210	02782000	02785520	bdan_room_7	
+1211	02786000	02789880	bdan_room_8	
+1212	0278A000	0278DC70	bdan_room_9	
+1213	0278E000	02791830	bdan_room_10	
+1214	02792000	02795800	bdan_room_11	
+1215	02796000	02799CD0	bdan_room_12	
+1216	0279A000	0279CB50	bdan_room_13	
+1217	0279D000	027A31E0	bdan_room_14	
+1218	027A4000	027A66E0	bdan_room_15	
+1219	027A7000	027BF3C0	HAKAdan_scene	Shadow Temple
+1220	027C0000	027CB0C0	HAKAdan_room_0	
+1221	027CC000	027CDAC0	HAKAdan_room_1	
+1222	027CE000	027D8910	HAKAdan_room_2	
+1223	027D9000	027DB940	HAKAdan_room_3	
+1224	027DC000	027DDC40	HAKAdan_room_4	
+1225	027DE000	027E3A60	HAKAdan_room_5	
+1226	027E4000	027EB570	HAKAdan_room_6	
+1227	027EC000	027EDAB0	HAKAdan_room_7	
+1228	027EE000	027F3060	HAKAdan_room_8	
+1229	027F4000	02800B60	HAKAdan_room_9	
+1230	02801000	028087A0	HAKAdan_room_10	
+1231	02809000	0280CD40	HAKAdan_room_11	
+1232	0280D000	02812720	HAKAdan_room_12	
+1233	02813000	02813FB0	HAKAdan_room_13	
+1234	02814000	02819940	HAKAdan_room_14	
+1235	0281A000	02821270	HAKAdan_room_15	
+1236	02822000	02824880	HAKAdan_room_16	
+1237	02825000	02827CD0	HAKAdan_room_17	
+1238	02828000	02835280	HAKAdan_room_18	
+1239	02836000	02838D20	HAKAdan_room_19	
+1240	02839000	0283AE20	HAKAdan_room_20	
+1241	0283B000	028464B0	HAKAdan_room_21	
+1242	02847000	028499A0	HAKAdan_room_22	
+1243	0284A000	0284B900	moribossroom_scene	Forest Temple Boss
+1244	0284C000	02851EC0	moribossroom_room_0	
+1245	02852000	0285FAB0	moribossroom_room_1	
+1246	02860000	0286C2C0	syatekijyou_scene	Shooting Gallery
+1247	0286D000	028746F0	syatekijyou_room_0	
+1248	02875000	02886530	men_scene	Gerudo Training Grounds
+1249	02887000	02896F90	men_room_0	
+1250	02897000	028A0290	men_room_1	
+1251	028A1000	028A5F80	men_room_2	
+1252	028A6000	028ADC20	men_room_3	
+1253	028AE000	028B8150	men_room_4	
+1254	028B9000	028BE0E0	men_room_5	
+1255	028BF000	028C6F40	men_room_6	
+1256	028C7000	028CF330	men_room_7	
+1257	028D0000	028D8210	men_room_8	
+1258	028D9000	028DC8F0	men_room_9	
+1259	028DD000	028E2C60	men_room_10	
+1260	028E3000	028E32F0	shop1_scene	Bazaar
+1261	028E4000	0290D7B0	shop1_room_0	
+1262	0290E000	0291F390	hairal_niwa_scene	Castle Courtyard - Day
+1263	02920000	0292A8E0	hairal_niwa_room_0	
+1264	0292B000	0292FB70	ganon_tou_scene	Ganon's Castle
+1265	02930000	02943AF0	ganon_tou_room_0	
+1266	02944000	02945250	market_alley_scene	Back Alley - Day
+1267	02946000	029BB700	market_alley_room_0	
+1268	029BC000	029CDDC0	spot20_scene	Lon Lon Ranch
+1269	029CE000	029D46D0	spot20_room_0	
+1270	029D5000	029D6630	market_ruins_scene	Market - Adult
+1271	029D7000	029D9820	market_ruins_room_0	
+1272	029DA000	029DA430	entra_n_scene	Market Entrance - Child Night
+1273	029DB000	02A00B70	entra_n_room_0	
+1274	02A01000	02A013E0	enrui_scene	Market Entrance - Adult
+1275	02A02000	02A27B60	enrui_room_0	
+1276	02A28000	02A292F0	market_alley_n_scene	Back Alley - Night
+1277	02A2A000	02A9F6F0	market_alley_n_room_0	
+1278	02AA0000	02AA3D50	hiral_demo_scene	Cutscene Map
+1279	02AA4000	02AA4640	hiral_demo_room_0	
+1280	02AA5000	02AA67A0	kokiri_home3_scene	House of Twins
+1281	02AA7000	02ADD610	kokiri_home3_room_0	
+1282	02ADE000	02AF7B40	jyasinzou_scene	Spirit Temple
+1283	02AF8000	02B08F40	jyasinzou_room_0	
+1284	02B09000	02B12300	jyasinzou_room_1	
+1285	02B13000	02B18C10	jyasinzou_room_2	
+1286	02B19000	02B1CB50	jyasinzou_room_3	
+1287	02B1D000	02B24270	jyasinzou_room_4	
+1288	02B25000	02B3CF40	jyasinzou_room_5	
+1289	02B3D000	02B41800	jyasinzou_room_6	
+1290	02B42000	02B47510	jyasinzou_room_7	
+1291	02B48000	02B50070	jyasinzou_room_8	
+1292	02B51000	02B56DF0	jyasinzou_room_9	
+1293	02B57000	02B5F1A0	jyasinzou_room_10	
+1294	02B60000	02B61010	jyasinzou_room_11	
+1295	02B62000	02B64060	jyasinzou_room_12	
+1296	02B65000	02B6A850	jyasinzou_room_13	
+1297	02B6B000	02B6FC90	jyasinzou_room_14	
+1298	02B70000	02B78470	jyasinzou_room_15	
+1299	02B79000	02B7F190	jyasinzou_room_16	
+1300	02B80000	02B89610	jyasinzou_room_17	
+1301	02B8A000	02B8FCB0	jyasinzou_room_18	
+1302	02B90000	02B95DE0	jyasinzou_room_19	
+1303	02B96000	02B9E1C0	jyasinzou_room_20	
+1304	02B9F000	02BA3650	jyasinzou_room_21	
+1305	02BA4000	02BA70D0	jyasinzou_room_22	
+1306	02BA8000	02BB1190	jyasinzou_room_23	
+1307	02BB2000	02BB84B0	jyasinzou_room_24	
+1308	02BB9000	02BCEB70	jyasinzou_room_25	
+1309	02BCF000	02BDBB20	jyasinzou_room_26	
+1310	02BDC000	02BE16C0	jyasinzou_room_27	
+1311	02BE2000	02BEAA20	jyasinzou_room_28	
+1312	02BEB000	02BFC610	ice_doukutu_scene	Ice Cavern
+1313	02BFD000	02C05660	ice_doukutu_room_0	
+1314	02C06000	02C12540	ice_doukutu_room_1	
+1315	02C13000	02C18AF0	ice_doukutu_room_2	
+1316	02C19000	02C21080	ice_doukutu_room_3	
+1317	02C22000	02C29670	ice_doukutu_room_4	
+1318	02C2A000	02C32890	ice_doukutu_room_5	
+1319	02C33000	02C37260	ice_doukutu_room_6	
+1320	02C38000	02C3D8F0	ice_doukutu_room_7	
+1321	02C3E000	02C3F950	ice_doukutu_room_8	
+1322	02C40000	02C48650	ice_doukutu_room_9	
+1323	02C49000	02C4D3E0	ice_doukutu_room_10	
+1324	02C4E000	02C53900	ice_doukutu_room_11	
+1325	02C54000	02C54670	malon_stable_scene	Stables
+1326	02C55000	02C83250	malon_stable_room_0	
+1327	02C84000	02C84EA0	kakariko_scene	Kakariko Village House
+1328	02C85000	02CAFFC0	kakariko_room_0	
+1329	02CB0000	02CB0E40	bdan_boss_scene	Inside Jabu Jabu's Belly Boss
+1330	02CB1000	02CB4020	bdan_boss_room_0	
+1331	02CB5000	02CBA0C0	bdan_boss_room_1	
+1332	02CBB000	02CBFC00	FIRE_bs_scene	Fire Temple Boss
+1333	02CC0000	02CC4270	FIRE_bs_room_0	
+1334	02CC5000	02CCBFE0	FIRE_bs_room_1	
+1335	02CCC000	02CCC510	hut_scene	Gravekeeper's Hut
+1336	02CCD000	02CF65A0	hut_room_0	
+1337	02CF7000	02D05000	daiyousei_izumi_scene	Great Fairy's Fountain (Upgrades)
+1338	02D05000	02D08910	daiyousei_izumi_room_0	
+1339	02D09000	02D09A90	hakaana_scene	Grave with Redead
+1340	02D0A000	02D118D0	hakaana_room_0	
+1341	02D12000	02D1A810	yousei_izumi_tate_scene	Small Fairy's Fountain
+1342	02D1B000	02D1F2D0	yousei_izumi_tate_room_0	
+1343	02D20000	02D2CDA0	yousei_izumi_yoko_scene	Great Fairy's Fountain (Spells)
+1344	02D2D000	02D31010	yousei_izumi_yoko_room_0	
+1345	02D32000	02D323A0	golon_scene	Goron Shop
+1346	02D33000	02D591D0	golon_room_0	
+1347	02D5A000	02D5A390	zoora_scene	Zora Shop
+1348	02D5B000	02D811E0	zoora_room_0	
+1349	02D82000	02D823F0	drag_scene	Kakariko Potion Shop
+1350	02D83000	02DAEE60	drag_room_0	
+1351	02DAF000	02DAF5B0	alley_shop_scene	Market Potion Shop
+1352	02DB0000	02DD6C30	alley_shop_room_0	
+1353	02DD7000	02DD7670	night_shop_scene	Bombchu Shop
+1354	02DD8000	02E00960	night_shop_room_0	
+1355	02E01000	02E01D10	impa_scene	Puppy Woman's House
+1356	02E02000	02E28FA0	impa_room_0	
+1357	02E29000	02E29EF0	labo_scene	Impa's House
+1358	02E2A000	02E566F0	labo_room_0	
+1359	02E57000	02E57680	tent_scene	Carpenter's Tent
+1360	02E58000	02E8B6A0	tent_room_0	
+1361	02E8C000	02E8FA20	nakaniwa_scene	Zelda's Courtyard
+1362	02E90000	02EA7EC0	nakaniwa_room_0	
+1363	02EA8000	02EAA860	ddan_boss_scene	Dondogo's Cavern Boss
+1364	02EAB000	02EAFE30	ddan_boss_room_0	
+1365	02EB0000	02EB3DD0	ddan_boss_room_1	
+1366	02EB4000	02EB5740	ydan_boss_scene	Deku Tree Boss
+1367	02EB6000	02EBCFF0	ydan_boss_room_0	
+1368	02EBD000	02EC37F0	ydan_boss_room_1	
+1369	02EC4000	02EC6780	HAKAdan_bs_scene	Shadow Temple Boss
+1370	02EC7000	02EC99E0	HAKAdan_bs_room_0	
+1371	02ECA000	02ECFF50	HAKAdan_bs_room_1	
+1372	02ED0000	02ED1A60	MIZUsin_bs_scene	Water Temple Boss
+1373	02ED2000	02ED6470	MIZUsin_bs_room_0	
+1374	02ED7000	02EE22F0	MIZUsin_bs_room_1	
+1375	02EE3000	02EF37B0	ganon_scene	Ganon's Tower Climb
+1376	02EF4000	02EFBED0	ganon_room_0	
+1377	02EFC000	02F03770	ganon_room_1	
+1378	02F04000	02F0B850	ganon_room_2	
+1379	02F0C000	02F13730	ganon_room_3	
+1380	02F14000	02F1D0D0	ganon_room_4	
+1381	02F1E000	02F26B10	ganon_room_5	
+1382	02F27000	02F30BA0	ganon_room_6	
+1383	02F31000	02F3B7A0	ganon_room_7	
+1384	02F3C000	02F42BE0	ganon_room_8	
+1385	02F43000	02F48920	ganon_room_9	
+1386	02F49000	02F50C20	ganon_boss_scene	Ganondorf Boss Room
+1387	02F51000	02F56E80	ganon_boss_room_0	
+1388	02F57000	02F5FCF0	jyasinboss_scene	Spirit Temple Boss
+1389	02F60000	02F60FD0	jyasinboss_room_0	
+1390	02F61000	02F68E40	jyasinboss_room_1	
+1391	02F69000	02F6CDC0	jyasinboss_room_2	
+1392	02F6D000	02F78700	jyasinboss_room_3	
+1393	02F79000	02F7AAB0	kokiri_home4_scene	Mido's House
+1394	02F7B000	02FB3950	kokiri_home4_room_0	
+1395	02FB4000	02FB5410	kokiri_home5_scene	Saria's House
+1396	02FB6000	02FE6F60	kokiri_home5_room_0	
+1397	02FE7000	02FF9180	ganon_final_scene	Tower Collapse Exterior
+1398	02FFA000	03006EB0	ganon_final_room_0	
+1399	03007000	03007840	kakariko3_scene	Back Alley Village House
+1400	03008000	03032580	kakariko3_room_0	
+1401	03033000	03041270	hakasitarelay_scene	? (Dampe's Grave / Windmill)
+1402	03042000	030492C0	hakasitarelay_room_0	
+1403	0304A000	03050720	hakasitarelay_room_1	
+1404	03051000	030594B0	hakasitarelay_room_2	
+1405	0305A000	03062CE0	hakasitarelay_room_3	
+1406	03063000	03067480	hakasitarelay_room_4	
+1407	03068000	0306C450	hakasitarelay_room_5	
+1408	0306D000	03074AB0	hakasitarelay_room_6	
+1409	03075000	030764E0	shrine_scene	Outside Temple of Time - Child Day
+1410	03077000	030C9AF0	shrine_room_0	
+1411	030CA000	030DC6E0	turibori_scene	Fishing Pond
+1412	030DD000	030E3760	turibori_room_0	
+1413	030E4000	030E5500	shrine_n_scene	Outside Temple of Time - Child Night
+1414	030E6000	03138B10	shrine_n_room_0	
+1415	03139000	0313A490	shrine_r_scene	Outside Temple of Time - Adult
+1416	0313B000	0318DAF0	shrine_r_room_0	
+1417	0318E000	031AF7C0	ganontika_scene	Inside Ganon's Castle
+1418	031B0000	031B91C0	ganontika_room_0	
+1419	031BA000	031D69B0	ganontika_room_1	
+1420	031D7000	031DE7E0	ganontika_room_2	
+1421	031DF000	031E8990	ganontika_room_3	
+1422	031E9000	031F0C90	ganontika_room_4	
+1423	031F1000	031F8540	ganontika_room_5	
+1424	031F9000	03208BF0	ganontika_room_6	
+1425	03209000	03210C90	ganontika_room_7	
+1426	03211000	0321A070	ganontika_room_8	
+1427	0321B000	03226890	ganontika_room_9	
+1428	03227000	0322DB70	ganontika_room_10	
+1429	0322E000	03234950	ganontika_room_11	
+1430	03235000	03240370	ganontika_room_12	
+1431	03241000	03248D40	ganontika_room_13	
+1432	03249000	032531A0	ganontika_room_14	
+1433	03254000	0325BD40	ganontika_room_15	
+1434	0325C000	0325EE20	ganontika_room_16	
+1435	0325F000	032676A0	ganontika_room_17	
+1436	03268000	03274670	ganontika_room_18	
+1437	03275000	0327CD40	ganontika_room_19	
+1438	0327D000	0328A090	hakaana2_scene	Grave with Shield
+1439	0328B000	03291810	hakaana2_room_0	
+1440	03292000	0329F920	gerudoway_scene	Thieves' Hideout
+1441	032A0000	032A4D40	gerudoway_room_0	
+1442	032A5000	032AC2B0	gerudoway_room_1	
+1443	032AD000	032B0E50	gerudoway_room_2	
+1444	032B1000	032BC310	gerudoway_room_3	
+1445	032BD000	032C0920	gerudoway_room_4	
+1446	032C1000	032C5E40	gerudoway_room_5	
+1447	032C6000	032D2560	HAKAdanCH_scene	Bottom of the Well
+1448	032D3000	032E85F0	HAKAdanCH_room_0	
+1449	032E9000	032F42D0	HAKAdanCH_room_1	
+1450	032F5000	032F8190	HAKAdanCH_room_2	
+1451	032F9000	032FAC60	HAKAdanCH_room_3	
+1452	032FB000	032FD450	HAKAdanCH_room_4	
+1453	032FE000	03300960	HAKAdanCH_room_5	
+1454	03301000	03303E80	HAKAdanCH_room_6	
+1455	03304000	0330D0F0	hairal_niwa_n_scene	Castle Courtyard - Night
+1456	0330E000	03311620	hairal_niwa_n_room_0	
+1457	03312000	03320B20	bowling_scene	Bombchu Bowling Alley
+1458	03321000	033271E0	bowling_room_0	
+1459	03328000	0332CAE0	hakaana_ouke_scene	Royal Family's Tomb
+1460	0332D000	03337800	hakaana_ouke_room_0	
+1461	03338000	0333C800	hakaana_ouke_room_1	
+1462	0333D000	03343110	hakaana_ouke_room_2	
+1463	03344000	03355090	hylia_labo_scene	Lakeside Laboratory
+1464	03356000	0335D5D0	hylia_labo_room_0	
+1465	0335E000	03364C10	souko_scene	Lon Lon Ranch Buildings
+1466	03365000	0336E540	souko_room_0	
+1467	0336F000	03379430	souko_room_1	
+1468	0337A000	03382180	souko_room_2	
+1469	03383000	0338F550	miharigoya_scene	Lots 'o Pots
+1470	03390000	03393DB0	miharigoya_room_0	
+1471	03394000	0339EA20	mahouya_scene	Granny's Potion Shop
+1472	0339F000	033A5A90	mahouya_room_0	
+1473	033A6000	033AD1B0	takaraya_scene	Treasure Box Shop
+1474	033AE000	033B7DC0	takaraya_room_0	
+1475	033B8000	033BA000	takaraya_room_1	
+1476	033BA000	033BC030	takaraya_room_2	
+1477	033BD000	033BF820	takaraya_room_3	
+1478	033C0000	033C3020	takaraya_room_4	
+1479	033C4000	033C7000	takaraya_room_5	
+1480	033C7000	033C9B00	takaraya_room_6	
+1481	033CA000	033D1F10	ganon_sonogo_scene	Tower Collapse Interior
+1482	033D2000	033D9E80	ganon_sonogo_room_0	
+1483	033DA000	033E1BB0	ganon_sonogo_room_1	
+1484	033E2000	033EACA0	ganon_sonogo_room_2	
+1485	033EB000	033F0640	ganon_sonogo_room_3	
+1486	033F1000	033F9CF0	ganon_sonogo_room_4	
+1487	033FA000	03403070	ganon_demo_scene	Ganon Battle
+1488	03404000	03408150	ganon_demo_room_0	
+1489	03409000	03409370	face_shop_scene	Happy Mask Shop
+1490	0340A000	03438640	face_shop_room_0	
+1491	03439000	0343A610	kinsuta_scene	House of Skulltula
+1492	0343B000	034490A0	kinsuta_room_0	
+1493	0344A000	0344EB00	ganontikasonogo_scene	Tower Collapse Interior Exit
+1494	0344F000	03466B80	ganontikasonogo_room_0	
+1495	03467000	03470F20	ganontikasonogo_room_1	
+1496	03471000	03471400		
+1497	03472000	03472010		
+1498	03473000	03473010		
+1499	03474000	03474010		
+1500	03475000	03475010		
+1501	03476000	03476010		
+1502	03477000	03477010		
+1503	03478000	03478010		
+1504	03479000	03479010		
+1505	0347A000	0347A010		
+1506	0347B000	0347B010		
+1507	0347C000	0347C010		
+1508	0347D000	0347D010		
+1509	0347E000	0347E040		

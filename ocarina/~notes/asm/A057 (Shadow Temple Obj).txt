@@ -1,0 +1,44 @@
+Actor 0057, Shadow Temple Objects
+//code is shadow temple, main entrance
+
+Ovl
+0E70 i16 //Final Spinner Rotation?, contains rotation data
+0E74 u8  //?
+1080 i16 //bss 0, Spinner Rotation
+
+Instance
+0154 ptr //state function ptr
+0160 u16 //possibly marks the hidden skull
+
+80A30C04 (T:801EA104) //Type 0003 initial state
+
+80A308B4 (T:801E9DB4) //Trap door, idle
+//A0 = Actor Instance
+//A1 = Global Context
+9DEC //a0 = Spinner Rotation (ovl +0x1080, bss 0)
+9E04 //sp + 0x2C = pointer to Link's instance
+9E00 jal 80063684 //sine, result in f0
+9E0C //a0 = Spinner Rotation
+9E14 //sp + 0x20 = f0
+9E10 jal 800636C4 //cosine
+//Start check to see if Link has moved to where the game will check if trap door should open
+//If checks fail, return from function
+9E90 //Link has moved enough away from spinner
+
+80A30A3C (T:801E9F3C) //Trap door, open trap
+
+80A30C84 (T:801EA184) //Update function
+
+80A30240 (T:801E9740) //?, potentially the initializer for the actor
+9798 //branch to 98E0 if actor init var != 0x0003
+//type 0003
+97A0 //t1 = ovl + 0E70, spinner final rotation
+97E4 //f0 = RNG between 0 and 1 exclusive
+97FC //f4 = 3.0f
+9808 //f6 = Random number between 0 and 3 exclusive
+//one branch
+9894 //Generate RNG between 0 and 1 exclusive
+989C //AT = 20.0f
+98AC //f4 = random number between 0 and 20.0f exclusive
+98BC //t2 = trunc f4
+98C4 //instance + 0x162 = sh t2

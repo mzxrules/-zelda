@@ -1,0 +1,59 @@
+=== Actor 0x0179 ==
+Instance 
+0x02FC = Ptr to bound path
+0x0300 = number of nodes within the path minus 1?
+0x0304 = Zelda State for Stalfos Encounter
+
+File at 80208D10
+
+80AFF014 //Returns the "Switch Flag" parameter of Zelda's Variable
+//V0 = Switch Flag (bound to 00-FF)
+//V1 = Switch Flag (not inherently bound to 00-FF)
+
+80B011C4 //Sets Bound Switch Flag
+//A0 = Global Context
+
+80B011F4 //Checks State of Bound Switch Flag
+//A0 = Global Context
+
+
+8020D2A8 (4598) //Determines which "Zelda" to be, based on switch flag/current scene
+
+
+D2D4 LH 	v1, 0x0020(SP) //v1 = current scene
+D2D8 ADDIU	at, $zero, 0x000E //AT = scene 14 (tower collapse interior)
+
+D488 JR
+
+
+!!!!!!!!!!!!!!!!!
+File at 801E4A90
+
+801E8794 //Path trace routine?
+
+801E8708 //Returns a pointer reference to a path node
+
+801E6484 //returns "switch flag". identical to above
+
+1EAED0
+
+
+
+
+
+
+
+Important Address: 8012 1220
+Related to Cutscenes?
+
+Function around 80054DB4 checks entrance for specific sound effect to play?!
+
+1F25A8
+
+
+1F1074 = ?
+
+51C00088
+8FBF0014
+
+

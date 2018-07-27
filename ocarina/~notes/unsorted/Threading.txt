@@ -1,0 +1,216 @@
+Threading
+
+Possibly different Thread related things?
+
+
+
+80002030 //Swap Threads 
+
+80002A4C //Swap Threads inner
+
+80002B94 //Swap register contexts?
+
+80002BA4 //Swap in registers from next thread
+
+800AD26C //irqmgr function
+800A3674 //sched function
+800A2918 //padmgr function
+800AF45C //main thread entry function
+800AF190 //fault thread entry function
+
+800FE500 //main variables
+0x0000 = frame width
+0x0004 = frame height
+0x0008 = total heap size
+
+800FE510 //padmgr variables
+0x0000 = ?
+800FE520 //sched variables
+0x0238 = update counter?
+
+800FEE60 //irqmgr variables
+0x0000 = ?
+0x0004 = ?
+0x0008 = update counter?
+//most curious is that near here there's a function pointer table for various things
+
+
+
+80006330, possibly a master task?
+At this address, there seems to be a common struct:
+0000: Pointer to 80006330, or 00000000 at 80006330?
+0008: Pointer to next? "thread context"?
+000C: Pointer to next struct
+0010: Pointer to current? "thread context"?
+
+
+NTSC 1.0 OSThread struct
+usr/include/PR/os_thread.h
+
+0000: *next		//ptr to run/message queue link
+0004: priority	//ptr to run/message queue priority
+0008: **queue	//ptr to ptr to Register Reference Struct
+000C: *tlnext;	//all threads queue link, ptr to "Register Ref Struct"
+0010: state		//Thread state. 1 = Stopped, 2 = Runnable, 4 = Running, 8 = Waiting
+0012: flags		//flags for rmon debugger
+0014: id		//id for debugging
+0018: fp		// word, if 1 thread has used COP1 registers
+001C: *thprof	// workarea for thread profiler
+0020: Array of registers
+
+//OSThread Locations
+80008A60 //PImgr //thread 0
+80009F20 //VImgr //thread 0
+80006850 //idle 1
+80121290 //fault 2
+80007220 //main 3
+8011DBE8 //graph 4
+8011D318 //sched 5
+8011D580 //padmgr 7
+80120D60 //audio  10
+80007DD8 //dmamgr 18
+8011DA00 //irqmgr 19
+
+//Thread Create
+Addr		Name	ThreadId	
+80006850	idle	1		
+
+
+
+NTSC 1.0 Stack references
+80120B98 //graph (main game thread)
+80120BB8 //sched (scheduler?)
+80120BD8 //audio
+80120BF8 //padmgr (input)
+80120C18 //irqmgr (interrupt request manager)
+
+80121C68 //fault
+80007D20 //dmamgr
+80007BD0 //main
+80006E00 //idle
+80006830 //boot
+
+Doubly LL
+
+graph -> padmgr -> audio -> sched -> irqmgr -> fault -> dmamgr -> main -> idle -> boot
+
+80009C00 //Unknown stack 1, high address 
+8000B048 //Unknown stack 2, nonspecified address
+
+OSMesgQueue
+/usr/include/PR/os_message.h line 57
+typedef struct OSMesgQueue_s {
+	OSThread	*mtqueue;	/* Queue to store threads blocked
+								on empty mailboxes (receive) */
+	OSThread	*fullqueue;	/* Queue to store threads blocked
+								on full mailboxes (send) */
+	s32		validCount;		/* Contains number of valid message */
+	s32		first;			/* Points to first valid message */
+	s32		msgCount;		/* Contains total # of messages */
+	OSMesg		*msg;		/* Points to message buffer array */
+} OSMesgQueue;
+
+
+Nemu crash test:
+//good state (seems to be for a rendered frame, other thread switches occur on non rendered ones?)
+80006850 *
+80009F20 *
+8011DA00 *
+8011D318 *
+8011D580 *
+80120D60 *
+8011D318 *
+80120D60 *
+8011D318 *
+80120D60 *
+8011DBE8 *
+8011D318 *
+8011DBE8 *
+80007DD8
+80008A60
+80007DD8
+80007220 *
+
+
+//good state for outside tot
+80006850
+80009F20
+8011DA00
+8011D318
+8011D580
+80120D60
+8011D318
+80120D60
+8011D318
+80120D60
+80007220
+
+
+
+80006850 //182660D9 // 182C87B0
+
+
+1837C9F0 -> 1843DB22 //790834
+1843DB22 -> 184FD86D //785739
+
+
+
+80006830	boot		80006E00	00000000	80006E20	80007220	00000000	FFFFFFFF	80006550
+80006E00	idle		80007BD0	80006830	80006A00	80006E00	00000000	00000100	80006558
+80007BD0	main		80007D20	80006E00	800073D0	80007BD0	00000000	00000400	80006560
+80007D20	dmamgr		80121C68	80007BD0	80007F88	80008488	00000000	00000100	800065E4
+80121C68	fault	?	80120C18	80007D20	80121868	80121C68	00000000	00000100	8010970C
+80120C18	irqmgr		80120BB8	80121C68	80120698	80120B98	00000000	00000100	80108DF0
+80120BF8	padmgr		80120B98	80120BD8	80120198	80120698	00000000	00000100	80108E08
+80120BD8	audio		80120BF8	80120BB8	8011F998	80120198	00000000	00000100	80108E00
+80120BB8	sched	?	80120BD8	80120C18	8011F598	8011F998	00000000	00000100	80108DF8
+80120B98	graph	 	00000000	80120BF8	8011DD98	8011F598	00000000	00000100	80108E10
+
+
+
+80121290 //fault thread register struct?
+//initial values
+0010 i16	1
+0012 i16	0
+0018 Enable COP1	0
+00F0 SP 	FFFFFFFF 80121C58
+0100 RA 	FFFFFFFF 80002D20 //function after ERET
+0118 status 	0000FF03
+011C ExceptPC	800AF190, fault main
+0128 ?	0000003F
+012C ? cause?	01000800
+
+
+
+
+
+
+
+
+80121230 //fault context?
+8011D500 //padmgr/input context?
+
+
+
+
+
+
+Mips calling convention: 
+1) SP is decremented to push to the stack, and incremented to pop the stack
+2) SP  must be be changed by a value divisible by 8, to allow for the 64 bit double precision float type
+
+Calling convention example (NTSC 1.0 80002F20):
+Say you have a 6 param function of int/ptr types, and SP = 7200 when you enter the function
+
+7200 is param 1 (a0)
+7204 is param 2 (a1)
+7208 is param 3 (a2)
+720C is param 4 (a3)
+7210 is param 5
+7214 is param 6
+
+
+crash debugger:
+
+80002630 BNE = If not equal, stops active thread and swaps to fault!!!
+2934

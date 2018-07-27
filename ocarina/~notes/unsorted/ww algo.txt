@@ -1,0 +1,12 @@
+Scene states
+- Debug, crash
+- Bad Scene, crash
+- Good Scene, progress
+
+Map States
+- Bad Map, explain, progress
+- Good map, progress
+
+Position
+- Bad Position, softlock
+- Good Position, progress

@@ -1,0 +1,4 @@
+01B9 Gossip Stone
+
+== Instance ==
+0x13C Cylinder Collision Struct

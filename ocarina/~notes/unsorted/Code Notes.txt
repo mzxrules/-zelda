@@ -1,0 +1,50 @@
+$00A87000 - $00B8AD30	code.zasm
+
+B65C64 - On entrance cutscene table
+B6FBF0 - Entrance Table
+B71440 - Scene Table
+
+800EEE70/4 camera behavior table? (8 bytes per record)
+
+800E82F8 actor category table settings?
+800EC020 table ref by 80034424, up to 0x1F s32 elements
+800EF080 Camera Functions Table
+800EF1A0 //?
+800F7714
+800F7768 //Held Item settings?, 0x10 items, 0x5 bytes
+800F77B8 //Link Dlist Table. 0x258 bytes. Records of 0x8 bytes, such that the first is an Adult Link ref, while the second is child Link ref
+800F7A10 //Held Item display list pointer table? 0x17 records, 4 bytes ea
+800F8F34 inventory slot table (0x38 bytes)
+800FBD18 //func ptr table for scene pre-draw function, 0x35 records
+
+801054A0 s16 sine table
+80105FB4 //En_Item00 draw jump table. Actor var sets draw function
+80106A70 float, equals 1/0x7FFF (normals)
+80106A80 float, equals 1/32767
+80106A84 float, equals 1/32767
+80106AC0 float, 1+E38 (Collision Code Constant)
+80106AC4 float, 1.1f (Actor Collision Mesh constant?)
+80107A60 float, equals 1/32767
+80107A64 float, equals 1/32767
+80108924 float, pi
+80108928 float,  90 degrees in radians
+80108E7C float, 0.008f
+8010A4F0 float,  90 degrees in radians
+8010A4F4 float, -90 degrees in radians
+8010A4F8 float, -90 degrees in radians
+8010A4FC float,  90 degrees in radians
+8010A500 float, pi
+8010A504 float, pi
+8010A508 float,  90 degrees in radians
+8010A710 double, equals pi/180
+8010A718 double, equals 1/pi
+8010A880 double, equals pi
+8010A888 double, equals 3.178650954705639e-8 (extended pi precision)
+
+80105420 = Something debugging related (Generates output text for dynamic link function)
+800F8BE0 ptr[3] //function pointer table for room mesh type
+
+AF828 //unicode? table for text?
+
+
+Crash Debugger, write to 003DD02C

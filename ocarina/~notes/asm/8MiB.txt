@@ -1,0 +1,13 @@
+OoT 8 MiB
+800A42F0 // Initializes Frame Buffers
+800A4330 // Ram end addr for 8MiB (lui)
+800A4350 // Ram end addr for 4MiB (lui)
+
+120FD0 = Buffer 0
+120FD4 = Buffer 1
+120FD8 = End
+
+8009A750 //Game Context initializer
+9A7A8 //lui used to reserve "Game Context Dynamic"
+
+800A0D38 //allocates rest of heap

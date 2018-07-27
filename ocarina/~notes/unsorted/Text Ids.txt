@@ -1,0 +1,20 @@
+01xx = Navi / Actor 011B Dialog
+0140 = C-Up Navi (Quest)
+0160 = Saria (Saria's Song through Navi)
+0180 = Mainly dungeon puzzle hints
+02xx = Talking Doors / Check spots / Actor 0185
+03xx = Signs
+04xx = Gossip Stones
+06xx = Z-Target C-Up Navi
+086D - 087C = Ocarina Play Spot
+088C - 089F = Ocarina Song Text
+10xx = Kokiri Forest Dialog (w Woods, SFM, Houses, Forest Temple/Deku Tree)
+20xx = Hyrule Field, Lon Lon, Kakariko Soldier?
+2064 - 0271 Kaebora Gaebora
+30xx = Death Mountain
+3069 - 0371 = Fire Temple Gorons
+40xx = Lake Hylia, Zora's Domain
+50xx = Kakariko, Graveyard
+60xx = Gerudo Valley / Desert
+70xx = Hyrule Castle / Market Town / Temple of Time
+7100 - 71A6 = Mask dialogs

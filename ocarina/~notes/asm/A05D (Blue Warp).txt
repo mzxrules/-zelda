@@ -1,0 +1,6 @@
+Door_Warp1
+
+//Instance Variables
+0x0182 s16 //count up animation timer (wrong warp)
+//0xA1 Adult Warps
+//0x65 Child Warps

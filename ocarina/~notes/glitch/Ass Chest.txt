@@ -1,0 +1,65 @@
+ef 1 EE7 3
+ef 1 EE7 2
+ef 1 EE7 1
+ef 1 EE7 0
+
+ent 2BA
+
+
+Actor 0138 801EEA00 Gerudo
+
+80A909A4 //Update Function
+
+
+80A900F4 (T:801EF9F4) // Give Reward
+//Inst + 0x2A4 func ptr
+//A0 = Instance
+//A1 = Global Context
+FA04 jal 80022BB0 //check if actor is being interacted with?
+//branch FA5C if false
+FA5C //T3 = u16 Instance + 0x29C
+//set up for give item routine
+FA60 //A2 = 0x3E, Heart Piece
+FA6C //branch FAC4 if (T3 andi 2) == 0
+//A3 = 9984f
+FA78 //V1 = Save Context
+FA80 //T6 = Quiver Mask value (800F8C80)
+FA84 //T5 = Left Side Equipment
+FA8C //T8 = Quiver Shift value (800F8CC4)
+FA94 //AT = 1 (Small Quiver)
+FA9C //branch FAB4 if you have quiver 30
+FAA4 //branch FABC if you have quiver 40
+//else load uninitialized variable s32 sp+0x24
+
+
+80A90AEC (T:801F03EC) //Update Animation State
+//Instance + 0x2A8 func ptr
+//A0 = Actor Instance
+
+
+
+Instance Vars:
+0188 struct //some common struct related to item giving actors?
+029C u16 //Seems to be flags for giving Heart Piece or Quiver Upgrade
+02A0 //segment offset to animation. Related to 02A8 func ptr. Values 06000288, 0600A048, 0600A498
+02A8 //func ptr. Values 80A90AEC, 80A90B2C
+02A4 //func ptr. this one related to giving items?
+
+
+
+
+80A900F4 stack usage analysis
+stack increment 0x28
+0x00 //called a0
+0x04 //called a1
+0x08 //called a2
+0x0C //called a3
+0x10 //called a4
+0x14 //padding?
+0x18 //?
+0x1C //RA
+0x20 //?
+0x24 //unallocated variable!
+0x28 //A0
+0x2C //A1
+

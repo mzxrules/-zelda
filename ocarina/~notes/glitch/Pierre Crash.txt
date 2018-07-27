@@ -1,0 +1,15 @@
+https://clips.twitch.tv/fig02/BrightHeronVaultBoy
+
+http://imgur.com/a/sRuKO
+
+The final cause of the glitch is a tlb exception on load, due to the game setting a null camera pointer. The likely cause is that the second camera is dereferenced due to a race condition.
+
+Initializing state:
+age 1
+sp 87
+
+Offending Function:
+Actor 017B
+
+80B18AAC (T:801E396C) //?,
+//called every frame that you're talking directly to Pierre, before he plays back a taught song

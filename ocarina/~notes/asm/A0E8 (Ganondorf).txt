@@ -1,0 +1,10 @@
+00E8 Ganondorf
+//note that there's a living and near death ganondorf that is the same actor
+
+Instance
+0x013C s32 //?
+0x0184 func ptr //state function?
+ 809F2DBC (T:801E67BC) - ?, during "These toys are too much for you"
+ 
+ 
+809F5328 (T:801E8D28) //writes to next entrance index variable (0x43F) 

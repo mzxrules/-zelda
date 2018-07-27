@@ -1,0 +1,12 @@
+389C88 = Get Item
+T9 = 803A9E84
+
+9C94 - SLL itemget by 2, store T7
+9C98 - SUBU T7, T6 and store in T7
+9C9C - SLL T7 1
+--- Multiply itemget by 6, store in T7, but logic is likely meant for positive only
+9CA0 - ADDIU T8, T7, FFFA (subtract 1 record so it falls on the get item table
+
+84
+
+78

@@ -1,0 +1,47 @@
+Epona Gate Glitch:
+
+Video evidence suggests that Perm Flag 03 is being set after actor initializations
+
+Something is likely writing to 801CA1C8 that shouldn't be
+
+
+
+null glitch
+800D5A90 //Writes value to SP status register 0xA4040010 , triggering the glitch
+
+800A3674 //?
+
+
+800A3064 //? The glitch happens around here...
+
+800A30D4 //lw from 800FE520
+
+800CF94C 
+
+801205F0 //?, set to 0?
+
+================================================
+
+
+room 0: 00F1, 016D, 0163, 000E, 013A, 011E, 011C, 0025, 00B3, 00B7, 
+room 1: 00F1, 016D, 0163, 000E, 013A, 011E, 011C, 0025, 00B3, 00B7, 
+room 6: 00F1, 016D, 0163, 000E, 013A, 011E, 011C, 0025, 00B3, 00B7, 
+
+macdee11@yahoo.com
+
+
+
+====================================
+Petrie's mod
+
+Untwisted room
+%mzxrules !objsum 0001 0003 0014 0073 0072 0070 0071 0179 011c 000b 0024
+
+OCA 0001, 0014, 0003, 0179, 000B, 0073, 0072, 0071, 0024, 0070, 011C
+OCA Total: DBG: 0E27F0, N0: 0E7D20, MQP: 0E27F0
+
+Turning Room
+%mzxrules !objsum 0001 0003 0014 0073 0072 0070 0071 000E 00A4 0179 000B
+
+OCA 0001, 0014, 0003, 0179, 000B, 0073, 0072, 0071, 000E, 0070, 00A4
+OCA Total: DBG: 0E5170, N0: 0EA6A0, MQP: 0E5170

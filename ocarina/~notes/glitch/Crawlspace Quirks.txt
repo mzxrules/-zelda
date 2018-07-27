@@ -1,0 +1,17 @@
+Crawlspace Quirks
+
+Deku Tree B1 room
+
+colsec 8,0,9
+Collision Unit Max: (16, 4, 16)
+Sector Min: (-1140, -1960, -309)
+Sector Max: (-934, -1179, -18)
+
+colsec 8,0,10
+Collision Unit Max: (16, 4, 16)
+Sector Min: (-1140, -1960, -18)
+Sector Max: (-934, -1179, 273)
+
+downwarp seems to occur on a sector boundary cross?
+
+xyz -1003.026, -820, -16.27901
