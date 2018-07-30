@@ -13,10 +13,15 @@
 80000D28 //DMA access (more immediate?)/
 //todo: figure args
 
+
 80000DF0 //DMA read function
 //A0 = Address to load into
 //A1 = Address to read from
 //A2 = Size
+
+
+80000B0C //dmamgr, DMA read
+
 
 80000E6C //main thread, initializes stuffs
 //Sets following variables (below aren't params)
@@ -1568,11 +1573,6 @@ AFA40000
 //A0 = Global Context
 //V0 = Button pressed
 
-80050B00 //Collision, copies an actor's coordinates, and saves them as halfwords
-//A0 = Actor Instance
-//A1 = Actor Collision Struct
-//Coordinates saved at Struct + 0x46 
-
 
 
 === Exception Handler ===
@@ -2457,14 +2457,6 @@ CD28 jal	80000DF0 //DMA rom
 //					if a2 != 0 load from 0x0000(v0) and write to a0 instance + 0x110
 //else store 0x00 in instance + 0x116 and return
 
-800502F0 //Zeroes variables related to enemies with damage chart collision data
-//A0 = ptr to Actor Instance + 0x98
-//zeroes the following:
-//float 0x98+4
-//float 0x98+8
-//float 0x98+C
-//byte[4] 0x98+18
-
 
 8004BF40 //?
 //A0 = Global Context
@@ -2948,7 +2940,6 @@ C5A0 jal	8002C310
 	//SP+0x1C = s32 0
 
 
-
 8002C664 //Collision, Test ? related to setting wall poly an actor is colliding into
 //A0 = Global Context + 0x7C0
 //A1 = Pointer to polygon
@@ -3099,6 +3090,7 @@ D424 jal	8002D180 //Check Collision With Surface; floors
 D42C //Set V1 to 1 if V0 == 1
 //SP+0x44 = V1 
 D494 jal	8002D180 //Check Collision With Surface; walls 
+
 
 8002D838 //Get Collision Sector record
 //Doesn't test if coordinates fall within scene bounding box
@@ -4621,9 +4613,9 @@ jal	800AB6BC //convert float matrix to fixed point matrix
 80064080 //code, graph, Instance Init 5, Set Word
 8006409C //code, graph, Instance Init 6, Set Float (int to float)
 800640C0 //code, graph, Instance Init 7, Set Float (int to float / 1000)
-800640F0 //code, graph, Instance Init 8, Set Vector3D<float> (int to float)
-8006411C //code, graph, Instance Init 9, Set Vector3D<float> (int to float)/1000)
-80064154 //code, graph, Instance Init A, Set Vector3D<short> 
+800640F0 //code, graph, Instance Init 8, Set vector3_f32 (int to float)
+8006411C //code, graph, Instance Init 9, Set vector3_f32 (int to float)/1000)
+80064154 //code, graph, Instance Init A, Set Set vector3_s16 
 //A0 = Actor Instance
 //A1 = Instance Initializer Data
 // referenced by 80063F7C
@@ -4631,6 +4623,7 @@ jal	800AB6BC //convert float matrix to fixed point matrix
 
 8004A484 //code, graph, unknown
 //collision initialization related
+
 
 8004A874 //code, graph, Initialize Collision Group Struct
 //Possibly Cylinder Group Type
@@ -4642,16 +4635,12 @@ jal	800AB6BC //convert float matrix to fixed point matrix
 A89C	jal	80049F50
 
 
-
 8004AB7C //code, graph, Initialize Collision Struct
 //A0 = Global Context
 //A1 = Ptr to Actor Collision Struct
 AB90 jal	80049E70 //Initialize 0x00 to 0x18 of Collision Struct
 ABA0 jal	8004A0D4 //Initialize 0x18 to 0x40 of Collision Struct
 ABB0 jal	8004AACC //Initialize 0x40 to 0x4C of Collision Struct
-
-
-
 
 
 80049E70 //code, graph, Initialize Collision Struct (first 0x18)
@@ -4749,9 +4738,6 @@ ADF8 jal 8004A27C
 //A1 = Collision Body Ptr + 0x18
 //zero 0x02 bit on Collision Body + 0x18 + 0x17
 //end
-
-8009DB54 //code, Collision? Test if Global Context + 0x7B8 is > 0
-//V0 = 1 if check passes
 
 
 80024AB4 //code, graph, Draw Actors 
@@ -5069,21 +5055,69 @@ CD8C //T7 = frame divisor
 80092490 //code, graphics, possibly draw VIEW struct?
 
 
+
+80050B00 //Collision, copies an actor's coordinates, and saves them as halfwords
+//A0 = Actor Instance
+//A1 = Actor Collision Struct
+//Coordinates saved at Struct + 0x46 
+
+
 800502A8 //code, actors, initializes "damage chart" part of actor
 //Actor 0000, 0018, most enemies?
 
 
 800502F0 //code, actors, initializes "damage chart" part of actor
-//Actor 0125
+//Zeroes variables related to enemies with damage chart collision data. Actor 0125
+//A0 = ptr to Actor Instance + 0x98
+//
+//zeroes the following:
+//(Arg A0)+0x04 float
+//(Arg A0)+0x08 float
+//(Arg A0)+0x0C float
+//(Arg A0)+0x18 s8[4]
+
 
 8005031C //code, actors, initializes "damage chart" part of actor
 //Actor 0095
+//A0 = ?
+//A1 = ?
+
 
 80050344 //code, actors, initializes "damage chart" part of actor
 //Actor 0095
 
+
 80050370 //code, actors, initializes "damage chart" part of actor
 //Actor 0095
+
+
+80050CE4 //
+//A0 = ? (0 this pass)
+//A1 = Collision Body Struct
+//
+//SP -0x38
+//
+//S6 = Arg A0
+//S2 = Arg A1
+//V0 = Struct + 0x18 (Collision Body Count)
+//S3 = 0 //for iterator
+//S0 = 0 //cylinder offset
+//Return if V0 <= 0
+//S4 = 80118F70
+//S5 = 80118F80
+0D30 //ForLoop start
+//T6 = CylinderBody Array
+//S1 = ptr to CylinderBody next
+//T7 = u8 at CylinderBody next + 0x3C
+0D3C //branch 03E4 if Arg A0 != t7 //i.e. skip to next iteration
+//T8 = s16 at CylinderBody next + 0x28
+//A0 = 80118F70
+//A1 = 80118F80
+//F6 = CylinderBody next + 0x28 value
+//
+//unpack vector3_s16 at CylinderBody next + 0x28
+//convert to vector3_f32, save at 80118F70
+0D98 jal	800AB958 //multiply top matrix by vector 
 
 800A0290 //code, ?
 //related to 7 element table at 800FE4E0
@@ -5303,13 +5337,16 @@ FE04 //branch FE20 if true, V0 = Slot offset
 //A1 = Input Context + 0x2BC
 //A2 = ? (0 this pass)
 
-80000B0C //dmamgr, DMA read
-
 800D61D0 //Textbox input, select choice?
 //Called with Farore's Wind
 
+
 8009D9B8 //Set Zoneout Type 1
 //A0 = Global Context
+
+
+8009DB54 //code, Check if Game Updates are Disabled
+//V0 = 1 if Global Context + 0x7B8 is > 0, else 0
 
 8006D8E0 //zoning out related
 //A0 = writeback value?

@@ -1,4 +1,4 @@
-$00A87000 - $00B8AD30	code.zasm
+$00A87000 - $00B8AD30	code
 
 B65C64 - On entrance cutscene table
 B6FBF0 - Entrance Table
@@ -48,3 +48,7 @@ AF828 //unicode? table for text?
 
 
 Crash Debugger, write to 003DD02C
+
+//outside code
+80118F70
+80118F80 //xyz collision stuff?
