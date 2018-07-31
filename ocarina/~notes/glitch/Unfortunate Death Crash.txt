@@ -1,0 +1,31 @@
+Decoding the crash that occurs when dying in certain pre-rendered maps (outside temple of time for instance)
+
+=== Unfortunate Death Crash ===
+803A0328 == Start of the failure
+
+8002BAB0 = some exception? (interupt?)
+8009CAF0 = Game gives up when I step over (function seems related to display lists)
+8009C758 = Give up 2
+
+
+
+80080820
+800804D0
+
+80080430
+
+
+800AF64C 
+
+800AE710 = Infinite crash loop
+
+
+80080390
+0390	jal 	80034290 //offending function. Returns invalid pointer with crash
+
+80034290 //something for jpeg background for static, multi-background pre-rendered areas
+A0 = ? (801C8C60, global context + 0x7C0) 
+A1 = Jpeg frame index //(1C87C8) halfword, stored at Global Context + 0x7C0 + 0x148
+A2 = ?
+A3 = Global Context
+//A1 is being set to -1 when Link dies

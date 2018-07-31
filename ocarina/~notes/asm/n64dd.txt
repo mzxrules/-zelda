@@ -1,0 +1,18 @@
+801C6E80 //n64dd, entrypoint
+
+
+801C7F90 //n64dd, n64dd_SetDiskVersion
+//A0 = version? 0 for normal? 1 for ura?
+//
+//if a0 = 0, go to second branch
+//a0 != 1:
+//return if 801D9D48 lw != 0
+7FB0 jal	801C7E80
+//return
+//a0 == 0:
+//return if 801D9D48 lw == 0
+7FCC jal	801C7F24
+//return
+
+
+801CE120 //n64dd, attempt to connect to disk drive?

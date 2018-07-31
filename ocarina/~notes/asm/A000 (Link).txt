@@ -222,6 +222,136 @@ E6A8
 //F2 = 26f
 //F12 = [Instance + 0x668]+0x00
 
+
+
+80847FC8 (T:803A0968) // Link, Update Routine
+//A0 = Link Instance
+//A1 = Global Context
+0974 // V1 = Save Context
+0984 lh 	t6, 0x13C4(v1)
+0990 bgez	t6, 803A0A40 //branch if t6 >= 0
+0A40 //Begin Testing Interact State
+0A40
+0AAC //Begin copying input data to the stack
+
+
+
+80848680 (T:803A1020) // Link, Draw Routine (Having warped in from warp song, branched to by primary draw routine)
+//A0 = Link Instance
+//A1 = Global Context
+
+
+
+(T:8038F484) //Link, Jump Function?
+//A0 = Link Instance
+//A1 = Link Animation reference in Gameplay Keep?
+//A2 = New Y Velocity
+//A3 = Global Context
+//Calls (T:8038F3E0)
+
+(T:8038F3E0) //Jump Function?
+//A0 = Link Instance
+//A1 = Link Animation reference in Gameplay Keep?
+//A2 = New Y Velocity
+//A3 = Global Context
+//
+
+
+
+
+
+8039FA5C //Link, ?, called by update routine after input state copy
+
+
+8038A2DC //A3 = pointer to thing to pick up :O
+
+803A4A10 //Link, ?, Called after pressing A to close dialog for getting an item
+
+8038C69C //Link, Sets Link State
+//Updates func ptr at 0x0664
+//A0 = Global Context
+//A1 = Link Instance
+//A2 = Function Pointer (Link's State)
+//A3 = ?
+
+
+8039C334 //Link, State Logic ("Complex Action" State)
+//A0 = Link Instance
+//A1 = Global Context
+C344 lw 	t6, 0x670(a2) //a2 = Link Instance
+C348 //A1 = Link Instance + 0x1A4, Link animation data?
+C350 //ori t6 by 0x60, save to 0x670(a2)
+C358 jal	0x8008BCA4
+C35C //A0 = Global Context
+//On Return, 
+//A0 = Link Instance
+//A1 = Global Context
+//A2 = Link Instance
+C368 lw 	t8, 0x66C(a2) //t8 = State Flags 0x66C
+C374 //branch to C394 if Link isn't holding an item (0x66C [2] & 0x08)
+... //if branch not taken, something item related happens
+C394 jal	8038D0D4
+
+
+8038D0D4 //Link, State Logic?, called by 8039C334
+//A0 = Link Instance
+//A1 = Global Context
+
+
+803975EC //Link, ?, State Logic (Standing Idle)
+
+8039A034 //Link, ?, State Logic (Shield is deflecting a hit)
+//A0 = Link Instance
+//A1 = Global Context
+A04C jal	8038DC84
+A060 //branch if Link Instance + 0x83F != 0
+A06C jal	8038D0D4
+
+8038D0D4 //Link, ?, called by 8039A034
+//A0 = Link Instance
+//A1 = Global Context
+
+
+8038DC84 //Link, Possibly updates recoil velocity, Called by 8039A034
+//A0 = Link Instance
+//A1 = Global Context
+DC94 //T6 = Static Context
+DC9C //F8 = 100f
+//F6 = Static Context + 0x006A
+//A0 = Link Instance + 0x828
+//A1 = 0
+//A2 = [Static Context + 0x006A] / 100f
+DCC0 jal	8006385C
+
+8039C344 //Link, State Logic, Complex Interaction
+//handles a number of oddball interactions
+//A0 = Link Instance
+//A1 = Global Context
+C350 //sw 0x0060 in Link Instance + 0x670
+
+
+80388D20 //Link, Clear Lifting Actor state
+//Seems to be used to wipe the currently held actor out of Link's hands
+//Called when doing the following: 
+//pulling/dropping explosives, reading signs, pulling out/putting away sword, swing bottle, etc.
+//A0 = Global Context
+//A1 = Link Instance
+//If Instance + 0x39C is null, return
+//Else if Instance + 0x141 equals 0x10 or 0x11 (80079BD8), return
+8D50 //begin wiping out the lifted actor variables
+//if Link Instance + 0x141 < 0x13 (80079D74), return
+//Call 8038A3A4, with A2 = 0
+
+8038FAE0 //Link, unknown, seems to run every frame
+//Contains a number of interesting checks
+
+
+
+8039542C //not function, Link actor, weird subroutine
+5444 //Checks if lifted actor is actor is actor 0x014E, liftable rock
+
+
+
 == Data ==
 808514A4 (T:803A9E44) 0212E4 s32 ?
 803AAEF8 //Actor Collision struct 5, shielding data

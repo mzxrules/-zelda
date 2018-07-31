@@ -102,6 +102,21 @@ E108
 
 
 
+
+
+8039E058 //Draw related function for ovl_kaleido_scope
+//A0 = Global Context
+E0A4 //T7 = Static Context
+E0AC //T6 = [8011D050] -> 8039F780
+E0B0 //T8 = Static Context + 0xF2E (short) //Highlighted Floor index * 2, not sure why * 2
+E0B8 //F30 = -36.0f
+E0D0 //T4 = T8 * 0xF6, or actually (T8/2 * 1EC)
+E0D4 //S3 = T6 + T4
+...
+E274 //T9 = S3 * 0x10
+
+
+
 == Data ==
 
 8082A3E0 //Dungeon Floor data

@@ -47,8 +47,29 @@ B71440 - Scene Table
 AF828 //unicode? table for text?
 
 
+
+
+
+800FC0B0 is some struct related to saving.
+	0x00 ptr is pointer to self
+	0x04 int[2] appears to be a "magic" sequence
+	0x0C ptr, is a pointer to ?, address space A8xx xxxx. Likely SRAM
+	0x14 is start of 0x60 byte buffer, likely used for saving
+800FC130 ptr appears to be some
+
+
+Address A800 0000 likely to write to SRAM 
+
+
 Crash Debugger, write to 003DD02C
 
 //outside code
 80118F70
 80118F80 //xyz collision stuff?
+
+
+
+
+//File Select Notes:
+
+8029F9F0 - The game's save data is copied here

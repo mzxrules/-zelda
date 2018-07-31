@@ -1,0 +1,4 @@
+==== Actor 0x00A6, Rauru ====
+1E27B0 = Actor File
+
+1E2AC0 //handles cutscene animations

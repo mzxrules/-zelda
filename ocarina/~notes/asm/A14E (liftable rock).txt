@@ -1,0 +1,4 @@
+80AB372C //actor 0x14E, Rock Broken, Spawn Random Drop
+//Large rocks can't drop random drops
+80AB3854 //actor 0x14E, Spawn Bugs
+//Called when rock is lifted while bug flag is set

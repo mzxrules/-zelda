@@ -1,0 +1,11 @@
+803B23B0 //MAP SELECT, n64dd_SetDiskVersion(1)
+//A0 = Global Context
+//A1 = Entrance Index? (Should always be 0?)
+//if 80121212 == 0 return
+//else jal 801C7F90 with A0 = 1 //n64dd_SetDiskVersion
+
+803B23E8 //MAP SELECT, n64dd_SetDiskVersion(0)
+//A0 = Global Context
+//A1 = Entrance Index? (Should always be 0?)
+//if 80121212 == 0 return
+//else jal 801C7F90 with A0 = 0 //n64dd_SetDiskVersion

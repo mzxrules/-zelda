@@ -127,13 +127,13 @@ Link Instance
 0x0828 float //probably XZ speed variable for below
 0x082C s16 //Sets Y Rotation to Link's XZ speed variable (instance + 0x68)
 0x081C ptr //Function pointer to ?
+0x082E s16 //target_yaw //glank
 0x0830 u16 ?
 0x0832 s8 Sword Animation Index
 0x0833 s8 Swiping Sword (FF Jump Attack, 01 Normal swipe?)
 0x0836 byte //Incremented every visual frame, 0-3, wraps. Index byte arrays at 0x837 and 0x83B
 0x0837 byte[4] //Contains rotation data 1?
 0x083B byte[4] //Contains rotation data 2?
-
 0x083F byte //?
 0x0850 s16 //?
 0x087E byte

@@ -1,0 +1,2 @@
+809089E8 (T:801F91E8) //Actor 005E, torch actor
+80908C6C (T:801F946C) //where torch actor writes lit Deku Stick timer

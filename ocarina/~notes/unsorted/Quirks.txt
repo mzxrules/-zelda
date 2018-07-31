@@ -1,0 +1,10 @@
+==== Project Tower Collapse ====
+Ganon sets Switch Perm 14
+Zelda sets Switch Temp 37 for Tower Collapse Sequence
+Zelda sets Switch Temp 36 for Tower Collapse Timer
+
+
+//8006F8AC Bottle Adventure
+
+
+803977C8 //check into this
