@@ -762,8 +762,8 @@ B508 jal 800CCBB8 //Link Overlay
 
 800253F0 //Spawn Attached Actor
 //Calls 80025110
-//A0 = Global Context + 0x1C24 (Actor Category Struct)
-//A1 = Actor Instance new actor will attach to
+//A0 = Global Context + 0x1C24
+//A1 = Actor* attachToInstance
 //A2 = Global Context
 //A3 = s16 Actor Id
 //SP + 0x10 = float x
@@ -778,6 +778,9 @@ B508 jal 800CCBB8 //Link Overlay
 //New actor + 0x118 will be set to A2
 //Existing Actor + 0x11C will be set to the new actor's ptr
 //the new actor will be bound to the existing actor's room unless spawned actor is global (room = -1)
+
+
+80025488 //Spawn Transition Actor
 
 
 800255C4 //Spawn Scene Header 0x01 record actor
@@ -2395,8 +2398,23 @@ C1CC //t0 = 801DA302?
 8004C210 //code, graph, Collision, Unknown? CollisionCheck_setOT?
 //maybe unused, next function at 8004C320
 
+8004C3AC //checks collision toucher attribute
+//A0 = CollisionBodyInfo* toucher
+//V0 = 1 if (CollisionBodyInfo)+0x15 & 0x01 == 0, else 0
+
+
+8004C3D0 //checks collision bumper attribute
+//A0 = CollisionBodyInfo* bumper
+//V0 = 1 if (CollisionBodyInfo)+0x16 & 0x01 == 0, else 0
+
 
 8004C3F4 // ?, seems to be used to check if Link should collide into enemies
+//A0 = Ptr to CollisionBodyShape (colAT, attack)
+//A1 = Ptr to CollisionBodyShape (colAC, collidable)
+//V0 = 1 if true, else 0
+//
+//T6 = Attacker Damage Flags (Arg A0)+0x00
+//T7 = Receiver Damage Mask (Arg A1)+0x08
 
 
 8004C59C //Collision?
@@ -2408,10 +2426,233 @@ C1CC //t0 = 801DA302?
 8004CCC8 //code, graph, Collision detection related?
 
 
-8004D11C // Collision Detection related
+8004CE70 //Attack colAT type 0 into colAC type 0 collision
+//800EFB0C function
+//A0 = Global Context
+//A1 = colAT ptr
+//A2 = CollisionBody* colAT_Element
+//A3 = CollisionBody* colAC_Element
 
 
-8004F80C // Possibly main collision detection routine
+8004D11C //Attack colAT type 0 into colAC type 1 collision
+//800EFB0C function
+//A0 = Global Context
+//A1 = colAT ptr
+//A2 = CollisionBody* colAT_Element //cylinder collection
+//A3 = CollisionBody* colAC_Element //cylinder
+//
+//SP -0x90
+//S2 = colAC_Element
+//S3 = colAT_Element
+//T6 = colAT num cylinders
+D154 //return if colAT num cylinders <= 0
+//T7 = ptr to first cylinder
+D160 //return if t7 = null
+//T8 = colAC_Element radius
+D168 //return if radius <= 0
+//t9 = colAC_Element height
+//S6 = (colAC_Element) + 0x18
+//A0 = S6
+D180 //return if colAC_Element height <= 0
+D188 jal	8004C3D0
+	//call with
+	//A0 = (colAC_Element)+0x18
+	//V0 = ?
+//S1 = 1
+D194 //return if V0 == 1
+//V1 = colAT_Element
+//T0 = colAT_Element num cylinders
+//S0 = 
+D1BC //loop start for cylinder collection
+
+
+8004D368 //Attack colAT type 1 into colAC type 0 collision
+//800EFB0C function
+//A0 = Global Context
+//A1 = colAT ptr
+//A2 = CollisionBody* colAT_Element
+//A3 = CollisionBody* colAC_Element
+
+
+8004D5DC //Attack colAT type 0 into colAC type 2 collision
+//800EFB0C function
+//A0 = Global Context
+//A1 = colAT ptr
+//A2 = CollisionBody* colAT_Element
+//A3 = CollisionBody* colAC_Element
+
+
+8004D7FC //Attack colAT type 2 into colAC type 0 collision
+//800EFB0C function
+//A0 = Global Context
+//A1 = colAT ptr
+//A2 = CollisionBody* colAT_Element
+//A3 = CollisionBody* colAC_Element
+
+
+8004DA10 //Attack colAT type 0 into colAC type 3 collision
+//800EFB0C function
+//A0 = Global Context
+//A1 = colAT ptr
+//A2 = CollisionBody* colAT_Element
+//A3 = CollisionBody* colAC_Element
+
+
+8004DC30 //Attack colAT type 3 into colAC type 0 collision
+//800EFB0C function
+//A0 = Global Context
+//A1 = colAT ptr
+//A2 = CollisionBody* colAT_Element
+//A3 = CollisionBody* colAC_Element
+
+
+8004DE94 //Attack colAT type 1 into colAC type 1 collision
+//800EFB0C function
+//A0 = Global Context
+//A1 = colAT ptr
+//A2 = CollisionBody* colAT_Element
+//A3 = CollisionBody* colAC_Element
+
+
+8004E068 //Attack colAT type 1 into colAC type 2 collision
+//800EFB0C function
+//A0 = Global Context
+//A1 = colAT ptr
+//A2 = CollisionBody* colAT_Element
+//A3 = CollisionBody* colAC_Element
+
+
+8004E22C //Attack colAT type 2 into colAC type 1 collision
+//800EFB0C function
+//A0 = Global Context
+//A1 = colAT ptr
+//A2 = CollisionBody* colAT_Element
+//A3 = CollisionBody* colAC_Element
+
+
+8004E3EC //Attack colAT type 1 into colAC type 3 collision
+//800EFB0C function
+//A0 = Global Context
+//A1 = colAT ptr
+//A2 = CollisionBody* colAT_Element
+//A3 = CollisionBody* colAC_Element
+
+
+8004E660 //Attack colAT type 3 into colAC type 1 collision
+//800EFB0C function
+//A0 = Global Context
+//A1 = colAT ptr
+//A2 = CollisionBody* colAT_Element
+//A3 = CollisionBody* colAC_Element
+
+
+8004E90C //Attack colAT type 2 into colAC type 2 collision
+//800EFB0C function
+//A0 = Global Context
+//A1 = colAT ptr
+//A2 = CollisionBody* colAT_Element
+//A3 = CollisionBody* colAC_Element
+
+
+8004EB60 //Attack colAT type 2 into colAC type 3 collision
+//800EFB0C function
+//A0 = Global Context
+//A1 = colAT ptr
+//A2 = CollisionBody* colAT_Element
+//A3 = CollisionBody* colAC_Element
+
+
+8004EDF0 //Attack colAT type 3 into colAC type 2 collision
+//800EFB0C function
+//A0 = Global Context
+//A1 = colAT ptr
+//A2 = CollisionBody* colAT_Element
+//A3 = CollisionBody* colAC_Element
+
+
+8004F088 //Attack colAT type 3 into colAC type 3 collision
+//800EFB0C function
+//A0 = Global Context
+//A1 = colAT ptr
+//A2 = CollisionBody* colAT_Element
+//A3 = CollisionBody* colAC_Element
+
+
+8004F6E4 //?
+//A0 = Global Context
+//A1 = colAT ptr
+//A2 = CollisionBody* colAt_Element
+//
+//SP -0x30
+//
+//S0 = CollisionBody* colAt_Element
+//S2 = colAT ptr
+//S3 = Global Context
+//t6 = colAC num elements
+//S1 = CollisionBody* colAC first element
+//T0 = colAC end address
+F728 //return if S1 >= T0
+//S4 = 800EFB0C
+//A3 = colAC element
+F734 //branch F7E0 if A3 == null (for loop continue;)
+F744 //branch F7E0 if (A3)+0x11 & 0x01 == 0
+F75C //branch F7E0 if A3 element actor instance is not null, but actor.main update is
+//V1 = u8 (colAt_Element) + 0x10
+//T1 = V0 & V1
+//T2 = T1 & 0x38
+F770 //branch F7E0 if T2 == 0
+F778 //branch F7DC if colAT_Element == colAC_Element
+F780 //branch F7A0 if (colAT_Element)+0x10 & 0x0040 == 0
+F78C //branch F7A0 if colAT_Element actor is null
+F794 //branch F7E0 if colAT_Element and colAC_Element actor are the same
+F7A0
+//T4 = colAT_Element type
+//T7 = colAC_Element type
+//A0 = Global Context
+//T5 = T4 * 0x10
+//T6 = 800EFB0C + T5
+//T8 = T7 * 0x04
+//T9 = 800EFB0C + (colAT_Element * 0x10) + (colAC_Element * 0x04)
+F7C4 jalr	ra,t9
+	//call with
+	//A0 = Global Context
+	//A1 = colAT ptr
+	//A2 = colAT_Element
+	//A3 = colAC_Element
+
+F7E0
+
+
+8004F80C //Update Attack Collisions
+//A0 = Global Context
+//A1 = colAt ptr
+//
+//SP -0x28
+//
+//S1 = colAt ptr
+//S2 = Global Context
+//A2 = num colAt elements
+F82C //return if A2 == 0
+//t6 = num colAC elements
+F840 //return if t6 == 0
+//S0 = ptr to colAt first element
+//V1 = ptr to colAt end addr
+F850 //branch F8BC if S0 >= V1
+//A2 = colAt element
+F85C //branch F8AC if A2 == null (continue;)
+//t8 = u8 (colAt element)+0x10
+F86C //branch F8AC if t8 & 0x01 == 0 (continue;)
+F87C //branch F890 if colAt element's actor pointer is null
+F888 //branch F8AC if colAt element -> actor.main is null (continue;)
+F890 jal	8004F6E4
+	//call with
+	//A0 = Global Context
+	//A1 = colAt ptr
+	//A2 = CollisionBody* colAt_Element
+F8BC jal	8004F610
+	//call with
+	//A0 = Global Context
+	//A1 = colAt ptr
 
 
 800502A8 //code, actors, initializes "damage chart" part of actor
@@ -3399,6 +3640,10 @@ D854 JR 	RA
 //A1 = 801DA15C (Global Context + 0x11CBC)
 //A2 = Room Id
 
+80080BA4 //Update? Room
+//A0 = Global Context
+//A1 = Room Context
+
 
 800812F0 //Load Object File
 //Called by Scene Header Command 0x00 handler
@@ -3855,6 +4100,9 @@ B448 //Start of Game State switch logic
 //load Game Mode (Save Context + 0x135C) and see if it's file select
 B478 //copy next entrance index to current entrance index
 B544 //use Global Context + 0x1241B to index jump table at 80108D38
+BD10 jal	80080BA4 //possibly update room
+BD28 jal	8004F80C //Update Attack Collisions
+BD34 jal	80050118
 
 
 8009C0A8 //gameplay game state "draw update"

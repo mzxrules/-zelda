@@ -21,29 +21,56 @@ Collision Struct (Overlay):
 0x24	int?	//?
 0x28	int?	//? (thought this struct was only 0x24 bytes)
 
-Common Collision Struct (Actor Instance): (0x4C bytes long?)
+Common CollisionBody Struct (Actor Instances): 0x18 bytes long
 //To simplify, CSO = Collision Struct (Overlay) reference
 //801DAEB8 for Link
 0x00	ptr 	//Actor Instance
 0x04	ptr 	//Colliding Actor Instance Type 1?
 0x08	ptr		//Colliding Actor Instance Type 2?
 0x0C	ptr		//Colliding Actor Instance Type 3?
-0x10	byte	//CSO 0x01
-0x11	byte	//CSO 0x02 //if & 0x0002, is detecting a Deku Nut hit?
+0x10	u8		//CSO 0x01 Collides Flags (opposite 0x11)
+							//if not & 0x0001, skip attack detection
+							// & 0x0040 == ?
+0x11	u8		//CSO 0x02 Collision Check Flags (opposite 0x10)
+							//if not & 0x0001, skip collision with attack.
+							//if & 0x0002, is detecting a Deku Nut hit?
 0x12	byte	//CSO 0x03, bitwise-and compared to opposing collision's 0x13 byte
 0x13	byte	//CSO 0x04, bitwise-and compared to opposing collision's 0x12 byte
 0x14	byte	//CSO 0x00
-0x15	byte	//CSO 0x05, possibly body type?
+0x15	u8		//CSO 0x05, possibly body type?
 				//references function pointer, start location at 800EFAB8
                 //used to reference function pointer, start location at 800EFB4C.
 				//Basically, on left compare to right, left's value * 0x10 + right's value * 0x04 = pointer look up
+
+Since collisions cannot be truely simultaneous, 
+toucher refers to a body pushing into another
+bumper refers to a body potentially receiving a touch
+				
+Common CollisionBodyInfo: 0x28 bytes?
+0x00 s32 //Toucher Attack Identifier Flags
+0x04 u8
+0x05 u8 //damage dealt when touched/stun timer
+0x08 s32 //Bumper Exclusion Mask
+0x0C u8 //Effect when collided into
+0x0D u8 //
+0x14 u8 //flags?
+0x15 u8 //Toucher flags?
+0x16 u8 //Bumper flags?
+0x17 u8 //flags?
+0x18 
+0x1C //stores pointer to CollisionBody? in some situations
+0x20 
+0x24 //pointer to CollisionBodyInfo of colliding entity
 				
 //Type 0, Cylinder Collection?
 0x18	int 	//Number of Cylinders
 0x1C	ptr 	//Cylinder Array Start
 //Each cylinder is 0x40 bytes long
+0x00 int //Attack Identifier Flags
+0x08 int //Attack Receive Mask
 0x28 vector3_s16 ?
-0x30 vector3_s16 xyz?;
+0x30 vector3_s16 xyz?
+0x36 s16 
 0x3C u8 //?
 
 
@@ -71,7 +98,13 @@ Common Collision Struct (Actor Instance): (0x4C bytes long?)
 0x4A	short	//Cylinder Z
 
 
-800EFB0C //jump table for collision checks?
+//Type 3, Polys? (Sword Slashes)
+0x00 int //Attack Identifier Flags
+0x08 int //Attack Receive Mask
+
+
+800EFB0C //jump table for collision checks (colAT -> colAC)
+800EFB4C //jump table for collision checks 2
 
 
 Global Context:

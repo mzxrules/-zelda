@@ -251,13 +251,14 @@ Global Context (Game):
 0x117B0 //Object Table Array Start
 0x117B4 //global context direct ref
 0x11C11 u8 //0x08 header command, invisible (lens) actors? //Is this wrong?
-0x11CBC //Room info struct //1DA15C
+0x11CBC //Room Context (Room info struct) //1DA15C
   0x00 u8 //Room Index
   0x02 (0x11CBE) u8 //0x08 header command, idle animation/heat timer if 0x03
   0x03 (0x11CBF) u8 //0x08 header command, data1 (room action settings)
   //substruct, low level stuff
   0x28 (0x11CE4) s32 //Room Alloc Space Start Pointer
   0x2C (0x11CE8) s32 //Room Alloc Space End Pointer
+  0x31 s8 //Room Loaded?
   0x38 z_getfile_t //s32 Loaded Room Virtual Start Address
   
 0x11D34 u8 //number of transition actors
