@@ -1,0 +1,544 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Table KeyType="System.UInt16" ValueType="System.String">
+  <Function RAMdebug="8001F548" RAMretail="80013678" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8001F77C" RAMretail="800138B0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8001F940" RAMretail="80013A84" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8001FDF0" RAMretail="80013F30" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80020120" RAMretail="80014254" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80026230" RAMretail="8001A0E0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80026608" RAMretail="8001A468" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80026B0C" RAMretail="8001A890" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80026CD4" RAMretail="8001AA5C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002709C" RAMretail="8001AE04" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800274E0" RAMretail="8001B1A4" Source="" ShortName="" Description="Kill Particle" Args="A0 = Particle Instance Ptr" />
+  <Function RAMdebug="80027704" RAMretail="8001B3D0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80027DD4" RAMretail="8001B8FC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80027F80" RAMretail="8001BAA0" Source="" ShortName="" Description="Draw Splash? (Particle 0x0A)" Args="" />
+  <Function RAMdebug="8002829C" RAMretail="8001BD94" Source="" ShortName="" Description="Spawn Particle 0x00 Type 0 (Wrapper for 8001BCE0)" Args="" />
+  <Function RAMdebug="8002836C" RAMretail="8001BE64" Source="" ShortName="" Description="Spawn Particle 0x00 Type 0 (Wrapper for 8001BCE0)" Args="" />
+  <Function RAMdebug="8002843C" RAMretail="8001BF34" Source="" ShortName="" Description="Spawn Particle 0x00 Type 2 (Wrapper for 8001BCE0)" Args="" />
+  <Function RAMdebug="8002865C" RAMretail="8001C154" Source="" ShortName="" Description="Spawn Particle 0x00 Type 4 (Wrapper for 8001BCE0)" Args="" />
+  <Function RAMdebug="800286CC" RAMretail="8001C1C4" Source="" ShortName="" Description="Spawn Particle 0x00 Type 5 (Wrapper for 8001BCE0)" Args="" />
+  <Function RAMdebug="8002873C" RAMretail="8001C234" Source="" ShortName="" Description="Spawn Particle 0x00 Type 4 (Wrapper for 8001BCE0)" Args="" />
+  <Function RAMdebug="800287AC" RAMretail="8001C2A4" Source="" ShortName="" Description="Spawn Particle 0x00 Type 5 (Wrapper for 8001BCE0)" Args="" />
+  <Function RAMdebug="80028990" RAMretail="8001C488" Source="" ShortName="" Description="Spawn 20 Particle 0x00 (Calls 8001C234)" Args="" />
+  <Function RAMdebug="80028A54" RAMretail="8001C54C" Source="" ShortName="" Description="Spawn 20 Particle 0x00 (Calls 8001C2A4)" Args="" />
+  <Function RAMdebug="80028B18" RAMretail="8001C610" Source="" ShortName="" Description="Spawn Particle 0x01 (Wrapper for 8001C6A8)" Args="" />
+  <Function RAMdebug="80028B74" RAMretail="8001C66C" Source="" ShortName="" Description="Spawn Particle 0x01 (Wrapper for 8001C6A8)" Args="" />
+  <Function RAMdebug="80028BB0" RAMretail="8001C6A8" Source="" ShortName="" Description="Spawn Particle 0x01 (Fairy Sparkle)" Args="" />
+  <Function RAMdebug="80028CEC" RAMretail="8001C7E4" Source="" ShortName="" Description="Spawn Particle 0x01 (?, First Visit ToT as Adult)" Args="" />
+  <Function RAMdebug="80028E84" RAMretail="8001C97C" Source="" ShortName="" Description="Spawn Particle 0x03" Args="" />
+  <Function RAMdebug="80028F84" RAMretail="8001CA7C" Source="" ShortName="" Description="Spawn Particle 0x04 (Wrapper for 8001C9EC)" Args="" />
+  <Function RAMdebug="80029024" RAMretail="8001CB1C" Source="" ShortName="" Description="Spawn Particle 0x04 (Wrapper for 8001CAD0)" Args="" />
+  <Function RAMdebug="80029184" RAMretail="8001CC7C" Source="" ShortName="" Description="Spawn Particle 0x05 (Wrapper for 8001CDD4)" Args="Bomb Spark" />
+  <Function RAMdebug="800293A0" RAMretail="8001CE98" Source="" ShortName="" Description="Spawn Particle 0x06 (Wrapper for 8001CE18)" Args="" />
+  <Function RAMdebug="800293E4" RAMretail="8001CEDC" Source="" ShortName="" Description="Spawn Particle 0x07" Args="" />
+  <Function RAMdebug="80029444" RAMretail="8001CF3C" Source="" ShortName="" Description="Spawn Particle 0x09" Args="" />
+  <Function RAMdebug="8002949C" RAMretail="8001CF94" Source="" ShortName="" Description="Spawn Particle 0x0A" Args="" />
+  <Function RAMdebug="80029530" RAMretail="8001D028" Source="" ShortName="" Description="Spawn Particle 0x0B" Args="" />
+  <Function RAMdebug="800295A0" RAMretail="8001D098" Source="" ShortName="" Description="Spawn Particle 0x0D" Args="" />
+  <Function RAMdebug="80029618" RAMretail="8001D110" Source="" ShortName="" Description="Spawn Particle 0x0E" Args="" />
+  <Function RAMdebug="80029694" RAMretail="8001D18C" Source="" ShortName="" Description="Spawn Particle 0x0E" Args="" />
+  <Function RAMdebug="80029724" RAMretail="8001D21C" Source="" ShortName="" Description="Spawn Particle 0x0F" Args="" />
+  <Function RAMdebug="800297A4" RAMretail="8001D29C" Source="" ShortName="" Description="Spawn N Particle 0x0F (Wrapper for 8001D21C)" Args="SP+0x18 = s16 Particles to Spawn" />
+  <Function RAMdebug="800299AC" RAMretail="8001D4A8" Source="" ShortName="" Description="Spawn Particle 0x11 (Wrapper for 8001D438)" Args="" />
+  <Function RAMdebug="80029B90" RAMretail="8001D68C" Source="" ShortName="" Description="Spawn Particle 0x13" Args="" />
+  <Function RAMdebug="80029C00" RAMretail="8001D6FC" Source="" ShortName="" Description="Spawn Particle 0x14" Args="" />
+  <Function RAMdebug="80029CA4" RAMretail="8001D7A8" Source="" ShortName="" Description="Spawn Particle 0x15 (Wrapper for 8001D750)" Args="" />
+  <Function RAMdebug="80029CC8" RAMretail="8001D7CC" Source="" ShortName="" Description="Spawn Particle 0x15 (Wrapper for 8001D750)" Args="" />
+  <Function RAMdebug="80029CF0" RAMretail="8001D7F8" Source="" ShortName="" Description="Spawn Particle 0x16" Args="" />
+  <Function RAMdebug="80029D5C" RAMretail="8001D864" Source="" ShortName="" Description="Spawn Particle 0x16" Args="" />
+  <Function RAMdebug="80029DBC" RAMretail="8001D8C8" Source="" ShortName="" Description="Spawn Particle 0x17" Args="" />
+  <Function RAMdebug="80029E8C" RAMretail="8001D998" Source="" ShortName="" Description="Spawn Particle 0x19" Args="" />
+  <Function RAMdebug="8002A140" RAMretail="8001DC4C" Source="" ShortName="" Description="Spawn Particle 0x1B" Args="" />
+  <Function RAMdebug="8002A1DC" RAMretail="8001DCEC" Source="" ShortName="" Description="Spawn Particle 0x1B" Args="" />
+  <Function RAMdebug="8002A2A4" RAMretail="8001DDB8" Source="" ShortName="" Description="Spawn Particle 0x1B" Args="" />
+  <Function RAMdebug="8002A3C4" RAMretail="8001DED8" Source="" ShortName="" Description="Spawn Particle 0x1C (Wrapper for 8001DE40)" Args="" />
+  <Function RAMdebug="8002A4D4" RAMretail="8001DFEC" Source="" ShortName="" Description="Spawn Particle 0x1D" Args="" />
+  <Function RAMdebug="8002A5F4" RAMretail="8001E110" Source="" ShortName="" Description="Spawn Particle 0x1E" Args="" />
+  <Function RAMdebug="8002A65C" RAMretail="8001E178" Source="" ShortName="" Description="Spawn Particle 0x1F" Args="" />
+  <Function RAMdebug="8002A6B8" RAMretail="8001E1D4" Source="" ShortName="" Description="Spawn Particle 0x20" Args="" />
+  <Function RAMdebug="8002A770" RAMretail="8001E28C" Source="" ShortName="" Description="Spawn Particle 0x21" Args="" />
+  <Function RAMdebug="8002A90C" RAMretail="8001E428" Source="" ShortName="" Description="Spawn Particle 0x22 (Wrapper for 8001E3B0)" Args="" />
+  <Function RAMdebug="8002A9F4" RAMretail="8001E510" Source="" ShortName="" Description="Spawn Particle 0x23 (Wrapper for 8001E478)" Args="" />
+  <Function RAMdebug="8002AA44" RAMretail="8001E560" Source="" ShortName="" Description="Spawn Particle 0x24" Args="" />
+  <Function RAMdebug="8002B1E0" RAMretail="8001EC20" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002BDB0" RAMretail="8001F74C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002CB40" RAMretail="8002049C" Source="/flg_set.c" ShortName="" Description="Tests if Switch Flag is Set" Args="A0 = Global Context&#xD;&#xA;A1 = Switch Flag Value&#xD;&#xA;V0 = 0 if not set, or the flag bit if set" />
+  <Function RAMdebug="8002CB74" RAMretail="800204D0" Source="/flg_set.c" ShortName="" Description="Sets Switch Flag to 1" Args="A0 = Global Context&#xD;&#xA;A1 = Switch Flag Value" />
+  <Function RAMdebug="8002CBB4" RAMretail="80020510" Source="/flg_set.c" ShortName="" Description="Sets Switch Flag to 0" Args="A0 = Global Context&#xD;&#xA;A1 = Switch Flag Value" />
+  <Function RAMdebug="8002CCB0" RAMretail="8002060C" Source="/flg_set.c" ShortName="" Description="Tests if a Chest Flag is set" Args="A0 = Global Context&#xD;&#xA;A1 = Flag Value&#xD;&#xA;V0 = 0 if not set, or the flag bit if set" />
+  <Function RAMdebug="8002CCC4" RAMretail="80020624" Source="/flg_set.c" ShortName="" Description="Sets Chest Flag to 1" Args="A0 = Global Context&#xD;&#xA;A1 = Flag Value" />
+  <Function RAMdebug="8002CCDC" RAMretail="80020640" Source="/flg_set.c" ShortName="" Description="Test if a Room Clear Flag is set" Args="A0 = Global Context&#xD;&#xA;A1 = Flag Value&#xD;&#xA;V0 = 0 if not set, or the flag bit if set" />
+  <Function RAMdebug="8002CCF0" RAMretail="80020658" Source="/flg_set.c" ShortName="" Description="Sets Room Clear Flag to 1" Args="A0 = Global Context&#xD;&#xA;A1 = Flag Value" />
+  <Function RAMdebug="8002CD24" RAMretail="80020694" Source="/flg_set.c" ShortName="" Description="Tests if Global Context + 0x1D40 Flag is set" Args="A0 = Global Context&#xD;&#xA;A1 = Flag Value&#xD;&#xA;V0 = 0 if not set, or the flag bit if set" />
+  <Function RAMdebug="8002CD38" RAMretail="800206AC" Source="/flg_set.c" ShortName="" Description="Sets Global Context + 0x1D40 Flag to 1" Args="A0 = Global Context&#xD;&#xA;A1 = Flag Value" />
+  <Function RAMdebug="8002CD6C" RAMretail="800206E8" Source="/flg_set.c" ShortName="" Description="Tests if Scene Collectible Flag is set" Args="A0 = Global Context&#xD;&#xA;A1 = Flag Value&#xD;&#xA;V0 = 0 if not set, or the flag bit if set" />
+  <Function RAMdebug="8002CDA0" RAMretail="8002071C" Source="/flg_set.c" ShortName="" Description="Sets Scene Collectible Flag to 1" Args="A0 = Global Context&#xD;&#xA;A1 = Flag Value" />
+  <Function RAMdebug="8002CE00" RAMretail="80020780" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002D570" RAMretail="80020EB4" Source="" ShortName="" Description="Kill Actor (nulls draw/update, but does not deallocate)" Args="A0 = Actor Instance ptr" />
+  <Function RAMdebug="8002D5B8" RAMretail="80020F04" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002D62C" RAMretail="80020F88" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002D644" RAMretail="80020FA4" Source="" ShortName="" Description="Update CPU Segment 0x06 to point to actor's defined object dependency" Args="A0 = Global Context&#xD;&#xA;A1 = Actor Instance ptr" />
+  <Function RAMdebug="8002D7EC" RAMretail="80021124" Source="" ShortName="" Description="Physics, updates XYZ coordinates of actor" Args="A0 = Actor Instance ptr" />
+  <Function RAMdebug="8002D868" RAMretail="800211A4" Source="" ShortName="" Description="Physics, updates XYZ velocity vectors (+0x5C) of an actor" Args="A0 = Actor Instance ptr" Description2="Only factors y component of speed rotation xyz (+0x30) " />
+  <Function RAMdebug="8002D8E0" RAMretail="8002121C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002D908" RAMretail="80021248" Source="" ShortName="" Description="Physics, updates XYZ velocity vectors (+0x5C) of an actor" Args="" Description2="Factors x and y component of speed rotation xyz (+0x30)" />
+  <Function RAMdebug="8002D97C" RAMretail="800212B8" Source="" ShortName="" Description="Physics, updates XYZ velocity and XYZ coordinates of actor&#xD;&#xA;(Wrapper for 80021248 and 80021124)" Args="A0 = Actor Instance ptr" />
+  <Function RAMdebug="8002D9A4" RAMretail="800212E4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002DA78" RAMretail="800213B4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002DAC0" RAMretail="8002140C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002DAE0" RAMretail="80021430" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002DB28" RAMretail="80021488" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002DB48" RAMretail="800214AC" Source="" ShortName="" Description="Calculates XYZ between two actors (+0x24)&#xD;&#xA;Wrapper for 80063E18" Args="A0 = Actor A&#xD;&#xA;A1 = Actor B&#xD;&#xA;F0 = Result" />
+  <Function RAMdebug="8002DB6C" RAMretail="800214D8" Source="" ShortName="" Description="Calculates XYZ between actor (+0x24) and a point &#xD;&#xA;Wrapper fo 80063E18" Args="A0 = Actor&#xD;&#xA;A1 = Coordinate ptr&#xD;&#xA;F0 = Result" />
+  <Function RAMdebug="8002DB8C" RAMretail="800214FC" Source="" ShortName="" Description="Calculates XZ distance between two actors (+0x24)&#xD;&#xA;Wrapper for 80063EB8" Args="A0 = Actor A&#xD;&#xA;A1 = Actor B&#xD;&#xA;F0 = Result" />
+  <Function RAMdebug="8002DBB0" RAMretail="80021528" Source="" ShortName="" Description="Calculates XZ distance between actor (+0x24) and a Point &#xD;&#xA;Wrapper for 80063EB8" Args="A0 = Actor&#xD;&#xA;A1 = Coordinate ptr&#xD;&#xA;F0 = Result" />
+  <Function RAMdebug="8002DBD0" RAMretail="8002154C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002DD78" RAMretail="800216F8" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002DDE4" RAMretail="80021768" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002DDF4" RAMretail="8002177C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002DE04" RAMretail="80021790" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002DEEC" RAMretail="8002187C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002DF38" RAMretail="800218C8" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002DF54" RAMretail="800218EC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002DF90" RAMretail="80021928" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002DFC8" RAMretail="80021968" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002E084" RAMretail="80021A28" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002E12C" RAMretail="80021AD4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002E1A8" RAMretail="80021B54" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002E4B4" RAMretail="80021E6C" Source="" ShortName="" Description="possibly primary actor collision call" Args="A0 = Global Context&#xD;&#xA;A1 = Actor Instance&#xD;&#xA;A2 = float wallCheckHeight? (26f for Link)&#xD;&#xA;A3 = float wallPushback? (18f/14f for Adult/Child Link)&#xD;&#xA;SP+0x10 float ? (56f/40f for Adult/Child Link)&#xD;&#xA;SP+0x14 int (type?)" />
+  <Function RAMdebug="8002EBCC" RAMretail="80022438" Source="" ShortName="" Description="Sets lighting angles for shiny things or something." Args="" />
+  <Function RAMdebug="8002ED80" RAMretail="80022554" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002F194" RAMretail="80022930" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002F1C4" RAMretail="80022960" Source="" ShortName="" Description="NPC Request Trade Item" Args="A0 = Actor Instance&#xD;&#xA;A1 = Global Context&#xD;&#xA;A2 = float (distance 1?)&#xD;&#xA;A3 = float (disstance 2?)&#xD;&#xA;SP+0x10 = Trade Item Index" />
+  <Function RAMdebug="8002F298" RAMretail="80022A34" Source="" ShortName="" Description="NPC Request Trade Item&#xD;&#xA;(Wrapper for 80022960)" Args="A0 = Actor Instance&#xD;&#xA;A1 = Global Context&#xD;&#xA;A2 = float distance?&#xD;&#xA;A3 = Trade Item Index" Description2="Passes A2 into A2 and A3 of inner function" />
+  <Function RAMdebug="8002F2CC" RAMretail="80022A68" Source="" ShortName="" Description="NPC Request Trade Item?&#xD;&#xA;(Wrapper for 80022A34)" Args="A0 = Actor Instance&#xD;&#xA;A1 = Global Context&#xD;&#xA;A2 = float distance?" Description2="Calls wrapped function with A3 = 0" />
+  <Function RAMdebug="8002F2F4" RAMretail="80022A90" Source="" ShortName="" Description="NPC Request Trade Item?&#xD;&#xA;(Wrapper for 80022A68)" Args="A0 = Actor Instance&#xD;&#xA;A1 = Global Context" Description2="Calls wrapped function with A2 =(float) s16 Inst. + 0x98 + 50.0f" />
+  <Function RAMdebug="8002F334" RAMretail="80022AD0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002F368" RAMretail="80022B04" Source="" ShortName="" Description="Get Trade Item Link is holding" Args="Returns Link Instance + 0x0683" />
+  <Function RAMdebug="8002F374" RAMretail="80022B14" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002F410" RAMretail="80022BB0" Source="/z_actor.c" ShortName="" Description="Is Actor Held? Or Interacting?" Args="A0 = Actor Instance&#xD;&#xA;V0 = 0 if Instance + 0x118 is null, else 1" />
+  <Function RAMdebug="8002F434" RAMretail="80022BD4" Source="/z_actor.c" ShortName="" Description="Give Item" Args="A0 = Actor instance //Actor giving item&#xD;&#xA;A1 = Global Context&#xD;&#xA;A2 = Get Item ID&#xD;&#xA;A3 = float, max xz distance from actor to Link that item will be given&#xD;&#xA;SP+10 = float, max y distance from actor to Link that item will be given" />
+  <Function RAMdebug="8002F554" RAMretail="80022CF4" Source="/z_actor.c" ShortName="" Description="Give Item Wrapper (80022BD4)&#xD;&#xA;Sets A3 to 50.0f, SP+0x10 to 10.0f" Args="A0 = Actor Instance&#xD;&#xA;A1 = Global Context&#xD;&#xA;A2 = Get Item Id" />
+  <Function RAMdebug="8002F580" RAMretail="80022D20" Source="/z_actor.c" ShortName="" Description="Give Item Wrapper (80022CF4)&#xD;&#xA;Sets A2 to 0" Args="A0 = Actor Instance&#xD;&#xA;A1 = Global Context" />
+  <Function RAMdebug="8002F5A0" RAMretail="80022D40" Source="/z_actor.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002F5C4" RAMretail="80022D64" Source="/z_actor.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002F5F0" RAMretail="80022D94" Source="/z_actor.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002F618" RAMretail="80022DBC" Source="/z_actor.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002F63C" RAMretail="80022DE0" Source="/z_actor.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002F674" RAMretail="80022E18" Source="/z_actor.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002F6D4" RAMretail="80022E7C" Source="/z_actor.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002F71C" RAMretail="80022EC4" Source="/z_actor.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002F7A0" RAMretail="80022F48" Source="/z_actor.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002F7DC" RAMretail="80022F84" Source="/z_actor.c" ShortName="" Description="Play Sound Effect (Actor)" Args="A0 = Actor Instance&#xD;&#xA;A1 = Sfx Id" />
+  <Function RAMdebug="8002F828" RAMretail="80022FD0" Source="/z_actor.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002F850" RAMretail="80022FFC" Source="/z_actor.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002F8F0" RAMretail="800230A0" Source="/z_actor.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002F948" RAMretail="80023108" Source="/z_actor.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002F974" RAMretail="8002313C" Source="/z_actor.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002F994" RAMretail="80023164" Source="/z_actor.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8002F9EC" RAMretail="800231BC" Source="/z_actor.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800314D4" RAMretail="800249DC" Source="/z_actor.c" ShortName="" Description="Possibly tests if actor should be drawn" Args="A0 = Global Context&#xD;&#xA;A1 = actor instance&#xD;&#xA;A2 = actor instance + 0xE4&#xD;&#xA;A3 = float at actor instance + 0xF0" />
+  <Function RAMdebug="80031F50" RAMretail="80025110" Source="" ShortName="ActorSpawn" Description="Spawn Actor" Args="A0 = Global Context + 0x1C24&#xD;&#xA;A1 = Global Context&#xD;&#xA;A2 = s16 Actor Id&#xD;&#xA;A3 = float x&#xD;&#xA;SP+0x10 = float y&#xD;&#xA;SP+0x14 = float z&#xD;&#xA;SP+0x18 = rotx&#xD;&#xA;SP+0x1C = roty&#xD;&#xA;SP+0x20 = rotz&#xD;&#xA;SP+0x24 = s16 var&#xD;&#xA;V0 = Pointer to new actor, or null" />
+  <Function RAMdebug="80032458" RAMretail="800253F0" Source="" ShortName="" Description="Spawn Attached Actor" Args="A0 = Global Context + 0x1C24&#xD;&#xA;A1 = Actor* attachToInstance&#xD;&#xA;A2 = Global Context&#xD;&#xA;A3 = s16 Actor Id&#xD;&#xA;SP + 0x10 = float x&#xD;&#xA;SP + 0x14 = float y&#xD;&#xA;SP + 0x18 = float z&#xD;&#xA;SP + 0x1C = s16 rotx&#xD;&#xA;SP + 0x20 = s16 roty&#xD;&#xA;SP + 0x24 = s16 rotz&#xD;&#xA;SP + 0x28 = s16 var&#xD;&#xA;V0 = Pointer to new actor, or null if allocation failed" Description2="New actor + 0x118 will be set to A2&#xD;&#xA;Existing Actor + 0x11C will be set to the new actor's ptr&#xD;&#xA;the new actor will be bound to the existing actor's room unless spawned actor is global (room = -1)" />
+  <Function RAMdebug="80032C3C" RAMretail="80025B0C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80032C7C" RAMretail="80025B4C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80032E24" RAMretail="80025D04" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80032F54" RAMretail="80025DFC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8003305C" RAMretail="80025F04" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80033260" RAMretail="800260E8" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80033480" RAMretail="80026308" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80033640" RAMretail="800264C8" Source="" ShortName="" Description="Collision, Test if entity is being bombed" Args="A0 = Global Context&#xD;&#xA;A1 = Actor Collision Struct&#xD;&#xA;V0 = Null or Pointer to Explosive-type actor that collided" />
+  <Function RAMdebug="80033684" RAMretail="8002650C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80033748" RAMretail="800265D4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80033780" RAMretail="80026614" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80033940" RAMretail="800267D4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800339B8" RAMretail="80026850" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80033A84" RAMretail="8002691C" Source="" ShortName="" Description="? Same code as 80026950" Args="A0 = Global Context&#xD;&#xA;A1 = ?" />
+  <Function RAMdebug="80033AB8" RAMretail="80026950" Source="" ShortName="" Description="? Same code as 8002691C" Args="A0 = Global Context&#xD;&#xA;A1 = ?" />
+  <Function RAMdebug="80033AEC" RAMretail="80026984" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80033C30" RAMretail="80026AD0" Source="" ShortName="" Description="" Args="gameplay_keep d. list: Circular Shadow" />
+  <Function RAMdebug="80033E88" RAMretail="80026CF4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80033EF8" RAMretail="80026D64" Source="" ShortName="" Description="Generates a random floating point between 0 and N exclusive" Args="F12 = N, exclusive upper bound&#xD;&#xA;F0 = result" />
+  <Function RAMdebug="80033F20" RAMretail="80026D90" Source="" ShortName="" Description="Multiplies value by a random scalar between -0.5 and 0.5 exclusive" Args="F12 = N&#xD;&#xA;F0 = result" />
+  <Function RAMdebug="8003424C" RAMretail="80027070" Source="" ShortName="" Description="Wrapper for 800511B8" Args="" />
+  <Function RAMdebug="8003426C" RAMretail="80027090" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800343CC" RAMretail="800271FC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800347E8" RAMretail="80027620" Source="" ShortName="" Description="" Args="A0 = s16" />
+  <Function RAMdebug="80034A14" RAMretail="80027854" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80034DD4" RAMretail="80027BA8" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80034EC0" RAMretail="80027C98" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80034F54" RAMretail="80027D30" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80035260" RAMretail="80028048" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80035324" RAMretail="800280C8" Source="" ShortName="" Description="Draw ?" Args="" />
+  <Function RAMdebug="800353F4" RAMretail="80028158" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800354B4" RAMretail="8002821C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8003555C" RAMretail="800282C4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800355B8" RAMretail="80028320" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800355E4" RAMretail="8002834C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80035628" RAMretail="80028390" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80035650" RAMretail="800283BC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8003573C" RAMretail="800284A8" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80035844" RAMretail="800285B0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800359B8" RAMretail="80028720" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80035B4C" RAMretail="800288B4" Source="" ShortName="" Description="Tests if event_chk_inf flag is set" Args="A0 = event_chk_inf flag id&#xD;&#xA;V0 = 0 if not set, non-zero if set" />
+  <Function RAMdebug="80035B74" RAMretail="800288E0" Source="" ShortName="" Description="Sets event_chk_inf flag to 1" Args="A0 = event_chk_inf_flag id" />
+  <Function RAMdebug="80037C30" RAMretail="8002A9AC" Source="" ShortName="" Description="Generic NPC Text Handler 7" Args="" />
+  <Function RAMdebug="80037D98" RAMretail="8002AB20" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80038290" RAMretail="8002B024" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8003C890" RAMretail="8002F3A4" Source="/z_bgcheck.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8003C940" RAMretail="8002F454" Source="/z_bgcheck.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8003C9A4" RAMretail="8002F4B8" Source="/z_bgcheck.c" ShortName="Raycast" Description="Raycast" Args="" />
+  <Function RAMdebug="8003CA0C" RAMretail="8002F520" Source="/z_bgcheck.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8003CA64" RAMretail="8002F578" Source="/z_bgcheck.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8003D464" RAMretail="8002FF1C" Source="/z_bgcheck.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8003DE84" RAMretail="800308B4" Source="/z_bgcheck.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8003DF10" RAMretail="80030940" Source="/z_bgcheck.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8003DFA0" RAMretail="800309D0" Source="/z_bgcheck.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8003E02C" RAMretail="80030A5C" Source="/z_bgcheck.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8003E0B8" RAMretail="80030AE8" Source="/z_bgcheck.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8003E0FC" RAMretail="80030B2C" Source="/z_bgcheck.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8003E30C" RAMretail="80030D08" Source="/z_bgcheck.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8003EA74" RAMretail="800313A4" Source="/z_bgcheck.c" ShortName="DynaPolyInfo_setActor" Description="DynaPolyInfo_setActor" Args="A0 = Global Context&#xD;&#xA;A1 = Global Context + 0x810&#xD;&#xA;A2 = Actor Index&#xD;&#xA;A3 = ?&#xD;&#xA;V0 = Mesh Collision Id" />
+  <Function RAMdebug="8003EB84" RAMretail="80031464" Source="/z_bgcheck.c" ShortName="" Description="DynaPolyInfo_getActor" Args="A0 = Global Context&#xD;&#xA;A1 = Mesh Collision Id&#xD;&#xA;V0 = Actor Instance or null" />
+  <Function RAMdebug="8003EBF8" RAMretail="800314D8" Source="/z_bgcheck.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8003EC50" RAMretail="80031530" Source="/z_bgcheck.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8003ECA8" RAMretail="80031588" Source="/z_bgcheck.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8003ED58" RAMretail="80031638" Source="/z_bgcheck.c" ShortName="DynaPolyInfo_delReserve" Description="DynaPolyInfo_delReserve" Args="A0 = Global Context&#xD;&#xA;A1 = Global Context + 0x810&#xD;&#xA;A2 = Mesh Collision Id" />
+  <Function RAMdebug="8003EE6C" RAMretail="800316C0" Source="/z_bgcheck.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80041880" RAMretail="80033EF4" Source="/z_bgcheck.c" ShortName="" Description="" Args="A0 = Segment Offset to Collision Data&#xD;&#xA;A1 = ptr to store result?" />
+  <Function RAMdebug="80041D4C" RAMretail="800343D4" Source="/z_bgcheck.c" ShortName="" Description="Get PolyType High Word &amp;&gt;&gt; 0x0003 E000" Args="A0 = Global Context + 0x7C0&#xD;&#xA;A1 = Polygon*&#xD;&#xA;A2 = Mesh Collision Id&#xD;&#xA;V0 = Result" />
+  <Function RAMdebug="80041DB8" RAMretail="8003444C" Source="/z_bgcheck.c" ShortName="" Description="" Args="A0 = Global Context + 0x7C0&#xD;&#xA;A1 = Polygon*&#xD;&#xA;A2 = Mesh Collision Id&#xD;&#xA;V0 = Result" />
+  <Function RAMdebug="80041EA4" RAMretail="80034540" Source="/z_bgcheck.c" ShortName="" Description="" Args="A0 = Global Context + 0x7C0&#xD;&#xA;A1 = Polygon*&#xD;&#xA;A2 = Mesh Collision Id&#xD;&#xA;V0 = Result" />
+  <Function RAMdebug="80041EEC" RAMretail="80034590" Source="/z_bgcheck.c" ShortName="" Description="" Args="A0 = Global Context + 0x7C0&#xD;&#xA;A1 = Polygon*&#xD;&#xA;A2 = Mesh Collision Id&#xD;&#xA;V0 = Result" />
+  <Function RAMdebug="80041F34" RAMretail="800345DC" Source="/z_bgcheck.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80041FE8" RAMretail="8003469C" Source="/z_bgcheck.c" ShortName="" Description="" Args="A0 = Global Context + 0x7C0&#xD;&#xA;A1 = Polygon*&#xD;&#xA;A2 = Mesh Collision Id&#xD;&#xA;V0 = Result" />
+  <Function RAMdebug="80042048" RAMretail="80034700" Source="/z_bgcheck.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800420C0" RAMretail="80034778" Source="/z_bgcheck.c" ShortName="" Description="" Args="A0 = Global Context + 0x7C0&#xD;&#xA;A1 = Polygon*&#xD;&#xA;A2 = Mesh Collision Id&#xD;&#xA;V0 = Result" />
+  <Function RAMdebug="800420E4" RAMretail="800347A0" Source="/z_bgcheck.c" ShortName="" Description="" Args="A0 = Global Context + 0x7C0&#xD;&#xA;A1 = Polygon*&#xD;&#xA;A2 = Mesh Collision Id&#xD;&#xA;V0 = Result" />
+  <Function RAMdebug="8004213C" RAMretail="800347FC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80042244" RAMretail="80034908" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8004239C" RAMretail="80034A60" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800433A4" RAMretail="80035180" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80043480" RAMretail="80035260" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800434A8" RAMretail="80035290" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80043538" RAMretail="8003532C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80043548" RAMretail="80035340" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8004356C" RAMretail="80035364" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80043590" RAMretail="80035388" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800435B4" RAMretail="800353AC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800435D8" RAMretail="800353D0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005A77C" RAMretail="800495BC" Source="/z_camera.c" ShortName="" Description="Camera related (Wrapper for 800493C8)" Args="A0 = Camera struct ptr (ref in Global Context + 0x0790)&#xD;&#xA;A1 = ?" Description2="Function sets A2 = 0, calls inner function" />
+  <Function RAMdebug="8005A948" RAMretail="80049708" Source="/z_camera.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005A9F4" RAMretail="8004977C" Source="/z_camera.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005AA1C" RAMretail="800497A4" Source="/z_camera.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005AC60" RAMretail="800499F0" Source="/z_camera.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005AC6C" RAMretail="80049A00" Source="/z_camera.c" ShortName="" Description="Cutscene Camera?" Args="A0 = Cutscene Camera struct ptr&#xD;&#xA;A1 = Focus Point Tween List&#xD;&#xA;A2 = Camera Position Tween List&#xD;&#xA;A3 = Actor Instance (tracked actor)" />
+  <Function RAMdebug="8005ACFC" RAMretail="80049A94" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005AD1C" RAMretail="80049AB8" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005AD40" RAMretail="80049AE0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005AFD4" RAMretail="80049D58" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005B198" RAMretail="80049DA4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005B1A4" RAMretail="80049DB4" Source="" ShortName="" Description="" Args="" Description2="padding at end of function" />
+  <Function RAMdebug="8005B200" RAMretail="80049E10" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005BBF8" RAMretail="8004A484" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005BC28" RAMretail="8004A4B0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005BCC8" RAMretail="8004A550" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005BE50" RAMretail="8004A6BC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005C050" RAMretail="8004A874" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005C364" RAMretail="8004AB7C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005C3AC" RAMretail="8004ABCC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005C3F4" RAMretail="8004AC1C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005C450" RAMretail="8004AC84" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005C4AC" RAMretail="8004ACEC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005C7E0" RAMretail="8004B064" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005C8C8" RAMretail="8004B148" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005CBAC" RAMretail="8004B3EC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005D018" RAMretail="8004B858" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005D060" RAMretail="8004B8A8" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005D104" RAMretail="8004B960" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8005D79C" RAMretail="8004BD50" Source="/z_collision_check.c" ShortName="CollisionCheck_setAT" Description="Subscribe to collision pool 1, non-complex poly types&#xD;&#xA;Called directly by actors" Args="A0 = Global Context&#xD;&#xA;A1 = 801DA300 //collision body groups&#xD;&#xA;A2 = Collision Body Ptr&#xD;&#xA;V0 = 0 or -1 based on 801DA302 lowest bit?" />
+  <Function RAMdebug="8005D9F4" RAMretail="8004BF40" Source="/z_collision_check.c" ShortName="CollisionCheck_setAC" Description="//Subscribe to collision pool 2, non-complex poly types&#xD;&#xA;//Called directly by actors" Args="A0 = Global Context&#xD;&#xA;A1 = 801DA300 //collision body groups&#xD;&#xA;A2 = Collision Body Ptr&#xD;&#xA;V0 = 0 or -1 based on 801DA302 lowest bit?" />
+  <Function RAMdebug="8005DC4C" RAMretail="8004C130" Source="/z_collision_check.c" ShortName="CollisionCheck_setOT" Description="Subscribe to collision pool 3, non-complex poly types" Args="A0 = Global Context&#xD;&#xA;A1 = 801DA300 //collision body groups&#xD;&#xA;A2 = Collision Body Ptr&#xD;&#xA;V0 = 0 or -1 based on 801DA302 lowest bit?&#xD;&#xA;Called directly by actors" />
+  <Function RAMdebug="80061ED4" RAMretail="80050344" Source="/z_collision_check.c" ShortName="" Description="initializes damage chart part of actor" Args="" Description2="//Actor 0095" />
+  <Function RAMdebug="80061EFC" RAMretail="80050370" Source="/z_collision_check.c" ShortName="" Description="initializes damage chart part of actor" Args="" Description2="//Actor 0095" />
+  <Function RAMdebug="800626DC" RAMretail="80050B00" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80062734" RAMretail="80050B64" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800627A0" RAMretail="80050BD4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800628A4" RAMretail="80050CE4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80062CD4" RAMretail="80051124" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80062D60" RAMretail="800511B8" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80062DF4" RAMretail="80051250" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800635D0" RAMretail="80051A34" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80064520" RAMretail="80052328" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80064534" RAMretail="80052340" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800693D8" RAMretail="80056F98" Source="/z_demo.c" ShortName="" Description="Set Cutscene Pointer (Area Intro Cutscenes Only?)" Args="A0 = Global Context&#xD;&#xA;A1 = Segment Offset" Description2="Contains Disk Drive Hook" />
+  <Function RAMdebug="800694A0" RAMretail="800570C0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8006BAD8" RAMretail="80058FF8" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8006C2B0" RAMretail="80059714" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8006C318" RAMretail="8005977C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8006C360" RAMretail="800597C0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8006C4A4" RAMretail="8005991C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8006C85C" RAMretail="80059CB0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8006C894" RAMretail="80059CE0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8006C8C4" RAMretail="80059D18" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8006D074" RAMretail="8005A474" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8006DD9C" RAMretail="8005B00C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8006F93C" RAMretail="8005C690" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8006F9BC" RAMretail="8005C714" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80074CE8" RAMretail="80060CE8" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800773A8" RAMretail="800631D8" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800775CC" RAMretail="80063404" Source="" ShortName="" Description="Return s32 at 8011A5E8 (Event Days)" Args="V0 = s32 at 8011A5E8" />
+  <Function RAMdebug="800775D8" RAMretail="80063414" Source="" ShortName="" Description="Zero s32 at 8011A5E8 (Event Days)" Args="" />
+  <Function RAMdebug="800775F0" RAMretail="80063434" Source="" ShortName="" Description="Update Background Music" Args="A0 = s32? value to write to 8011B9DE" />
+  <Function RAMdebug="80077624" RAMretail="80063474" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80077684" RAMretail="800634D4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800777E0" RAMretail="80063630" Source="" ShortName="" Description="memset byte" Args="A0 = Address&#xD;&#xA;A1 = Size&#xD;&#xA;A2 = u8 value" />
+  <Function RAMdebug="80077834" RAMretail="80063684" Source="" ShortName="coss?" Description="Math, Get cosine of short rotation angle" Args="A0 = s16 rotation&#xD;&#xA;F0 = cosine of A0" />
+  <Function RAMdebug="80077870" RAMretail="800636C4" Source="" ShortName="sins?" Description="Math, Get sine of short rotation angle" Args="A0 = s16 rotation&#xD;&#xA;F0 = sine of A0" />
+  <Function RAMdebug="800778AC" RAMretail="80063704" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8007797C" RAMretail="800637D4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80077A00" RAMretail="8006385C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80077AF8" RAMretail="80063958" Source="" ShortName="" Description="" Args="" Description2="i" />
+  <Function RAMdebug="80077B58" RAMretail="800639B8" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80077D90" RAMretail="80063BF0" Source="" ShortName="" Description="Generates random s16 number" Args="A0 = s16 Offset&#xD;&#xA;A1 = s16 Range&#xD;&#xA;V0 = s16 Result" Description2="Generates random integer between 0 and range (exlusive), and adds Offset" />
+  <Function RAMdebug="80077E40" RAMretail="80063CAC" Source="" ShortName="Vec3f_Copy" Description="Copy Float Coordinates" Args="A0 = out vector3_f32* result&#xD;&#xA;A1 = vector3_f32* source" />
+  <Function RAMdebug="80077E5C" RAMretail="80063CCC" Source="" ShortName="Vec3f_CopyVec3s" Description="Convert s16 Coordinates to Float Coordinates" Args="A0 = out vector3_f32* result&#xD;&#xA;A1 = vector3_s16* source" />
+  <Function RAMdebug="80077E9C" RAMretail="80063D10" Source="" ShortName="Vec3f_Add" Description="Adds XYZ Float Coordinates" Args="A0 = Coord A ptr&#xD;&#xA;A1 = Coord B ptr&#xD;&#xA;A2 = Result ptr (A + B)" />
+  <Function RAMdebug="80077ED0" RAMretail="80063D48" Source="" ShortName="Vec3f_Sub" Description="Calculates XYZ Difference Between Float Coordinates" Args="A0 = Coord A ptr&#xD;&#xA;A1 = Coord B ptr&#xD;&#xA;A2 = Result ptr (A - B)" />
+  <Function RAMdebug="80077F04" RAMretail="80063D80" Source="" ShortName="" Description="Calculates XYZ Difference Between s16 Coordinates" Args="A0 = Result Float Coord ptr (A - B)&#xD;&#xA;A1 = s16 coord A ptr&#xD;&#xA;A2 = s16 coord B ptr" />
+  <Function RAMdebug="80077F5C" RAMretail="80063DDC" Source="" ShortName="" Description="Multiply XYZ Float Coordinates By Scalar" Args="A0 = Coord ptr&#xD;&#xA;A1 = Scalar Value" />
+  <Function RAMdebug="80077F90" RAMretail="80063E18" Source="" ShortName="" Description="Calculates XYZ Distance Between Float Coordinates" Args="A0 = Coord A ptr&#xD;&#xA;A1 = Coord B ptr&#xD;&#xA;F0 = result" />
+  <Function RAMdebug="80077FD0" RAMretail="80063E5C" Source="" ShortName="" Description="Calculates XYZ Distance Between Float Coordinates" Args="A0 = Coord A ptr&#xD;&#xA;A1 = Coord B ptr&#xD;&#xA;A2 = Result B - A ptr&#xD;&#xA;F0 = Distance" />
+  <Function RAMdebug="80078028" RAMretail="80063EB8" Source="" ShortName="" Description="Calculates XZ Distance Between Float Coordinates" Args="A0 = Coord A ptr&#xD;&#xA;A1 = Coord B ptr&#xD;&#xA;F0 = Result" />
+  <Function RAMdebug="80078068" RAMretail="80063F00" Source="" ShortName="" Description="Calculates Arctan2 (X,Z) of two coordinates (A-B)&#xD;&#xA;Wrapper for 800AA4F8" Args="A0 = Coord A ptr&#xD;&#xA;A1 = Coord B ptr&#xD;&#xA;V0 = s16 rotation" />
+  <Function RAMdebug="8007809C" RAMretail="80063F34" Source="" ShortName="" Description="Calculates Arctan2 (distance(XZ), Y) of two coordinates&#xD;&#xA;(A-B for Y coordinate)" Args="A0 = Coord A ptr&#xD;&#xA;A1 = Coord B ptr&#xD;&#xA;V0 = s16 rotation" />
+  <Function RAMdebug="800780DC" RAMretail="80063F7C" Source="" ShortName="" Description="Instance Init, Initialize Variable Chain" Args="A0 = Actor Instance&#xD;&#xA;A1 = Variable Initializer List ptr" />
+  <Function RAMdebug="80078310" RAMretail="80064178" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8007841C" RAMretail="80064280" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8007848C" RAMretail="800642F0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8007869C" RAMretail="80064508" Source="" ShortName="" Description="" Args="A0 = s16 Rotation Pointer (Y this pass)&#xD;&#xA;A1 = s16 ?&#xD;&#xA;A2 = ?&#xD;&#xA;A3 = ?" />
+  <Function RAMdebug="800787BC" RAMretail="80064624" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80078860" RAMretail="800646C8" Source="" ShortName="" Description="Copy u8[4] array" Args="A0 = Destination ptr&#xD;&#xA;A1 = Source ptr" />
+  <Function RAMdebug="80078884" RAMretail="800646F0" Source="" ShortName="" Description="Play SFX (limited set, identical to 80064738)" Args="A0 = SFX" />
+  <Function RAMdebug="800788CC" RAMretail="80064738" Source="" ShortName="" Description="Play SFX (limited set, Identical to 800646F0)" Args="A0 = SFX" />
+  <Function RAMdebug="80078914" RAMretail="80064780" Source="" ShortName="" Description="Play SFX (limited set)" Args="A0 = SFX" />
+  <Function RAMdebug="80079D8C" RAMretail="80065BCC" Source="../z_lights.c" ShortName="" Description="Initialize Flame Light (Wrapper for 80065B70)" Args="" />
+  <Function RAMdebug="80079DF0" RAMretail="80065C30" Source="../z_lights.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80079E58" RAMretail="80065C98" Source="../z_lights.c" ShortName="" Description="Initialize Flame Color" Args="A0 = Blue Fire Instance + 0x19C&#xD;&#xA;A1 = byte Red (0x9B this pass)&#xD;&#xA;A2 = byte Green (0xD2 this pass)&#xD;&#xA;A3 = byte Blue&#xD;&#xA;SP + 0x10 = short Alpha?" Description2="writes RGBA to A0 + 0x08 (note alpha is short)&#xD;&#xA;Called by 80065B70" />
+  <Function RAMdebug="8007A764" RAMretail="800665B0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8007A7C4" RAMretail="80066610" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8007C25C" RAMretail="80067850" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8007C3F4" RAMretail="800679E8" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800800F8" RAMretail="8006B6FC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800803F0" RAMretail="8006B9B4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80080480" RAMretail="8006BA10" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800806BC" RAMretail="8006BB7C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80080728" RAMretail="8006BBF4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800825E0" RAMretail="8006D8E0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800849EC" RAMretail="8006FAD0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80084BF4" RAMretail="8006FCB0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80084D10" RAMretail="8006FDCC" Source="" ShortName="" Description="Item Giving Routine" Args="A0 = Global Context&#xD;&#xA;A1 = Item Index" Description2="one of them at least" />
+  <Function RAMdebug="80086388" RAMretail="80071420" Source="" ShortName="" Description="? Check if player has item?" Args="A0 = Item Index&#xD;&#xA;V0 = 0xFF if no Item?" />
+  <Function RAMdebug="800869E4" RAMretail="800719E0" Source="" ShortName="" Description="Try Update Trade Quest Item&#xD;&#xA; (Egg -&gt; Chicken/Pocket Cucco, Ruto's Letter -&gt; Bottle)" Args="A0 = Global Context&#xD;&#xA;A1 = Old Item Index&#xD;&#xA;A2 = New Item Index&#xD;&#xA;V0 = 1 if successful, 0 otherwise" />
+  <Function RAMdebug="80086ABC" RAMretail="80071A94" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80086B2C" RAMretail="80071B04" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80086F00" RAMretail="80071E6C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8008708C" RAMretail="80071FF8" Source="" ShortName="" Description="" Args="" Description2="ROM st: do_action_static" />
+  <Function RAMdebug="80087174" RAMretail="800720BC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8008730C" RAMretail="800721CC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80087330" RAMretail="800721F4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80087680" RAMretail="80072500" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800876C8" RAMretail="80072548" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80087708" RAMretail="80072588" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80088AA0" RAMretail="800738E8" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80088B34" RAMretail="8007397C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8008E4E0" RAMretail="80078F80" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8008E520" RAMretail="80078FC4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8008E60C" RAMretail="800790B0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8008E8DC" RAMretail="8007938C" Source="/z_player_lib.c" ShortName="" Description="Tests if Link is busy?" Args="A0 = Global Context&#xD;&#xA;A1 = Link Instance&#xD;&#xA;V0 = 1 if true, 0 if false" />
+  <Function RAMdebug="8008E988" RAMretail="8007943C" Source="/z_player_lib.c" ShortName="" Description="Tests if Link is busy (Calls 8007938C, but also checks if talking?)" Args="A0 = Global Context&#xD;&#xA;V0 = 1 if true, 0 if false" />
+  <Function RAMdebug="8008EC04" RAMretail="800796C0" Source="/z_player_lib.c" ShortName="" Description="? Related to updating Child Link's state if Hylian Shield is equipped" Args="A0 = Link Instance&#xD;&#xA;A1 = 1 if 800794B0 returns 1, else 0" />
+  <Function RAMdebug="8008ED9C" RAMretail="80079854" Source="/z_player_lib.c" ShortName="" Description="Update Bottle Contents, Link's Action State&#xD;&#xA;//Calls 80071B7C" Args="A0 = Global Context&#xD;&#xA;A1 = Link Instance&#xD;&#xA;A2 = Item Index (C-Item)&#xD;&#xA;A3 = Action Parameter" />
+  <Function RAMdebug="8008EEAC" RAMretail="80079968" Source="/z_player_lib.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8008EF44" RAMretail="80079A04" Source="/z_player_lib.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8008EF5C" RAMretail="80079A20" Source="/z_player_lib.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8008F034" RAMretail="80079AF8" Source="/z_player_lib.c" ShortName="" Description="Get Strength Upgrade Power Level" Args="V0 = 0 if no upgrades, Highest Upgrade if Adult, or 1 if Child and Upgrade &gt; 0" />
+  <Function RAMdebug="8008F080" RAMretail="80079B44" Source="/z_player_lib.c" ShortName="" Description="Get Link's Mask (Instance + 0x14F)" Args="A0 = Global Context&#xD;&#xA;V0 = Id" />
+  <Function RAMdebug="8008F08C" RAMretail="80079B54" Source="/z_player_lib.c" ShortName="" Description="Set Link's Mask (Instance + 0x14F)" Args="A0 = Global Context" />
+  <Function RAMdebug="8008F098" RAMretail="80079B64" Source="/z_player_lib.c" ShortName="" Description="Test if Link is wearing the Mirror Shield (Instance + 0x13E)" Args="A0 = Global Context&#xD;&#xA;V0 = 1 if true, 0 if false" />
+  <Function RAMdebug="8008F104" RAMretail="80079BD4" Source="/z_player_lib.c" ShortName="" Description="Test if Link Item Action (Instance + 0x141) is Hookshot/Longshot" Args="A0 = Link Instance&#xD;&#xA;V0 = 1 if true, 0 if false" />
+  <Function RAMdebug="8008FCC8" RAMretail="8007A740" Source="/z_player_lib.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80090480" RAMretail="8007AF14" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80090D20" RAMretail="8007B734" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8009214C" RAMretail="8007CA54" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80092DAC" RAMretail="8007D668" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80092DF0" RAMretail="8007D6B0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80092E70" RAMretail="8007D738" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80092F88" RAMretail="8007D85C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80093D18" RAMretail="8007E298" Source="/z_rcp.c" ShortName="" Description="Write Jump to Display List 800F8200 on POLY_OPA_DISP" Args="A0 = Global Context" Description2="Get Item Models" />
+  <Function RAMdebug="80093D84" RAMretail="8007E2C0" Source="/z_rcp.c" ShortName="" Description="Write Jump to Display List 800F8200 on POLY_XLU_DISP" Args="A0 = Global Context" Description2="Get Item Models" />
+  <Function RAMdebug="800943C8" RAMretail="8007E56C" Source="/z_rcp.c" ShortName="" Description="Write Jump to Display List 800F8440 on POLY_OPA_DISP" Args="A0 = Global Context" />
+  <Function RAMdebug="80094F40" RAMretail="8007EB84" Source="/z_rcp.c" ShortName="" Description="Animate Tile&#xD;&#xA;&#xD;&#xA;Generates G_SETTILESIZE commands at the tail end of the POLY_OPA dlist&#xD;&#xA;//E8, F2, E8, F2, DF command sequence" Args="A0 = Graphics Context&#xD;&#xA;A1 = ? (tile descriptor one?)&#xD;&#xA;A2 = upper left S-axis&#xD;&#xA;A3 = upper left T-axis&#xD;&#xA;SP+0x10 = width (whole units)&#xD;&#xA;SP+0x14 = height (whole units)&#xD;&#xA;SP+0x18 = Tile Descriptor Two&#xD;&#xA;SP+0x1C = upper left S-axis 2&#xD;&#xA;SP+0x20 = Upper left T-axis 2&#xD;&#xA;SP+0x24 = width (whole units)&#xD;&#xA;SP+0x28 = height (whole units)" />
+  <Function RAMdebug="8009728C" RAMretail="80080A3C" Source="room.c" ShortName="" Description="Load Room" Args="A0 = Global Context&#xD;&#xA;A1 = Global Context + 0x11CBC (Room Context)&#xD;&#xA;A2 = Room ID" />
+  <Function RAMdebug="80097534" RAMretail="80080C98" Source="room.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8009812C" RAMretail="80081628" Source="room.c" ShortName="ObjectIndex" Description="Given its number, returns the object's index in the object table, or -1 if it isn't loaded." Args="" />
+  <Function RAMdebug="80098188" RAMretail="80081688" Source="room.c" ShortName="" Description="Test if object file dependency is loaded" Args="A0 = Global Context + 0x117A4 (Object Allocation Table)&#xD;&#xA;A1 = Actor Instance + 0x1E&#xD;&#xA;V0 = 1 if loaded, 0 if not" />
+  <Function RAMdebug="800A15C8" RAMretail="8008993C" Source="/z_skelanime.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A1AC8" RAMretail="80089D8C" Source="/z_skelanime.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A2000" RAMretail="8008A194" Source="/z_skelanime.c" ShortName="" Description="Gets some value from Gameplay Keep (link_animation related?)" Args="A0 = Segment Offset&#xD;&#xA;V0 = u16 value referenced by Segment Offset" />
+  <Function RAMdebug="800A2E70" RAMretail="8008AFB8" Source="/z_skelanime.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A3548" RAMretail="8008B698" Source="/z_skelanime.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A3620" RAMretail="8008B778" Source="/z_skelanime.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A457C" RAMretail="8008C684" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A46F8" RAMretail="8008C788" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A49FC" RAMretail="8008C9C0" Source="" ShortName="" Description="Executes Func Ptr at A0 + 0x30, passing in A0" Args="A0 = ? struct (Anju + 0x13C/ Archery Gerudo + 0x188)&#xD;&#xA;V0 = 1 if ?, else 0" />
+  <Function RAMdebug="800A4FE4" RAMretail="8008CFC0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A51A0" RAMretail="8008D17C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A51E8" RAMretail="8008D1C4" Source="" ShortName="" Description="" Args="A0 = ? struct (Anju + 0x13C/ Archery Gerudo + 0x188)&#xD;&#xA;A1 = Segment Offset" />
+  <Function RAMdebug="800A5240" RAMretail="8008D21C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A529C" RAMretail="8008D278" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A52F8" RAMretail="8008D2D4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A534C" RAMretail="8008D328" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A5384" RAMretail="8008D360" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A5408" RAMretail="8008D3E4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A5428" RAMretail="8008D408" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A56C8" RAMretail="8008D6A8" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A56F0" RAMretail="8008D6D0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A6330" RAMretail="8008E1D4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A6360" RAMretail="8008E204" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A6408" RAMretail="8008E2AC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A663C" RAMretail="8008E4EC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A6888" RAMretail="8008E6BC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A6E10" RAMretail="8008EC20" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A6EF4" RAMretail="8008ED08" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A9CD4" RAMretail="800912C4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800A9F6C" RAMretail="8009151C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800AA000" RAMretail="800915CC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800AA148" RAMretail="80091730" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800AA278" RAMretail="80091858" Source="/z_view.c" ShortName="" Description="Initializes the VIEW variables" Args="A0 = VIEW struct ptr&#xD;&#xA;A1 = Graphics Context ptr" />
+  <Function RAMdebug="800AA358" RAMretail="80091918" Source="/z_view.c" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800AAA50" RAMretail="80091F94" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800B3840" RAMretail="80099620" Source="" ShortName="" Description="sw A0, 800FE474($zero)" Args="" />
+  <Function RAMdebug="800BC56C" RAMretail="8009A25C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800BFC84" RAMretail="8009CB08" Source="/z_play.c" ShortName="" Description="Call 8007943C if Global Context + 0x1D6C (cutscene play state) is 0" Args="A0 = Global Context&#xD;&#xA;V0 = 1 if ?, else 0" />
+  <Function RAMdebug="800C0230" RAMretail="8009D0F0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800C0314" RAMretail="8009D1AC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800C0384" RAMretail="8009D21C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800C0438" RAMretail="8009D284" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800C04A4" RAMretail="8009D2F0" Source="" ShortName="" Description="Cutscenes? Related to Cutscene Command 0x07" Args="A0 = Global Context&#xD;&#xA;A1 = Cutscene Struct + 0x16" />
+  <Function RAMdebug="800C04D8" RAMretail="8009D328" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800C05E4" RAMretail="8009D438" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800C0704" RAMretail="8009D55C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800C078C" RAMretail="8009D5F0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800C0808" RAMretail="8009D66C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800C08AC" RAMretail="8009D718" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800C0AF4" RAMretail="8009D94C" Source="" ShortName="" Description="Set Void, Grotto, Farore's Wind Checkpoint" Args="A0 = Global Context&#xD;&#xA;A1 = Zoneout Type (0-2)&#xD;&#xA;A2 = Link Spawn Variable" />
+  <Function RAMdebug="800C0B60" RAMretail="8009D9B8" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800C0C88" RAMretail="8009DAB0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800C0CB8" RAMretail="8009DAE4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800C0D28" RAMretail="8009DB54" Source="" ShortName="" Description="Check if Game Updates are Disabled" Args="V0 = 1 if Global Context + 0x7B8 &gt; 0" />
+  <Function RAMdebug="800C0DB4" RAMretail="8009DBE4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800C0F08" RAMretail="8009DD44" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800C3770" RAMretail="8009FDEC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80001FF0" RAMretail="800A01B8" Source="" ShortName="" Description="Allocates to the tail end of the given heap (0x10 aligned)" Args="A0 = Allocation Handle ptr&#xD;&#xA;A1 = Size&#xD;&#xA;V0 = ptr to free space" />
+  <Function RAMdebug="800CA720" RAMretail="800A45FC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800CA774" RAMretail="800A4650" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800CAFEC" RAMretail="800A4EBC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800CB010" RAMretail="800A4EE0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800CB0C0" RAMretail="800A4F98" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800CB198" RAMretail="800A506C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800CB55C" RAMretail="800A5434" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800CB594" RAMretail="800A5470" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800CB600" RAMretail="800A54E4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800CB628" RAMretail="800A5510" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800CB650" RAMretail="800A5538" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800CB678" RAMretail="800A5560" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800CB7B4" RAMretail="800A56B8" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800CC824" RAMretail="800A6750" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800CCB0C" RAMretail="800A69A4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800CCF48" RAMretail="800A6D8C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800CE15C" RAMretail="800A7FC8" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800CE4B8" RAMretail="800A8334" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800D0664" RAMretail="800AA4F8" Source="" ShortName="" Description="Arctan2" Args="F12 = x&#xD;&#xA;F14 = y&#xD;&#xA;V0 = s16 Rotation" />
+  <Function RAMdebug="800D07D4" RAMretail="800AA670" Source="" ShortName="" Description="" Args="" Description2="padding at func end" />
+  <Function RAMdebug="800D0810" RAMretail="800AA6B0" Source="" ShortName="" Description="Allocates a 0x500 byte Float Matrix Stack&#xD;&#xA;80121200 stores start address, 80121204 stores top matrix" Args="A0 = Global Context" />
+  <Function RAMdebug="800D084C" RAMretail="800AA6EC" Source="" ShortName="" Description="Clones the top level matrix in the Float Matrix Stack&#xD;&#xA;(Increments Append Start by 0x40)" Args="" />
+  <Function RAMdebug="800D0884" RAMretail="800AA724" Source="" ShortName="" Description="Pops top level matrix in the Float Matrix Stack" Args="" />
+  <Function RAMdebug="800D08D8" RAMretail="800AA740" Source="" ShortName="" Description="Copies the top level matrix in the Float Matrix Stack" Args="A0 = Destination" />
+  <Function RAMdebug="800D08FC" RAMretail="800AA764" Source="" ShortName="" Description="Overwrites top level matrix in the Float Matrix Stack" Args="A0 = Source Matrix" />
+  <Function RAMdebug="800D0984" RAMretail="800AA7F4" Source="" ShortName="" Description="Create/Apply x,y,z transformation on Float Matrix Stack" Args="F12 = x&#xD;&#xA;F14 = y&#xD;&#xA;A2 = float z&#xD;&#xA;A3 = 0 initializes new matrix, 1 transforms stored matrix" />
+  <Function RAMdebug="800D0A8C" RAMretail="800AA8FC" Source="" ShortName="" Description="Create/Apply x,y,z scalar transformation on Float Matrix Stack" Args="F12 = x&#xD;&#xA;F14 = y&#xD;&#xA;A2 = float z&#xD;&#xA;A3 = 0 initializes new matrix, 1 transforms stored matrix" />
+  <Function RAMdebug="800D0B70" RAMretail="800AA9E0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800D0D20" RAMretail="800AAB94" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800D0ED4" RAMretail="800AAD4C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800D1084" RAMretail="800AAF00" Source="" ShortName="" Description="Create/Apply x,y,z rotation transformation on Float Matrix Stack" Args="A0 = u16 x rotation&#xD;&#xA;A1 = u16 y rotation&#xD;&#xA;A2 = u16 z rotation&#xD;&#xA;A3 = 0 initializes new matrix, 1 transforms stored matrix" />
+  <Function RAMdebug="800D1694" RAMretail="800AB510" Source="" ShortName="" Description="Create x,y,z transformation and apply rotation on Float Matrix Stack" Args="F12 = float x&#xD;&#xA;F14 = float y&#xD;&#xA;A2 = float z&#xD;&#xA;A3 = ptr to u16 rotation" />
+  <Function RAMdebug="800D1A54" RAMretail="800AB8D8" Source="" ShortName="" Description="Converts the Top in the Float Matrix Stack to a fixed point matrix" Args="A0 = Destination for the Fixed Point Matrix" />
+  <Function RAMdebug="800D1A88" RAMretail="800AB900" Source="" ShortName="" Description="Converts and Appends the Float Matrix Stack's top matrix to POLY_OPA_DISP end" Args="A0 = Graphics Context" />
+  <Function RAMdebug="800D1AF4" RAMretail="800AB958" Source="" ShortName="" Description="Multiply Float Matrix Stack's top matrix by float Vector3" Args="A0 = ptr to Vector3&#xD;&#xA;A1 = ptr to result" />
+  <Function RAMdebug="800D1BA8" RAMretail="800ABA10" Source="" ShortName="" Description="Float Matrix Copy" Args="A0 = Destination&#xD;&#xA;A1 = Source" Description2="poorly optimized?" />
+  <Function RAMdebug="800D20CC" RAMretail="800ABF50" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800D2264" RAMretail="800AC0E8" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800D23FC" RAMretail="800AC280" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80002130" RAMretail="800ACE60" Source="" ShortName="" Description="" Args="" Description2="padding at func end" />
+  <Function RAMdebug="800ED858" RAMretail="800C2C90" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800ED93C" RAMretail="800C2D74" Source="" ShortName="" Description="Song playback related." Args="" />
+  <Function RAMdebug="800F3F3C" RAMretail="800C4C84" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F41E0" RAMretail="800C4F20" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F4254" RAMretail="800C4F94" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F436C" RAMretail="800C50AC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F4414" RAMretail="800C5154" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F4524" RAMretail="800C5264" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F4634" RAMretail="800C5374" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F483C" RAMretail="800C557C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F4870" RAMretail="800C55B0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F4A54" RAMretail="800C5794" Source="" ShortName="" Description="Sound? Set u8 80121DFC to A0, u8 80121DFE to 1" Args="A0 = ?" />
+  <Function RAMdebug="800F4BF4" RAMretail="800C5934" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F4E30" RAMretail="800C5B70" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F50EC" RAMretail="800C5E2C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F52A0" RAMretail="800C5FE0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F5504" RAMretail="800C6258" Source="" ShortName="" Description="Zero u32? 8010195C" Args="" />
+  <Function RAMdebug="800F5718" RAMretail="800C646C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F574C" RAMretail="800C64A0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F5918" RAMretail="800C666C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F5A58" RAMretail="800C67AC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F5ACC" RAMretail="800C6820" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F5B58" RAMretail="800C6894" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F5BF0" RAMretail="800C692C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F5C2C" RAMretail="800C6968" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F5C64" RAMretail="800C69A0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F6584" RAMretail="800C72A4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F67A0" RAMretail="800C74C0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F6828" RAMretail="800C7548" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F6FB4" RAMretail="800C7C90" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F7260" RAMretail="800C7F40" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F738C" RAMretail="800C806C" Source="" ShortName="" Description="Global Play Sfx?" Args="A0 = SFX ID&#xD;&#xA;A1 = ?&#xD;&#xA;A2 = ?&#xD;&#xA;A3 = 80104394 this pass" />
+  <Function RAMdebug="800F89E8" RAMretail="800C9568" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F8A44" RAMretail="800C95C4" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F8D04" RAMretail="800C9884" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800F8FF4" RAMretail="800C9B74" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800FA00C" RAMretail="800CAA70" Source="" ShortName="" Description="Write some sort of data to the audio buffer for background music" Args="" />
+  <Function RAMdebug="800FB3AC" RAMretail="800CBE58" Source="" ShortName="" Description="SetTextRGBA (?)" Args="" />
+  <Function RAMdebug="800FB41C" RAMretail="800CBEC8" Source="" ShortName="" Description="SetTextXY (?)" Args="" />
+  <Function RAMdebug="800FBB8C" RAMretail="800CC4AC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800FBC14" RAMretail="800CC500" Source="" ShortName="" Description="Store A0 on stack" Args="" />
+  <Function RAMdebug="800FBC1C" RAMretail="800CC508" Source="" ShortName="" Description="gfxprint_open:２重オープンです related." Args="" />
+  <Function RAMdebug="800FBC64" RAMretail="800CC550" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800FBCB4" RAMretail="800CC588" Source="" ShortName="" Description="SetTextString (?)" Args="" />
+  <Function RAMdebug="800FD250" RAMretail="800CD76C" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="800FD368" RAMretail="800CD890" Source="" ShortName="" Description="Wrapper for 800CD860 (subtracts result by 90 degrees)" Args="F12 = ?&#xD;&#xA;F0 = radians" />
+  <Function RAMdebug="800FD7B4" RAMretail="800CDB00" Source="" ShortName="" Description="Deallocates memory on main heap" Args="A0 = ptr to block to free (not the node)" />
+  <Function RAMdebug="800FD9AC" RAMretail="800CDCCC" Source="" ShortName="Rand.Next() float" Description="Generates a random number between 0 inclusive and 1 exclusive" Args="F0 = returned value" />
+  <Function RAMdebug="80100290" RAMretail="800CF470" Source="" ShortName="" Description="" Args="" Description2="padding between this and prev func" />
+  <Function RAMdebug="80104610" RAMretail="800D2CD0" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80106AA8" RAMretail="800D5FEC" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="80106BC8" RAMretail="800D6110" Source="" ShortName="" Description="? Dialog Related, potentially confirm yes/no" Args="V0 = result?" />
+  <Function RAMdebug="80106CCC" RAMretail="800D6218" Source="" ShortName="" Description="" Args="" />
+  <Function RAMdebug="8010B680" RAMretail="800DCE14" Source="" ShortName="" Description="Message display-related" Args="a1 = Text ID" />
+  <Function RAMdebug="8010B720" RAMretail="800DCE80" Source="" ShortName="" Description="Dialog yes/no response?" Args="a1 = Response Text ID" />
+  <Function RAMdebug="8010BD58" RAMretail="800DD400" Source="" ShortName="" Description="Something related to song playback?" Args="" Description2="Jumps to 800DCF50" />
+  <Function RAMdebug="8010BD88" RAMretail="800DD430" Source="" ShortName="" Description="Something related to song playback?" Args="" Description2="Jumps to 800DCF50" />
+  <Function RAMdebug="8010BDBC" RAMretail="800DD464" Source="" ShortName="" Description="? Dialog Related" Args="A0 = VIEW struct ptr" />
+</Table>

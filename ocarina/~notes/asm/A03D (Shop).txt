@@ -1,0 +1,9 @@
+808CEEDC (T:801E236C) //Initialize Shop
+//A0 = Actor* Instance
+//A1 = Global Context
+//A2 = Shop Data Ptr
+
+
+== Instance ==
+
++ 0x1F0 Actor* array //8 records for 8 shop items

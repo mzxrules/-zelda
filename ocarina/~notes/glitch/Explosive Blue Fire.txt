@@ -79,3 +79,11 @@ Wall Collision
 0x08 = ptr to Blue Fire instance
 
 //Normal collision detection test doesn't work?
+
+
+
+-810.000       160.000     -1000.000
+-810.000       160.000      -840.000
+-810.000         0.0       -1000.000
+-810.000         0.0        -840.000
+

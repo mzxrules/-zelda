@@ -130,6 +130,10 @@ Global Context (Game):
 0x1C00 (0x13F0?) ptr to some table (actor meshes?)
 0x1C04 (0x13F4) ptr to translated vertex array (actor meshes?). 6 bytes per vertice
 0x1C08 (0x13F8?) ptr to some table (actor meshes?)
+0x1C14 (0x1454) s32 //num elements of 0x04 byte struct, default value 0x3E8
+0x1C18 (0x1458) s32 //num elements of 0x10 byte struct, default value 0x200
+0x1C1C (0x145C) s32 //num elements of 0x06 byte struct, default value 0x200
+0x1C20 (0x1460) s32 //?, value 0xF000
 0x1C24 = Some Actor related struct
   00 = ?
   0C (0x1C30) = Actor Category Table
@@ -228,7 +232,7 @@ Global Context (Game):
  + 0x254 s16 //Selected C-Item x coordinate (equip animation)
  + 0x256 s16 //Selected C-Item y coordinate (equip animation)
  + 0x262 s16 //kaleido_scope, yes/no selection
-0x10A24 struct //lighting related?
+0x10A24 struct //lighting engine
   0x17 u8 //Sunny/Cloudy skybox setting A
   0x18 u8 //Sunny/Cloudy skybox setting B
   0x1E u8 //Lighting Engine //0 for Time-based lighting, 1 for Fixed lighting
@@ -242,6 +246,8 @@ Global Context (Game):
 0x10B12 u8 //Target Raindrops to draw 1
 0x10B13 u8 //Raindrops to draw
 0x10B16 u8 //Target Raindrops to draw 2
+0x10B20 s16 //Link animation related
+
 0x117A4  //801D9C44 Object Allocation Table
   0x00 ?
   0x04
@@ -347,7 +353,10 @@ Game VIEW struct //0x128 bytes
 801C8558
 
   0x18 = Angle of View
+  //struct {
   0x28 = vector3_f32 ViewPoint?
+  0x4C = ?
+  //}
   0x8C = Global Context ptr
   0xE0 = Projection Matrix ptr
   0xE4 = Projection Matrix (mult) ptr

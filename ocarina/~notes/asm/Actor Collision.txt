@@ -37,16 +37,23 @@ Common CollisionBody Struct (Actor Instances): 0x18 bytes long
 0x12	byte	//CSO 0x03, bitwise-and compared to opposing collision's 0x13 byte
 0x13	byte	//CSO 0x04, bitwise-and compared to opposing collision's 0x12 byte
 0x14	byte	//CSO 0x00
-0x15	u8		//CSO 0x05, possibly body type?
+0x15	u8		//CSO 0x05, Type
+				//00 = Cylinder Collection
+				//01 = Cylinder
+				//02 = ? (potentially sphere, per debug rom console output)
+				//03 = Triangles (2)
 				//references function pointer, start location at 800EFAB8
                 //used to reference function pointer, start location at 800EFB4C.
 				//Basically, on left compare to right, left's value * 0x10 + right's value * 0x04 = pointer look up
+//If Type 0, Cylinder Collection
+0x18	int 	//Number of Cylinders
+0x1C	ptr 	//Cylinder Array Start
 
 Since collisions cannot be truely simultaneous, 
 toucher refers to a body pushing into another
 bumper refers to a body potentially receiving a touch
 				
-Common CollisionBodyInfo: 0x28 bytes?
+Common CollisionBodyInfo: 0x28 bytes
 0x00 s32 //Toucher Attack Identifier Flags
 0x04 u8
 0x05 u8 //damage dealt when touched/stun timer
@@ -61,21 +68,8 @@ Common CollisionBodyInfo: 0x28 bytes?
 0x1C //stores pointer to CollisionBody? in some situations
 0x20 
 0x24 //pointer to CollisionBodyInfo of colliding entity
-				
-//Type 0, Cylinder Collection?
-0x18	int 	//Number of Cylinders
-0x1C	ptr 	//Cylinder Array Start
-//Each cylinder is 0x40 bytes long
-0x00 int //Attack Identifier Flags
-0x08 int //Attack Receive Mask
-0x28 vector3_s16 ?
-0x30 vector3_s16 xyz?
-0x36 s16 
-0x3C u8 //?
 
-
-//Type 1, Simple Cylinder
-//There are direct pointers to +0x18 into the struct being stored
+//Old Common CollisionBodyInfo notes (Type 1, cylinder)
 0x18	int 	//CSO 0x0C //Attack Identifier!
 0x1C	byte	//CSO 0x10
 0x1D	byte	//CSO 0x11, Damage Dealt when touched/Stun Timer
@@ -88,8 +82,20 @@ Common CollisionBodyInfo: 0x28 bytes?
 0x2F	byte	//CSO 0x1E
 0x34	ptr		//stores pointer to Collision Struct in some situations
 0x3C	ptr 	//stores pointer to Collision Struct + 0x18 of colliding entity
-//everything below seems to depend on the type of collision shape being used
-//Cylinder based collision
+
+
+
+//Type 0, Cylinder (part of cylinder collection)
+//Each cylinder is 0x40 bytes long
+0x00 CollisionBodyInfo
+0x28 vector3_s16 ?
+0x30 vector3_s16 xyz?
+0x36 s16 
+0x3C u8 //?
+
+
+//Type 1, Simple Cylinder
+//offsets are relative to the start of the CollisionBody
 0x40	short	//CSO 0x20 Cylinder Radius
 0x42	short	//CS0 0x22 Cylinder Height
 0x44	short	//CSO 0x24 Cylinder Y Shift? For certain types (non complex meshes?) of collisions?
@@ -98,9 +104,19 @@ Common CollisionBodyInfo: 0x28 bytes?
 0x4A	short	//Cylinder Z
 
 
-//Type 3, Polys? (Sword Slashes)
-0x00 int //Attack Identifier Flags
-0x08 int //Attack Receive Mask
+//Type 3, Tris (Sword Slashes/Destructable walls)
+//offsets are relative to CollisionBody + CollisionBodyInfo end
+0x00 vector3_f32 pointA
+0x0C vector3_f32 pointB
+0x18 vector3_f32 pointC
+0x24 vector3_f32 pointD
+0x30 s16 
+0x32 s16
+0x34 s16
+0x36 s16
+0x38 s16
+0x3A s16
+//likely two triangles are formed from points A,B,C and B,C,D
 
 
 800EFB0C //jump table for collision checks (colAT -> colAC)

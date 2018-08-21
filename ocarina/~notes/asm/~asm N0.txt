@@ -20,6 +20,9 @@
 //A1 = Address to load into
 //A2 = Rom Address
 //A3 = Size
+//SP+0x10 ? (0 this pass)
+//SP+0x14 ptr ?
+//SP+0x18 ? (0 this pass)
 
 
 80000DF0 //DMA read function
@@ -62,12 +65,12 @@
 
 80001890 //boot, Initializes a stack for osCreateThread
 //possibly thread 4 stack this pass
-//A0 = Stack Struct ptr (80120B98 this pass)
+//A0 = StackInfo* (80120B98 this pass)
 //A1 = Start Ptr (8011DD98 this pass)
 //A2 = End Ptr (8011F598 this pass)
-//A3 = Initial value to write from start->end (0 this pass)
+//A3 = int fillValue; //Initial value to write
 //SP+10 = ? (0x100 this pass)
-//SP+14 = string ptr (80108E10 this pass ("graph" str)
+//SP+14 = char* threadName
 //V0 = ?, 800062E0 if A0 is null
 //
 //A0 is pointer to some struct:
@@ -246,11 +249,15 @@ V0 = number of instructions executed
 
 80013678 //code, spawn En_Item00 Actor (Actor 0015)
 //A0 = Global Context
-//A1 = Ptr to x,y,z coordinate to spawn at?
+//A1 = vector3_f32* spawn position
 //A2 = Actor Variable // & 0x8000 and & 0x4000 have special meaning
 
 
 80013A84 //code, randomized item spawn
+//A0 = Global Context
+//A1 = Actor* bushes or trees //if null, standard item drop
+//A2 = vector3_f32* spawn position
+//A3 = Drop Table Offset
 
 
 //********* Particles.c **********
@@ -460,8 +467,12 @@ B508 jal 800CCBB8 //Link Overlay
 //Called before background collision check
 //A0 = Actor pointer
 //
+//T6 = Static Context
 //F8 = 0.5f
-//T7 = Update Divisor
+//T7 = Retrace Count
+//F6 = Retrace Count
+//F10 = X velocity
+//F18 = X Displacement
 
 800211A4 //Physics, updates x,y,z velocity vectors of an actor (instance +0x5C)
 //A0 = Actor pointer
@@ -514,6 +525,21 @@ B508 jal 800CCBB8 //Link Overlay
 //A2 = Stack reference (SP + 0xEC this pass)
 //A3 = Gfx Context
 23E0 jal	800221EC
+
+
+80022438 //
+//A0 = Actor Instance
+//A1 = Global Context
+//A2 = ?
+//
+//SP -0x58
+//
+//V0 = Global Context
+//T6 = s8 Global Context + 0x10A4E 
+//A1 = Global Context + 0xE0
+//F6 = (float)T6
+//A2 = SP+0x48
+//A0 = Actor Instance + 0x24 (position)
 
 
 80022930 //?
@@ -797,6 +823,15 @@ B508 jal 800CCBB8 //Link Overlay
 //A0 = Global Context
 //A1 = Actor Collision Struct
 //V0 = Explosive instance that hit actor if hit
+
+
+80026AD0 //Draw Drop Shadow
+//only some actors
+//A0 = vector3_f32* coordinates
+//A1 = vector3_f32* scale
+//A2 = Shadow Intensity (0 not visible, 0xFF max? visibility)
+//A3 = Global Context
+
 
 
 80026D64 //Generates a random floating point between 0 and N exclusive
@@ -1444,9 +1479,172 @@ D920 jal	8002D9B8 //get Collision Sector
 //then, the result is bound between 0 and the max defined in the Scene Collision minus 1
 
 
+8002EB0C //Is current scene a SpotXX scene
+//A0 = Global Context
+//V0 = 1 if true, else false
+//
+//V1 = Current Scene Index
+//V0 = 800EC0BC
+//A0 = 800EC0E2
+//compare scene index to values at address A0 to V0 exclusive
+
+
+8002EB50 //Look up hardcoded size of ?
+//related to collision vertex info
+//A0 = Current Scene Index
+//A1 = out s32* size
+//V0 = 1 if custom size was found, else 0
+//
+//V0 = 800EC0E4 //table start
+//V1 = 800EC124 //table end
+//
+//0x00 s16 scene index
+//0x04 s32 size of ?
+
+
+8002EBE8 //set Scene Collision Mesh Unit Size and Inverse for axis
+//Also expands maximum dimension
+//F12 = float dimension Minimum
+//A1 = s32 Collision Dimension
+//A2 = in/out float* dimension Maximum
+//A3 = out float* dimension "Unit Size"
+//SP+0x10 out float* dimension "Inverse Unit"
+//
+//F2 = (float)Arg A1
+//F16 = 150f
+//F4 = dimension Maximum
+//F6 = 1f
+//F0 = max - min
+//F8 = (max-min)/F2
+//T7 = (int)F8
+//F14 = (float)(T7+1)
+//Fcond = F14 < 150f
+//Store F14 in "Unit Size"
+EC30 //branch EC44 if F14 >= 150f
+//F8 = "Unit Size"
+//F10 = Inverse of "Unit Size"
+//store inverse
+
+
+
 8002EC70 //code, graph, initializes scene collision
 //A0 = Global Context + 0x7C0
 //A1 = Global Context
+//
+//SP -0x50
+//
+//S0 = Global Context + 0x7C0
+//S1 = Global Context
+//A3 = 0x10
+//A2 = scene mesh ptr
+//T6 = Static Context
+//T0 = -1
+//V0 = s16 at Static Context + 0x4B2
+ECA0 //branch ECC0 if V0 = 0x10
+ECA8 //branch ECC0 if V0 = 0x20
+ECB0 //branch ECC0 if V0 = 0x30
+ECB8 //branch ED08 if V0 != 0x40
+ECC0 
+ED08 //SP+0x40 = -1
+ED08 jal	8002EB0C //Is current scene a SpotXX scene
+	//call with
+	//A0 = Global Context
+	//V0 = 1 if true else 0
+//
+//A3 = 0x10
+//T0 = SP+0x40
+ED18 //branch ED50 if V0 != 1
+//Set Global Context+0x1C14 (Mesh Ctx + 0x1454) to
+//+0x00 = 0x3E8
+//+0x04 0x200
+//+0x08 0x200
+//+0x0C 0xF000
+//set scene mesh volume divisions to 16 by 4 by 16
+ED48 //branch EDFC
+ED50
+//SP+0x40 = T0 (-1?)
+ED58 jal	8002EB50 //Test if Custom Size Allocation should be used
+	//call with
+	//A0 = Current Scene Index
+	//A1 = s32 at SP+0x38 //allocation size
+	//V0 = 1 if custom allocation set, else 0
+//A3 = 0x10
+//T0 = SP+0x40 (-1?)
+ED64 //branch ED78 if V0 = 0
+//Global Context + 0x7C0 + 0x1460 = s32 at SP+0x38
+//branch ED84
+ED78
+//Global Context + 0x7C0 + 0x1460 = 0x1CC00
+ED84
+//Set Global Context+0x1C14 (Mesh Ctx + 0x1454) to
+//+0x00 = 0x3E8
+//+0x04 = 0x200
+//+0x08 = 0x200
+//
+//A0 = 0
+//V0 = 800EC124
+//V1 = 800EC13C
+//T8 = Current Scene Index
+EDB0 //loop start
+//T9 = s16 0x0000(v0) //scene index
+EDB4 //branch EDE0 if T8 != T9; if branch, V0 += 0x0C
+//scene matches table data
+//copy vector3_s16 x,y,z mesh subdivision at V0+0x02
+//Store at vector3_s32  Global Context + 0x7C0 + 0x1C
+//A0 = 1
+//T0 = s32 0x0008(V0)
+//V0 += 0x0C
+EDE0 //branch EDB0 if V0 != V1
+EDE8 //branch EDFC if A0 != 0
+//set mesh subdivisioons to 16 by 4 by 16
+EDFC
+//T5, T7, T9 = vector3_s32 at Global Context + 0x7C0 + 0x1C
+//SP+0x40 = T0 
+EE38 jal	800A01D8 //allocate tail end memory on Game State Heap
+	//call with 
+	//A0 = Global Context + 0x74
+	//A1 = T5 * T7 * T9 * 6 //size of CollisionPoly lookup table
+	//A2 = -2 (aligned to nearest 2 bytes)
+	//V0 = ptr to allocated space
+//T0 = SP+0x40
+//Global Context + 0x7C0 + 0x40 = V0 
+EE44 //branch EE64 if allocation successful
+//fault path
+EE58 jal	80001B38
+	//call with
+	//A0 = 80106A50 // "../z_bgcheck.c"
+	//A1 = 0x104D //line 4173?
+EE64 
+//Set minimum, maximum scene bounding box
+//Set "unit size" factor for CollisionPoly lookup table
+//Set "inverse unit size" for CollisionPoly lookup table
+EEF8 jal	8002EBE8 //set x axis collision max, unit size, inverse
+EF14 jal	8002EBE8 //set y axis collision max, unit size, inverse
+EF30 jal	8002EBE8 //set z axis collision max, unit size, inverse
+//
+//T1, T3, T5 = x,y,z CollisionPoly lookup table length 
+//V0 = 6
+//T7 = Scene Mesh Ptr
+//T1 = s32 at Global Context + 0x7C0 + 0x1454
+//T0 = value at SP+0x40
+//T8 = scene collision mesh number of polys
+//T2 = T1 * 4
+//T4 = s32 at Global Context + 0x7C0 + 0x1458
+//T5 = T4 * 0x10
+//T6 = CollisionPoly lookup table (x * y * z * 6)
+//T9 = T6 + T8 //sum plus num polys
+//T6 = s32 at Global Context + 0x7C0 + 0x145C
+//T3 = T9 + T2 //sum plus size of CollisionCtx + 0x1454 struct
+//T7 = T3 + T5 //sum plus size of CollisionCtx + 0x1458 struct
+//T8 = T6 * 6
+//V1 = T7 + T8 //sum plus size of CollisionCtx + 0x145C struct
+//V1 += 0x1464
+EFA8 //branch EFB8 if T0 <= 0
+EFB8
+//V0 = s32 at Global Context + 0x7C0 + 0x1460
+//A0 = 80106A60 // "../z_bgcheck.c"
+
+
 
 
 8002F054 //Collision, Get Collision Mesh
@@ -2351,6 +2549,20 @@ ADE8 jal 80049FCC
 ADF8 jal 8004A27C
 
 
+8004B698 //CollisionBody Type 3 init related
+
+
+8004B714 //CollisionBody Type 3 Update Bounding Box?
+//Updates Type 3's bounding box based on stored points
+//A0 = CollisionBody_ShapeType3* 
+
+
+8004B7D0 //CollisionBody Type 3 initialization related
+
+8004B960 //Initialize CollisionBody Type 3
+B97C jal	80049F50
+
+
 8004BD50 //code, graph, CollisionCheck_setAT
 //Subscribe to collision pool 1, non-complex poly types
 //Called directly by actors
@@ -2423,7 +2635,7 @@ C1CC //t0 = 801DA302?
 //A2 = ? (some coords, on stack this pass)
 
 
-8004CCC8 //code, graph, Collision detection related?
+8004CCC8 //CollisionCheck, ?
 
 
 8004CE70 //Attack colAT type 0 into colAC type 0 collision
@@ -2612,7 +2824,7 @@ F7A0
 //T5 = T4 * 0x10
 //T6 = 800EFB0C + T5
 //T8 = T7 * 0x04
-//T9 = 800EFB0C + (colAT_Element * 0x10) + (colAC_Element * 0x04)
+//T9 = ptr at 800EFB0C + (colAT_Element * 0x10) + (colAC_Element * 0x04)
 F7C4 jalr	ra,t9
 	//call with
 	//A0 = Global Context
@@ -2653,13 +2865,26 @@ F8BC jal	8004F610
 	//call with
 	//A0 = Global Context
 	//A1 = colAt ptr
+//
+
+8004F918 //Handles Body Pushback
+//A0 = CollisionBody* left
+//A1 = CollisionBodyInfo* leftInfo
+//A2 = vector3_f32* leftxyz //integers
+//A3 = CollisionBody* right
+//SP+0x10 = CollisionBodyInfo* rightInfo
+//SP+0x14 = vector3_f32* rightxyz //integers
+//SP+0x18 = f32 displacement
 
 
-800502A8 //code, actors, initializes "damage chart" part of actor
+800502A8 //CollisionCheck, initializes CollisionCheck portion of the common Actor struct
 //Actor 0000, 0018, most enemies?
+//A0 = Actor Instance + 0x98
+//
+//Copies 0x1C bytes from 800EFB8C into Instance + 0x98
 
 
-800502F0 //code, actors, initializes "damage chart" part of actor
+800502F0 //CollisionCheck, zeroes CollisionCheck portion of common Actor struct
 //Zeroes variables related to enemies with damage chart collision data. Actor 0125
 //A0 = ptr to Actor Instance + 0x98
 //
@@ -2688,6 +2913,16 @@ F8BC jal	8004F610
 //A0 = Actor Instance
 //A1 = Actor Collision Struct
 //Coordinates saved at Struct + 0x46
+
+80050B64 //Collision, Update CollisionBody Type 3 Triangles
+//A0 = CollisionBody* //type 3 body
+//A1 = vector3_f32* pointA
+//A2 = vector3_f32* pointB
+//A3 = vector3_f32* pointC
+//SP+0x10 vector3_f32* pointD
+//
+//Copy coordinates into their proper positions
+0BBC jal	8004B714
 
 
 80050CE4 //
@@ -3584,6 +3819,9 @@ D854 JR 	RA
 //A3 = ?
 
 
+8007FBCC 
+
+
 8007FC54 //code, graph, draw?
 //Note: T1 = Room Header Type 1 offset
 //A0 = SP + 0x98
@@ -3753,11 +3991,45 @@ D854 JR 	RA
 //80120C38 = Segment Table
 
 
+8008B48C //?
+//A0 = Global Context + 0x10B20
+//A1 = ?
+//V0 = ptr to ?
+
+
 8008B4C4 //Fetch Link Animation from ROM
 //A0 = Global Context
-//A1 = Segment offset to animation (0x4, Gameplay Keep reference I think)
-//A2 = ? (39 this pass)
+//A1 = Animation Segment Address (0x04, Gameplay Keep reference I think)
+//A2 = ? (39 this pass, possibly frame index)
 //A3 = 16?, possibly limbs?
+//SP+0x10 = Link Instance + 0x1F0 //animation store pointer
+B4EC jal	8008B48C
+	//call with
+	//A0 = Global Context + 0x10B20
+	//A1 = 0
+//
+B548 
+//A3 = Arg A3
+//T6 = Arg A2
+//A3 = A3 * 6 + 2
+//LO = T6 * A3
+//T3 = ptr to Gameplay_Keep animation record?
+//T4 = [T3+0x04]->link_animetion segment address
+//AT = 0x00FFFFFF
+//V1 = func 8008B48C result
+//T9 = link_animetion vrom start
+//SP+0x0018 = 0
+//T7 = LO
+//T8 = T4 segment address offset + T7
+//A2 = link_animetion + T8
+//SP+0x0010 = 0
+//SP+0x0014 = T0
+//A1 = Arg SP+0x10
+//A0 = V1 + 0x04
+//SP+0x14 = T0
+B5A8 jal	80000D28
+
+
 
 8008BCA4 //code, Link Related?, Function Pointer delegate?
 //A0 = Global Context
@@ -4676,16 +4948,16 @@ V0 = Address to Game Context Overlay record to load
 800A3674 //sched, ?
 
 
-800A42F0 // Initializes Frame Buffers
+800A42F0 // Initializes Framebuffers
 //A0 = Is Disk Drive Detected? 0 = no, 1 = yes
 43FC //lw 8000 0318, which contains the number of bytes of ram available to the system
 433C LUI	at, 0x0040
 4340 SLTU	at, v0, AT //ram is 4MiB unit
 
 
-800A43D8 //Returns Frame Buffer? address
-//A0 = gbi Buffer (0 or 1)
-//V0 = Frame buffer address
+800A43D8 //Returns Framebuffer address
+//A0 = Framebuffer Index
+//V0 = Framebuffer address
 //If A0 = 0, V0 = 803B5000 (stored at 80120FD0)
 //If A0 = 1, V0 = 803DA800 (stored at 80120FD4)
 //If A0 >= 2, V0 = 0
@@ -5717,6 +5989,7 @@ F900 jal	800D05D0
 800CF94C //sched, Start RCP Task
 //Waits for SP_STATUS_REG  to not be dma busy, dma full, io full
 //Sets SP_STATUS_REG = 0x125
+//A0 = ptr to
 
 
 800CFC04 //padmgr

@@ -48,10 +48,18 @@ typedef struct
     /* 0x78 */ int*     floorPoly; //Floor polygon an actor is over/touching
     /* 0x7C */ u8       wallPolySource; //Complex Poly Surface Source. 0x32 = Scene
     /* 0x7D */ u8       floorPolySource; //Complex Poly Surface Source. 0x32 = Scene. related to 0x80/88
+	/* 0x7E */ s16		wallRotation; //Orientation of the wall poly plane's positive face
     /* 0x80 */ float    unk_0x080; //floor poly height?
-    /* 0x84 */ float    unk_0x084;
-    /* 0x88 */ u16      unk_0x088; //unknown
+    /* 0x84 */ float    waterSurfaceDistance; //relative, -32000f if not near water
+    /* 0x88 */ u16      bgcheckState; //
+	// & 0x0001 = near floor
+	// & 0x0004 = near ledge
+	// & 0x0008 = near wall?
+	// & 0x0020 = set in water
+	// & 0x0040 = set in water
+	// & 0x0080 = on the ground
     // & 0x0100 = ?
+	// & 0x0200 = facing wall
     /* 0x8A */ s16      unk_roty; //rotation y (give item, possibly next facing dir?/face toward link?)
     /* 0x8C */ float    unk_0x08C;
     /* 0x90 */ float    xzDistanceFromLink; 
@@ -61,17 +69,17 @@ typedef struct
     struct 
     {
     /* 0x98 */ z_ActorDamageTable* DamageChart;  /* Pointer to the actor's Damage Chart in RAM. */
-    /* 0x9C */ Coord_f  velocity2; //secondary x,y,z vector for positioning (probably platform actors), added to 0x5C vector
+    /* 0x9C */ Coord_f  displacement; //amount to correct velocity (0x5C) by when colliding into a body
     /* 0xA8 */ s16      unk_0x0A8; 
     /* 0xAA */ s16      unk_0x0AA; 
     /* 0xAC */ u16      unk_0x0AC; //unk
-    /* 0xAE */ u8       unkn_00AE; // Collision related?, Set to 0xFD by bottled blue fire
-    /* 0xAF */ u8       Health; 
-    /* 0xB0 */ u8       Damage; //amount to decrement health by
-    /* 0xB1 */ u8       DamageEffect; //Stores what effect should occur when hit by a weapon
-    /* 0xB2 */ u8       ImpactEffect; //Maybe? set on deku nut when deku nut collides with gossip stone
+    /* 0xAE */ u8       mass; // Used to compute displacement, 50 is common value, 0xFF for infinite mass/unmoveable
+    /* 0xAF */ u8       health; 
+    /* 0xB0 */ u8       damage; //amount to decrement health by
+    /* 0xB1 */ u8       damageEffect; //Stores what effect should occur when hit by a weapon
+    /* 0xB2 */ u8       impactEffect; //Maybe? set on deku nut when deku nut collides with gossip stone
     /* 0xB3 */ u8       unk_0x0B3; //?
-    }; /* end damage chart data */
+    }; //CollisionCheck common
     
     struct 
     {

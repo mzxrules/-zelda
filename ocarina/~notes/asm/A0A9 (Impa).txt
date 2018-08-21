@@ -1,0 +1,11 @@
+func_80973FF0
+
+func_809757B0 //zelda's lullaby?
+
+func_80975888 unknown flag
+
+func_809758D0 
+//check for whether impa should despawn after Zelda Escape
+
+
+var_809763A8 cutscene
