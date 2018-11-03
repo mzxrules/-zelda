@@ -1,0 +1,108 @@
+//ASM U10
+Link Instance + 0x3C0 = xyz coords for falling into short oobs
+
+
+80089630 //Zero Initialize Ram
+//A0 = Start Ptr
+//A1 = Num bytes
+
+800B5C78 //Tests if a Chest Flag is set
+//A0 = Global Context
+//A1 = Flag Value
+//V0 = Non-Zero if flag set, else 0
+
+800B5C90 //Set Chest Flag to 1
+//A0 = Global Context
+//A1 = Flag Value
+
+800B5CAC //Set Chest Flags
+//A0 = Global Context
+//A1 = Chest Flags state to set
+
+800B5CB8 //Get Chest Flags
+//A0 = Global Context
+//V0 = Chest Flag state
+
+
+800BAE14 //Spawn Actor
+//A0 = 803E87C0 (Actor Category Table)
+//A1 = Global Context
+//A3 = float x
+//SP+0x10 = float y
+//SP+0x14 = float z
+AFF8 //set x, y, z coordinates
+
+800BB2D0 //Spawn Actor (Spawn Data)
+
+800ECE40 //Process Cutscene
+//A0 = Global Context
+//A1 = Cutscene Struct (Global Context + 0x1F24)
+//A2 = Cutscene Pointer
+
+800FF50C //Copy Coordinates
+//A0 = Vector3_f32* Destination
+//A1 = Vector3_f32* Source
+
+8013EEF4 //Initialize VIEW struct
+//A0 = ptr to VIEW struct location
+
+
+80144628 //Create New Save File (first 0x100C bytes)
+
+80144890 //Create new save file
+
+80146AA0 //Create new save file? (File Select)
+//A0 = Global Context
+
+801588D0 //Look Up Text Id
+//A0 = Global Context
+//A1 = Text Id
+//
+//T1 = 0xFFFF
+//T6 = Global Context + 0x10000
+//V1 = Global Context + 0x1698C //ptr to Text Id table
+//A3 = Arg A1
+//V0 = first id in Text Id table
+//T9 = Global Context + 0x10000
+//A2 = Message Segment Offset
+88FC //if v0 == 0xFFFF:
+    //v1 = Global Context + 0x1698C //ptr to Text Id table
+    //branch 8950
+8904 //if search text id != Id in Text Id table,
+    //V0 = next text id in table
+    //branch 8940
+//Found Text Id:
+//A1 = Message Segment Offset
+//A3 = Next Message Segment Offset (message end)
+//V0 = Global Context + 0x4A70
+//AT = Global Context + 0x14A70
+8940
+//V1 += 0x8
+//branch 8904 if v0 == 0xFFFF
+8950
+
+
+80169D40 //Copy Scene Flags to Scene Save data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

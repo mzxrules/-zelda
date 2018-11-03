@@ -1,0 +1,8 @@
+MM, Unknown Overlay Table. 0x1C bytes
+
+00C82CD0
+contains files 0383 to 0387
+
+Triggered when being caught by a guard
+
+8015F740 //function for setting scene transition animation

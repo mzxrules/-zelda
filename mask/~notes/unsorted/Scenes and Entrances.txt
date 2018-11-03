@@ -1,0 +1,10 @@
+C5A1E0 - Scene Table
+Format: 
+VROM Start, VROM End, ?, ?
+
+C5A8F0 - Entrance Table Data (801C43B0!) (11 E8F0)
+
+C5BC60:C5C188 - Scene/Entrance Table (what points here?)
+Format: 
+(byte), RAM PTR, RAM PTR
+entrances, entrance record list (PTR array), Filename

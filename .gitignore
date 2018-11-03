@@ -3,7 +3,7 @@ Galatea/
 iQue/
 la/
 lttp/
-mask/
+mask/*
 mm3d/
 n64/
 obj/
@@ -16,6 +16,10 @@ z1/
 !ocarina/~notes/
 !ocarina/C/
 !ocarina/ocarina.csproj
+!mask/C/
+!mask/~notes/
+
+ocarina/C/CustomActorToolkit*
 
 
 ## Files 

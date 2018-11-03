@@ -16,50 +16,52 @@ typedef struct
 
 typedef struct
 {
-    /* 0x00 */ u16      id; //Actor Id. 
-    /* 0x02 */ u8       type; //Actor Type. See Below
-    /* 0x03 */ u8       room; //Room number the actor is part of. FF denotes that the actor won't despawn on a room change
+    /* 0x00 */ u16      id;    //Actor Id. 
+    /* 0x02 */ u8       type;  //Actor Type. See Below
+    /* 0x03 */ u8       room;  //Room number the actor is part of. FF denotes that the actor won't despawn on a room change
     /* 0x04 */ s32      flags; //flags used for drawing stuff?
     // & 0x0040 0000 = Affects actor lighting. 0 passes current coords to 80066298 func, else pass null for coords
     // & 0x0000 1000 = ?
-    // & 0x0000 0040 = ?
-    /* 0x08 */ Coord_f  pos1; //Related to collision detection routine
-    /* 0x14 */ Rotation initRot; //Initial Rotation when spawned
+    // & 0x0000 0040 = Is "Visible"
+    // & 0x0000 0020 = Run Draw Function (draw function is skipped if flags & 0x0060 == 0)
+    // & 0x0000 0010 = Run Main Function (main function is skipped if flags & 0x0050 == 0)
+    /* 0x08 */ Coord_f  pos1;          //Related to collision detection routine
+    /* 0x14 */ Rotation initRot;       //Initial Rotation when spawned
     /* 0x1A */ u16      unk_0x01A;
-    /* 0x1C */ u16      variable; //Configurable variable set by an actor's spawn data
+    /* 0x1C */ u16      variable;      //Configurable variable set by an actor's spawn data
     /* 0x1E */ s8       objTableIndex; //index to table at Global Context + 0x117A4 
     /* 0x1F */ u8       unk_0x01F;
-    /* 0x20 */ u16      soundEffect; //Plays sound effect relative to actor's location (if within range of camera?)
+    /* 0x20 */ u16      soundEffect;   //Plays sound effect relative to actor's location (if within range of camera?)
     /* 0x22 */ u16      unk_0x022;
-    /* 0x24 */ Coord_f  position; //Current coordinates
-    /* 0x30 */ Rotation speedRot; //0x32 sets what direction the 0x68 speedXZ variable is moving the actor
+    /* 0x24 */ Coord_f  position;  //Current coordinates
+    /* 0x30 */ Rotation speedRot;  //0x32 sets what direction the 0x68 speedXZ variable is moving the actor
     /* 0x36 */ u16      unk_0x036; //same as 0x1A
-    /* 0x38 */ Coord_f  pos3; //Related to camera
-    /* 0x44 */ Rotation rot1; //0x30 rotation copied into here
+    /* 0x38 */ Coord_f  pos3;      //Related to camera
+    /* 0x44 */ Rotation rot1;      //0x30 rotation copied into here
     /* 0x4A */ u16      unk_0x04A;
     /* 0x4C */ float    unk_0x04C; /* I know this is a float from breakpointing it */
-    /* 0x50 */ Coord_f  scale; //sets x,y,z scaling factor. Typically, a factor of 0.01 is used for each axis
+    /* 0x50 */ Coord_f  scale;     //sets x,y,z scaling factor. Typically, a factor of 0.01 is used for each axis
     /* 0x5C */ Coord_f  velocity;
-    /* 0x68 */ float    speedXZ; //Always positive, stores how fast the actor is traveling along the XZ plane
-    /* 0x6C */ float    gravity; //acceleration due to gravity; value is added to Y velocity every frame
+    /* 0x68 */ float    speedXZ;   //Always positive, stores how fast the actor is traveling along the XZ plane
+    /* 0x6C */ float    gravity;   //acceleration due to gravity; value is added to Y velocity every frame
     /* 0x70 */ float    minVelocityY; //sets the lower bounds cap on velocity along the Y axis
-	//struct, collision related
-    /* 0x74 */ int*     wallPoly; //Wall polygon an actor is touching
+    //struct, collision related
+    /* 0x74 */ int*     wallPoly;  //Wall polygon an actor is touching
     /* 0x78 */ int*     floorPoly; //Floor polygon an actor is over/touching
     /* 0x7C */ u8       wallPolySource; //Complex Poly Surface Source. 0x32 = Scene
     /* 0x7D */ u8       floorPolySource; //Complex Poly Surface Source. 0x32 = Scene. related to 0x80/88
-	/* 0x7E */ s16		wallRotation; //Orientation of the wall poly plane's positive face
+    /* 0x7E */ s16      wallRotation; //Orientation of the wall poly plane's positive face
     /* 0x80 */ float    unk_0x080; //floor poly height?
     /* 0x84 */ float    waterSurfaceDistance; //relative, -32000f if not near water
     /* 0x88 */ u16      bgcheckState; //
-	// & 0x0001 = near floor
-	// & 0x0004 = near ledge
-	// & 0x0008 = near wall?
-	// & 0x0020 = set in water
-	// & 0x0040 = set in water
-	// & 0x0080 = on the ground
+    // & 0x0001 = near floor
+    // & 0x0004 = near ledge
+    // & 0x0008 = near wall?
+    // & 0x0020 = set in water
+    // & 0x0040 = set in water
+    // & 0x0080 = on the ground
     // & 0x0100 = ?
-	// & 0x0200 = facing wall
+    // & 0x0200 = facing wall
     /* 0x8A */ s16      unk_roty; //rotation y (give item, possibly next facing dir?/face toward link?)
     /* 0x8C */ float    unk_0x08C;
     /* 0x90 */ float    xzDistanceFromLink; 
@@ -100,7 +102,7 @@ typedef struct
     /* 0xF4 */ float    unk_0x0F4; //unknown
     /* 0xF8 */ float    unk_0x0F8; //unknown
     /* 0xFC */ float    unk_0x0FC; //unknown
-    /* 0x100 */ Coord_f Pos4; //Final Coordinates last frame (collision, NTSC 1.0 f 8002F8E0)
+    /* 0x100 */ Coord_f Pos4;      //Final Coordinates last frame (collision, NTSC 1.0 f 8002F8E0)
     /* 0x10C */ u8      unk_0x10C; //Z-Target related
     /* 0x10D */ s8      unk_0x10D; //Z-Target related
     /* 0x10E */ u16     textId; //text id to pass to link/display when interacting with an actor (navi text, probably others)
@@ -117,14 +119,14 @@ typedef struct
     //     Volvagia Hole stores Volvagia Flying here
     
     /* 0x11C */ struct z_Actor* attachedB; //Attached to Actor (
-	//e.g. Link holding chu, Link instance stores ptr to Bombchu instance here
+    //e.g. Link holding chu, Link instance stores ptr to Bombchu instance here
     /* 0x120 */ struct z_Actor* actor_prev; /* Previous z_Actor of this type */
     /* 0x124 */ struct z_Actor* actor_next; /* Next z_Actor of this type */
-    /* 0x128 */ void *Init; //Initialization Routine. Mandatory
-    /* 0x12C */ void *Dest; //Actor destructor 
-    /* 0x130 */ void *Main; //Main Update function, called every frame the actor is to be updated
-    /* 0x134 */ void *Draw; //Draw Routine, writes necessary display lists
-    /* 0x138 */ u32 CodeEntry; //Address to source overlay file's reference in code (file)
+    /* 0x128 */ void*   Init; //Initialization Routine. Mandatory
+    /* 0x12C */ void*   Dest; //Actor destructor 
+    /* 0x130 */ void*   Main; //Main Update function, called every frame the actor is to be updated
+    /* 0x134 */ void*   Draw; //Draw Routine, writes necessary display lists
+    /* 0x138 */ void*   CodeEntry; //Address to source overlay file's reference in code (file)
     /* From here on, the structure and size varies for each actor */
 } z_Actor;
 //actors with a poly-type collision mesh will always set this variable
@@ -137,11 +139,11 @@ typedef struct
 
 typedef struct
 {
-    /* 0x00 */ s16 id; //value does not always match the instance's real actor number
+    /* 0x00 */ s16 id;   //value does not always match the instance's real actor number
     /* 0x02 */ u8  type; //classifies actor and determines when actor will execute
     /* 0x03 */ u8  room; //Room instance was spawned in. If value set to FF in rom, instance does not despawn when swapping rooms
 
-    /* 0x04 */ s32 flags; //unknown, but seems to have an effect on the ability to Z-Target an actor. 
+    /* 0x04 */ s32 flags;    //unknown, but seems to have an effect on the ability to Z-Target an actor. 
     /* 0x08 */ s16 objectId; //possibly it's primary object dependency
     /* 0x0A */ //Padding
 

@@ -1,0 +1,17 @@
+//Poe Sisters 0091
+8093C340 //Init Function
+C478 //begin reading from spawn var
+//t3, t8, t5 = s16 at Instance + 0x1C
+//t6 = (Instance + 0x1C) &>> 0x0300
+//-- stuff
+//save t6 at Instance + 0x184
+
+
+
+
+
+
+== Instance Vars ==
+
+/* 0x184 */ s8 sister; // 0 = Meg, 1 = Joelle, 2 = Beth, 3 = Amy
+/* 0x185 */ s8 ; // instance + 0x1C &>> 0x0C00 value

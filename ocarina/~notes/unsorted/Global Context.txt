@@ -45,21 +45,21 @@ Global Context (Game):
   0C: InputInfo InputPressEdge;   //Joystick info is actually change in position
   12: InputInfo InputReleaseEdge; //Joystick Info is real-time input
   // InputInfo Struct (0x06 bytes) is as follows:
-	  00: //short = Buttons 1
-		0001 = C-Right
-		0002 = C-Left
-		0004 = C-Down
-		0008 = C-Up
-		0010 = R Button
-		0020 = L Button
-		0800 = D-Up button
-		1000 = Start Button
-		2000 = Z Button
-		4000 = B Button
-		8000 = A Button
-	  02: sbyte = X axis 1, right is positive, left is negative
-	  03: sbyte = Y axis 1, up is positive, down is negative
-	  04: ? //N64 Mouse?
+      00: //short = Buttons 1
+        0001 = C-Right
+        0002 = C-Left
+        0004 = C-Down
+        0008 = C-Up
+        0010 = R Button
+        0020 = L Button
+        0800 = D-Up button
+        1000 = Start Button
+        2000 = Z Button
+        4000 = B Button
+        8000 = A Button
+      02: sbyte = X axis 1, right is positive, left is negative
+      03: sbyte = Y axis 1, up is positive, down is negative
+      04: ? //N64 Mouse?
   
 0x0074: //Manages Game State's reserved heap
   00 = Size of heap
@@ -127,7 +127,7 @@ Global Context (Game):
   58 = s16? //?
   5A = s16? //Largest Distance to ? (see 800316D8, line 1AD4)
 0x1B9C (0x138C) = u16[50] Stores whether Actor mesh is loaded
-0x1C00 (0x13F0?) ptr to some table (actor meshes?)
+0x1C00 (0x13F0?) ptr to CollisionPoly table (actor meshes?)
 0x1C04 (0x13F4) ptr to translated vertex array (actor meshes?). 6 bytes per vertice
 0x1C08 (0x13F8?) ptr to some table (actor meshes?)
 0x1C14 (0x1454) s32 //num elements of 0x04 byte struct, default value 0x3E8
@@ -148,7 +148,7 @@ Global Context (Game):
     + 0x2C float //?, store unk + 0x05 (0 this pass) ...
     + 0x30 float //?, store unk + 0x06 (255 this pass) ...
     + 0x34 float //?, store unk + 0x07 (0 this pass) ...
-	0x38? ptr to Navi Target
+    0x38? ptr to Navi Target
   A4 s32
   F8 s32
   FC s32
@@ -192,13 +192,14 @@ Global Context (Game):
 0x104A6 s16 //Dialog processing char index?
 0x104E0 ptr //Last Actor Spoken To (Exodus)
 0x104E4 s16 //0x08 header command, Disable Warp Songs (rooms)
-0x104F0 //parameter_static/hud variables
+0x104F0 //parameter_static/hud variables/minimap
   0x000 //VIEW struct //0x128 bytes, see below
   0x130 //parameter_static pointer, size 0x3B00
   0x134 //A Button Text texture, size 0x480 this pass
   0x138 //B and C-Button Item Textures
   0x13C //Minimap Texture pointer, size 0x1000
   0x1C0 (0x106B0) //?, related to 8006FB6C/Updating B/C-Button button textures
+  0x25C s16 //Minimap Index
 0x10760 //kaleido_scope vars
  + 0x000 //VIEW Struct //0x128 bytes?
  + 0x1D4 u16 //larger animation state
@@ -274,7 +275,7 @@ Global Context (Game):
 0x11DE8 u8 //Age to set Link
 0x11DEA u8 //Spawn Id (from Entrance Table)
 0x11DEB u8 //Scene Header 0x01, num actors to spawn
-0x11DF0 ptr //to map file to use in scene data
+0x11DF0 ptr //to room file to use in scene data
 0x11DF4 ptr //to Link Actor Spawn Record to use
 0x11DF8 ptr //to Scene Header 0x01 Spawn Record; list of actors to spawn
 0x11E00 ptr //to Scene Header 0x06 entrance data
@@ -288,13 +289,22 @@ Global Context (Game):
 0x11E60 struct //Simple body Collision Group AT 1
   0x00 short //elements in array to process this frame
   0x02 short //?
-  0x04 ptr 	 //first element in array 
+  0x04 ptr   //first element in array 
 0x11F2C struct //Simple body collision Group AC 2
   0x00 int   //elements in array to process this frame
-  0x04 ptr 	 //first element in array 
+  0x04 ptr   //first element in array 
 0x12020 struct //Simple body collision Group OT 3
   0x00 s32   //elements in array to process this frame
-  0x04 ptr 	 //first element in array
+  0x04 ptr   //first element in array
+0x12124 //some framebuffer struct
+  0x00 s32 //Framebuffer x
+  0x04 s32 //Framebuffer y (pause lag fix)
+  0x10 ptr //Backbuffer? address
+  0x1C ptr //Z-Buffer
+  0x34 s32 // 0?
+  0x38 s32 // 0?
+  0x3C s32 //Framebuffer x - 1
+  0x40 s32 //Framebuffer y - 1
 0x121C8 struct //Transition Animation Data (0x250 bytes)
   0x000 //Transition Data (transition dependent?)
   //For Transition 05
@@ -318,7 +328,7 @@ Global Context (Game):
 
 
 1C8680 1C87EC 1C8958 1C8AC4
-camera_struct: (possibly 0x16C bytes long)
+camera_struct: (0x16C bytes long)
 //union at the beginning of the struct. The following few bytes only applies to the first camera
   0x0000 f32 //?
   0x0004 f32 //tween time step (0 to 1)
@@ -330,9 +340,8 @@ camera_struct: (possibly 0x16C bytes long)
   0x001C s16 //?
   0x0050 f32[3] //xyz 1 (could be camera focus or loc) //uses collision detection
   0x005C f32[3] //xyz 2 (could be camera focus or loc)
-  0x00
-  0x007C ptr //Global Context
-  0x0080 ptr //Follow Actor (Link)
+  0x008C ptr //Global Context
+  0x0090 ptr //Follow Actor (Link)
   0x00A8 ptr //Z-Target Actor?
   0x00FC f32 = Angle of View
   0x011C s32 //Index for 800EEE70 (camera behavior?) table. Stores next behavior when surfacing water?
@@ -340,6 +349,8 @@ camera_struct: (possibly 0x16C bytes long)
   0x0128 = Camera Position tween list
   0x0142 s16 Camera S //Index for 800EEE70 (camera behavior?) table
   0x0144 s16 Camera M //related to above
+  0x0146 s16 Complex Mesh Id for camera data
+  0x0148 s16 Mesh Camera Data Index
   0x014C s16 //? flags?
   0x0164 s16 //?
   //known values: +0x01E0, +0x034C from global context

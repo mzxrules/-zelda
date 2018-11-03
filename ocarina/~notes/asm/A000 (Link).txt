@@ -200,7 +200,7 @@ EE20 //branch EE3C if A0 = 9
 EE30 //branch EF44 and set V0 = Instance + 0x891 if Instance + 0x670 & 0x8000 0000 == 0 
 F300 jal 800347C8 //sidewall collision detection? //GLITCH START
 
-80838F6C (T:8039190C) // Load Object File
+80838F6C (T:8039190C) // Load Object File into Link's GI space
 //Loads gi object file
 //A0 = Link Instance
 //A1 = Object File Id
@@ -350,7 +350,7 @@ C350 //sw 0x0060 in Link Instance + 0x670
 8039542C //not function, Link actor, weird subroutine
 5444 //Checks if lifted actor is actor is actor 0x014E, liftable rock
 
-
+80848BB4 (T:803A1554)
 
 == Data ==
 808514A4 (T:803A9E44) 0212E4 s32 ?

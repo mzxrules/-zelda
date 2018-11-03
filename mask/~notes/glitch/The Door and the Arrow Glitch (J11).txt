@@ -1,0 +1,88 @@
+The crime: A wild door appears out of nowhere.
+
+The prime suspect: ovl_En_Arrow
+
+Observations:
+
+Normally, En_Arrow remains live for only a short few seconds. In the minigame however, En_Arrow lives "indefinitely", or until 6 arrows are spawned and a 7th is requested
+
+En_Arrow exhibits unusual behavior once the web blocking the Skulltula house is burnt. Specifically, all live arrows will behave as if they were a newly fired arrow whenever firing a new arrow.
+
+An important side effect of this is the arrow which appears floating in mid-air. It presumably has hit a target, and thus restarts it's flight when the next arrow is fired.
+
+The mid-air arrow is key to verifying that the door's position is moved when a new arrow is spawned. Furthermore, it appears that the mid-air arrow "moves" the door
+
+The door disappears when an arrow is fired. Not necessarily the first fired, but presumably when that mid-air arrow despawns
+
+En_Arrow instance variables:
+//80406F30 //HIT savestate addr
+//80406D50 //stale instance
+
+/* 0x188 */ ptr //pointer to 
+/* 0x1A8 */ ptr //Pointer to self
+/* 0x1AC */ ptr //Pointer to Actor 022F (Target)
+/* 0x1D8 */ ptr //Pointer to Actor 022F (instance + 0x148)
+/* 0x1E0 */ ptr //Poiner to actor 022F (probably simple collision data)
+/* 0x260 */ u8 //Arrow Timer (how long arrow remains spawned)
+/* 0x263 */ u8 //unk. if not zero, arrow processes state func ptr
+/* 0x264 */ ptr //pointer to Actor 002F (Target)
+/* 0x274 */ ptr //state func ptr
+
+//player_actor instance variables:
+/* 0xD57 */ u8 //bow release timer! Starts from 4
+
+Functions:
+800B8270 //Despawn Actor
+//A0 = Actor
+
+8088BC60 (T:805466E4) //En_Arrow update entrypoint
+66FC //T6 = Instance + 0x263
+6700 //A2 = Link Instance
+6704 //branch BCC8 (6748) if 0x263 != 0,
+//with t9 = + 0x274
+6718 //branch (6734) if actor var < 0
+6720 //branch BCC8 (6748) if actor var == 7,
+//with t9 = + 0x274
+672C //branch BCC8 (6748) if Link Instance + 0xD57 != 0,
+//with t9 = + 0x274
+6734 jal	80124E48
+
+800B8DB0 //Cutscene update?
+
+80124E48 //?
+//Determines if arrows should fly?
+//Seems equivalent to OoT NTSC 1.0's 8007938C
+//A0 = Global Context
+//A1 = Link Instance
+//V0 = 0 if all checks fail, 1 if one passes
+//
+//V0 = 1 if 
+//Link Instance + 0xA6C & 0x20000280 > 0
+//Link Instance + 0x394 > 0
+//Global Context + 0x18855 (s8) == 0x14
+//Global Context + 0x18ADA (u8) > 0
+//Link Instance + 0xA6C & 0x1 > 0
+//Link Instance + 0xA74 & 0x80 > 0
+//Global Context + 0x1F08 (u8) > 0 //Magic Animation? per OoT Debugging
+
+8085AF4C (T:80777EEC) //Link, clears out w/e cutscene state
+//A0 = Global Context
+//A1 = Link Instance
+
+8085B50C (T:807784AC) //Link, checks Instance + 0x394 var
+//A0 = Link Instance
+
+8085B11C (T:807780BC) //Link, Performs animation logic?
+//A0 = Global Context
+//A1 = Link Instance
+//A2 = ?
+//A3 = ptr to action?
+
+
+Majora's Mask: Swamp Target Game "Door Glitch" partial explanation.
+
+https://clips.twitch.tv/TrustworthyCrowdedAdminMrDestructoid
+
+Normally (at least I think so, didn't test this aspect much), whenever you fire an arrow into a wall-like surface, it will "stick" in place for a few frames before despawning.
+
+lovedrtom

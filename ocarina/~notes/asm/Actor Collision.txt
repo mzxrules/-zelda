@@ -1,58 +1,58 @@
 Collision Struct (Overlay):
 //803AAE7C for Link
 //0x2C bytes long, not the only type of collision struct
-0x00	byte	//?
-0x01	byte	//?
-0x02	byte	//?
-0x03	byte	//?
-0x04	byte	//?
-0x05	byte	//?
-0x08	byte	//?
-0x0C	int 	//? (FFCF FFFF, used to compare to Link's FFCF FFFF?)
-0x10	byte	//?
-0x11	byte	//Damage dealt when touched
-0x14	int 	//? (FFCF FFFF)
-0x18	byte	//?
-0x19	byte	//?
-0x1C	byte	//?
-0x1D	byte	//?
-0x1E	byte	//?
-0x20	int?	//Contains cylinder radius or diameter
-0x24	int?	//?
-0x28	int?	//? (thought this struct was only 0x24 bytes)
+0x00    byte    //?
+0x01    byte    //?
+0x02    byte    //?
+0x03    byte    //?
+0x04    byte    //?
+0x05    byte    //?
+0x08    byte    //?
+0x0C    int     //? (FFCF FFFF, used to compare to Link's FFCF FFFF?)
+0x10    byte    //?
+0x11    byte    //Damage dealt when touched
+0x14    int     //? (FFCF FFFF)
+0x18    byte    //?
+0x19    byte    //?
+0x1C    byte    //?
+0x1D    byte    //?
+0x1E    byte    //?
+0x20    int?    //Contains cylinder radius or diameter
+0x24    int?    //?
+0x28    int?    //? (thought this struct was only 0x24 bytes)
 
 Common CollisionBody Struct (Actor Instances): 0x18 bytes long
 //To simplify, CSO = Collision Struct (Overlay) reference
 //801DAEB8 for Link
-0x00	ptr 	//Actor Instance
-0x04	ptr 	//Colliding Actor Instance Type 1?
-0x08	ptr		//Colliding Actor Instance Type 2?
-0x0C	ptr		//Colliding Actor Instance Type 3?
-0x10	u8		//CSO 0x01 Collides Flags (opposite 0x11)
-							//if not & 0x0001, skip attack detection
-							// & 0x0040 == ?
-0x11	u8		//CSO 0x02 Collision Check Flags (opposite 0x10)
-							//if not & 0x0001, skip collision with attack.
-							//if & 0x0002, is detecting a Deku Nut hit?
-0x12	byte	//CSO 0x03, bitwise-and compared to opposing collision's 0x13 byte
-0x13	byte	//CSO 0x04, bitwise-and compared to opposing collision's 0x12 byte
-0x14	byte	//CSO 0x00
-0x15	u8		//CSO 0x05, Type
-				//00 = Cylinder Collection
-				//01 = Cylinder
-				//02 = ? (potentially sphere, per debug rom console output)
-				//03 = Triangles (2)
-				//references function pointer, start location at 800EFAB8
+0x00    ptr     //Actor Instance
+0x04    ptr     //Colliding Actor Instance Type 1?
+0x08    ptr     //Colliding Actor Instance Type 2?
+0x0C    ptr     //Colliding Actor Instance Type 3?
+0x10    u8      //CSO 0x01 Collides Flags (opposite 0x11)
+                            //if not & 0x0001, skip attack detection
+                            // & 0x0040 == ?
+0x11    u8      //CSO 0x02 Collision Check Flags (opposite 0x10)
+                            //if not & 0x0001, skip collision with attack.
+                            //if & 0x0002, is detecting a Deku Nut hit?
+0x12    byte    //CSO 0x03, bitwise-and compared to opposing collision's 0x13 byte
+0x13    byte    //CSO 0x04, bitwise-and compared to opposing collision's 0x12 byte
+0x14    byte    //CSO 0x00
+0x15    u8      //CSO 0x05, Type
+                //00 = Cylinder Collection
+                //01 = Cylinder
+                //02 = ? (potentially sphere, per debug rom console output)
+                //03 = Triangles (2)
+                //references function pointer, start location at 800EFAB8
                 //used to reference function pointer, start location at 800EFB4C.
-				//Basically, on left compare to right, left's value * 0x10 + right's value * 0x04 = pointer look up
+                //Basically, on left compare to right, left's value * 0x10 + right's value * 0x04 = pointer look up
 //If Type 0, Cylinder Collection
-0x18	int 	//Number of Cylinders
-0x1C	ptr 	//Cylinder Array Start
+0x18    int     //Number of Cylinders
+0x1C    ptr     //Cylinder Array Start
 
 Since collisions cannot be truely simultaneous, 
 toucher refers to a body pushing into another
 bumper refers to a body potentially receiving a touch
-				
+                
 Common CollisionBodyInfo: 0x28 bytes
 0x00 s32 //Toucher Attack Identifier Flags
 0x04 u8
@@ -70,18 +70,18 @@ Common CollisionBodyInfo: 0x28 bytes
 0x24 //pointer to CollisionBodyInfo of colliding entity
 
 //Old Common CollisionBodyInfo notes (Type 1, cylinder)
-0x18	int 	//CSO 0x0C //Attack Identifier!
-0x1C	byte	//CSO 0x10
-0x1D	byte	//CSO 0x11, Damage Dealt when touched/Stun Timer
-0x20	int 	//CSO 0x14 (FFCF FFFF)
-0x24	byte	//CSO 0x18, Effect when collided into?
-0x25	byte	//CSO 0x19
-0x2C	byte	//CSO 0x08
-0x2D	byte	//CSO 0x1C
-0x2E	byte	//CSO 0x1D
-0x2F	byte	//CSO 0x1E
-0x34	ptr		//stores pointer to Collision Struct in some situations
-0x3C	ptr 	//stores pointer to Collision Struct + 0x18 of colliding entity
+0x18    int     //CSO 0x0C //Attack Identifier!
+0x1C    byte    //CSO 0x10
+0x1D    byte    //CSO 0x11, Damage Dealt when touched/Stun Timer
+0x20    int     //CSO 0x14 (FFCF FFFF)
+0x24    byte    //CSO 0x18, Effect when collided into?
+0x25    byte    //CSO 0x19
+0x2C    byte    //CSO 0x08
+0x2D    byte    //CSO 0x1C
+0x2E    byte    //CSO 0x1D
+0x2F    byte    //CSO 0x1E
+0x34    ptr     //stores pointer to Collision Struct in some situations
+0x3C    ptr     //stores pointer to Collision Struct + 0x18 of colliding entity
 
 
 
@@ -96,12 +96,12 @@ Common CollisionBodyInfo: 0x28 bytes
 
 //Type 1, Simple Cylinder
 //offsets are relative to the start of the CollisionBody
-0x40	short	//CSO 0x20 Cylinder Radius
-0x42	short	//CS0 0x22 Cylinder Height
-0x44	short	//CSO 0x24 Cylinder Y Shift? For certain types (non complex meshes?) of collisions?
-0x46	short	//Cylinder X
-0x48	short	//Cylinder Y
-0x4A	short	//Cylinder Z
+0x40    short   //CSO 0x20 Cylinder Radius
+0x42    short   //CS0 0x22 Cylinder Height
+0x44    short   //CSO 0x24 Cylinder Y Shift? For certain types (non complex meshes?) of collisions?
+0x46    short   //Cylinder X
+0x48    short   //Cylinder Y
+0x4A    short   //Cylinder Z
 
 
 //Type 3, Tris (Sword Slashes/Destructable walls)
@@ -125,11 +125,11 @@ Common CollisionBodyInfo: 0x28 bytes
 
 Global Context:
 801DA300, start of Collision Group AT (Gohma, Skullwalltulas)
-0x11E60 short	//elements in array to process this frame
-0x11E64 ptr 	//first element in array 
+0x11E60 short   //elements in array to process this frame
+0x11E64 ptr     //first element in array 
 
 801DA3CC, start of Collision Group AC (more inclusive, seems to follow actor category order, only one with 3d heart actor)
-0x11F2C int 	//element in array to process this frame
+0x11F2C int     //element in array to process this frame
 
 //1DA4C0, start of Collision Group OT (contains the most actors in Deku Tree)
 
@@ -181,7 +181,7 @@ lo
 
 
 
-aabb bxcc	#w#h kels 
+aabb bxcc   #w#h kels 
 
 
 Some notes on Link

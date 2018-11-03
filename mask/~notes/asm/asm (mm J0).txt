@@ -1,0 +1,308 @@
+[[#Pot Item Drops|Item Drop]]
+801F40E0 //Static Context Pointer
+
+Command 19 MM:
+
+8071EA48 //command address
+
+8013201C // Function
+
+801BD040 //table of internal scene numbers, directly referenced by Command 0x19
+table, 0xB records for each world location, 0x36 bytes per record, or rather, 27 two-byte internal scene indexes
+scanned to first 0xFFFF, swap to next record
+
+0037 //Great Bay Coast
+002F //Marine Research Lab
+003C //Fisherman's Hut
+0025 //Pinnacle Rock
+0038 //Zora Cape
+003B //Pirates' Fortress Exterior
+0014 //Pirates' Fortress
+0023 //Pirates' Fortress Interior
+
+0000000B
+
+once "world location" index is selected:
+leftshift 2
+
+801BCB70 //shift table, enumeration?
+Save Context + 0x0F5C //overworld map?
+
+
+801315D0 // Header Command 0x08
+//A0 = Global Context
+//A1 = Header Command ptr
+//Gctx + 0x186C3 (u8) = data1
+//Gctx + 0x186C2 (u8) = data2 & 0xFF
+//Gctx + 0x186C5 (u8) = data2 &>> 0x0100
+//Gctx + 0x1694C (s16) = data2 &>> 0x0400
+//Gctx + 0x186C6 (u8) = data2 &>> 0x0800 //Lighting Related
+//Gctx + 0x170C6 (u8) = data2 &>> 0x1000 //Rain on Day 2, only works on scenes with internal index < 0x1D I think
+
+801361B8 //Trigger Animation
+//A0 = Segment Offset to animation (index 04)
+
+80087A1C //Rng, get next float?
+//F0 = return value
+
+8075C25C //part of Link ovl
+C25C jal 80087A1C //RNG float
+C278 //V0 = random number between 0 and 5 exclusive
+C2F4 //T2 = 80779C3C //Idle Animation Table (0x1E records)
+
+800BCE48 //Actor initialization
+
+800B7790 //Check Switch Flag?
+//A0 = Global Context
+//A1 = Flag Value
+//Switch Flag Data Located at
+//Global Context + 0x1E58, 4 words
+
+
+8013098C //Buy Map
+//Unlocks Tingle Map?
+//A0 = Map Id
+code_Func_8013098C:	/* 8013098C */
+
+	sw	a0, 0x0000($sp)
+	sll	a0, a0, 16
+	sra	a0, a0, 16
+	or	v0, $zero, $zero		/*v0 = 00000000*/
+	bltz	a0, $lbl_80130B58
+	or	v1, $zero, $zero		/*v1 = 00000000*/
+	slti	at, a0, 0x0006
+	beq	at, $zero, $lbl_80130B58
+	sll	t6, a0, 02
+	subu	t6, t6, a0
+	lui	t7, 0x801C		/*t7 = 801C0000*/
+	addiu	t7, t7, 0xD294		/*t7 = 801BD294*/ //unk scene groupings
+	sll	t6, t6, 03
+	lui	t1, 0x801C		/*t1 = 801C0000*/
+	lui	t0, 0x801F		/*t0 = 801F0000*/
+	addiu	t0, t0, 0xF460		/*t0 = 801EF460*/ //Save Context
+	addiu	t1, t1, 0xCB70		/*t1 = 801BCB70*/ //Shift Table
+	addu	a1, t6, t7
+	ori	a3, $zero, 0xFFFF		/*a3 = 0000FFFF*/ //Terminator
+	sll	t8, v0, 01
+	addu	t9, a1, t8
+	lhu	a0, 0x0000(t9)
+	addiu	v0, v0, 0x0001		/*v0 = 00000001*/
+	beq	a3, a0, $lbl_80130AB0
+	sll	a2, a0, 16
+	sra	a2, a2, 16
+	slti	at, a2, 0x0020
+	beq	at, $zero, $lbl_80130A08
+	sll	t3, a2, 02
+	beq	$zero, $zero, $lbl_80130A7C
+	or	v1, $zero, $zero		/*v1 = 00000000*/
+$lbl_80130A08:
+	slti	at, a2, 0x0040
+	beql	at, $zero, $lbl_80130A20
+	slti	at, a2, 0x0060
+	beq	$zero, $zero, $lbl_80130A7C
+	addiu	v1, $zero, 0x0001		/*v1 = 00000001*/
+	slti	at, a2, 0x0060
+$lbl_80130A20:
+	beql	at, $zero, $lbl_80130A34
+	slti	at, a2, 0x0080
+	beq	$zero, $zero, $lbl_80130A7C
+	addiu	v1, $zero, 0x0002		/*v1 = 00000002*/
+	slti	at, a2, 0x0080
+$lbl_80130A34:
+	beql	at, $zero, $lbl_80130A48
+	slti	at, a2, 0x00A0
+	beq	$zero, $zero, $lbl_80130A7C
+	addiu	v1, $zero, 0x0003		/*v1 = 00000003*/
+	slti	at, a2, 0x00A0
+$lbl_80130A48:
+	beql	at, $zero, $lbl_80130A5C
+	slti	at, a2, 0x00C0
+	beq	$zero, $zero, $lbl_80130A7C
+	addiu	v1, $zero, 0x0004		/*v1 = 00000004*/
+	slti	at, a2, 0x00C0
+$lbl_80130A5C:
+	beql	at, $zero, $lbl_80130A70
+	slti	at, a2, 0x00E0
+	beq	$zero, $zero, $lbl_80130A7C
+	addiu	v1, $zero, 0x0005		/*v1 = 00000005*/
+	slti	at, a2, 0x00E0
+$lbl_80130A70:
+	beql	at, $zero, $lbl_80130A80
+	sll	t6, v1, 07
+	addiu	v1, $zero, 0x0006		/*v1 = 00000006*/
+$lbl_80130A7C:
+	sll	t6, v1, 07
+$lbl_80130A80:
+	subu	t7, $zero, t6
+	sll	t2, v1, 02
+	addu	t4, t1, t3
+	addu	t8, t4, t7
+	addu	a0, t0, t2
+	lw	t2, 0x0EA4(a0)
+	lw	t9, 0x0000(t8)
+	sll	v0, v0, 16
+	sra	v0, v0, 16
+	or	t3, t9, t2		/*t3 = 00000000*/
+	beq	$zero, $zero, $lbl_801709D8
+	sw	t3, 0x0EA4(a0)
+$lbl_80130AB0:
+	lui	t5, 0x801C		/*t5 = 801C0000*/
+	addiu	t5, t5, 0xD294		/*t5 = 801BD294*/
+	bne	a1, t5, $lbl_80130AD0
+	lui	t7, 0x801C		/*t7 = 801C0000*/
+	lw	t6, 0x0F60(t0)
+	ori	t4, t6, 0x0003		/*t4 = 00000003*/
+	beq	$zero, $zero, $lbl_80130B58
+	sw	t4, 0x0F60(t0)
+$lbl_80130AD0:
+	addiu	t7, t7, 0xD2AC		/*t7 = 801BD2AC*/
+	bne	a1, t7, $lbl_80130AEC
+	lui	t2, 0x801C		/*t2 = 801C0000*/
+	lw	t8, 0x0F60(t0)
+	ori	t9, t8, 0x001C		/*t9 = 0000001C*/
+	beq	$zero, $zero, $lbl_80130B58
+	sw	t9, 0x0F60(t0)
+$lbl_80130AEC:
+	addiu	t2, t2, 0xD2C4		/*t2 = 801BD2C4*/
+	bne	a1, t2, $lbl_80130B08
+	lui	t6, 0x801C		/*t6 = 801C0000*/
+	lw	t3, 0x0F60(t0)
+	ori	t5, t3, 0x00E0		/*t5 = 000000E0*/
+	beq	$zero, $zero, $lbl_80130B58
+	sw	t5, 0x0F60(t0)
+$lbl_80130B08:
+	addiu	t6, t6, 0xD2DC		/*t6 = 801BD2DC*/
+	bne	a1, t6, $lbl_80130B24
+	lui	t8, 0x801C		/*t8 = 801C0000*/
+	lw	t4, 0x0F60(t0)
+	ori	t7, t4, 0x0100		/*t7 = 00000103*/
+	beq	$zero, $zero, $lbl_80130B58
+	sw	t7, 0x0F60(t0)
+$lbl_80130B24:
+	addiu	t8, t8, 0xD2F4		/*t8 = 801BD2F4*/
+	bne	a1, t8, $lbl_80130B40
+	lui	t3, 0x801C		/*t3 = 801C0000*/
+	lw	t9, 0x0F60(t0)
+	ori	t2, t9, 0x1E00		/*t2 = 00001E1C*/
+	beq	$zero, $zero, $lbl_80130B58
+	sw	t2, 0x0F60(t0)
+$lbl_80130B40:
+	addiu	t3, t3, 0xD30C		/*t3 = 801BD30C*/
+	bne	a1, t3, $lbl_80130B58
+	nop
+	lw	t5, 0x0F60(t0)
+	ori	t6, t5, 0x6000		/*t6 = 000060E0*/
+	sw	t6, 0x0F60(t0)
+$lbl_80130B58:
+	lui	t4, 0x801F		/*t4 = 801F0000*/
+	lw	t4, 0x40E0(t4)   //LW 801F40E0 //Static Context Pointer
+	sh	$zero, 0x0B52(t4)
+	jr	$ra
+	nop
+
+
+
+80132020 //0x19 scene header command
+
+80132158 //Parse Scene Header
+
+80092260 //Copy bytes (OOT NTSC 1.0 80057030)
+//A0 = Copy from Address
+//A1 = Copy to Address
+//A2 = Bytes to copy
+//V0 = Address copied to
+//If bytes to copy <= 0, no bytes will be copied
+
+800EE998 //Process Cutscene
+//A0 = Global Context
+//A1 = Cutscene Struct (Global Context + 0x1F24)
+//A2 = Cutscene Pointer
+
+EA88 //Start of individual instruction parsing, T0 = cutscene command
+800EE998:800EF204 //0x5A command
+800EE998:800EF44C //No Command?
+F498 //Test if there's more to parse
+//T0 = instruction
+
+800EE1D0 //Parse Cutscene Command 0x5A
+//A0 = Global Context
+//A1 = Ptr to command data
+//V0 = Number of bytes to advance cutscene parser cursor
+//
+//SP+0x1C = first word of data
+E1FC jal	801663E0 //lw 801CB510
+//A0 = ptr to 0x5A command data + 0x04 (exclude op), A1 = 801F4EC8
+E210 jal	8015D448 
+
+
+8015D448 //?
+//A0 = ptr to 0x5A command data + 0x04 (exclude op)
+//A1 = ? (const ptr 801F4EC8 this pass)
+//V0 = ? (some frame count?)
+
+
+8015CD68 //?
+//A0 = 801F4EC8
+//V0 = 0 if ?, else 1
+CDA0 //T8 = Link Ptr
+CDE4 //branch if 801F4EC8 + 0x74 0xC struct (below)'s first byte >= 0x70's
+CDF8 //A2 = 801F4EC8 + 0x10, A3 = 801F4EC8 + 0x40, V0 probably = camera
+//copy camera + 0x5C coords to Struct 801F4EC8 + 0x10
+//copy camera + 0x50 coords to Struct 801F4EC8 + 0x40
+CE80 jal 8015CCDC //A0 = struct 801F4EC8 + 0x70's active 0xC record
+CEA0 //T3 = ptr to struct 801F4EC8 + 0x70's active 0xC record
+CEB0 //check if 0xC struct + 0xA is <= 0, and branch to CFCC if true
+//else branch to 801DD800[0xC struct + 0x0A]
+
+
+//Struct 801F4EC8
+0x04 s16 // ?
+0x06 s16 // ?
+0x08 s16 // Timer a?
+0x0A s16 // Timer b?
+0x0C s16 // Timer end frame?
+// Struct, probably tween data?
+0x10 f32 xyz // Camera Struct + 0x5C
+0x3C u8 //Index into 0xC byte struct array referenced by 0x70
+// Struct, probably tween data?, same as 0x10
+0x40 f32 xyz // Camera Struct + 0x50
+0x6A s16 //?
+0x6C u8 //Index into 0xC byte struct array referenced by 0x74
+//
+0x70 ptr to 0x5A entry data? (0xC byte array)
+0x74 ptr to // same data type as 70
+0x78 ptr to ? //0x8 byte array, indexed by 0x3C
+0x7C ptr // Global Context + 0x398, Probably camera
+
+//0x70/0x74 struct, 0xC bytes
+0x00 u8 ?
+0x0A s16 ? (range from 0 to 5?)
+
+//0x78 struct, 0x8 bytes
+
+8015CCDC //?
+//A0 = 0xC struct byte 0x00
+//V0 = func ptr 
+//if A0 >= 8, return 8015CC30
+//else goto 801DD7E0[A0]
+//values:
+//0 return 8015DE2C 
+//1 return 8015DE94
+//2 return 8015D6D0
+//3 return 8015D8FC
+//4 return 8015E500
+//5 return 8015DFEC
+//6 return 8015DB7C
+//7 return 8015CC30
+
+8015DFEC //?
+//A0 = Camera Ptr
+//A1 = ?
+//A2 = ?
+//A3 = 801F4EC8 + 0x70's active 0xC record
+//SP + 0x10 = 801F4EC8 + 0x7C's active 0x8 record
+//SP + 0x14 = 801F4ED8 struct
+//V0 = s16?
+
+801663E0 //lw 801CB510
+//v0 = lw 801CB510

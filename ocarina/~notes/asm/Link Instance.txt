@@ -18,7 +18,7 @@ Link Instance
  1D = Ocarina
 0x0148 u8? //1 if ? (possibly shield needs to go on Child Link's Back), 0 = neutral
 0x014B u8? //1 possibly if shield in hand?
-0x014D u8 //Right hand item? 08 = neutral, 09 = to heavy to shield, 0A = shielding
+0x014D u8 //Right hand item? 08 = neutral, 09 = too heavy to shield, 0A = shielding
 0x014F u8 //current mask?
 0x0150 ptr //pointer to segment offset to display list, related to held item
 0x0154 ptr //pointer to segment offset to display list, related to held item
@@ -61,6 +61,7 @@ Link Instance
   0x04EC Sword Attack type
 0x0554 Actor Collision struct 4 //sword attacks 2?!
 0x05D4 Actor Collision struct 5 //shielding
+0x0654 Actor* //?
 0x0664 func ptr //Seems to be Link's primary action pointer?
  //values
  80396E74 - Z-Targeted + Neutral (Enemy Stance?)
@@ -117,7 +118,7 @@ Link Instance
  803A6FCC - Casting Din's Fire/Farore's Wind
  803A967C - Stepping on Button/Cutscene
 0x0668 = ptr, collision properties table
- 808512E8 -> 803A9C88 //adult?
+ 808512E8 -> 803A9C88 //adult
  808513BC -> 803A9D5C //child
 0x066C = State Flags
  & 0x8000 0000 = Disable Floor Collision
@@ -136,12 +137,15 @@ Link Instance
  & 0x0000 0800 = Is diving?
  & 0x0000 0020 = ? (& 0x0000 0060 set on grabbing vine state)
  & 0x0000 0040 = ? (& 0x0000 0060 set on grabbing vine state)
-0x067C Navi Instance?
+0x067C Actor* //Navi Instance
+0x0680 s16? //Navi Alert Message ID
 0x0682 u8 ?
+0x0683 u8 ? //Exchange Item Id
 0x0684 Actor* //within talk/target range of Link
-0x0688 float, distance from actor within talk/target range
-0x069D u8 ? (0x04 is some state, possibly talking?)
+0x0688 float //distance from actor within talk/target range
+0x069D u8 ? //(0x04 is some state, possibly talking?)
 0x06B4 f32 ? //probably height related?
+0x06C0 void* //Link's Current Animation Segment Address
 0x081C ptr //Function pointer to ?
 0x0828 float //linear velocity on XZ plane, related to below
 0x082C s16 //Movement angle on XZ plane, Sets Y Rotation to Link's XZ speed variable (instance + 0x68)
@@ -159,7 +163,7 @@ Link Instance
 		//1: left
 		//2: down
 		//3: right 
-0x083F byte //?
+0x083F byte //?, related to displaying text when collecting an item
 0x0850 s16 //?
 0x0874 f32 //distance to ledge
 0x0878 f32 //distance to wall

@@ -1,0 +1,57 @@
+MM J red potion glitch:
+
+801149F8 //Function that gives item
+//A0 = Global Context
+//A1 = Item Id
+80115A78 //jump table for bottle items
+80115AA0 //Handles Gold Dust (0x22), Chateau (0x27), and others
+
+80115A30 is start of a loop that checks if any bottles contain red potion
+
+80115A78 is a switch case? table checking if 
+
+80115ED4 something fishy...
+5ED4 //T5 = 0x11, our item
+5ED8 //T0 = Save context
+5EE4 //T6 = T0 + T2... T2 might just be slot offset, but not 100% on this
+
+//-------------
+
+80765660 is roughly where the give item function is being called
+807799F4 is byte containing item id
+
+80115ED4 is where our item id is being loaded to be saved into the inventory
+
+807655E8 // Is obtaining item routine (runs when Link holds an item over his head)
+//A0 = Global Context
+//A1 = Link's Instance
+55F8 //V1 = Get Item Index (inst + 0x384)
+5618 bnez t6 80765728 //branch if link instance + 0xAE7 != 0
+561C //A0 = Global Context + 0x4908
+5620 //T7 = V1 * 6
+5628 //T9 = 807797E4
+562C //T8 = T7-6
+5634 //V0 = Get Item Table record ptr
+
+Link's Instance
+0x384 short //Get Item Id
+0xAE7 = 0 if haven't gotten item, 1 if have
+
+
+
+800BA604 //Give Item, public function
+
+
+80A8F9B4 //Sets Kotake's Red Potion Bottle item index
+80A8F9BC //Kotake gives Red Potion
+
+
+
+
+
+Glitch in full: 
+
+80115A18 if A3 (item being given) is not 0x11 (Red Potion from Witch), skip over the following
+After this check, the game checks all 6 bottle slots for an empty (0xFF) slot. If a slot is found, write 0x13 (normal Red Potion) into that bottle slot, then branch to 80115EEC. Otherwise, branch to 80115ED0
+
+At 80115ED0, we simply store the item index we pull up, which is 0x11. Thus, we end up with the alpha hookshot item in our inventory.

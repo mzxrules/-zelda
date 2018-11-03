@@ -1,0 +1,17 @@
+5.app Filetable: 232 C8D0 bytes
+0x2C or 0x30 = list of files
+	int = name offset
+	int = start
+	int = size
+	0x8FC = Last record?
+0x908 = file name
+
+1630 size 0860
+1E90 size 0860
+
+
+19F2F0 rom file, 19F2F4 = Majora's Mask n64 rom location
+
+
+
+VC64NZSE 

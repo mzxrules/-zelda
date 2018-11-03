@@ -1,0 +1,8 @@
+8090EBD0 int*[0x08] //display list table for actor type 
+8090EBF0 int*[0x08] //collision mesh
+8090EC40 void*[8]   //initialize type jump table
+8090EC98 void*[8]   //update type jump table
+
+== Instance Vars ==
+
+0x170 //display list

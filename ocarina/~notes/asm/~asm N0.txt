@@ -15,8 +15,10 @@
 //A2 = Size
 
 
+800009E0 //osEPiStartDma(OSPiHandle *pihandle, OSIoMesg *mb, s32 direction)
+
 80000D28 //Load from DMA to RAM (no dmadata access? more immediate?)
-//A0 = ?
+//A0 = z_getfile_t* //ptr to get file record
 //A1 = Address to load into
 //A2 = Rom Address
 //A3 = Size
@@ -403,6 +405,7 @@ B508 jal 800CCBB8 //Link Overlay
 8002060C //Tests if a Chest Flag is set
 //A0 = Global Context
 //A1 = Flag Value
+//V0 = Non-Zero if flag is set, else 0
 
 
 80020624 //Turns on a Chest Flag
@@ -2116,9 +2119,16 @@ FCB0
 //return S6
 
 
-80033EF4 //code, graph, Poly Collision Actor related?
+80033E10 //Convert Poly Collision Segment Addresses to real addresses
+//A0 = ptr to Collision Data
+
+80033EF4 //Convert Poly Collision Segment Addresses to real addresses
 //A0 = Segment Offset to Collision Data
-//A1 = ptr to store result?
+//A1 = ptr to store result
+
+80033F30 //
+//A0 = Segment Address to Collision Data
+//A1 = Address to store resolved segment address
 
 80033FF0 //Collision, Zero Global Context + 0x80C Array
 //Zeros A1 bytes, beginning at the array start
@@ -2142,7 +2152,7 @@ FCB0
 4038 JAL	8002F054 //if A2 = 0x32, V0 = pointer to scene collision header data
 
 
-800340A0 //Collision, poly surface, return?
+800340A0 //Collision, poly surface, return Camera Data Index
 //Returns high word & 0x0000 00FF
 //A0 = Global Context + 0x7C0
 //A1 = Polygon*
@@ -2150,13 +2160,36 @@ FCB0
 //V0 = result
 
 
-80034290 //something for jpeg background for static, multi-background pre-rendered areas
+800340C4 //Get Camera S from Camera Data
+//A0 = Global Context + 0x7C0
+//A1 = Camera Data Index
+//A2 = Complex Mesh Id
+//V0 = Camera S value
+
+
+80034290 //Collision, camera info?
+//something for jpeg background for static, multi-background pre-rendered areas
 //A0 = Global context + 0x7C0
-//A1 = Jpeg frame index //(1C87C8) halfword, stored at Global Context + 0x7C0 + 0x148
-//A2 = ?
-//A3 = Global Context
+//A1 = Mesh Camera Data Index (Jpeg frame index) //(1C87C8) halfword, stored at Global Context + 0x7C0 + 0x148
+//A2 = Complex Mesh Id
+//V0 = Ptr to Camera Data
 //
-//A1 is being set to -1 when Link dies
+//GLITCH: When dying outside of Temple of Time, A1 is being set to -1
+429C jal	8002F054 //Get Collision Mesh
+//V0 = mesh ptr
+42A4 //return 0 if mesh ptr is null
+//A1 = CPU Segment Table
+//T6 = Segment 0 address
+//A0 = Mesh Camera "Segment Address"
+//T7 = Address 8000 0000 + Segment 0 address
+42CC //return 0 if A0 == T7
+//T8 = Arg A1
+//T9 = T8 * 8
+//T0 = A0 + T9 //Address of Collision Camera Record
+//V1 = Record Segment Address
+//Macro for Segment Address to Pointer
+//V0 = Record Pointer
+
 
 
 800343AC //Collision, poly surface, return?
@@ -2339,7 +2372,11 @@ FCB0
 //calls wrapper with A2 = SP+0x20, but copies the result back to A2 anyway
 
 
+
 //************************* camera.c ********************
+80036500 //Camera, Get Custom position data from Scene Mesh
+//A0 = Camera Struct Pointer
+//V0 = Ptr to Collision Mesh Camera Data
 
 80038A14 //Camera, NORM1()
 936C //critical walk check
@@ -3601,17 +3638,102 @@ jal 800667BC
 80066D9C //mem (800CDDD8)
 80066DC0 //mem (800CDDF8)
 
+80066F14 //draw minimap icons?
+//ovl_map_mark_data
+//A0 = Global Context
+//
+//SP = -0xB8
+//
+//V1 = ptr at 8012BF10 (Maps pointer struct)
+//V0 = u16 at Save Context + 0x1402 //dungeon index
+6F50 //branch 6F74 if V1 is null
+//T7 = ptr to number of room minimaps
+//T6 = s16 at Global Context + 0x1074C (current minimap)
+//T8 = ptr to number of minimaps for the dungeon
+//T9 = u8 number of minimaps
+6F70 //return if current minimap id >= num minimaps
+//V1 = Global Context + 0x104F0 //Hud Ctx
+//T6 = Global Context + 0x1074C //current minimap
+//T4 = ptr at 8011BF00 //map_mark_data dungeon array
+//T5 = Dungeon Index * 4
+//T8 = map_mark_data ptr for current dungeon
+//T9 = T6 * 0x72
+//S3 = Ptr to map_mark_data current minimap
+//S0 = Graphics Context
+//S5 = 800F1B60
+//S8 = 800F1BB0
+//SP+0xB8 = Arg A0
+//SP+0x44 = Global Context + 0x104F0 //Hud Ctx
+//S7 = 0x07000000
+//S6 = 0xF5000000
+//S4 = 0xE7000000
+//T4 = Icon Type
+6FE0 //return if Icon Type = -1
+
+
 
 80067440 //?
 //A0 = ptr ? (8000031C this pass)
+
+8006BF04 //Load minimap address
 
 8006D5B4 //?
 //80108690 is some sort of jump table for performing the "filling hearts" animation stuffs?
 
 
-8006D8E0 //zoning out related
-//A0 = writeback value?
+8006D8E0 //HUD related, affects HUD visibility
+//A0 = Hud State
+//
+//01 = No HUD
+//05 = Hearts/A-Button Only
+//32 = Normal
 
+
+8006F804 //Swap Link's Age Equipment
+//
+//Note: 
+// Save Context + 0x4 = previous age
+// Global Context + 0x11DE8 = next age
+//
+//A1 = Save Context
+//T6 = Save Context + 0x04 (Link's previous age)
+//AT = 0x05
+//V0 = 0x11
+//A0 = 0x3B //Kokiri Sword
+F818 //branch F828 if Link is an adult turning child
+//V0 = 0x05
+F820 //branch F828
+F828 //branch F958 if V0 != 0x05 (Link is adult turning child)
+//V0 = 0 //Current Equips loop index
+//V1 = Save Context + v0
+//Copy B button and C Items to Child Equips
+F830 //branch F848 if V0 == 0
+//V1 = Save Context + v0
+//Copy 0x68(V1) (current equips) to 0x40(V1) (child equips)
+F840 //branch F84C
+F848 
+//Write Kokiri Sword to Child Equips index 0
+//V0 += 1
+F84C //branch F860 if V0 = 0
+//T8 = Save Context + 0x6B + V0 (C-item slot index)
+//store at Save Context + 0x43 + V0
+//V0 += 1
+F860 //cast V0 to short
+F86C //branch F830 if (V0 < 4)
+//
+//t0 = Adult Equips B button
+//t9 = Current Shield, Tunic, Sword, Boot
+//set Save Context + 0x48 (child equips) to t9
+//v1 = 0xFF //Empty Item
+F880 //branch F8DC if t0 != v1 (first time pulling MS)
+//Set Adult Initial Equipment
+//t2 = Save Context + 0x75 (Deku Nut item slot)
+//t1 = 0x3C (Master Sword)
+//Save Context + 0x68 = T1 //Current Equipment Sword
+//T6 = 0x07
+F894 //branch F8AC if Deku Nut Item Slot is empty
+F958 //Adult turning child
+//v0 = 0
 
 //*************** parameter.c *****************
 
@@ -3623,12 +3745,16 @@ jal 800667BC
 8006FDCC //Item Giving Routine
 //800F8F34 (inventory slot table)
 //A0 = Global Context
-//A1 = Item Index
+//A1 = C-Item Index
 //
 //T2 = Inventory Slot Table ptr
 FDF0 //T4 = u8 at Invent Slot Table + Item Index (OUT OF BOUNDS ACCESS!)
 FDF4 //AT = item < 0x8A
 FE04 //branch FE20 if true, V0 = Slot offset
+FF60 //branch 003C if item is < 0x3B (Kokiri Sword) or item is not <= 0x3D (Biggoron Sword)
+FF70 //item index is 0x3B, 0x3C, 0x3D
+000C //Get Master Sword
+0014 //write MS to current B button
 0364 //Is Bomb Bag 20
 0390 //branch 03DC if no bomb bag
 
@@ -4134,7 +4260,14 @@ FFD0 //zeroes out save context data from 0x1C -> 0x1354
 //A0 = ?
 02F0 // Correct Spawn Point from save
 0334 // seems to be some subroutine that determines where link spawns?
-
+0428 jal	80057030 //copy scarecrow song (long)
+	//A0 = ptr at 80102EE0
+	//A1 = 8011B511
+	//A2 = 0x360
+0460 jal	80057030 //copy scarecrow song (short)
+	//A0 = ptr at 80102EE4
+	//A1 = 8011B896
+	//A2 = 0x80
 
 800905D4 // Save Game
 //Saves the current game data to SRAM
@@ -4160,31 +4293,40 @@ FFD0 //zeroes out save context data from 0x1C -> 0x1354
 0C4C //sets start entrance index
 0C50 //sets age
 0C54 //sets time of day
-0C58 //sets initial cutscene80091858 //Initializes variables related to rendering the scene
-//A0 = "VIEW" struct ptr (Global Context + 0xB8 for game, + 0xA8 for ovl_title)
-//A1 = Graphics Context (11F290)
-//can be optimized quite a bit
-1858 ADDIU	SP, SP, 0xFFE8
-1860 //v0 = 800FC190
-186C //F2 = 1.0
-1874 //F4 = 60.0, FOV
-187C //F0 = 0
-1880 //F6 = 10.0 Fog Distance
-1888 //F8 = 12800, Z Depth?
-1890 //F10 = -1
-1898 //T6 = 0x00F0 //Screen Bottom
-189C //T7 = 0x0140 //Screen Right
-18A0 //T8 = "VIEW" literal
-//values are then saved to (A0), see global context
-18E8 T9, 0x0000(V0) //T9 = value at 800FC190, seems to be pointed at a dlist
-18EC T0, R0, 0x0007
-18F0 BEQL	T9, R0, 80091900
-18F4 SW 	R0, 0x0124(A0)
-18F8 SW 	R0, 0x0000(V0)
-18FC SW 	R0, 0x0124(A0)
-1900 JAL	80091CF0
-1904 SW 	T0, 0x0120
-1910 JR 	RA
+0C58 //sets initial cutscene
+
+
+800911C0 //Save game settings data
+
+
+800911F4 //Load game setting data from save, initialize setting variables
+//A0 = Global Context
+//A1 = Global Context (Boot) + 0x1D0
+//
+//SP -0x28
+//
+//S2 = Arg A1
+121C	jal	80091474 //load from SRAM
+	//A0 = 0x0800 0000
+	//A1 = lw 0x0000(Arg A1) //SRAM struct allocation ptr
+	//A2 = 0x8000 (Sram size)
+	//A3 = 0
+//
+//S1 = 800FBF0C
+//S0 = 0
+//A3 = SRAM struct ram ptr
+//V0 = 0
+1238 //Loop Start, verify settings data integrity 
+//T6 = S1 + V0
+//T8 = A3 + V0
+//Compare bytes 0x03 to 0x0C exclusive between the two
+1250 //branch 1270 if bytes are the same
+//If bytes are different
+1258 	jal 80057030 //copy bytes to a0 from a1
+	//a0 = SRAM struct ram ptr
+	//a1 = 800FBF0C
+	//a2 = 0x0C
+
 
 
 800912C4 //Allocate SRAM space?
@@ -4215,6 +4357,34 @@ FFD0 //zeroes out save context data from 0x1C -> 0x1354
 
 
 //*************** view.c ***********************
+
+
+80091858 //Initializes variables related to rendering the scene
+//A0 = "VIEW" struct ptr (Global Context + 0xB8 for game, + 0xA8 for ovl_title)
+//A1 = Graphics Context (11F290)
+//can be optimized quite a bit
+1858 ADDIU	SP, SP, 0xFFE8
+1860 //v0 = 800FC190
+186C //F2 = 1.0
+1874 //F4 = 60.0, FOV
+187C //F0 = 0
+1880 //F6 = 10.0 Fog Distance
+1888 //F8 = 12800, Z Depth?
+1890 //F10 = -1
+1898 //T6 = 0x00F0 //Screen Bottom
+189C //T7 = 0x0140 //Screen Right
+18A0 //T8 = "VIEW" literal
+//values are then saved to (A0), see global context
+18E8 T9, 0x0000(V0) //T9 = value at 800FC190, seems to be pointed at a dlist
+18EC T0, R0, 0x0007
+18F0 BEQL	T9, R0, 80091900
+18F4 SW 	R0, 0x0124(A0)
+18F8 SW 	R0, 0x0000(V0)
+18FC SW 	R0, 0x0124(A0)
+1900 JAL	80091CF0
+1904 SW 	T0, 0x0120
+1910 JR 	RA
+
 
 80091CF0 //Initializes more variables related to the VIEW
 //A0 = Ptr to the "VIEW" structure
@@ -4287,6 +4457,16 @@ A2D4 jal 80002E80 //zero 0x250 bytes at Global Context + 0x121C8
 //A1 = DList current ptr
 //RGB bytes pulled from Global Context + 0x7AF to B1
 //Unknown halfword pulled from Global Context + 0x7B2
+
+
+8009A5C0 //GAME DESTRUCTOR ROUTINE
+//A0 = Global Context
+//
+//SP -0x30
+//
+//t6 = Link Ptr
+//SP+0x28 = Link Ptr
+//set 
 
 
 8009A750  //MAIN GAME CONSTRUCTION ROUTINE
@@ -4539,6 +4719,16 @@ DAA8 JR 	RA
 
 8009DB54 //code, Check if Game Updates are Disabled
 //V0 = 1 if Global Context + 0x7B8 is > 0, else 0
+
+
+8009DD10 //?, Framebuffer info related
+//A0 = void* struct address (801DA5C4 this pass)
+//A1 = s32 framebuffer width
+//A2 = s32 framebuffer height
+//A3 = void* backbuffer? address
+//SP+0x10 = void* Z-Buffer ptr
+//
+//See Global Context + 0x12124 for more info
 
 
 8009FEC0 //Allocates Frame Display List Buffer
@@ -4848,7 +5038,7 @@ V0 = Address to Game Context Overlay record to load
 15EC //Store frame count 2
 
 
-800A1688 //graph, Main Update function // Main render function?
+800A1688 //graph, Main Update function // Main draw function?
 //code seems to eventually end the frame
 //
 16A4 jal	800A1130 //Initializes data for rendering a new frame (gbi)
@@ -4856,8 +5046,10 @@ V0 = Address to Game Context Overlay record to load
 1838 // Increment 0x2E8, frame count 2
 
 
-800A1934 //?
-19C0 //main game loop is here
+800A1934 //Graph Thread Entrypoint
+//
+//main game loop is here
+19C0 jal	800A1688
 
 
 800A1C50 //main thread, boot routine
@@ -5458,6 +5650,34 @@ D418 //S2 = SP+0x40
 //800C0DFC is also on playing a new note, happens later?
 //80109A94 is a jump table that affects what action happens?
 
+
+800C31A0 //
+//Related to copying Scarecrow Song short from one buffer to buffer at 801029FC
+//A0 = ?
+//
+//SP -0x20
+//
+//$ra = 80102B54
+//t6 = u8 at 0x0000($ra)
+//$at = 1
+31BC //if t6 != 1
+	//A0 = ptr at 80102EE8
+//else
+	//A0 = ptr at 80102EE0
+//T5 = 80102B58
+//T8 = u8 at 0x0000(t5) //Note index
+//V0 = 80102B60 //Next note record
+//T7 = u8 at 0x0000(V0)
+//T9 = T8 * 0x08
+//T6 = A0 + T9 //offset to next note record in buffer A0
+//write u8 T7 to 0x0000(t6) //Ocarina note value
+//t8 = s32 at 80121F1C
+//t9 = s32 at 80102B5C
+//t6 = u8 at 0x0000(t5) //Note index
+//T7 = T8-T9
+//T8 = T6 * 0x08
+//T9 = A0 + T8 //offset to next note record in buffer A0
+3220
 
 800C5E4C // Some sound-related function
 

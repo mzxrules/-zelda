@@ -1,0 +1,16 @@
+Global Context: 803E6CF0
+
+0x398 //probably camera
+ + 0x050 f32 xyz //Struct 801F4EC8 + 0x40 xyz
+ + 0x05C f32 xyz //Struct 801F4EC8 + 0x10 xyz
+ + 0x08C s32 //global context ptr
+ + 0x0A8 s32
+ + 0x0FC //some struct?
+ + 0x15A //?
+
+0x1F24 //Cutscene Struct
+ + 0x00 = ?
+ + 0x04 ptr //Cutscene pointer
+ + 0x08 u8 //Cutscene state (0 no cutscene, 1 entering, 2 playing, 3 ending)
+ + 0x10 u16 //frame counter
+ + 0x18 = Camera Frame

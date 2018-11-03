@@ -1,0 +1,15 @@
+8099A710 //likely init function
+//sets var to var & 0xF000
+
+
+== Instance ==
+variable 
+
+v & 0xF000 = Type?
+v & 0x0FE0 = Switch Flag
+v & 0x001F = ?
+
+0x195 s8 // v & 0x001F
+0x196 s8 // v & 0x0FE0
+
+

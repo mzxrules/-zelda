@@ -1,0 +1,65 @@
+func_8005C364 (initializes hitbox structure, always used before func_8005C4AC)
+
+a0 - global context
+a1 - actor instance + 0x014C (offset of hitbox struct in the instance)
+
+func_8005C4AC (loads hitbox variable array to hitbox structure)
+
+a0 - global context
+a1 - actor instance + 0x014C (offset of hitbox struct in the instance)
+a2 - actor instance
+a3 - hitbox variable array
+
+func_8005C3AC (unloads hitbox structure, use in destructor)
+
+a0 - global context
+a1 - actor instance + 0x014C (offset where you stored the hitbox struct)
+
+func_800626DC (enables hitbox?)
+
+a0 - actor instance
+a1 - actor instance + 0x014C (offset of hitbox struct in the instance)
+
+func_80077A00 (float aproximator (not sure how to call this))
+
+a0 - actor instance + 0x0198 (offset of stored float)
+a1 - float value (target float)
+a2 - float value (increments or decrements result by this until it reaches the target float)
+v0 - returns 0 if it hasn't reached it, 1 if it does
+
+
+8005BBF8    Initializes hitbox structure (different purpose than 8005C364?)
+a0 - global context
+a1 - actor instance + 0x0150 (offset of hitbox struct in the instance) 
+
+8005C050    Loads hitbox variable array to hitbox structure  (different purpose than 8005C4AC?)
+a0 - global context
+a1 - actor instance + 0x0150 (offset of hitbox struct in the instance)
+a2 - actor instance
+a3 - hitbox variable array 
+
+8005BCC8    Unloads hitbox structure  (different purpose than 8005C3AC?)
+a0 - global context
+a1 - actor instance + 0x0150 (offset where you stored the hitbox struct)
+
+8007841C    smoothly aproximates a0 to a1, commonly used for smooth movement
+a0 - actor instance + xxxx (offset of the float that will change)
+a1 - float where you want a0 to be aproximated to
+a2 - float (amount?)
+a3 - float (smaller than a2)
+
+8002B1E0    Draws circular shadow until instance is destroyed (use in constructor)
+a0 - actor instance + 0xB4
+a1 - float unknown (will be stored at a0 + 0x08)
+a2 - 8002B5EC (draw function of shadow, will be stored at a0 + 0x0C)
+a3 - float unknown (will be stored at a0 + 0x10)
+
+8006BAD8    plays sound at position
+a0 - global context
+a1 - actor instance + 0x24 (position array of the sound)
+a2 - 0x3C (radius?)
+a3 - sound ID
+
+8005B200    retrieves damage chart table pointer, called by all actors that doesn't have their damage chart inside overlay
+a0 - entry ID of some table? varies between actors
+v0 - returns pointer that's used in a1 of damage chart initializer (80061EFC)

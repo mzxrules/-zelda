@@ -1,0 +1,8 @@
+808D9AB4 //initialization stuff, loads variable vars
+
+
+=== Instance ===
+0x148 s16 Variable & 0xF000 (Spawn Count)
+0x14A s16 Variable & 0x0700
+0x14C s16 Variable & 0x0060 (spawn behavior?)
+0x14E s16 Variable & 0x001F (type)

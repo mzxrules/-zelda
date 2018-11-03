@@ -1,0 +1,4 @@
+0x5A
+
+int commandId; //0x5A
+int size; //size of command data in bytes, not including itself

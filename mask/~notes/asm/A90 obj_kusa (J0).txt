@@ -1,0 +1,9 @@
+obj_kusa
+809371DC //Grass Cut
+If variable &>> 0xF000 = 0, do something
+
+
+=== Instance ===
+Variable
+0x0003 = Type
+0x00FC = Collectible Flag

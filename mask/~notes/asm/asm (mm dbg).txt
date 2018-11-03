@@ -1,0 +1,68 @@
+80000004 //first "80" address jumped to during boot sequence
+800A3F60 dmadata table during boot sequence?
+
+80080000 //main entry point
+//T0 = 800A3F60
+//T1 = 0xC7E0
+//wipe address T0 by T1 bytes
+//Set SP to 800A4950
+//Jump to 80080060
+
+80080060 //initialize stuff
+
+
+80086AA0 //osCreateThread
+//A0 = Thread
+//SP + 0x14 = String to thread name?
+
+//OSThread list?
+800A3F60 = boot
+
+80093E60 //osCreateMesgQueue
+//A0 = OSMesgQueue to initialize 
+//A1 = OSMesg array, used for storing messages
+//A2 = count, number of messages the queue can hold
+//initializes the following structure at A0:
+//0x0000 = 800A09A0
+//0x0004 = 800A09A0
+//0x0008 = 0
+//0x000C = 0
+//0x0010 = A2 (word)
+//0x0014 = A1 (word)
+//OSMesgQueue list:
+//800A7890 used for IS64 messages?
+
+80091EB0 //Get max ram size
+//V0 = bytes of ram available
+
+80082804 //idk
+
+8008EC80 //get status
+//v0 = status
+
+8008BC30 //exception vector location
+
+80093940 //TLB stuff (see Paper Mario Notes)
+//Reset TLB possibly
+
+8009C4E0 //TLB stuff (see Paper Mario Notes)
+//TLB initialization possibly 
+
+8008D104 //Initializes stuff OS wise
+DCF8 //A0, A1 = OSTime at 800A09F0 (initially 1 second in cycles)
+DD20 //V0, V1 = A0, A1 OSTime * 3/4
+DD44 jal 8008CC00 //wipe 0x40 bytes at 8000031C
+
+
+8008BAD8  //multiply 64 bit number (not sure if signed or not)
+//A0,A1 = left
+//A2,A3 = right 
+//V0,V1 = result
+
+8008B9D8 //__ull_div or __ll_div
+//A0,A1 = numerator
+//A2,A3 = denominator 
+//V0,V1 = result
+
+8008D104 //IS64 detection check
+Tests if address 800A7870 contains string IS64

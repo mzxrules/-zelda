@@ -17,6 +17,16 @@ B71440 - Scene Table
 800F8F34 inventory slot table (0x38 bytes)
 800FBD18 //func ptr table for scene pre-draw function, 0x35 records
 
+801029FC //Scarecrow's Song (short) (audio thread)
+80102B54 u8 //determines if func C31A0 uses 80102EE0 (== 1) or 80102EE8 (!= 1) buffer ptr
+80102B58 u8 //note index into either buffer 80102EE0 or 80102EE8
+80102B5C s32 //previous note play frame?, 80121F1C - this = note duration
+80102B60 //possibly 0x08 bytes? next note to write into 80102EE0 or 80102EE8 buffer
+80102B80 //Scarecrow's Song (long) (audio thread)
+80102EE0 //Scarecrow's Song (long) ptr
+80102EE4 //Scarecrow's Song (short) pointer (801029FC)
+80102EE8 //Scarecrow's Song? buffer ptr
+
 801054A0 s16 sine table
 80105FB4 //En_Item00 draw jump table. Actor var sets draw function
 80106A70 float, equals 1/0x7FFF (normals)
@@ -67,9 +77,24 @@ Crash Debugger, write to 003DD02C
 80118F70
 80118F80 //xyz collision stuff?
 
+8011BF00 s32 ptr to ovl_map_mark_data's dungeon array
 
+80121F1C s32 //current ocarina note frame?
 
 
 //File Select Notes:
 
 8029F9F0 - The game's save data is copied here
+
+Ocarina Song note format:
+
+ACTIVATION_TO_PLAYBACK_NOTE = {
+    0: 0x02, # A
+    1: 0x05, # Down
+    2: 0x09, # Right
+    3: 0x0B, # Left
+    4: 0x0E, # Up
+    0xFF: 0xFF, # Rest
+	
+0x00 u8   //playback note
+0x02 u16? //duration 

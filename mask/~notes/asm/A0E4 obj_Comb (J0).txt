@@ -1,0 +1,11 @@
+obj_Comb
+
+80990E68 //Not a function
+//struck by weapon
+
+80990674 //hit ground after falling mini cutscene
+
+
+Variable
+(& 0x8000) << 1 + (& 0x0080) = ?
+& 0x0010 = ?

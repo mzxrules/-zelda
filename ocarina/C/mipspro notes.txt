@@ -1,0 +1,7 @@
+Compile Code:
+
+    cc53 -c "$OOT_DIR/hello.c" -mips2 -non_shared -O2 -g3
+
+Dump object file binary:
+ 
+    mips-linux-gnu-objdump -dr  <objectfile>

@@ -1,0 +1,109 @@
+map_48x85_static = Kaleido dungeon map
+Ice Cavern only has one map_48x85_static
+
+800F69D4 //Dungeon Start Index (0x14 bytes, 10 shorts)
+
+
+Indices 
+
+0 = 0
+1 = 0x10
+2
+
+
+0x43 floors
+
+
+map_mark_data
+6B20 - 0x40 + 0x0C = 6AEC = ‭27372‬
+
+0x5CC = 1484
+0x878 = 2168
+
+
+MQU map_mark_data
+=00BE7940-00BE0E60
+6AE0
+=-80856580+8085CFF8
+6A78
+
+N0 dungeon minimaps
+
+00: 05CC 13
+01: 0878 19
+02: 0794 17
+03: 0C08 27
+04: 10EC 38
+05: 1398 44
+06: 0EB4 33
+07: 0C08 27
+08: 0474 10
+09: 0558 12
+
+
+MQ dungeon minimaps
+
+00: 05CC 13
+01: 0878 19
+02: 0720 16
+03: 0C08 27
+04: 10EC 38
+05: 1398 44
+06: 0EB4 33
+07: 0C08 27
+08: 0474 10
+09: 0558 12
+
+
+803A0520 // MQU
+8039F780 // 1.0
+
+
+
+
+
+
+
+Verts:
+	Identical
+Polys:
+	Identical:
+		Num Polys
+		Vertex data and Vertex Ids
+		Plane data
+		
+	Different:
+		Type
+		ExclusionFlags
+Water Boxes:		
+	Identical:
+		Num Boxes
+
+Camera Data:
+	Different:
+		Num Records <= N0
+		Record Order different
+	Camera Position Data:
+		Maybe identical
+		
+If moved, camera data will create big enough void to fit everything
+Polygon type defs can be either greater or less than N0
+Type defs comes after camera data
+
+if MQ MESH SIZE <= N0 MESH SIZE:
+	compute camera data end offset
+	move type defs to camera data end offset
+	patch camera data
+	patch type defs
+	
+if MQ MESH SIZE > N0 MESH SIZE:
+	move camera data to file append end
+	move type defs to old camera data start offset
+	patch camera data
+	patch type defs
+
+	
+	
+Materials:
+	Store Id -> High, Low words to patch 
+	

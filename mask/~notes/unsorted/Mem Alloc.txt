@@ -1,0 +1,32 @@
+MM J0 gameplay allocation stuffs
+//Title Screen, Mask Spin Cutscene
+801CB368 = ? start pointer, size 034D60
+803EB3AC  46BC = ? start pointer, size 4000
+803FD4F0 = ? start pointer, size 13C00
+803FD4F4 = ? start pointer, size B220
+801A9230 = ? start ptr, size 2580 (probably particle system)
+803E6DA0 = ? start ptr, size C740 (possibly scene pointer?)
+803FEA58 = Object Space start ptr, size 159000
+803E756C = ?, size 6 bytes?
+801B9A40 = ?, 4000
+801B9A44 = ?, 4000
+801B9A54 = ?, 2 bytes?
+801B9A60 = ?, 40 bytes
+803EB54C = ?, 3840
+803EB554 = ?, A00
+803FF3D8 = Room Space, 910
+803FD828 = ?, C360, probably parameter_static
+803FD82C = ?, C90
+803FD830 = ?, 4000
+803FD834 = ?, 1000
+801FBF50 = ?, 500
+
+18855 spawn byte, 0x14
+1885A entrance index
+
+52FBC1E0 US GCN 2
+550569D8 US GCN 1
+
+800B20B4 = Related to loading particles
+
+800B5460 = Related to swapping "global contexts"

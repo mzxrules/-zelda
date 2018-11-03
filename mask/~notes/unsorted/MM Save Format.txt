@@ -1,0 +1,53 @@
+(US)
+
+Length = 0x18000
+
+Header 0x0020
+
+File = 0x2000
+Owl  = 0x4000
+
+File Order
+
+Save A
+Save A
+Save B
+Save B
+Owl  A
+Owl  A
+Owl  B
+owl  B
+
+
+File Format
+
+File Name - 0x000C
+- = 3F, 2D ansi
+. = 40, 2E ansi
+z = 3D
+Z = 23
+
+CD C0
+
+
+1EF670 Start of Sram 
+1EF67C 9B99
+1EF680 0002
+1EF690 Play As
+1EF6BC B modifier
+1F066F Last bomber's letter
+
+Respawn Notes:
+1F3364 X
+1F3368 Y
+1F336C Z
+1F3370 Y Rotation
+1F3372 Animation
+1F3373 Camera Angle (FF no special camera angle)
+
+1F3374 Scene (byte)
+1F3376 Map # (byte)
+
+
+
+3C
