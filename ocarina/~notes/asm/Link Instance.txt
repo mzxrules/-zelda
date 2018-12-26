@@ -9,6 +9,7 @@ Link Instance
 0x0144 s8 //Held Item (Action Parameter)
  FF = Shield?
  00 = Nothing
+ 02 = Fishin' Rod
  03 = Sword
  08 = Bow
  09 = Fire Arrows

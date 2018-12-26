@@ -1,9 +1,13 @@
+#ifndef _VECTOR_H_
+#define _VECTOR_H_
+
 #include <ultra64.h>
-#ifndef __H_VECTOR_H_
-#define __H_VECTOR_H_
+
 typedef struct
 {
-	f32 x, y, z;
+	f32 x;
+    f32 y;
+    f32 z;
 } Vector3_f32;
 
 typedef struct

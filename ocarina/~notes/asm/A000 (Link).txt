@@ -102,12 +102,68 @@ CE80
 AD44 jal	8038A804 //? (ACTION SWAP RELATED)
 
 80831E64 (T:8038A804) //?
+//A0 = Link Instance
+//A1 = Global Context
+//
+//SP -0x28
+//
+//t6 = Link Instance
+//v1 = Save Context
+//v0 = Current Mask (Instance + 0x014F)
+A824 //branch A8C0/4 if v0 = 0
+//
+A8C0
+A8C4
+//t1 = Link Instance
+//at = 0x20000800
+//t2 = s32 at Link Instance + 0x066C
+A8D4 //return if t2 & at != 0 //holding item or game frozen
+A8DC jal 80079BF8 //test if Link action is Hookshot/Longshot, and not holding item
+    //a0 = Link Instance
+    //v0 = result
+//v1 = Save Context
+A8E8 //return if v0 != 0
+//T4 = Link Instance
+//T5 = s8 at Link Instance + 0x0144
+A8FC //branch A9F0 if t5 < 2
+//t6 = u8 at Save Context + 0x13E2 (B button usability)
+A90C //branch A91C/20 if t6 != 0xFF
+//A2 = 0xFF
+A914 //branch A938
+//
+A91C A920 
+//v0 = u8 at Save Context + 0x68 //B button
+//at = 0x55 //Giant's Knife (Broken)\
+//if v0 != 0x55, a0 = v0
+//else a0 = 0x3D //Giant's Knife or Biggoron's Sword
+A934
+//A2 = a0
+A93C jal    80831CB4 (T:8038A654) //Test if held item matches C Item (non empty)
+    //A0 = Link Instance
+    //A1 = C Item
+    //V0 = Link Instance + 0x144 action parameter matches non-empty C Item
+//V1 = Save context
+A948 //branch A9F0 if v0 != 1
+//
+A9F0
 //ACTION SWAP TEST TOP
 AA04 //Checks for item button input, storing selected button index in A3
 AA30 jal	80831D48 (T:8038A6E8) //Get Used Item (from Button Press)
 AA40 //branch AAC0 if Item Button was pressed
 AACC jal	8038C9A0 //Use Item Function
 
+
+80831CB4 (T:8038A654) //Test if Item Action Parameter is the same
+//Held Item = Instance + 0x0144
+//A0 = Link Instance
+//A1 = u8 C Item
+//v0 = 1 if true, else 0
+//
+//if A1 == 0xFF, return 0
+A66C jal    80831758 (T:8038A0F8) //Get Item Action Parameter Index
+    //A0 = arg A1
+    //V0 = Item Action Parameter Index
+//T7 = s8 at Link Instance + 0x144
 
 80831D48 (T:8038A6E8) //Get Used Item
 //A0 = Global Context

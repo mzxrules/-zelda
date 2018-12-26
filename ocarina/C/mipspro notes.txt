@@ -1,6 +1,7 @@
 Compile Code:
 
-    cc53 -c "$OOT_DIR/hello.c" -mips2 -non_shared -O2 -g3
+    cc53 -c "$OOT_DIR/hello.c" -mips2 -non_shared -O2 -g3 -Wab,-r4300_mul
+    cc7 -c "$OOT_DIR/z/z_math.c" -o math.o -O2 -g3 -mips2 -non_shared -Wab,-r4300_mul -G 0
 
 Dump object file binary:
  

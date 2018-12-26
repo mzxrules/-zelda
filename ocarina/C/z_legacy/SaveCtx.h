@@ -69,14 +69,13 @@ typedef struct {
 	/* 0x002C */ short diskSave;
 	/* 0x002E */ short maxHp;
 	/* 0x0030 */ short hp;
-	/* 0x0032 */ char __unk_0x32_magic; //if 0, fills magic from somewhere else
+	/* 0x0032 */ char __unk_0x33_magic; //if 0, fills magic from somewhere else
 	/* 0x0033 */ char mp; //current magic
 	/* 0x0034 */ short rupees;
 	/* 0x0036 */ short __pad_0x0036;
 	/* 0x0038 */ short naviTimer;
 	/* 0x003A */ char haveMagic;
-	/* 0x003B */ char __pad_0x003B[4];
-    /* 0x003F */ char ocarinaMinigame;
+	/* 0x003B */ char __pad_0x003B[5];
 	/* 0x0040 */ z_ItemEquips childEquips;
 	/* 0x004A */ z_ItemEquips adultEquips;
 	/* 0x0054 */ char __pad_0x0054[0x12];

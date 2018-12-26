@@ -1,0 +1,12 @@
+
+memcpy = 0x80057030;
+Z_PosMatrix = 0x800AA7F4;
+Z_ScaleMatrix = 0x800AA8FC;
+Z_RotMatrix = 0x800AAF00;
+Z_MovMatrix_POLY_OPA = 0x800AB900;
+z_savectx = 0x8011A5D0;
+z_staticctx = 0x8011BA00;
+Z_SaveGame = 0x800905D4;
+
+
+.global z_savectx

@@ -1,10 +1,44 @@
 //ASM U10
 Link Instance + 0x3C0 = xyz coords for falling into short oobs
 
+80080000 //entrypoint
+
+80080250 //low level inititalization
+02A8 jal    80080C04 //load "code" file into ram
+
+80080C04 //Load from DMA to RAM (no dmadata access? more immediate?)
+//A0 = z_getfile_t* //ptr to get file record
+//A1 = Address to load into
+//A2 = Rom Address
+//A3 = Size
+//SP+0x10 ? (0 this pass)
+//SP+0x14 ptr ?
+//SP+0x18 ? (0 this pass)
+
+80080C90 //DMA read function
+//A0 = Address to load into
+//A1 = Address to read from
+//A2 = Size
+
+8008501C //Load DLF
+//A0 = VROM start
+//A1 = VROM end
+//A2 = VRAM start
+//A3 = VRAM end
+//SP+0x10 = void* addr to load DLF
+
 
 80089630 //Zero Initialize Ram
 //A0 = Start Ptr
 //A1 = Num bytes
+
+80089E40 //osCreateThread
+//a0 = Thread Pointer
+//a1 = Thread Id
+//a2 = Entrypoint
+//a3 = Entrypoint arguments
+//sp+10 is pointer to a stack
+//sp+14 is the priority argument (type OSPri)
 
 800B5C78 //Tests if a Chest Flag is set
 //A0 = Global Context
@@ -34,14 +68,145 @@ AFF8 //set x, y, z coordinates
 
 800BB2D0 //Spawn Actor (Spawn Data)
 
+
+800DDDD0 //Initialize Camera
+//A0 = Camera*
+//A1 = VIEW_Struct*
+//A2 = Mesh Collision* (Global Context + 0x830)
+
+
 800ECE40 //Process Cutscene
 //A0 = Global Context
 //A1 = Cutscene Struct (Global Context + 0x1F24)
 //A2 = Cutscene Pointer
 
+800EDDCC //Set Cutscene
+//A0 = Global Context
+//A1 = u8 Cutscene Id (cutscene list)
+//
+//A2 = Global Context
+//t6 = static context ptr (located at 801F3F60)
+//t7 = static context + 0x1452
+DDEC //branch DE18/C if t7 not 0
+//t8 = ptr at Global Context + 0x1F74 //scene header command cutscene list
+//t9 = arg A1 * 8
+//sh arg A1 at Global Context + 0x1F36
+//t0 = cutscene list record ptr
+DE08 jal    80100504 //convert segment address to real
+    //A0 = cutscene segment address
+    //V0 = cutscene pointer
+//Set Cutscene Pointer (Global Context + 0x1F28)
+DE18
+//t1 = 1
+
+800F1460 //
+//A0 = s16 //Scene Header 0x1B command data + 0x0C
+//v0 = s16 //value returned from jump table
+//
+//SP -= 0x20
+//
+//at = a0 < 0x0008
+1478 //branch 14D4 if at == 0
+//a0 indexes jump table at 801DD790
+//t6 = jump address
+//all options set A0 and branch to 14D8
+14D8 jal    8010EF68
+    //a0 = s16 ?
+//a0 = SP+0x1E //previous A0 val
+//return a0
+
+
+800F14F8 //Get Scene Header 0x1B command data
+//includes custom types
+//A0 = s16 ?
+//V0 = ptr to Scene Header 0x1B command data (0x10 byte struct)
+//
+//at = a0 < 0x78
+//t9 = 801C
+1508 //branch 1524 if at == 0
+//t7 = ptr at 801F4DF0 //Scene Header 0x1B command data ptr
+//return t7 + (arg A0 * 0x10)
+1524
+//A0 -= 0x78
+//t8 = A0 * 0x10
+//t9 = 801BD830
+//return 801BD830 + t8
+
+
+800F1D84 //?
+//A0 = s16 (Scene Header 0x1B index)
+//A1 = s16 ? (0 this pass)
+//V0 = ?
+//
+//SP -0x30
+//
+//SP+0x20 = 0
+1DA0 //branch 1DC0 if Arg A0 < 0
+//S0 = 801BD8B0
+//t6 = s16 at S0 + 0x00
+1DB8 //branch 1DC8/C if t6 = -1
+1DC0 //return V0 = arg A0
+1DC8
+//s32 at 801BD8B0 + 0x0C = 0
+1DCC jal    800F14F8 //get Scene Header 0x1B type data
+    //A0 = arg A0
+    //v0 = pointer to Scene Header 0x1B type data
+//SP+0x2C = v0
+1DD8 jal    80160C00 //set black bar size?
+    //A0 = u8 0x000F(SP+0x2C)
+1DE4 jal    800F1460
+    //a0 = s16 0x000C(SP+0x2C)
+//v1 = Arg A0
+//at = 0x7F
+//t8 = 1
+//t9 = (SP+0x2C)
+1DF8 //branch 1E08 if v1 != at
+//
+1E08
+//t0 = s16 at 0x0006 + t9
+//t1 = 1
+1E14 //branch 1E28 if t0 == -1
+    //set at to 0x7D
+//SP+0x20 = 1
+1E1C //branch 1E3C
+//
+1E3C
+//t3 = (SP+0x20)
+1E40 //branch 1FA4 if t3 == 0
+    //sh v1 to 801BD8B0
+1E48 jal    80169584    //get active camera
+    //A0 = global context
+    //v0 = s16 active camera index
+//sh v0 at 801BD8B0+0x14
+1E54 jal    801694DC //Inititalize Secondary Camera
+    //a0 = global context
+//************** TODO: KEEP WORKING ON THIS     
+    
+
 800FF50C //Copy Coordinates
 //A0 = Vector3_f32* Destination
 //A1 = Vector3_f32* Source
+
+80100504 //Convert Segment Address to Real Address
+//A0 = Segment Address
+//
+//Segment Table located at 801F8180
+
+
+80102C60 //Allocate Memory Head End (ARENA_SCENE)
+//A0 = size
+
+
+8010EF68
+//a0 = s16 ?
+//
+//v0 = Save Context
+//t6 = u16 at Save Context + 0x3F22
+//if a0 == t6
+    //Save Context + 0x3F22 = a0
+    //Save Context + 0x3F20 = a0
+//Save Context + 0x3F24 = 1
+
 
 8013EEF4 //Initialize VIEW struct
 //A0 = ptr to VIEW struct location
@@ -82,10 +247,34 @@ AFF8 //set x, y, z coordinates
 8950
 
 
+80160C00 //set viewport black bar size
+//cutscenes
+//A0 = value to set
+//
+//writes A0 to pointer located at 801F6B44
+
+80163C90 //Game State Transition Effect
+//801D0BB0
+
+801694DC //Initialize Secondary Camera
+//Initializes Cameras at indexes 1 to 3
+//A0 = Global Context
+
+80169584 //Get Active Camera Index
+//A0 = Global Context
+//V0 = Active Camera Index (ctxt + 0x810)
+
+
 80169D40 //Copy Scene Flags to Scene Save data
 
+801748A0 //graph thread entrypoint
 
 
+80174BF0 //? thread main function?
+4C40 //begin initializing ARENA_MAIN
+4C58 jal    800865F8 //initialize ARENA_MAIN
+    //a0 = heap ptr
+    //a1 = heap size
 
 
 

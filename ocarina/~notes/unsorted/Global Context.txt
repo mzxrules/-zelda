@@ -40,12 +40,12 @@ Global Context (Game):
 0x000C //Next Global Context constructor function (virtual address), or null (if 0x98 is zeroed, game attempts to switch to this context)
 0x0010 //Space size (never read, wiped after initialization)
 0x0014 Controller controllers[4]; //Controller Structs, size 0x18, starting with player 1
-  00: InputInfo InputCurrent;     //Joystick Input is less than InputReleaseEdge?
-  06: InputInfo InputLast;        //computed at 60 fps, thus can appear equal to Current
-  0C: InputInfo InputPressEdge;   //Joystick info is actually change in position
-  12: InputInfo InputReleaseEdge; //Joystick Info is real-time input
-  // InputInfo Struct (0x06 bytes) is as follows:
-      00: //short = Buttons 1
+  00: OSContPad InputCurrent;     //Joystick Input is less than InputReleaseEdge?
+  06: OSContPad InputLast;        //computed at 60 fps, thus can appear equal to Current
+  0C: OSContPad InputPressEdge;   //Joystick info is actually change in position
+  12: OSContPad InputReleaseEdge; //Joystick Info is real-time input
+  // OSContPad Struct (0x05 bytes, aligns to 0x06) is as follows:
+      00: u16 button;
         0001 = C-Right
         0002 = C-Left
         0004 = C-Down
@@ -57,9 +57,9 @@ Global Context (Game):
         2000 = Z Button
         4000 = B Button
         8000 = A Button
-      02: sbyte = X axis 1, right is positive, left is negative
-      03: sbyte = Y axis 1, up is positive, down is negative
-      04: ? //N64 Mouse?
+      02: s8 = X axis, right is positive, left is negative
+      03: s8 = Y axis, up is positive, down is negative
+      04: u8 errno; //possibly wrong
   
 0x0074: //Manages Game State's reserved heap
   00 = Size of heap
@@ -296,6 +296,7 @@ Global Context (Game):
 0x12020 struct //Simple body collision Group OT 3
   0x00 s32   //elements in array to process this frame
   0x04 ptr   //first element in array
+0x120FC s16[0x14] //Event Flags (scene local? cutscenes?)
 0x12124 //some framebuffer struct
   0x00 s32 //Framebuffer x
   0x04 s32 //Framebuffer y (pause lag fix)

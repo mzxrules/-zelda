@@ -21,12 +21,38 @@ typedef struct /*  z_getfile_t */
   OSMesg        notify_message;
 } z_getfile_t;
 
+typedef enum __attribute__ ((__packed__)) e_z_Buttons
+{
+	INPUT_C_RIGHT	= 0x0001, 
+	INPUT_C_LEFT 	= 0x0002, 
+	INPUT_C_DOWN 	= 0x0004,
+	INPUT_C_UP		= 0x0008,
+	INPUT_R 		= 0x0010,
+	INPUT_L 		= 0x0020,
+	INPUT_D_RIGHT	= 0x0100,
+	INPUT_D_LEFT	= 0x0200,
+	INPUT_D_DOWN	= 0x0400,
+	INPUT_D_UP		= 0x0800,
+	INPUT_START 	= 0x1000,
+	INPUT_Z			= 0x2000,
+	INPUT_B			= 0x4000,
+	INPUT_A 		= 0x8000,
+} z_Buttons;
+
 typedef struct
 {
-	/* 0x00 */ OSContPad current;
-	/* 0x06 */ OSContPad last;
-	/* 0x0C */ OSContPad pressEdge;
-	/* 0x12 */ OSContPad releaseEdge;
+	z_Buttons buttons;
+	s8 x;
+	s8 y;
+	char __pad[0x2];
+} z_InputInfo;
+
+typedef struct
+{
+	/* 0x00 */ z_InputInfo current;
+	/* 0x06 */ z_InputInfo last;
+	/* 0x0C */ z_InputInfo pressEdge;
+	/* 0x12 */ z_InputInfo releaseEdge;
 } z_Input; /*  0x0018  */
 
 /* volatile const int _wtf = sizeof(z_Input); */

@@ -1,0 +1,62 @@
+A Practical Guide to Reverse Engineering N64 Games
+ - mzxrules
+ 
+There are many guides out there on the topic of hacking N64 games. Most are written by people who lack a solid foundation in computer science, and thus are pretty terrible.
+
+## Introductory Hacking Stuff. Just kidding, you're learning C now. This is a C tutorial Morty
+
+Before you can really begin hacking N64 games, or computer programs in general, the first thing you need to learn are the basics that are used to create them in the first place. Most N64 games are written either in the C or C++ languages. For the purposes of this doc I'll be using C, but understand that C++ syntax is very similar. 
+
+### A horribly oversimplified explanation of how a program is writen
+
+A programmer starts by writing "source code". Source code is simply a fancy name for a bunch of text files that contain the code for a program, written in a language that is suppose to be readable by humans. Once the programmer thinks they've written the code correctly, they run it through a compiler. For C programs, a compiler is a catch-all term for a chain of programs that reads the source code and converts it into "machine code", and then stick it all together into one "binary". Machine code is code in a form that is readily executable by the machine that you're compiling code for. A binary (noun) is a stream of 0 and 1s... or in more common terms, it's just a file. When dealing with programs, the "source" will be the code that the program is written, while the "binary" is the actual files that were created from that source. 
+
+
+### The standard "Hello World" program
+
+The "Hello World" is a simple introductory program all programmers are forced to write that allows them to confirm that they've set everything up correctly. The following is a source file named "main.c":
+
+
+//main.c
+#include <stdio.h>
+int main()
+{
+   // printf() displays the string inside quotation
+   printf("Hello, World!");
+   return 0;
+}
+
+
+Starting from the top...
+
+ // is a comment. Comments are used to easily document code. C supports two types of comments: Single line, which start with //, and multiline, which start with a /* and end with */ . Single line comments (as their name implies) cause the compiler to ignore all text until the next line, while multi-line comments cause the compiler to ignore all text until a closing comment is reached
+ 
+ # is a pre-processor directive. The pre-processor is a program that passes over the source code before it's compiled. Here, #include <stdio.h> will cause the pre-processor to replace the line with the contents of the file named stdio.h
+ 
+ stdio.h is the C Standard Input and Output Libary, and is part of the C Standard Libary. Libraries are collections of code that can be re-used by other programs.  
+ 
+ int main() { ... } is the declaration of a function named "main". Functions allow you to break down problems into smaller, more managable tasks; instead of writing code to solve the same problem over and over, you can call a function instead.
+ 
+  int is a C keyword that stands for integer. Here, int refers to the type of the value the function "main" will return. C functions can either be void functions, which return no value, or value returning functions, which return a single value.  
+  
+  main is the name of the function. More than that though, a function named "main" has special meaning: it is entrypoint into a C program. A C program can only define one "main" function.
+  
+  () are used to specify what arguments a function has. Since there is nothing between the ()s, this function has no arguments
+  
+  {} (pronounced curly braces) are used to define a code block. Here, it marks the start and end of all the code within the "main" function. Code blocks 
+ 
+ printf("Hello, World!"); is a function call that will print the text "Hello, World!". The printf() function is defined in the stdio.h file we included earlier. printf takes at least a single string argument that can contain format tags, and outputs it to stdout (usually a console window)
+  
+  "" is used to denote a string literal, or a series of characters. Thus, printf("Hello, World!"); will actually output...
+  
+    Hello, World!
+  
+  ; is a statement terminator. It marks the end of a single statement
+
+ return is a keyword that marks the end of a function. Void functions (which don't return a value) aren't required to have a return statement; however it can be convenient to use a return statement to exit a function early. Value returning functions on the other hand must always return a value. Since int main() { ... } is value returning (it returns an int), we return a value of 0. Because the main function is special, returning 0 has a special meaning: the program exited without error.
+
+  
+### Here's the part where I gave up writing a C tutorial and linked a good one
+
+https://www.tutorialspoint.com/cprogramming/index.htm
+

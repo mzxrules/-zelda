@@ -1,0 +1,27 @@
+//Thread stuff
+8009C480 //thread 02
+8009B358 //thread 18
+80099F88 //thread 19
+8009A690 //thread 03
+8009D220 //thread 00 //vi or pi
+8009E690 //thread 00 //vi or pi
+80099520 //thread 01
+80097E10 //queue "thread"
+801F8608 //thread 04 //graph
+801FB6C0 //thread 07
+801FB468 //thread 10
+801F8310 //thread 05
+
+801BD8B0 struct {
+    /* 0x00 */ s16?
+    /* 0x10 */ Global Context
+    /* 0x14 */ s16 activeCameraIndex
+}
+801F4DF0 Scene Header Command 0x1B data pointer
+801F6B40 struct {
+    s8 //black bar size?
+    s8
+    s8
+    s8
+    };
+801F6B44 //ptr to 801F6B40? (black bar struct)

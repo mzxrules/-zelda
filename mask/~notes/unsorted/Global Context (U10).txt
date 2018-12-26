@@ -9,6 +9,8 @@ First 0xA4 bytes are the same
 0x0510 camera_struct //Camera 3, used when Pierre dances
 0x0688 camera_struct //Camera 4
 0x0800 void*[4] // Active Camera Pointers. 0 is play camera, 1 is Cutscene Camera
+0x0810 s16 //Camera Index Immediate
+0x0812 s16 //Camera Index Delayed?
 0x0814 s8 //Music Sequence (0x15 scene header)
 0x0815 s8 //Nightime Sequence? (0x15 scene header)
 0x0830 //Mesh Collision stats struct //start of struct
@@ -84,6 +86,8 @@ First 0xA4 bytes are the same
   0x00 u8 //unknown
   0x04 void* cutscene; //pointer to cutscene
   0x08 u8 //Cutscene state (0 no cutscene, 1 entering, 2 playing, 3 ending)
+  0x12 u16 cutsceneId; //scene header list index
+0x1F74 void* cutsceneList; //value set by 0x17 scene header command
   
 0x4908 //Dialoge Engine Struct
   0x0000 VIEW struct 
