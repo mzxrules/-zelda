@@ -3,8 +3,6 @@
 //A1 = RAM write address
 //A2 = Size
 
-80009468 to 8000Ac5C //boot, file list string ptr array
-
 
 80001390 //dmadata, ?
 80001330 //dmadata, look up filename
@@ -30,22 +28,42 @@
 //A3 = size
 
 
-800C6AC4 // Rendering debugging info?
-//A0 = ?
-//A1 = graphics context
-//A2 = filename
-//A3 = ?
+80001FF0 //unknown, logging related (!! Emulation Incompatability Issues !!)
+
+
+80002080 //related to IS64 initialization?
+
+
+80002130 //IS64 output? string format?
+//A0 = string
+//A1 = arg1
+//A2 = ?
+//A3 = B3FF0000
+
+800021B0 //string formatting
+//A0 = ?, possibly value to replace %d formatter
+//A1 = String
+//A2 = offset of formatter
 //
-//V0 = Static Context ptr
-//return if..
-// s16 at Static Context + 0x1074 != 7
-// s16 at Static Context + 0x1078 == 4
+2208 //at = IS64 in hex
 
 
-800C5B14 //Seems to set up a new frame
+80002E10 //print ?
+//A0 = str ptr
+//A1 = ?
 
-C63A0 //noop the dlist jump to xlu disp
-C63A4 //change this to luw 0x0010 instead of 0x0004 to skip over XLU display list
+800052E0 //String formatting related?
+//A0 = func ptr
+//A1 = ?
+//A2 = String ptr
+//A3 = ? (ptr on stack this pass, possibly out param)
+
+80007760 //low level thing
+
+
+
+8002E4B4 //collision check
+//called by actors
 
 
 80030BE8 //Actor_draw
@@ -57,16 +75,17 @@ C63A4 //change this to luw 0x0010 instead of 0x0004 to skip over XLU display lis
 //A2 = Actor Instance
 //A3 = string "Actor_draw"
 
-8002E4B4 //collision check
-//called by actors
 
-8003D52C //possibly background collision check main code
+80035260 //?
+// ../z_cheap_proc.c
+// called when drawing en_wood (trees, actor 0x77)
+//A0 = Global Context
+//A1 = diplay list
+5288 jal	800C6AC4
 
-8003CDD4 //collision mesh related ../z_bgcheck.c
-//A0 = Global Context + 0x7C0
-//A1 = ? (2 this pass)
-//A2 = ptr? (on stack)
-//A3 = ptr to Actor Instance XYZ
+
+80039AEC //unknown, hinting towards collision mesh related
+9D68 jal 80001FF0 //
 
 
 8003ADC8 //../z_bgcheck.c, code, graph, Get Collision Hash Table x,y,z index
@@ -83,28 +102,23 @@ C63A4 //change this to luw 0x0010 instead of 0x0004 to skip over XLU display lis
 //int[3] x,y,z value
 //then, the result is bound between 0 and the max defined in the Scene Collision minus 1
 
-80039AEC //unknown, hinting towards collision mesh related
-9D68 jal 80001FF0 //
+
+8003CDD4 //collision mesh related ../z_bgcheck.c
+//A0 = Global Context + 0x7C0
+//A1 = ? (2 this pass)
+//A2 = ptr? (on stack)
+//A3 = ptr to Actor Instance XYZ
 
 
-80001FF0 //unknown, logging related (!! Emulation Incompatability Issues !!)
+8003D52C //possibly background collision check main code
 
-800D66B4 //logging related (!! Emulation Incompatability Issues !!)
+80092330 //prenmi_move
 
+80092384 //prenmi_draw
 
-800D41DC //logging related
-//A0 = Result pointer (80030BE8 func reserves 0x50 onto stack)
-//A1 = Func Ptr 
-//A2 = Func Ptr Param?
-//A3 = String Ptr
-//Start with stack wiping 
-4218 //osSetIntMask (A0 = 1)
-4224 //A1 = 8016A800
+800924B0 //prenmi_destructor
 
-8016A800 //ptr, points to "fault" OSThread i believe
-//No actually it points to a larger structure!
-//min 0x7E0 bytes I think
-0x7D8 //ptr to stack?, possibly fault thread?
+800924B8 //prenmi_init
 
 
 //Cutscene Camera stuff
@@ -209,6 +223,45 @@ B170 //SP + 0x0C = F10 // = F12^3/6
 //F8 = SP + 0x00 entering here
 //F8 = (SP+0)*p0 + (SP+4)*p1 + (SP+8)*p2 + (SP+C)*p3 //X coordinate
 
+
+800C5B14 //Seems to set up a new frame
+
+800C5C2C //Get Game State Init Table
+
+800C5D08 //Initialize Graphics Context
+//A0 = Graphics Context ptr
+5D14 jal    4450 //bzero Graphics Context for 0x300 bytes
+//A3 = arg a0
+
+800C61D8
+63A0 //noop the dlist jump to xlu disp
+63A4 //change this to luw 0x0010 instead of 0x0004 to skip over XLU display list
+6774 //related to nmi draw
+
+
+800C6AC4 // Rendering debugging info?
+//A0 = ?
+//A1 = graphics context
+//A2 = filename
+//A3 = ?
+//
+//V0 = Static Context ptr
+//return if..
+// s16 at Static Context + 0x1074 != 7
+// s16 at Static Context + 0x1078 == 4
+
+
+800D41DC //logging related
+//A0 = Result pointer (80030BE8 func reserves 0x50 onto stack)
+//A1 = Func Ptr 
+//A2 = Func Ptr Param?
+//A3 = String Ptr
+//Start with stack wiping 
+4218 //osSetIntMask (A0 = 1)
+4224 //A1 = 8016A800
+
+
+800D66B4 //logging related (!! Emulation Incompatability Issues !!)
 
 
 
@@ -318,43 +371,13 @@ B170 //SP + 0x0C = F10 // = F12^3/6
 //T7 = t9 + t6 //T7 is current Camera M struct ptr
 //V1 = lh
 
+
+8005D8AC //set AT unused
+
 80078884 //play sfx (bank 0x4?)
 //A0 = SFX id
 
 
-80035260 //?
-// ../z_cheap_proc.c
-// called when drawing en_wood (trees, actor 0x77)
-//A0 = Global Context
-//A1 = diplay list
-80035288 jal	800C6AC4
-
-
-
-80002E10 //print ?
-//A0 = str ptr
-//A1 = ?
-
-80002130 //IS64 output? string format?
-//A0 = string
-//A1 = arg1
-//A2 = ?
-//A3 = B3FF0000
-
-800021B0 //string formatting
-//A0 = ?, possibly value to replace %d formatter
-//A1 = String
-//A2 = offset of formatter
-//
-2208 //at = IS64 in hex
-
-800052E0 //String formatting related?
-//A0 = func ptr
-//A1 = ?
-//A2 = String ptr
-//A3 = ? (ptr on stack this pass, possibly out param)
-
-80007760 //low level thing
 
 
 //en_elf

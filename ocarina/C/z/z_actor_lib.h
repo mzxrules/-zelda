@@ -1,8 +1,8 @@
-#ifndef __Z_ACTOR_H_
-#define __Z_ACTOR_H_
+#ifndef __Z_ACTOR_LIB_H_
+#define __Z_ACTOR_LIB_H_
 #include <ultra64.h>
-#include <z/Actor_s.h>
-#include <z/GlobalCtx.h>
+#include "z_actor.h"
+#include "z_game.h"
 #include <h/vector.h>
 
 //80025110 //code, graph, Spawn Actor
@@ -18,16 +18,16 @@
 //SP+0x24 = s16 var
 
 
-extern int GiveItem(z_Actor* actor, z_GCtx* gctx, int c, float d, float e);
+extern int GiveItem(z_actor_t* actor, z_game_t* gctx, int c, float d, float e);
 asm("GiveItem = 0x80022BD4");
 asm(".global GiveItem");
 
 //play sfx?
-extern void Func_80022F84(z_Actor*, u16);
+extern void Func_80022F84(z_actor_t*, u16);
 asm("Func_80022F84 = 0x80022F84");
 asm(".global Func_80022F84");
 
-z_Actor* z_SpawnActor(z_ActorCtx_t* actx, z_GCtx* gctx, s16 id, Coord_f coord, u16 rx, u16 ry, u16 rz, u16 var);
+z_actor_t* z_SpawnActor(z_actor_ctxt_t* a_ctx, z_game_t* game, s16 id, Coord_f coord, u16 rx, u16 ry, u16 rz, u16 var);
 asm("z_SpawnActor = 0x80025110");
 
 #endif

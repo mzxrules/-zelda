@@ -27,8 +27,123 @@ Link Instance + 0x3C0 = xyz coords for falling into short oobs
 //A3 = VRAM end
 //SP+0x10 = void* addr to load DLF
 
+80085320 //__osInitStack
+//a0 = struct* //801FCE38
+//a1 = void* start // 801FBE38
+//a2 = void* end // 801FCE38
+//a3 = s32 bufferInitialValue //0
+//SP+0x10 = 0x0100
+//SP+0x14 = char* "sys_flashrom"
+//
+5320 //branch 5334 if A0 not null
+//else set 80096C40 to null; return
+//Arg A0 + 0x08 = Arg a1
+//Arg A0 + 0x0C = Arg a2
+//Arg A0 + 0x10 = Arg a3
+//Arg A0 + 0x14 = Arg SP+0x10
+//Arg A0 + 0x18 = Arg SP+0x14
+//
+//V1 = 80096C40 //linked list to ?
+//A1 = 80096C44 //next
+//v0 = ptr at 0x0000(V1)
+5364 //branch 5380/4 if v0 == null
+536C //return if v0 == arg a0
+//v0 == 0x0000(v0)
+5378 //branch 536C if v0 is not null
+//0x00(a0) = 0
+//0x04(a0) = 0x00(80096C44)
+//V0 = 0x00(80096C44)
+5390 //if v0 not null
+    //0x00(v0) = arg A0
+//t9 = 0x00(80096C40)
+//0x00(80096C44) = arg A0
+53A4 //if t9 == null
+    //0x00(80096C40) = arg A0
+//t0 = 0x14(arg A0)
+53B8 //return if t0 == 0xFFFF 
+//v0 = 0x08(arg A0)
+//t1 = 0x0C(arg A0)
+//return if v0 >= t1
+53D4
+//t2 = 0x10(arg A0)
+//v0 += 4
+//0xFFFC(v0) = t2
+53E8 //branch 53D4/8 if v0 < 0x00(arg a0)
+//return
 
-80089630 //Zero Initialize Ram
+80086DD0 //Allocate to the Main Heap (tail end)
+//wrapper for 80087324
+//a0 = s32 size
+//v0 = void* alloc
+//
+6DE0 jal    80087324
+    //a0 = 8009CD20
+    //a1 = arg A0
+
+80086E50 //Deallocate ? from Main Heap
+//wrapper for 800874EC
+//A0 = Pointer to Heap record (ptr, ptr, size, ?)
+6E60 jal    800874EC
+    //A0 = 8009CD20
+    //A1 = arg A0
+    
+80086FDC //Get Random Float between 0.0 and 1.0
+//fixes bug found in OoT's rng 
+//F0 = result
+80087030 //Get Random Float between 0.0 and 1.0
+//identical to above? maybe not used?
+//F0 = result
+    
+8008718C //?
+//wrapper for 80087B10
+//A0 = 8009CD20 type record
+//v0 = ?
+719C jal    80087B10
+    //a0 = arg A0 + 0x08
+    //a1 = 0
+    //a2 = 1
+    
+800874EC //Deallocate Heap Arena
+//A0 = 8009CD20
+//A1 = Pointer to Heap record (ptr, ptr, size, ?)
+//
+74F8 jal    8008718C
+//v1 = arg A1
+//v0 = v1 - 0x10
+7504 //branch 75CC if v1 == null
+7514 //branch 75CC if memnode cur != magic 0x7373
+7524 //branch 75CC if memnode cur is free
+//mark memnode cur free
+7540 //branch 7580 if memnode next start != memnode cur end
+754C //branch 7580 if memnode next is not free
+
+
+80087B10 //osJamMesg
+//a0 = OSMesgQueue* //8009CD20+ 0x08 (OSMesgQueue)
+//a1 = OsMesg
+//a2 = s32 
+//v0 = ?
+7B2C jal    80091A60
+    //v0 = some status state
+//t6 = arg a0
+//S0 = v0
+//t7 = s32 at arg A0 + 0x08
+//t8 = s32 at arg a0 + 0x10
+7B48 //branch 7BAC if t7 < t8
+7BAC
+//t5 = arg a0
+//t0 = arg a1
+//t6 = s32 at arg a0 + 0x0C //first
+//t7 = s32 at arg a0 + 0x08 //validCount
+//t9 = s32 at arg a0 + 0x10 //msgCount
+//t1 = s32 at arg a0 + 0x14 //*msg
+//t8 = t6 + t7
+//s1 = t8 // t9
+//t2 = s1 * 4
+//t3 = t1 + t2 //OSMesg address?
+
+80089630 //bzero
+//Zero Initialize Ram
 //A0 = Start Ptr
 //A1 = Num bytes
 
@@ -39,6 +154,77 @@ Link Instance + 0x3C0 = xyz coords for falling into short oobs
 //a3 = Entrypoint arguments
 //sp+10 is pointer to a stack
 //sp+14 is the priority argument (type OSPri)
+
+8008C190 //?
+//initialize 80097EA0 system?
+
+
+
+8008C1E0 //?
+//
+//SP -= 0x20
+//
+//T6 = s32 at 80097EA0
+C1F0 //branch C200 if t6 not 0
+C1F8 jal    8008C190
+C200
+C20C jal    80087ED0 //osRecvMesg
+//a0 = OSMesgQueue* 8009E3F8
+//a1 = SP + 0x1C
+//a2 = 1
+
+8008F208 //copy struct?
+//A0 = destination
+//A1 = source
+//A2 = size
+
+8008F240 //osCreateMesgQueue
+//A0 = OSMesgQueue* to initialize
+//A1 = OSMesg* array
+//A2 = s32 msgCount
+
+8008F270 //osInvalICache
+//a0 = void* rdram
+//a1 = s32 count
+
+8008F2F0 //osInvalDCache
+//a0 = void* rdram
+//a1 = s32 count
+
+8008FC00 //osSetThreadPri
+
+
+800912C0 //memcopy?
+//A0 = Copy From
+//A1 = Copy To
+//A2 = bytes
+
+80091A60 //__osDisableInt
+//V0 = interrupt flag state
+
+80091AD0 //__osRestoreInt
+//A0 = bits to turn on
+
+80093BB0 //
+//similar signature to osEPiWriteIo
+//a0 = OSPiHandle* 801FD080
+//a1 = void* devAddr
+//a2 = s32 0xF0000000
+//
+3BC0 jal    8008C1E0
+
+
+800952A0 //osCreateViManager
+
+800957B0 //osStartThread
+//A0 = OSThread* thread
+
+800B4FF8 //?
+//A0 = Global Context + 0x1CA0 + 0x120
+//A1 = index into array located at A0 + 0x50 (0x14 bytes)
+//A2 = float ?
+//A3 = float ?
+//SP+0x10 = float ?
 
 800B5C78 //Tests if a Chest Flag is set
 //A0 = Global Context
@@ -57,6 +243,19 @@ Link Instance + 0x3C0 = xyz coords for falling into short oobs
 //A0 = Global Context
 //V0 = Chest Flag state
 
+800B5DF0 //Initialize ?
+//A0 = Global Context
+//A1 = Global Context + 0x1CA0 + 0x1E4
+
+
+800B6468 //Zero Initialize Global Context + 0x1E95
+//A0 = Global Context
+
+
+800B9170 //?
+//
+91CC //zero initialize actor context in global context
+//
 
 800BAE14 //Spawn Actor
 //A0 = 803E87C0 (Actor Category Table)
@@ -67,6 +266,12 @@ Link Instance + 0x3C0 = xyz coords for falling into short oobs
 AFF8 //set x, y, z coordinates
 
 800BB2D0 //Spawn Actor (Spawn Data)
+
+800CD04C //?
+//A0 = vector3_f* output
+//A1 = s16 ?
+//A2 = s16 ?
+//A3 = s16 ?
 
 
 800DDDD0 //Initialize Camera
@@ -180,8 +385,32 @@ DE18
 //sh v0 at 801BD8B0+0x14
 1E54 jal    801694DC //Inititalize Secondary Camera
     //a0 = global context
-//************** TODO: KEEP WORKING ON THIS     
+//************** TODO: KEEP WORKING ON THIS  
+
+
+800F4C0C //?
+//A0 = Global Context
+//
+//SP -0x30
+//
+//t6 = u16 at Global Context + 0x14 //input
+//at = 0xFFEF (sign extended)
+//t0 = Link ptr
+4C28 //branch 4C30 if R not pressed //DOES NOTHING
+//at = 0x16D30
+//v1 = Global Context + 0x16D30
+
+800FEC90 //Copy Save To Sram struct?
+//Wrapper for 800912C0 (memcopy)
+//A0 = Sram struct ptr?
+//A1 = Save Context
+//A2 = bytes 
     
+    
+800FF450 //Random Short
+//A0 = Range
+//A1 = Offset
+//v0 = result
 
 800FF50C //Copy Coordinates
 //A0 = Vector3_f32* Destination
@@ -191,6 +420,9 @@ DE18
 //A0 = Segment Address
 //
 //Segment Table located at 801F8180
+
+80100B8C //Draw Top-Left UI
+//hearts, magic?
 
 
 80102C60 //Allocate Memory Head End (ARENA_SCENE)
@@ -207,17 +439,209 @@ DE18
     //Save Context + 0x3F20 = a0
 //Save Context + 0x3F24 = 1
 
+8010F1A8 //Hud fade out transition strength?
+//A0 = Global Context?
+//A1 = Hud Alpha Level
+
+
+80110038 //?
+//sets item restrictions
+//a0 = global context
+//
+//SP -0x80
+//
+//t0 = Save Context
+//t7 = u8 at Save Context + 0x1010 //event_inf
+//t6 = arg a0
+//t3 = 0
+//a1 = Link Instance
+005C //branch 0160 if Save Context + 0x1010 &>> 0x0002 == 0 //event_inf
+0160 
+//t9 = u8 at Save Context + 0x0F52 //week_event_reg
+//a3 = 1
+0168 //branch 01BC if Save Context + 0x0F52 &>> 0x0020 == 0
+1CA8 //return
+
+80112B40 //update button texture?
+//a0 = global context
+//a1 = u8 button index (0 = b? 1 = C-left, 2 down, 3 right)
+//
+2BB4 //t4 = s32 at Global Context + 0x16B60
+2BCC jal    80178E3C //load item texture
+    //a0 = A36C10
+    //a1 = C-Item Index
+    //a2 = address to write texture
+    //a3 = texture size
+    
+    
+8011F0E0 //draw hud
+    
+8012364C //Use Item Button
+//A0 = Global Context
+//A1 = Link Instance
+//A2 = Button Index
+//v0 = action?
+//
+//SP -0x18
+//
+//return 0xFF if Button Index >= 4
+366C //branch 371C/20 if arg A2 not 0 //B button
+//
+371C/20 //
+//at = 1
+3720 //branch 376C if arg A2 not 1 //C-Left
+376C 
+//at = 2
+3770 //branch 37C0 if arg A2 not 2 //C-Down
+37C0 //C-Right button pressed
+//a0 = Save Context
+//t7 = u8 at Save Context + 0x3F1B //can use C-Down
+37CC //branch 37DC/E0 if t7 == 0xFF
+//v1 = C-Down item id
+37D4 //branch 37FC
+37DC 
+//t8 = u16 at Save Context + 0x3F22
+37FC 
+//v0 = used item id
+//return
+
+80123810 //Show Button Item dialog check
+    
+
+80130768 //Build Entrance Index
+//A0 = External Scene Index
+//A1 = Spawn Index
+//A2 = Cutscene Number
+//v0 = result entrance index
+
+8013EE60 //write viewport related stuff
+//a0 = gfx* write
+//a1 = VIEW struct + 0x08
+//
+//a2 = 0x1FF
+//
+//v0 = viewport width
+//t0 = v0 * 2
+//v1 = viewport height
+//t1 = v1 * 2 
+//
+//store at gfx* 
+// s16 t0 // 0x00
+// s16 t1 // 0x02 
+// s16 a2 // 0x04, value 0x1FF
+// s16 r0 // 0x06
+//
+//t2 = screen_left
+//t3 = screen_left * 2
+//t4 = screen_left * 2 + viewport width
+//t5 = t4 * 2
+//
+//store at gfx* 
+// s16 t5 //0x08
+// s16 t9 //0x0A //same as t5, but with screen_top/viewport height
+// s16 a2 //0x0C, value 0x1FF
+// s16 r0 //0x0E
+
+
+
 
 8013EEF4 //Initialize VIEW struct
 //A0 = ptr to VIEW struct location
 
 
+8013F6FC //?
+//A0 = VIEW struct
+//A1 = ?
+
+
+8013F748 //?
+//A0 = VIEW struct
+//
+//SP -0x40
+//
+//S0 = VIEW struct
+//S1 = gfx context
+//S2 = poly_opa append end
+//A1 = VIEW struct + 0x08
+//allocate 0x10 bytes to append end,
+//S2 = poly_opa write
+//A0 = s2
+F774 jal    8013EE60 //write viewport movemem data?
+
+
+801445E4 //Compute Save Checksum
+//A0 = Save File Data Start
+//A1 = Bytes
+//V0 = Sum
+
+
 80144628 //Create New Save File (first 0x100C bytes)
 
-80144890 //Create new save file
+80144684 //Create New Save File (Randomized elements)
+//sets lottery numbers, spider house code
+//possibly bomber code
 
-80146AA0 //Create new save file? (File Select)
-//A0 = Global Context
+80144890 //Create new save file ?
+//Does not set File Name or Checksum validation string ZELDA3
+
+80144E78 //file select; select file modifications
+//?
+510C
+//V0, V1 = Save Context; V0 iterates 0x1C sized struct, V1 iterates size 0x14 struct 
+//A0 = 801F0390 (loop 0xD20/0x1C, 120 times)
+//example copy:
+//V1 0x3F68 = V0 0xF8
+//V1 0x3F6C = V0 0xFC
+//V1 0x3F70 = V0 0x100
+//V1 0x3F74 = V0 0x104
+//V1 0x3F78 = V0 0x108
+//V1 0x3F68 = V0 0xF8
+
+
+
+80146AA0 //Create new save file (File Select)
+//A0 = File Select Gctx
+//
+//SP -0x38
+//
+6AC8 jal    80144890
+//
+//A3 = File Select Gctx
+//T0 = File Select Gctx + 0x20000
+//V1 = Save Context
+//T7 = s16 at File Select Gctx + 0x24480 //File slot index?
+//V0 = 0
+//A0 = 8
+6AEC //branch 6AFC if t7 != 0
+//sw 0xFFF0 at Save Context + 0x0008
+6AFC
+
+6B10 //t5 = player name location in File Select gctx + char
+//
+//
+6BB4 jal    801445E4 //compute checksum
+    //A0 = Save Context
+    //A1 = 0x100C
+6BCC jal    800FEC90 //copy data to sram ctx
+    //A0 = Sram struct, location to copy to
+    //A1 = Save Context
+    //A2 = bytes (0x100C)
+6BEC jal    800FEC90 //copy backup to sram ctx
+    //A0 = Sram struct + 0x2000
+    //A1 = Save Context
+    //A2 = bytes (0x100C)
+    
+    
+80147020 //?
+//A0 = Global Context (File Select) + 0x220
+//
+//SP -= 0x18
+//
+7040 jal    80185DDC
+    //A0 = Sram struct ptr
+    //A1 = arg A0 + 0x10
+    //A2 = arg A0 + 0x14
+
 
 801588D0 //Look Up Text Id
 //A0 = Global Context
@@ -267,6 +691,42 @@ DE18
 
 80169D40 //Copy Scene Flags to Scene Save data
 
+8016A2C8 //?
+A4BC //branch A4D8 if player has the ocarina of time
+A4D8 jal    80130768
+
+80172B9C //Zero initialize Heap Handle
+//wrapper for 80089630
+//A0 = Global Context + 0x74
+2BA4 jal    80089630 //zero 0x10 bytes
+    //a0 = arg A0
+    //a1 = 0x10
+
+
+80173880 // Game State heap related
+//A0 = Global Context
+//A1 = ?
+//
+//SP -0x48
+//
+//S0 = arg A1
+//A2 = arg A0
+//SP+0x30 = s32 at Global Context + 0x78 //heap ptr
+//A0 = Global Context + 0x74
+38A4 jal    80172B9C //zero initialize heap handle
+    //a0 = Global Context + 0x74
+//a2 = arg a0
+//a1 = heap ptr
+//a0 = Global Context + 0x84
+//SP+0x2C = a0
+38B8 jal    80173C7C
+    //a0 = Global Context + 0x84
+    //a1 = heap ptr
+    
+80173C7C //deallocate ? from heap
+//a0 = Global Context + 0x84
+//a1 = heap ptr
+
 801748A0 //graph thread entrypoint
 
 
@@ -277,17 +737,200 @@ DE18
     //a1 = heap size
 
 
+80181D64 //Mtx to MtxF
+//A0 = Mtx*
+//A1 = MtxF*
+
+801857C0 //
+//v0 = s32 at 801FBE2C
+
+
+80185968 //?
+//a0 = void* rdram //?, freshly allocated when called this time
+//a1 = s32 page offset? //sys_flashram args[3]
+//a2 = s32 num_pages to save //0x80 per page, sys_flashram args[4]
+//v0 = result
+//
+//SP -= 0x38
+//
+597C jal    801857C0 //return s32 at 801FBE2C
+//return -1 if v0 == 0
+5998 jal    8008F2F0 //osInvalDCache
+    //a0 = arg A0
+    //a1 = arg A2 * 0x80
+//t6 = arg A2
+//t7 = OSMesgQueue 801FBE10 
+59C0 jal    8018752C
+    //a0 = SP + 0x20
+    //a1 = 0
+    //a2 = arg A1 s32 page offset? //sys_flashram args[3]
+    //a3 = arg A0 void* rdram //?, freshly allocated when called this time
+    //SP+0x10 = arg A2 s32 num_pages to save //0x80 per page, sys_flashram args[4]
+    //SP+0x14 = OSMesgQueue 801FBE10 
+    
+
+801859F0 //Wrapper for 80187124
+//A0 = s32 page offset
+//v0 =  -1 if falue, else 0
+//
+//SP -= 0x18
+59FC jal    801857C0 //return s32 at 801FBE2C
+//return -1 if v0 == 0
+//else return wrapped function
+    
+    
+80185B1C //write to flashram //saving in game
+//a0 = void* rdram
+//a1 = s32 page offset? //sys_flashram args[3]
+//a2 = s32 num_pages to save //0x80 per page, sys_flashram args[4] 
+//v0 = result (-1 for failure)
+//
+//SP -= 0x28
+//
+//S1 = arg a1
+//S2 = arg a0
+//S3 = arg a2
+5B40 jal    801857C0 //return s32 at 801FBE2C
+//return -1 if v0 == 0
+5B58 jal    8008A5E0 //osWritebackDCache
+    //a0 = arg a0
+    //a1 = arg a2 * 0x80
+//s0 = 0 //for loop start
+5B64 jal    801859F0
+    //a0 = arg a1
+
+
+80185C24 //write to flashram
+//a0 = void* rdram
+//a1 = s32 page offset? //sys_flashram args[3]
+//a2 = s32 num_pages to save //0x80 per page, sys_flashram args[4]
+//v0 = result
+//
+//SP -= 0x28
+//
+5C38 jal    801857C0 //return s32 at 801FBE2C
+//a0 = arg a2
+5C40 //branch 5C50 if v0 not 0
+//else return -1
+5C50
+//A0 <<= 7
+//SP+0x18 = a0
+5C54 jal    80086DD0 //allocate memory to the main heap (tail end)
+    //a0 = arg a2 * 0x80
+    //v0 = void* reserved
+5C5C //branch 5C7C if v0 not null
+//heap full (happens when saving in game)
+5C6C jal    80185B1C
+    //a0 = arg a0
+    //a1 = arg a1
+    //a2 = arg a2
+    //v0 = result
+//return v0
+5C7C
+//a0 = v0
+//SP+0x24 = a0 //allocated ram
+5C84 jal    80185968
+    //a0 = allocated ram
+    //a1 = arg a1
+    //a2 = arg a2
 
 
 
+80185D40 //sys_flashram thread entrypoint
+//A0 = void* args //801FD008
+//struct {
+    //s32 type; //probably transfer type
+    //s32 result;
+    //void* rdram; 
+    //s32 offset //in page_nums
+    //s32 size //in page_nums
+//}
+//
+//SP -= 0x18
+//
+//A3 = args
+//v0 = s32 args[0]
+5D54 //branch 5D6C if v0 == 1
+5D58 //branch 5DA0/4 if v0 == 2
+//else return
+5D6C
+5D78 jal    80185C24
+    //a0 = args[2]
+    //a1 = args[3]
+    //a2 = args[4]
+    //v0 = result
+
+    
+    
+80185DDC //Create sys_flashrom thread
+//A0 = Sram struct ptr
+//A1 = s32 offset //in page_nums
+//A2 = s32 size //in page_nums
+//
+//SP -= 0x20
+//
+5DF0 jal    801857C0
+5DF8 //return if v0 = 0
+//t6 = 1
+//t7 = arg A0
+//t8 = arg A1
+//t9 = arg A2
+//set sys_flashrom thread args:
+    //801FD008 = 1 
+    //801FD010 = arg A0
+    //801FD014 = arg A1
+    //801FD018 = arg A2
+5E38 jal 8008F240 //osCreateMessageQueue
+    //a0 = 801FD01C
+    //a1 = 801FD034
+    //a2 = 1
+5E6C jal    80085320 //__osInitStack
+    //a0 = 801FCE38
+    //a1 = 801FBE38
+    //a2 = 801FCE38
+    //a3 = 0
+    //SP+0x10 = 0x0100
+    //SP+0x14 = char* "sys_flashrom"
+5EA0 jal    80089E40 //osCreateThread
+    //a0 = 801FCE58     //thread 0x0D
+    //a1 = 0x0D         //id
+    //a2 = 80185D40     //entrypoint
+    //a3 = 801FD008     //args
+    //SP+0x10 801FCE38  //stack ptr
+    //SP+0x14 0x0D      //priority
+5EAC jal    800957B0 //osStartThread
 
 
+80187124 //
+//A0 = page offset
+//
+//SP -= 0x70
+//
+//a1 = 0xA8000000 // kseg1 devAddr for save data
+//a2 = arg a0
+//t6 = A1 + 0x10000
+//at = 0x4B000000 
+//t7 = at | arg a0 //set erase
+7158 jal    80093BB0
+    //a0 = OSPiHandle* 801FD080
 
 
-
-
-
-
+8018752C
+//a0 = SP + 0x20
+//a1 = 0
+//a2 = page offset? //sys_flashram args[3]
+//a3 = void* rdram //?, freshly allocated when called this time
+//SP+0x10 = s32 num_pages to save //0x80 per page, sys_flashram args[4]
+//SP+0x14 = OSMesgQueue* 801FBE10 
+//
+//SP -= 0x28
+//
+//a1 = void* at 801FD08C //save kseg1 addr
+//t6 = a1 + 0x1000
+7560 jal    80093BB0
+    //a0 = OSPiHandle* 801FD080
+    //a1 = t6
+    //a2 = 0xF0000000 //read
 
 
 

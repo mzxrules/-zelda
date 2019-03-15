@@ -1,0 +1,49 @@
+debugger.dll+C3000 //readwrite base, 0x7000 bytes
+C31B0 //ptr array, of type below:
+struct {
+    void* ?
+    int32 ?
+} 
+C466C void* to command window ctx?
+    + 0xD0 = func ptr (scroll up/down func debugger.dll+B3144)
+    + 0xD4 = ptr to scroll ctx
+    + 0xE0 = func ptr (?)
+    + 0xE4 = ptr to scroll ctx
+C5710 void* to debugger.dll
+C61F4 void* to ? //7861AB8, eax near is 7861AEC
+
+
+scroll ctx
++ 0x0330 void* to ?
+    []+ 0x0C s32 //commands view address increment
++ 0x0440 s32 commands start address
+
+
+//07865434
+
+
+debugger.dll+6C594 //?
+//eax = 07865434, 
+
+debugger.dll+23CC0 //func, converts virtual address to physical
+//returns address in eax
+//only works if address & 0xC000_0000 == 0x8000_0000
+
+debugger.dll+A6E20 //get physical address?
+//eax returns physical address of ?
+
+
+debugger.dll+B287C //func, start drawing command window
+B2B08 //bookmark lookup for current line //noping this speeds shit up incredibly 
+B2D24 //part of above, write JAL
+
+debugger.dll+B3114 //refresh command window
+
+debugger.dll+B1270 //related to iterating over bookmark addresses
+B12E9 //iterate over bookmark addresses
+B1326 //get next address?
+//ebp-0x08 = address to match
+
+debugger.dll+B3144 //possibly func start
+
+debugger.dll+B3131 //update commands cursor address (eax + 0x440)

@@ -1,0 +1,55 @@
+Project First Level
+
+A mini oot troll hack of Dodongo's Cavern
+
+Dungeon progression should follow the core vanilla route
+Savewarping should put you back to void coordinates
+Passing through a black void should set a void checkpoint
+
+
+
+Entrance, bombable wall
+Ideas:
+    blowing up the wall deletes the floor, blue fire melts the wall safely
+    
+    Check scene, room number, 
+    Check number of explosive actors spawned
+    make below polys non-collideable by link
+    
+    80374798 004F58
+    803747A8 004F68
+    
+    
+Actor 0058 //moving platforms in dc
+//have one crush the player
+//have one move to the next destination in a weird fashion
+//have one rise up into the air into nowhere
+
+
+Instant Flame Wall:
+//reprogram vertical flame walls to rise up instantly, just use the same animation as before
+
+put flame wall on east path middle to both stop players from shortcutting west f1 and getting back to f1 center?
+
+
+East Path
+    vanilla notes:
+        dodongo jr. with ledge normally unreachable by child
+        door to small square room (bombable wall)
+    troll ideas:
+        when armos is pushed onto blue switch, make it an activated enemy
+        
+Hallway to lizalfos fight:
+    put small flame wall in center of hallway
+    when backtracking, put two flame walls opposing 
+    troll ideas:
+        make doors locked on switch instead of lizalfos clear,
+        open by jumping into the lavafall
+        add pots to point to jump into the lavafall
+        
+Three Torches and some DigDongos
+    vanilla notes:
+        door to small square room (bombable wall)
+        leads to button/completion of f1 east section
+    troll ideas:
+        make it impossible to light the three torches (stick burns out too fast)

@@ -1,3 +1,19 @@
+80009468 to 8000Ac5C //boot, file list string ptr array
+
+8012DBC0 //set to 1 if controller 2 plugged in at boot; if 1 on reset, swap to prenmi game state
+
+80157D90 to 801759C0 //?
+
+801668C0 //unknown struct, related to f3dzex debugging?  0x468 bytes
+    0x2A8 u8 controllers plugged in flags
+    0x2A9 u8 numContMax
+    
+
+8016A800 //ptr, points to "fault" OSThread i believe
+//No actually it points to a larger structure!
+//min 0x7E0 bytes I think
+0x7D8 //ptr to stack?, possibly fault thread?
+
 Game //Global context?
 BB8038 sram_initialize( Game *game, Sram *sram )
 

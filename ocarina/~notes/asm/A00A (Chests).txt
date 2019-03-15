@@ -1,0 +1,54 @@
+808687E8 //init function
+88A8 //load chest type
+80868BDC //set chest size/scale
+
+80869C6C //Draw Chest
+//A0 = Global Context
+//A1 = part id //1 to 4
+//A2 = ptr to ?
+//A3 = ptr to ?
+//SP+0x10 = Actor* Instance
+//SP+0x14 = ptr to POLY_OPA ptr
+//
+//SP -= 0x30
+//
+//A2 = arg A0
+//V1 = arg SP+0x14
+9C88 //branch 9D24 if part id != 1
+9CD4 //branch 9D00/4 if chest type == 02
+9D00 //draw gold chest base
+9D24
+9D28 //return if Arg A1 != 3
+//v0 = 0x00(v1)
+//t7 = DA380003 //G_MTX (G_MTX_MODEL_VIEW, G_MTX_LOAD, G_MTX_PUSH)
+//arg SP+0x14 += 8
+//SP+0x18 = v0
+9D4C jal    800AB900 //convert top matrix to MtxF on POLY_OPA
+    //A0 = Graphics Context
+    //V0 = mtx
+//A1 = SP+0x18
+//v1 = arg SP+0x14
+//complete G_MTX
+9D74 //branch 9DA0/4 if chest type == 02
+
+
+
+== Variables ==
+0x01E9 s8 //chest type
+
+
+
+
+; Replaces lbu   v0,0x01E9(s0)
+.org 0xC064BC //prefaces setting chest scale
+    jal     GET_CHEST_OVERRIDE_SIZE_WRAPPER
+.org 0xC06E5C //determines if cool sparkly thing should spawn
+    jal     GET_CHEST_OVERRIDE_SIZE_WRAPPER
+.org 0xC07494 //collision detection stuff
+    jal     GET_CHEST_OVERRIDE_SIZE_WRAPPER
+
+; Replaces sw    t8,8(t6)
+;          lbu   v0,489(s0)
+.org 0xC0722C //dunno, lots of rotation calls though
+    jal     GET_CHEST_OVERRIDE_SIZE_WRAPPER
+    sw      t8,8(t6)

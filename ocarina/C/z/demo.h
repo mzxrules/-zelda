@@ -1,4 +1,4 @@
-struct //z_DemoCameraPointEntry, size 0x10
+typedef struct //z_DemoCameraPointEntry, size 0x10
 {
     /* 0x00 */ u8  lastRecord;  //0 if more entries, 0xFF if final entry
 	
@@ -12,7 +12,7 @@ struct //z_DemoCameraPointEntry, size 0x10
     /* 0x0E */ u16 unknown;     //
 } z_DemoCameraPointEntry;
 
-struct //z_DemoActionEntry, size 0x30
+typedef struct //z_DemoActionEntry, size 0x30
 {
 	/* 0x00 */ s16 action;
 	/* 0x02 */ s16 startFrame;

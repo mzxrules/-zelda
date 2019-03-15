@@ -1,5 +1,5 @@
-#ifndef Z_HELLO
-#define Z_HELLO
+#ifndef MEMCPY_SET
+#define MEMCPY_SET
 
 void* func_80057030(void* copyto, const void* copyfrom, int n)
 /* memcpy? */

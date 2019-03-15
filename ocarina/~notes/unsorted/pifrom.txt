@@ -1,0 +1,41 @@
+Pifrom
+0004 //status = 0x34000000
+0010 //COP0 16 config = 0x0006E463
+0018 //t0 = SP_STATUS_REG
+0020 //branch 0018 if t0 & 0x01 == 0
+0030 //write 0x0A to SP_STATUS_REG 
+0038 //t0 = SP_DMA_BUSY_REG
+0040 //branch 0038 if t0 & 0x01 != 0
+0050 //PI_STATUS_REG = 0x03
+005C //A440000C = 0x3FF
+0064 //A4400024 = 0
+006C //A4400010 = 0
+0074 //AI_DRAM_ADDR_REG = 0
+007C //AI_LEN_REG = 0
+0084 //t0 = SP_STATUS_REG
+008C //branch 0084 if t0 & 0x04 != 0
+//t3 = A4001000
+//t4 = BFC000D4
+//t5 = BFC0071C
+//copy from pifrom BFC000D4 to BFC0071C into A4001000 //SP_IMEM
+//sp = 0xA4001FF0
+//jump to A4001000
+
+00D4 //address A4001000
+00D8 //t0 = word at 0xBFC007FC
+00DC //t5 = BFC007C0
+00E4 //branch 00D8 if t0 & 0x80 != 0
+
+00EC //t0 = 0x0024(t5)
+
+019C //t3 = B0000040
+01C4 //start copy from rom to imem
+01C8 //t5 = A4000000
+01CC //a2 = t0 (0x0FC0)
+01D0 //t5 = A4000040
+01D4 //loop to copy 0x1000 bytes from B0000040 (rom) to A4000040 (dmem)
+
+0210 //function
+
+068C //t1 = SI_STATUS_REG
+0694 //branch 068C if t1 & 0x02 != 0

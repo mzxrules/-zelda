@@ -56,20 +56,21 @@ First 0xA4 bytes are the same
 0x1C88 (0x1458 + 0x830) s32 max elements of prev value, default value 0x3E8?
 0x1C8C (0x145C + 0x830) s32 num elements of 0x04 byte struct
 0x1C98 (0x1468 + 0x830) s32 //Collision Mesh memory cap?, value 0x23000
-  
-0x1CA0 //Actors
+0x1C9C (0x146C + 0x830) s32? //unk
+0x1CA0 //Actors (0x284 bytes)
   0x00 u8
   0x02 u8
   0x03 u8
   0x04 s8
   0x05 u8
+  0x0B s8?
   0x0E u8 numActorsSpawned;
   0x0F u8
 0x1CB0 //Actor Category Table
   struct[16?] (0x0C bytes)
     0x00 s32 num; actors
     0x04 Actor* first;
-    0x08 ??
+    0x08 s32
     
 0x1E58 s32 // Scene Switch Flags (0x00)
 0x1E5C s32 // Scene Switch Flags (0x20)
@@ -97,9 +98,12 @@ First 0xA4 bytes are the same
   0x1D9C u16 messageId;
   0x1DBC (0x11F24 +0x4908) char[] dialog
 0x1698C //Text Id Table ptr
-0x169E8 VIEW struct (Parameter Static)
-0x16D30 VIEW struct (kaleido scope?)
+0x169E8 VIEW struct (Parameter Static, parameter static 0x348 bytes)
+0x16D30 VIEW struct (kaleido scope?) //0x2D0 bytes
+  0x1EC u16 ?
+  0x1EE u16 ?
 0x17D88 //Object Allocation Table
+0x186E8 //Room Header 0x0A command data ptr
 0x18708 //Room allocation table
 0x18875 //Leave the scene if value = 0x14
 0x1887A //Next Entrance Index
@@ -113,7 +117,10 @@ First 0xA4 bytes are the same
 0x18A44 struct //Simple body collision Group OT 3
   0x00 s32   //elements in array to process this frame
   0x04 ptr   //first element in array
-
+0x18B4C //0x50 bytes
+0x18BF0 //0x258 bytes
+    0x18BF8 //0x0C bytes
+0x18E48 //0x0C bytes
 
 
 
@@ -126,6 +133,10 @@ mm scene flags:
 
 
 camera_struct (0x178 bytes)
+
+//camera 2
+
+s16 unk // 0xFF?
 
 VIEW struct (0x168 bytes)
 

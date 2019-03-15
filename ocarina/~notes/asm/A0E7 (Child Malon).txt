@@ -1,0 +1,44 @@
+809F0C54 //determines whether to spawn, prob init func
+//a0 = instance
+//a1 = global context
+//v0 = 1 if child malon should spawn, else 0
+//
+0C64 //branch 0C84 if rotz var not 0x0003
+//t6 = current scene setup
+0C74 //branch 0C84 if current scene setup is not 5
+//else return 1
+0C84
+//a0 = save context
+//t7 = link's age
+//branch 0CA4/8 if link is child
+//else return 0
+0CA4/8 
+//v1 = current scene index
+
+809F0A20 //determines what dialog response to have
+0A44
+//v1 = save context
+//t6 = Epona's Song mask
+//t8 = has Epona's Song
+0A5C //branch 0A70 if epona's song hasn't been obtained
+
+809F1128 //Malon in Hyrule Castle related
+
+
+809F1414 //state, Malon when Link pulls out Ocarina
+//triggers dialog of malon "singing" Epona's Song to teach Link
+1444 //return if Instance + 0x01D8 not 2 (haven't cleared out previous dialog)
+1450 jal    800C2C90 //change ocarina instrument
+    //a0 = 2 (Malon Singing)
+145C jal    800DD400 //trigger ocarina dialog
+    //a0 = Global Context
+    //a1 = 0x09, Epona's Song (Malon Singing)
+//Instance + 0x004 &= 0xFFFEFFFF
+//Instance + 0x180 = 809F1498
+
+809F1498 //state, Malon "singing" Epona's Song when teaching Link how to play it
+
+== Instance Vars ==
+
+0180 //state func ptr
+01D8 s16 //

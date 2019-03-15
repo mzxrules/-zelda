@@ -13,9 +13,50 @@
 //A0 = VRom Start
 //A1 = Destination VRam
 //A2 = Size
+//
+//SP -= 0x88
+//
+//S2 = arg A0
+//S3 = arg a2 //bytes left to transfer
+//s4 = arg a1
+//80006274 = DMA buffer size
+//S0 = DMA buffer size
+08A0 //branch 08AC if S0 not 0, else set buffer size to 0x2000
+08AC //osInvalICache
+08B8 //osInvalDCache
+08C0 //s6 = SP+0x58 //osMesgQueue listen
+08CC //osCreateMesgQueue
+08D8 //branch 0940 if DMA buffer size >= bytes left to transfer
+//s8 = SP + 0x70 //almost matches OSIoMesg struct
+    // 0x00    ?
+    // 0x02 s8 ?
+    // 0x04 OSMesgQueue* retQueue
+    // 0x08 void* rdram transfer address
+    // 0x0C void* vrom read address
+    // 0x10 int   transfer buffer size
+//s7 = 80006260
+//s5 = 80006270
+090C jal    800040C0 //osEPiStartDma
+    //a0 = lw 0x00(80006260)
+    //a1 = s8
+    //a2 = 0
+    //v0 = 0 if request start was successful
+//v1 = v0
+0914 //branch 0990 if v0 not 0
 
+800009E0 //
+//osEPiStartDma(OSPiHandle *pihandle, OSIoMesg *mb, s32 direction)
 
-800009E0 //osEPiStartDma(OSPiHandle *pihandle, OSIoMesg *mb, s32 direction)
+80000B0C //dma transfer rom to ram
+//dmamgr thread
+//A0 = ptr to 0x0C struct //VROM, Transfer RDRAM, Size
+//
+//SP -= 0x40
+//
+//A2 = rdram dmadata start
+0B4C //dmadata record lookup loop
+0B68 //record found
+0B78 //record is not compressed
 
 80000D28 //Load from DMA to RAM (no dmadata access? more immediate?)
 //A0 = z_getfile_t* //ptr to get file record
@@ -67,7 +108,7 @@
 
 80001890 //boot, Initializes a stack for osCreateThread
 //possibly thread 4 stack this pass
-//A0 = StackInfo* (80120B98 this pass)
+//A0 = z_stack* (80120B98 this pass)
 //A1 = Start Ptr (8011DD98 this pass)
 //A2 = End Ptr (8011F598 this pass)
 //A3 = int fillValue; //Initial value to write
@@ -87,6 +128,10 @@
 //
 //hack: 3AF198 3B0998
 
+80001B38 //Invoke Crash Debugger
+//a0 = source file string
+//a1 = source file line
+
 
 80001DB0 //audio, ?
 
@@ -98,6 +143,9 @@
 //A0 = OSMesgQueue ptr (8011D558 this pass)
 //A1 = OSMesg ptr (8011D968 this pass)
 //A2 = flag (0 this pass)
+//
+1F34 jal    80002B94 //pop OSMesgQueue empty
+1F40
 
 
 80001F70 //boot, osStopThread
@@ -105,8 +153,8 @@
 
 80002030 //boot, osRecvMesg
 //Receives message from thread, yielding control if message hasn't been delivered
-//A0 = OSMesgQueue ptr (8011D540 this pass)
-//A1 = OSMesg ptr (0 this pass, a structure on the stack in other passes)
+//A0 = OSMesgQueue* 
+//A1 = OSMesg* 
 //A2 = ?, 1 this pass
 //V0 = -1 if no thread to swap to?
 
@@ -115,13 +163,12 @@
 //handles register swapping
 
 
-80002B94 //Swap thread register contexts for something?
-//A0 = ?, 8011D558 this pass
-//V0 = Thread Register Context (8011D580 this pass, for padmgr)
-2B94 lw 	v0, 0x0000(a0)
-2B98 lw 	t9, 0x0000(v0)
-2B9C jr 	ra
-2BA0 sw 	t9, 0x0000(a0)
+80002B94 //pop OSMesgQueue empty
+//A0 = OSMesgQueue* q 
+//V0 = OSThread* t
+//
+//v0, t = q->mtqueue //OSThread
+//q->mtqueue = t.next
 
 
 80002BA4 //Boot, Swap in registers from next thread?
@@ -166,8 +213,13 @@
 
 80003440 // Copies data from ram via cache?
 
+80003680 //pimgr main entry point
+//
+36D4 osRecvMesg //get next OSIoMesg
+36DC //t6 = 
 
-80003B60 //boot, converts address to a hardware one
+80003B60 //osVirtualToPhysical
+//converts address to a hardware one
 //A0 = Address to Convert
 //V0 = hardware address
 
@@ -178,7 +230,8 @@
 //V0 = some status register result
 
 
-80003DD0 //boot, performs a tlb lookup of an address?
+80003DD0 //__osProbeTLB
+//performs a tlb lookup of an address?
 
 
 80003FB0 //boot, threading related
@@ -190,6 +243,31 @@
 3FE4 //store t9 SP + 0x20
 3FE8 //store OSMesgQueue ptr to 0x0000(t9)
 3FFC //store a2 to 0x0004(t9)
+
+800040C0 //osEPiStartDma
+//A0 = OSPiHandle* phandle  //same as at 80006260
+//A1 = OSIoMesg* mb // (see 8000085C, 090C)
+//A2 = s32 direction (0)
+//v0 = s32 result?
+//
+//t6 = lw at 80006370 //pimgr initialized
+40E8 //return -1 if pimgr uninitialized
+//t7 = arg A0
+//t8 = arg A1
+//set OSIoMesg->pihandle to phandle
+4100 //branch 4118 if Dma direction > 0
+//t1 = arg A1
+//set IoMesgHdr type to 0x0F
+4110 //branch 4124
+4124 //t4 = arg A1
+4130 //branch 415C if IoMesg priority isn't 1 (High Priorty)
+//both branches are the same, except normal priority calls osSendMesg
+//while high priorty calls osJamMesg
+415C jal    80005600 //__osGetPiMgr_IOMesgQueue
+4170 jal    80001E20 //osSendMesg
+    //a0 = OSMesgQueue *, v0 of prev func
+    //a1 = OSIoMesg* mb
+    //a2 = 0
 
 
 80004220 //boot, osCreateMesgQueue
@@ -204,22 +282,73 @@
 //0x0010 = A2 (word)
 //0x0014 = A1 (word)
 
+800046E0 //pimgr, transfer?
+//A0 = OSPiHandle*
+//A1 = ?
+//A2 = u32 devAddr //e.g rom address
+//A3 = void* rdram
+//SP+0x10 = u32 size
+//v0 = 0 if successful, -1 if failed
+//
+//SP -= 0x20
+//
+//V1 = A4600010 //PI_STATUS_REG
+//V0 = PI_STATUS_REG read
+//S0 = arg A0
+4704 //branch 471C/20 if PI_STATUS_REG & 0x03 is 0 //clear
+//else loop until it is clear
+4720
+//V0 = OSPiHandle->domain
+//T9 = OSPiHandle->type
+//t8 = v0 << 2
+//a0 = lw OSPiHandle* at 80006390 + t8
+4738 //branch 482C/30 if a0->type matches OSPiHandle->type
+4830 jal    80003B60 //osVirtualToPhysical
+    //a0 = arg A3 // rdram
+    //v0 = physical address
+//a1 = arg a1
+//PI_DRAM_ADDR_REG = v0
+//t4 = arg devAddr
+//t3 = arg OSPiHandle->baseAddress
+//t6 = (t3 | t4) & 0x1FFFFFFF
+//PI_CART_ADDR_REG = t6
+4860 //branch 487C if arg A1 == 0 //transfer to ram  //write
+486C //branch 4890 if arg A1 == 1 //transfer to cart //read
+487C 
+//t8 = transfer size
+//t9 = t8 - 1
+//PI_WR_LEN_REG = t9
+//return 0
+4890
+//t1 = transfer size
+//t2 = t1 - 1
+//PI_RD_LEN_REG = t2
+//return 0
 
 800048C0 //osGetTime
-V0 = OSTime pointer
+//V0 = OSTime pointer
+//
 //V1 = Instruction counter?
 
 
-80004D50 //Returns executed instruction count
-V0 = number of instructions executed
+80004D50 //osGetCount
+//V0 = number of instructions executed
 
 
-80005130 //boot, ?,  possibly enables kernel mode?
+800050D0 //__osResetGlobalIntMask
+
+80005130 //__osDisableInt
+//v0 = interrupt flag state
 5134 //t2 = 80006360, addr stores some earlier status register state?
 5138 lw 	t3, 0x0000(t2)
 
 
-800051A0 //boot, ?, possibly exits kernel mode?
+800051A0 //__osRestoreInt
+//A0 = interrupt flag to set
+
+
+80005600 //get pimgr ? pointer
+//v0 = null if pimgr not initialized, else ptr
 
 
 80005680 //audio, ?
@@ -448,6 +577,10 @@ B508 jal 800CCBB8 //Link Overlay
 //A1 = float Y offset
 //add (0, A1, 0) to coords instance + 0x24, store at instance + 0x38
 //copy coords at Instance + 0x30, store at instance + 0x44
+
+80020F88 //Set actor's scale
+//A0 = Actor* Instance
+//A1 = float Scale
 
 
 80020FA4 //Update CPU Segment 0x06 to point to actor's defined object dependency
@@ -1544,12 +1677,25 @@ EC30 //branch EC44 if F14 >= 150f
 //A2 = scene mesh ptr
 //T6 = Static Context
 //T0 = -1
-//V0 = s16 at Static Context + 0x4B2
+//V0 = s16 at Static Context + 0x4B2 //possibly pre-rendered scene stuff
 ECA0 //branch ECC0 if V0 = 0x10
 ECA8 //branch ECC0 if V0 = 0x20
 ECB0 //branch ECC0 if V0 = 0x30
-ECB8 //branch ED08 if V0 != 0x40
+ECB8 //branch ED08 if V0 != 0x40 //non-prerendered scenes?
 ECC0 
+//t7 = scene index 
+//at = 0x36 //Stables scene index
+//v0 = 2
+//v1 = 0x100
+ECCC //if current scene is Stables 
+//set s32 at Global Context + 0x7C0 + 0x1460 to 0x3520
+//else
+//set s32 at Global Context + 0x7C0 + 0x1460 to 0x4E20
+//set s32 at Global Context + 0x7C0 + 0x1454 to 0x01F4
+//set s32 at Global Context + 0x7C0 + 0x1458 to 0x0100
+//set s32 at Global Context + 0x7C0 + 0x145C to 0x0100
+//set collision poly lookup table dimensions to 2, 2, 2
+ED00 //branch EDFC
 ED08 //SP+0x40 = -1
 ED08 jal	8002EB0C //Is current scene a SpotXX scene
 	//call with
@@ -1559,6 +1705,7 @@ ED08 jal	8002EB0C //Is current scene a SpotXX scene
 //A3 = 0x10
 //T0 = SP+0x40
 ED18 //branch ED50 if V0 != 1
+//Scene is SpotXX scene
 //Set Global Context+0x1C14 (Mesh Ctx + 0x1454) to
 //+0x00 = 0x3E8
 //+0x04 0x200
@@ -1566,7 +1713,7 @@ ED18 //branch ED50 if V0 != 1
 //+0x0C 0xF000
 //set scene mesh volume divisions to 16 by 4 by 16
 ED48 //branch EDFC
-ED50
+ED50 //Scene is not a SpotXX scene
 //SP+0x40 = T0 (-1?)
 ED58 jal	8002EB50 //Test if Custom Size Allocation should be used
 	//call with
@@ -1601,8 +1748,10 @@ EDB4 //branch EDE0 if T8 != T9; if branch, V0 += 0x0C
 //V0 += 0x0C
 EDE0 //branch EDB0 if V0 != V1
 EDE8 //branch EDFC if A0 != 0
-//set mesh subdivisioons to 16 by 4 by 16
-EDFC
+//set mesh subdivisions to 16 by 4 by 16
+// **************
+EDFC //basic variables for the scene have been initialized
+// **************
 //T5, T7, T9 = vector3_s32 at Global Context + 0x7C0 + 0x1C
 //SP+0x40 = T0 
 EE38 jal	800A01D8 //allocate tail end memory on Game State Heap
@@ -1615,7 +1764,7 @@ EE38 jal	800A01D8 //allocate tail end memory on Game State Heap
 //Global Context + 0x7C0 + 0x40 = V0 
 EE44 //branch EE64 if allocation successful
 //fault path
-EE58 jal	80001B38
+EE58 jal	80001B38 //invoke crash debugger
 	//call with
 	//A0 = 80106A50 // "../z_bgcheck.c"
 	//A1 = 0x104D //line 4173?
@@ -1629,26 +1778,45 @@ EF30 jal	8002EBE8 //set z axis collision max, unit size, inverse
 //
 //T1, T3, T5 = x,y,z CollisionPoly lookup table length 
 //V0 = 6
+//lo = T1 * 6
 //T7 = Scene Mesh Ptr
 //T1 = s32 at Global Context + 0x7C0 + 0x1454
 //T0 = value at SP+0x40
 //T8 = scene collision mesh number of polys
-//T2 = T1 * 4
+//T2 = t1 * 6
+//lo = t2 * t3
+//T2 = t1 * 4
+//T4 = t2 * t3
+//lo = t4 * t5
 //T4 = s32 at Global Context + 0x7C0 + 0x1458
 //T5 = T4 * 0x10
-//T6 = CollisionPoly lookup table (x * y * z * 6)
+//T6 = size of CollisionPoly lookup table (x * y * z * 6)
 //T9 = T6 + T8 //sum plus num polys
 //T6 = s32 at Global Context + 0x7C0 + 0x145C
-//T3 = T9 + T2 //sum plus size of CollisionCtx + 0x1454 struct
-//T7 = T3 + T5 //sum plus size of CollisionCtx + 0x1458 struct
+//T3 = T9 + T2 //sum plus size of CollisionCtx + 0x1454 struct arr
+//T7 = T3 + T5 //sum plus size of CollisionCtx + 0x1458 struct arr
 //T8 = T6 * 6
-//V1 = T7 + T8 //sum plus size of CollisionCtx + 0x145C struct
+//V1 = T7 + T8 //sum plus size of CollisionCtx + 0x145C struct arr
 //V1 += 0x1464
 EFA8 //branch EFB8 if T0 <= 0
 EFB8
 //V0 = s32 at Global Context + 0x7C0 + 0x1460
 //A0 = 80106A60 // "../z_bgcheck.c"
-
+//A1 = 0x1083 //source line number?
+EFC8 //branch EFE0 if V1 <= V0 
+EFD0 jal    80001B38 //invoke crash debugger
+EFE0
+//a2 = V0 - V1
+//a2 /= 4
+//a1 = Global Context + 0x7C0 + 0x44
+//SP+0x2C = a1
+//a0 = a1
+//SP+0x4C = a2
+EFF4 jal    80030D94 //zero initialize mesh lookup table
+//
+//t1 = Scene Mesh Ptr
+//a1 = Global Context + 0x7C0 + 0x44
+//a2 = SP+0x4C
 
 
 
@@ -2461,72 +2629,85 @@ FCB0
 
 //*************** Collision Body Code **************
 
-80049E70 //graph, Initialize Collision Struct (first 0x18)
-//A0 = Global Context
-//A1 = Actor Collision Struct
+80049E70 //Initialize CollisionBody common (0x18 bytes) (Generic)
 //copy 0x18 bytes from 800EF9A0 to struct
-
-
-80049F50 // Initializes Cylinder/Simple Surface Collision Struct within Actor Instance
 //A0 = Global Context
-//A1 = Ptr to some collision struct (cylinder/simple surface type) within an actor instance
-//A2 = Actor Instance
-//A3 = Ptr to Some collision struct, located within actor's overlay
+//A1 = CollisionBody*
 //V0 = 1
 
 
-80049FCC //graph, collision, ?
+80049F50 //Initialize CollisionBody common (0x18 bytes) (Overlay)
 //A0 = Global Context
-//A1 = Collision Body Ptr
+//A1 = CollisionBody*
+//A2 = Actor Instance
+//A3 = OverlayCollision* 
+//V0 = 1
+
+
+80049FCC //collision, ?
+//A0 = Global Context
+//A1 = CollisionBody*
 //zero Collision Body + 0x0C
 //zero 0x02 bit on Collision Body + 0x12
 //zero 0x01 bit on Collision Body + 0x13
 
 
-80049FF4 //graph, Initialize Collision Struct (+0x18) Helper
+80049FF4 //Initialize CollisionBodyInfo + 0x00 (8 bytes) (Generic)
 //Initializes 0x8 bytes using 800EF9B8
 //A0 = Global Context
-//A1 = Actor Collision Struct + 0x18
+//A1 = CollisionBodyInfo*
+//V0 = 1
+
+8004A01C //Destruct CollisionBodyInfo + 0x00 (8 bytes)
+//A0 = Global Context
+//A1 = CollisionBodyInfo*
 //V0 = 1
 
 
-8004A030 // Initializes Collision Struct within Actor Instance
+8004A030 //Initialize CollisionBodyInfo + 0x00 (8 bytes) (Overlay)
 //A0 = Global Context
-//A1 = Actor Instance Collision Struct + 0x18
-//A2 = Overlay Collision Struct + ?
+//A1 = CollisionBodyInfo* 
+//A2 = OverlayCollision Struct + ? //special init vars ptr
 //V0 = 1
 
 
-8004A068 //graph, initialize collision struct (+0x20)
-//A0 = Global Context
-//A1 = Actor Collision Struct + 0x20
+8004A068 //Initialize CollisionBodyInfo + 0x08 (0x0C bytes) (Generic)
 //copy 0xC bytes from 800EF9C0
-
-
-8004A0AC // Initializes Collision Struct within Actor Instance
 //A0 = Global Context
-//A1 = Actor Instance collision struct + 0x20
-//A2 = Overlay collision struct + 0x14
+//A1 = CollisionBodyInfo* + 0x08
 //V0 = 1
 
 
-8004A0D4 //graph, Initialize Collision Struct (+0x18)
+8004A098 //Destruct CollisionBodyInfo + 0x08 (0x0C bytes)
+//A0 = Global Context
+//A1 = CollisionBodyInfo* + 0x08
+//V0 = 1
+
+
+8004A0AC //Initialize CollisionBodyInfo + 0x08 (0x0C bytes) (Overlay)
+//A0 = Global Context
+//A1 = CollisionBodyInfo* + 0x08
+//A2 = OverlayCollision* + 0x14
+//V0 = 1
+
+
+8004A0D4 // Initialize CollisionBodyInfo (Generic)
 //A0 = Global Context
 //A1 = Actor Collision Struct + 0x18
 //copy 0x28 bytes from 800EF9CC
 A128 jal	80049FF4
-A138 jal	8004A068
+A138 jal	8004A068 //initialize 0x0C bytes at struct + 0x08
 
 
-8004A194 // Initializes Collision Struct within Actor Instance
-//A0 = ?
-//A1 = Some Actor Instance Collision struct + 0x18
-//A2 = Ptr to Some Collision Struct + 0x08 (cylinder collision data?)
+8004A194 // Initialize CollisionBodyInfo (Overlay)
+//A0 = Global Context
+//A1 = CollisionBodyInfo* 
+//A2 = OverlayCollision* + 0x08 (cylinder collision data?)
 //V0 = 1
 //
 A19C //S0 = A2
-A1C0 JAL	8004A030 //simply initializes more data
-A1D4 JAL 	8004A0AC //initializes more data
+A1C0 JAL	8004A030 // Initialize CollisionBodyInfo + 0x00
+A1D4 JAL 	8004A0AC // Initialize CollisionBodyInfo + 0x08
 
 
 8004A27C //graph, collision, ?
@@ -2535,46 +2716,50 @@ A1D4 JAL 	8004A0AC //initializes more data
 //zero 0x02 bit on Collision Body + 0x18 + 0x17
 
 
-8004A484 //graph, unknown
-//collision initialization related
-
-
-8004A874 //graph, Initialize Collision Group Struct
-//Possibly Cylinder Group Type
+8004A484 //Initialize Collision Type 0 (Generic)
+//Inititalizes CollisionBody and element array
 //A0 = Global Context
-//A1 = Ptr to Actor Collision Struct
-//A2 = Actor Instance
-//A3 = Ptr to Actor Overlay Collision Struct
-//SP+0x10 = Ptr to Collision Body Array
-A89C	jal	80049F50
+//A1 = CollisionBody* 
+//V0 = 1
+A48C jal    80049E70
 
 
-8004AACC //graph, initialize collision struct (+0x40)
+8004A874 //Initialize Collision Type 0 (Overlay)
+//Cylinder Collection
+//A0 = Global Context
+//A1 = CollisionBody* 
+//A2 = Actor*
+//A3 = OverlayCollision*
+//SP+0x10 = Ptr to Cylinder array
+A89C	jal	80049F50 //Initialize CollisionBody (overlay)
+
+
+8004AACC //Initialize Collision Type 1 (+0x40) (Generic)
 //Initializes 0xC bytes copying from 800EFA0C
 //Poor Optimization
-//A0 = Global COntext
-//A1 = Actor Collision Struct + 0x40
-
-
-8004AB3C // Initializes Collision Struct within Actor Instance
 //A0 = Global Context
-//A1 = Some Actor Instance collision struct + 0x40
-//A2 = Some Overlay collsion struct + 0x20
+//A1 = CollisionBody* + 0x40
 
 
-8004AB7C //graph, Initialize Collision Struct
+8004AB3C //Initialize Collision Type 1 (+0x40) (Overlay)
 //A0 = Global Context
-//A1 = Ptr to Actor Collision Struct
+//A1 = CollisionBody* + 0x40
+//A2 = OverlayCollision* + 0x20
+
+
+8004AB7C //Initialize Collision Type 1 (Generic)
+//A0 = Global Context
+//A1 = CollisionBody*
 AB90 jal	80049E70 //Initialize 0x00 to 0x18 of Collision Struct
 ABA0 jal	8004A0D4 //Initialize 0x18 to 0x40 of Collision Struct
 ABB0 jal	8004AACC //Initialize 0x40 to 0x4C of Collision Struct
 
 
-8004ACEC // Initialize Collision From Data
+8004ACEC //Initialize Collision Type 1 (Overlay)
 //A0 = Global Context
-//A1 = Some collision struct within actor instance
-//A2 = Actor Instance
-//A3 = Some collision struct, located within actor's overlay
+//A1 = CollisionBody* 
+//A2 = Actor*
+//A3 = OverlayCollision*
 //V0 = 1
 //
 AD08 JAL	80049F50
@@ -2591,19 +2776,74 @@ AD38 JAL	8004AB3C
 ADE8 jal 80049FCC
 ADF8 jal 8004A27C
 
+8004B064 //Initialize Collision Type 2 (Generic)
+//Inititalizes CollisionBody and element array
+//A0 = Global Context
+//A1 = CollisionBody* 
+//V0 = 1
+B06C jal    80049E70
 
-8004B698 //CollisionBody Type 3 init related
+
+8004B3EC //Initialize Collision Type 2 (Overlay)
+//A0 = Global Context
+//A1 = CollisionBody* 
+//A2 = Actor*
+//A3 = OverlayCollision*
+//SP+0x10 = Ptr to triangle array
 
 
-8004B714 //CollisionBody Type 3 Update Bounding Box?
+8004B698 //Initialize Collision Type 3 Quad (Generic)
+//A0 = Global Context
+//A1 = CollisionBody* + 0x40
+//V0 = 1
+
+8004B6E4 //Destruct Collision Type 3 Quad
+//just pushes args on the stack
+//A0 = Global Context
+//A1 = CollisionBody* + 0x40
+//V0 = 1
+
+
+
+8004B714 //CollisionBody Type 3 Update Bounding Box
 //Updates Type 3's bounding box based on stored points
 //A0 = CollisionBody_ShapeType3* 
 
 
-8004B7D0 //CollisionBody Type 3 initialization related
+8004B7D0 //Initialize Collision Type 3 Quad (Overlay)
+//A0 = Global Context
+//A1 = CollisionBody* + 0x40 //CollisionBody_ShapeType3*
+//A2 = OverlayCollision* + ?
+//V0 = 1
+//
+//Copy 0x30 bytes from A2 to A1
+//
+B83C jal    8004B714 //update bounding box
 
-8004B960 //Initialize CollisionBody Type 3
+8004B858 //Initialize Collision Type 3 (Generic)
+//A0 = Global Context
+//A1 = CollisionBody*
+B86C jal    80049E70
+B87C jal    8004A0D4
+B88C jal    8004B698
+
+8004B8A8 //Destruct Collision Type 3
+//A0 = Global Context
+//A1 = CollisionBody*
+//V0 = 1
+B8BC jal    80049EB8 //colbody
+B8CC jal    8004A154 //colbodyinfo
+B8DC jal    8004B6E4 //quad
+
+8004B960 //Initialize Collision Type 3 (Overlay)
+//A0 = Global Context
+//A1 = CollisionBody* 
+//A2 = Actor*
+//A3 = OverlayCollision*
+//V0 = 1
 B97C jal	80049F50
+B994 jal    8004A194
+B9AC jal    8004B7D0
 
 
 8004BD50 //graph, CollisionCheck_setAT
@@ -2910,6 +3150,10 @@ F8BC jal	8004F610
 	//A1 = colAt ptr
 //
 
+8004F8DC //Get Mass Type
+//A0 = Actor Mass
+//V0 = 0 if mass == 0xFF, 1 if mass == 0xFE, or 2
+
 8004F918 //Handles Body Pushback
 //A0 = CollisionBody* left
 //A1 = CollisionBodyInfo* leftInfo
@@ -2918,7 +3162,22 @@ F8BC jal	8004F610
 //SP+0x10 = CollisionBodyInfo* rightInfo
 //SP+0x14 = vector3_f32* rightxyz //integers
 //SP+0x18 = f32 displacement
-
+//
+F9D8 jal    8004F8DC //Get Mass Type for left collision
+//SP+0x18 = result
+F9E8 jal    8004F8DC //Get Mass Type for right collision
+//
+//F18 = mass left
+//F6 = mass right
+FA40
+//F8 = float at 801072B4 //0.008f
+//F2 = mass left + mass right
+//F0 = abs (f2)
+//SP + 0x34 = f2
+FA64 //branch FA80/4 if F0 is not less than F8
+FA80/4
+//A0 = arg SP+0x14
+//A1 = arg A2
 
 800502A8 //CollisionCheck, initializes CollisionCheck portion of the common Actor struct
 //Actor 0000, 0018, most enemies?
@@ -2952,12 +3211,12 @@ F8BC jal	8004F610
 //Actor 0095
 
 
-80050B00 //Collision, copies an actor's coordinates, and saves them as halfwords
-//A0 = Actor Instance
-//A1 = Actor Collision Struct
+80050B00 //Set Cylinder Coords to Actor Coords (Collision Type 1)
 //Coordinates saved at Struct + 0x46
+//A0 = Actor*
+//A1 = CollisionBody*
 
-80050B64 //Collision, Update CollisionBody Type 3 Triangles
+80050B64 //Update CollisionBody Type 3 Quad
 //A0 = CollisionBody* //type 3 body
 //A1 = vector3_f32* pointA
 //A2 = vector3_f32* pointB
@@ -3222,12 +3481,19 @@ JAL 800C66B0
 //A1 = Segment Address
 
 
-80057030 //Copy bytes
-//A0 = Copy to Address
-//A1 = Copy from Address
-//A2 = Bytes to copy
-//V0 = Address copied to
+80057030 //memcopy
+//A0 = void* copyto
+//A1 = const void* copyfrom
+//A2 = int numBytes
+//V0 = void* copyto
 //If bytes to copy <= 0, no bytes will be copied
+
+
+80057060 //memset
+//A0 = void* copyto
+//A1 = int val
+//A2 = int bytes
+//V0 = void* copyto
 
 
 800570C0 //Draw Get Item
@@ -3296,7 +3562,7 @@ JAL 800C66B0
 800597C0 //Get NPC Mask Reaction
 //A0 = ?
 //A1 = ?
-//V0 = Lookup result. 
+//V0 = Lookup result
 
 
 80059810 //Zero Global Context + 0x120FC flags
@@ -3373,12 +3639,12 @@ BF30 JAL	80066804 //?
 //SP+18 = Ptr to Graphics Context
 
 
-800619CC //graph, update rain count
+800619CC //graph, Update Weather/Sun events?
 //Updates the number of rain drops that should be drawn
 //A0 = Global Context
 
 
-80063534 //Set next entrance, Warp Songs
+80063534 //Update Next Spawn (Warp Songs)
 //A0 = Global Context
 354C //zero byte at 800F1640, custom time-based environment lighting settings
 3550 //t7 = s16 8011A5D0 + 0x1394, warp song destination in this context
@@ -3410,7 +3676,7 @@ BF30 JAL	80066804 //?
 
 
 8006385C //Performs some sort of physics related calculation
-//A0 = Ptr to float velocity component
+//A0 = float* velocity y component
 //A1 = ?, 0 this pass. If data pointed to by A0 is less than this, A2 is negated before adding
 //A2 = Velocity Delta (float). Added to velocity component
 //V0 = 0 if ? (perhaps if velocity component is non-zero?), else 1
@@ -3626,14 +3892,6 @@ jal 800667BC
 65C0 jal	80066334
 
 
-800667BC //draw, Write Light Data to POLY_OPA_DISP append end
-//A0 = Graphics Context
-//A1 = u8 Red
-//A2 = u8 Green
-//A3 = u8 Blue
-//V0 = ptr to result data
-
-
 80066610 //Unload Light Source
 //A0 = Global Context
 //A1 = Global Context + 0x7A8
@@ -3652,6 +3910,14 @@ jal 800667BC
 665C jal	800663C0
 
 
+800667BC //draw, Write Light Data to POLY_OPA_DISP append end
+//A0 = Graphics Context
+//A1 = u8 Red
+//A2 = u8 Green
+//A3 = u8 Blue
+//V0 = ptr to result data
+
+
 80066804 //Lighting engine related
 //Seems to iterate over active light sources
 //A0 = Global Context
@@ -3659,26 +3925,26 @@ jal 800667BC
 
 //************ zelda malloc? *********************
 
-80066C10 //mem, Allocates Memory on Game State Block List (Head End) (CE060)
-80066C38 //mem, Allocates Memory on Game State Block List (Tail End) (CE17C)
+80066C10 //mem, Allocates Memory on Game State Block List (Head End) (800CE060)
+80066C38 //mem, Allocates Memory on Game State Block List (Tail End) (800CE17C)
 //Heap Reference Ptr = 8011BEF0
 //Called By Overlays
 //A0 = Space to Allocate
 //V0 = Ptr to allocated space, or null
 
-80066C60 //mem, ? on Game State Block List (CE514)
+80066C60 //mem, ? on Game State Block List (800CE514)
 //A0 = ?
 //A1 = ?
-80066C90 //mem, Free Memory on Game State Block List (CE2B4)
+80066C90 //mem, Free Memory on Game State Block List (800CE2B4)
 //Heap Reference Ptr = 8011BEF0
 //A0 = Ptr to Space to Free (does not factor Block List Node)
 
-80066CB8 //mem, ? (CE060)
+80066CB8 //mem, ? (800CE060)
 //
 //A0 = Type Size?
 //A1 = Number of Records
 
-80066D10 //mem Get Game State Free Space Info (CE688)
+80066D10 //mem Get Game State Free Space Info (800CE688)
 //A0 = int*, total free space on heap? (8011F194 this pass)
 //A1 = int*, total free space on heap (8011F190 this pass)
 //A2 = int*, total allocated space on heap, not factoring in memory nodes (8011F18C this pass )
@@ -3721,10 +3987,68 @@ jal 800667BC
 
 
 
-80067440 //?
-//A0 = ptr ? (8000031C this pass)
+80067440 //PreNMI, ?
+//A0 = osAppNMIBuffer ptr // 8000031C
+//
+//write s32 0 at osAppNMIBuffer + 0x00
+//t6 = osResetType
+//t8 = 0
+//t9 = 0
+7454 //branch 746C/70 if osResetType != ColdReset
+//write s32 0 at osAppNMIBuffer + 0x04, 0x08, 0x0C
+7464 //branch 74A0
+746C/70
+//t7 = lw at osAppNMIBuffer + 0x04
+//t3 = lw at osAppNMIBuffer + 0x0C
+//t5 = lw at osAppNMIBuffer + 0x14
+//t2 = lw at osAppNMIBuffer + 0x08
+//t4 = lw at osAppNMIBuffer + 0x10
+//t0 = t7 + 1
+//t7 = t3 + t5
+//at = t7 < t5
+//t6 = at + t2
+//t6 = t6 + t4
+//sw t0, osAppNMIBuffer + 0x04
+//sw t6, osAppNMIBuffer + 0x08
+//sw t7, osAppNMIBuffer + 0x0C
+74A0 
+//
+//write s32 0 at osAppNMIBuffer + 0x14, 0x10
+//return
+
+800674B8 //PreNMI, Save Time to osAppNMIBuffer
+//A0 = osAppNMIBuffer ptr // 8000031C
+//
+//t7 = arg a0
+//s32 osAppNMIBuffer + 0x00 = 1
+74CC jal    800048C0 //osGetTime
+//
+//t8 = arg a0
+//OSTime osAppNMIBuffer + 0x10 = V0,V1
+
+8006B6FC //start onepointdemo
+//A0 Global Context	
+//A1 onepointdemo id
+//A2 u16 Framecount	
+//A3 Actor* 	
+//SP+0x10 = u16 ??
+
+8006BA10 //start onepointdemo 0x1392
+//A0 = Global Context
+//A1 = Actor* instance
+//
+BAD0 //A1 = actor type
+BAE4 //branch BB10 if actor type not < 0x0C
+BAF8 //jump table 801083B0, indexed by actor type
+
+8006BB7C //start onepointdemo 0x1392 with sfx
+//A0 = Global Context
+//A1 = Actor* instance
+//A2 = int sfx id
 
 8006BF04 //Load minimap address
+//A0 = Global Context
+//A1 = Minimap Index
 
 8006D5B4 //?
 //80108690 is some sort of jump table for performing the "filling hearts" animation stuffs?
@@ -3797,7 +4121,7 @@ F958 //Adult turning child
 //A1 = C-Item Index
 //
 //T2 = Inventory Slot Table ptr
-FDF0 //T4 = u8 at Invent Slot Table + Item Index (OUT OF BOUNDS ACCESS!)
+FDF0 //T4 = u8 at Invent Slot Table + Item Index (GLITCH: OUT OF BOUNDS ACCESS!)
 FDF4 //AT = item < 0x8A
 FE04 //branch FE20 if true, V0 = Slot offset
 FF60 //branch 003C if item is < 0x3B (Kokiri Sword) or item is not <= 0x3D (Biggoron Sword)
@@ -4393,11 +4717,56 @@ FFD0 //zeroes out save context data from 0x1C -> 0x1354
 12DC //a1 = 0x8000
 12E4 sw 	v0, 0x0000(t6) //Store start address of sram? at Global Context (ovl_title) + 0x1D0
 
+80091310 //Initialize OSPiHandle and partially OSIoMesg for save data transfers
+//A0 = baseAddress //sram address
+//A1 = OSPiHandle.type
+//A2 = OSPiHandle.domain
+//A3 = OSPiHandle.latency
+//SP + 0x10 = OSPiHandle.pageSize
+//SP + 0x14 = OSPiHandle.relDuration
+//SP + 0x18 = OSPiHandle.pulse
+//SP + 0x1C = OSPiHandle.speed
+//
+//SP -= 0x20
+//
+//S0 = 800FC0B0 //OSPiHandle
+//V0 = arg A0
+//T6 = S0->baseAddress
+//V0 = V0 + 0xA0000000
+//return if T6 == V0 //the OSPiHandle/OSIoMesg was inititalized previously
+//intialize OSPiHandle 800FC0B0
+//set OSPiHandle.type to arg A1
+//set OSPiHandle.baseAddress
+1390 jal    80002E80 //bzero
+    //A0 = 800FC0C4
+    //A1 = 0x60
+1398 jal    80005130 //__osDisableInt
+13A4 //v1 = *__osPiTable //8000638C
+//set OSPiHandle->next to *__osPiTable
+//set *__osPiTable to OSPiHandle 800FC0B0
+13B4 jal    800051A0 //__osRestoreInt
+//start initializing the OSIoMesg at S0 + 0x74 //OSIoMesgHdr
+//OSIoMesgHdr.type = 0
+//OSIoMesgHdr.retQueue = 800FC13C
+//OSIoMesg.devAddr = arg A0
+//return
+
 
 800913E8 // Load/Save Data from/to SRAM (inner function)
 //A0 = Copy to/from address
 //A1 = Transfer Size
 //A2 = 0 if loading data, 1 if saving data
+//
+1408 jal    80004220 //osCreateMesgQueue
+    //a0 = OSMesgQueue* 800FC13C //800FC0B0 +0x74 + 0x18
+    //a1 = OSMesg* SP + 0x1C
+    //a2 = 1 //single message
+//sw arg A0 at 0x007C(800FC0B0)
+//sw arg A1 at 0x0084(800FC0B0)
+143C jal    800040C0 //osEPiStartDma
+    //a0 = OSPiHandle* 800FC0B0
+    //a1 = OSIoMesg* 800FC124 //+0x74
+    //a2 = arg a2
 
 
 80091474 // Load/Save Data from/to SRAM (external function)
@@ -4408,6 +4777,26 @@ FFD0 //zeroes out save context data from 0x1C -> 0x1354
 //A3 = 0 if loading data, 1 if saving data
 14AC	JAL	80091310 // function call resets some buffer stuffs
 14C0	JAL 800913E8 // function call does ??
+
+
+//*************** unk ***********************
+
+800914E0 //
+
+800915CC //?
+//F12 = ? (distance from Link?)
+//A1 = u8 ? //written to 8011CF10 + 0x04 array
+//A2 = u8 ? //written to 8011CF10 + 0x44 array
+//A3 = u8 ? //written to 8011CF10 + 0x84 array
+//
+//F4 = float at 80108B50 (1,000,000)
+//
+15F4 //branch 1604 if F12 <= F4
+1604 jal    800D0DC0 //compute square root of arg F12
+1614 //A0 = root of arg F12, capped to 1,000 max
+1620 //return if A0 >= 1,000
+1628 //return if arg A1 == 0
+1630 //return if arg A3 == 0
 
 
 //*************** view.c ***********************
@@ -4734,18 +5123,19 @@ D9B0 jr 	$ra
 //A0 = Global Context
 
 
-8009DA10 //?, related to zone outs in Tower Collapse
+8009DA10 //
+// Called after game over -> continue
+// related to setting Tower Collapse spawn
 //A0 = Global Context pointer
-DA10 ADDIU	SP, SP, 0xFFE8
-DA14 LUI	V1, 0x8012
-DA18 ADDIU	V1, V1, 0xA5D0 //8011A5D0
-DA1C SW 	RA, 0x0014(SP)
-DA20 ADDIU	T6, R0, 0xFFFF
-DA24 LUI	AT, 0x0001 //AT = 0x10000
-DA28 SW 	T6, 0x1364(V1) //zone out type?
-DA2C ADDU	AT, AT, A0 //AT = global context + 0x10000
-DA30 ADDIU	T7, R0, 0x0014 //20
-DA34 SB 	T7, 0x1E15(AT) //store 20 at global context + 0x11E15
+//
+//SP -= 0x18
+//
+//v1 = 8011A5D0
+//T6 = -1
+//0x1364(v1) = -1 //zoneout type
+//AT = global context + 0x10000
+//t7 = 20
+//s8 Global Context + 0x11E15 = 20
 DA38 LH 	V0, 0x00A4(A0) //V0 = scene number
 DA3C ADDIU	AT, R0, 0x000E //AT = 0xE, Tower Collapse Interior scene number
 DA40 ADDIU	T8, R0, 0x043F //T8 = 0x43F
@@ -5394,6 +5784,7 @@ jal	800AB6BC //convert float matrix to fixed point matrix
 
 
 800AB900 //graph, graphics Create matrix on POLY_OPA_DISP
+//matrix stack
 //A0 = Graphics Context
 //decrements POLY_OPA_DISP append_end by -0x40
 jal 800AB8D8
@@ -5714,6 +6105,7 @@ D418 //S2 = SP+0x40
 
 800C2C90 //Sound related
 //handles setting the instrument for song playback?
+//A0 = Instrument
 
 
 800C31A0 //
@@ -6430,6 +6822,17 @@ BC9C //Process code 0x1D (English, fish weight)
 //A1 = Text Id
 //A2 = Z-Targeted? Actor
 
+
+800DCF50 //?
+//A0 = Global Context
+//A1 = s16 ? (id < 0x0F == ?, id < 0x22 are ocarina songs where 0x0F is Minuet, 0x86D == ?
+D060 //A3 = arg A1
+
+
+800DD400 //Set ocarina playback dialog?
+//wrapper for 800DCF50
+//A0 = Global Context
+//A1 = Some Id (Malon set 0x16)
 
 800DD464 //Dialog Related
 //Possibly tests dialog state

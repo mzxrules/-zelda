@@ -1,0 +1,84 @@
+makerom
+
+0x1000 bytes from makerom + 0x0040 is written to A400 0040
+========
+0040 //t1 = 0xA4001FF0
+     //t3 = 0xA4000040
+0044
+//t0 = lw at t1 - 0x0FF0
+//t2 = lw at t3 + 0x0044
+//t2 = t2 xor t0
+//sw t2 at t1 - 0x0FF0
+//inc t1, t3 by 4
+//branch 0044 if t0 not 0
+0064
+
+0160 //MIPS Interface setup 
+//MI_INIT_MODE_REG
+
+01E8 jal A400087C //initialize RDRAM?
+01F0 //branch 02D4 if V0 == 0
+
+036C //begin checking if rdram can be read?
+041C //load S3..S7 from stack, increment stack by 0x18
+0438 //possibly Store I-Cache Tag 0/0 for 16KB of Main Memory in 32 byte chunks,
+     //starting at 80000000
+0460 // Store D-Cache Tag 0/0 For 8KB Of Main Memory In 16 Byte Chunks Starting At $80000000
+04D0 // Copy Routine At $4C0-$774 In Bootcode (Lockout Finale & Program Loader)
+     // To Uncached RAM, Address Zero, & Jump To It
+
+0520
+//t0 = A4000554
+//t3 = A4000888
+//t1 = A0000004
+0524 //loop for copying block at t0 to t1
+054C jump 80000004
+
+087C //subroutine start
+//store a bunch of data to A4001EF0 (SP-0xA0)
+08F0 jal A4000984
+
+0984 //? function
+//V0 = ?
+//
+//SP -= 0x20
+//
+0998 //loop start, loop 0x40 times?
+099C //return 0 if t4 < 0x0040
+09A4 jal A4000A10
+    //call with A0 = t4?
+09EC jal A4000A84
+    //a0 = A0 -= 0xFC90
+0A08 //return    
+    
+0A10 //? function
+//a0 = ?
+//
+//SP -= 0x28
+0A1C jal A4000B44
+    //call with 
+    //A0 = ?
+    //A1 = 2
+    
+
+
+0B44 //Set RDRAM_MODE_REG function 
+//a0 = ?
+//a1 = ? //2 this pass
+//
+0BB4 //branch BC4 if arg A1 is not K1
+0BB8 //store t7 at A3F0000C
+
+    
+====
+80000004
+//previous stage of makerom located at
+// A4000554 to A4000888
+//
+0008 //t1 = entrypoint address
+0010 //t2 = 0x1FFFFFFF //address mask
+001C //set entrypoint rdram address
+0044 //set entrypoint boot code rom address
+
+
+10001000 //makerom program entrypoint

@@ -1,0 +1,48 @@
+800062E0 z_stack*   first;
+808062E4 z_stack*   last;   
+
+struct z_stack
+{
+    z_stack*        next
+    z_stack*        prev
+    void*           bufferStart
+    void*           bufferEnd
+    s32             bufferInit
+    s32             unk_0x14
+    char*           string
+}
+
+80006370 pimgr info struct
+
+struct
+{
+    /* 0x00 */ u32 //pimgr initialized
+    /* 0x04 */ u32 //unk
+    /* 0x08 */ OSMesgQueue* dmamgr io_mesg
+    /* 0x0C */ 
+    /* 0x10 */ OSMesgQueue* ?
+    /* 0x14 */ 
+    /* 0x18 */ func* ?
+}
+8000638C OSPiHandle *__osPiTable
+
+80006390 //pimgr OSPiHandle->type table
+OSPiHandle      *type[2?]
+
+80006760 //pimgr message type handlers, starting at 0x0A
+/*
+ * I/O message types
+ */
+#define OS_MESG_TYPE_BASE	(10)
+#define OS_MESG_TYPE_LOOPBACK	(OS_MESG_TYPE_BASE+0)
+#define OS_MESG_TYPE_DMAREAD	(OS_MESG_TYPE_BASE+1)
+#define OS_MESG_TYPE_DMAWRITE	(OS_MESG_TYPE_BASE+2)
+#define OS_MESG_TYPE_VRETRACE	(OS_MESG_TYPE_BASE+3)
+#define OS_MESG_TYPE_COUNTER	(OS_MESG_TYPE_BASE+4)
+#define OS_MESG_TYPE_EDMAREAD	(OS_MESG_TYPE_BASE+5)
+#define OS_MESG_TYPE_EDMAWRITE	(OS_MESG_TYPE_BASE+6)
+
+
+80008970 // OSPiHandle      type_0
+800089E8 // OSPiHandle      type_1
+80009E80 // OSTime _osCurrentTime

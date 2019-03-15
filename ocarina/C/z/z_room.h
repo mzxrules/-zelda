@@ -5,4 +5,4 @@ typedef struct
 	Coord_s16 pos;
 	Rotation rot;
 	u16 var;
-} z_RoomActorSpawn_t;
+} z_room_actor_spawn_t;

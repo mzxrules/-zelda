@@ -1,4 +1,4 @@
-#include <h/vector.h>
+#include "h/vector.h"
 #include <ultra64.h>
 
 extern float func_800CDCCC();

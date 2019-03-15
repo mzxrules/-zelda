@@ -1,9 +1,9 @@
-#ifndef __Z_ACTOR_S_H_
-#define __Z_ACTOR_S_H_
+#ifndef __Z_ACTOR_H_
+#define __Z_ACTOR_H_
 #include <ultra64.h>
-#include <h/vector.h>
+#include "h/vector.h"
 
-struct z_Gctx;
+struct z_game_t;
 
 typedef struct
 {
@@ -12,7 +12,7 @@ typedef struct
         char Damage : 4;
         char Effect : 4;
     } Attack[0x20];
-} z_ActorDamageTable;
+} z_actor_damage_t;
 
 typedef struct
 {
@@ -40,7 +40,7 @@ typedef struct
     /* 0x38 */ Coord_f  pos3;      /* Related to camera */
     /* 0x44 */ Rotation rot1;      /* 0x30 rotation copied into here */
     /* 0x4A */ u16      unk_0x04A;
-    /* 0x4C */ float    unk_0x04C; /* I know this is a float from breakpointing it */
+    /* 0x4C */ float    unk_0x04C; /*  */
     /* 0x50 */ Coord_f  scale;     /* sets x,y,z scaling factor. Typically, a factor of 0.01 is used for each axis */
     /* 0x5C */ Coord_f  velocity;
     /* 0x68 */ float    speedXZ;   /* Always positive, stores how fast the actor is traveling along the XZ plane */
@@ -54,8 +54,8 @@ typedef struct
     /* 0x7D */ u8       floorPolySource; /* Complex Poly Surface Source. 0x32 = Scene. related to 0x80/88 */
     /* 0x7E */ s16      wallRotation; /* Orientation of the wall poly plane's positive face */
     /* 0x80 */ float    unk_0x080; /* floor poly height? */
-    /* 0x84 */ float    waterSurfaceDistance; /* relative, -32000f if not near water */
-    /* 0x88 */ u16      bgcheckState; /*  */
+    /* 0x84 */ float    water_surface_dist; /* relative, -32000f if not near water */
+    /* 0x88 */ u16      bgcheck_flags; /*  */
         /*  & 0x0001 = near floor
         /*  & 0x0004 = near ledge
         /*  & 0x0008 = near wall?
@@ -72,7 +72,7 @@ typedef struct
     /* For actors which contain a damage chart (example: Stalfos)... */
     struct 
     {
-    /* 0x98 */ z_ActorDamageTable* DamageChart;  /* Pointer to the actor's Damage Chart in RAM. */
+    /* 0x98 */ z_actor_damage_t* DamageChart;  /* Pointer to the actor's Damage Chart in RAM. */
     /* 0x9C */ Coord_f  displacement; /* amount to correct velocity (0x5C) by when colliding into a body */
     /* 0xA8 */ s16      unk_0x0A8; 
     /* 0xAA */ s16      unk_0x0AA; 
@@ -115,28 +115,28 @@ typedef struct
     /* 0x116 */ u8      unknown; /* set within a routine that deals with collision */
     /* 0x117 */ u8      naviEnemyId; /* sets what 0600 dialog to display when talking to navi. Default 0xFF */
     
-    /* 0x118 */ struct z_Actor* attachedA; /* Interfacing Actor?  */
+    /* 0x118 */ struct z_actor_t* attachedA; /* Interfacing Actor?  */
     /* e.g. Link holding chu, Chu instance stores ptr to Link instance here,
             Anju having Link's ptr when giving an item,
             Volvagia Hole stores Volvagia Flying here */
     
-    /* 0x11C */ struct z_Actor* attachedB; /* Attached to Actor ( */
+    /* 0x11C */ struct z_actor_t* attachedB; /* Attached to Actor ( */
     /* e.g. Link holding chu, Link instance stores ptr to Bombchu instance here */
-    /* 0x120 */ struct z_Actor* actor_prev; /* Previous z_Actor of this type */
-    /* 0x124 */ struct z_Actor* actor_next; /* Next z_Actor of this type */
+    /* 0x120 */ struct z_actor_t* actor_prev; /* Previous z_actor_t of this type */
+    /* 0x124 */ struct z_actor_t* actor_next; /* Next z_actor_t of this type */
     /* 0x128 */ void*   Init; /* Initialization Routine. Mandatory */
     /* 0x12C */ void*   Dest; /* Actor destructor  */
     /* 0x130 */ void*   Main; /* Main Update function, called every frame the actor is to be updated */
     /* 0x134 */ void*   Draw; /* Draw Routine, writes necessary display lists */
     /* 0x138 */ void*   CodeEntry; /* Address to source overlay file's reference in code (file) */
     /* From here on, the structure and size varies for each actor */
-} z_Actor;
+} z_actor_t;
 
 typedef struct
 {
-    /* 0x000 */ z_Actor base;
+    /* 0x000 */ z_actor_t base;
     /* 0x13C */ s32 ActorBgId; /* Index for poly mesh */
-} z_ActorBg;
+} z_actor_bg_t;
 
 
 /* Main, Draw arguments */

@@ -1,0 +1,28 @@
+8082FDC4 -> 8074D254 //Test Item Button Pressed Index
+//V0 = 0 b, 1 c-left, 2 c-down, 3 c-right
+//uses table 8085CFA8
+
+808460B8 -> 80763548: //?
+62B0 //load input data, storing it at SP+0x44
+
+
+
+
+80844EF8 -> 80762388 //?
+//A0 = Link Instance
+//A1 = Global Context
+//A2 = ptr to Input Data
+//
+//SP -0x70
+//
+//S0 = arg a0
+
+
+//data
+
+8085CFA8 -> 8077A438 //u16[4] item button masks (b, c-left, c-down, c-right)
+80862B44 -> 8077FFD4 ptr Input
+
+//instance
+0x0B5E u8 ?
+0x0D6A s8 ?

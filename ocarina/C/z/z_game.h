@@ -1,9 +1,9 @@
-#ifndef __Z_GLOBALCTX_H_
-#define __Z_GLOBALCTX_H_
+#ifndef __Z_GAME_H_
+#define __Z_GAME_H_
 #include <ultra64.h>
-#include <z/actor_s.h>
 #include <h/vector.h>
-#include <z/graphicsctx.h>
+#include "z_actor.h"
+#include "z_graphics.h"
 
 
 typedef struct /*  z_getfile_t */
@@ -27,18 +27,18 @@ typedef struct
 	/* 0x06 */ OSContPad last;
 	/* 0x0C */ OSContPad pressEdge;
 	/* 0x12 */ OSContPad releaseEdge;
-} z_Input; /*  0x0018  */
+} z_input_t; /*  0x0018  */
 
 /* volatile const int _wtf = sizeof(z_Input); */
 
 typedef struct
 {
-	/* 0x00 */ int *gfxCtx;
+	/* 0x00 */ z_gfx_t *gfxCtx;
 	/* 0x04 */ int *update;
 	/* 0x08 */ int *destuctor;
 	/* 0x0C */ int *init_next;
 	/* 0x10 */ int size;
-	/* 0x14 */ z_Input controllers[4];
+	/* 0x14 */ z_input_t controllers[4];
 	/* 0x74 */ unsigned int heap_size;
 	/* 0x78 */ int *heap;
 	/* 0x7C */ int *heap_free_start;
@@ -52,22 +52,22 @@ typedef struct
 	/* 0x9C */ int updateCount;
 	/* 0xA0 */ int unk6;
 	
-} z_GameState; /* 0xA4 bytes */
+} z_game_common_t; /* 0xA4 bytes */
 
 typedef struct {
 	/* 0x000 */ char __pad_0x000[0x18];
 	/* 0x018 */ float angleOfView;
 	/* 0x01C */ char __pad_0x01C[0x70];
-	/* 0x08C */ z_GameState* gameState;
+	/* 0x08C */ z_game_common_t* gameState;
 	/* 0x090 */ char __pad_0x090[0x50];
 	/* 0x0E0 */ int* projectionMatrix;
 	/* 0x0E4 */ int* projectionMatrixMult;
 	/* 0x0E8 */ char __pad_0x0E8[0x40];
-} z_VIEW_t; /* 0x128 bytes;  */
+} z_view_t; /* 0x128 bytes;  */
 
 typedef struct {
 	char __pad[0x16C];
-} z_Camera;
+} z_camera_t;
 
 
 typedef struct {
@@ -98,21 +98,21 @@ typedef struct {
 		int count;
 		z_Actor* head;
 	} category[12];
-} z_ActorCtx_t; /*  */
+} z_actor_ctxt_t; /*  */
 
 /* z_GCtx */
 /* Global Context, or the variables accessible to the */
 /* "game" game state */
 typedef struct { 
-	/* 0x0000 */ z_GameState game_state;
+	/* 0x0000 */ z_game_common_t game_state;
 	/* 0x00A4 */ short sceneId;
 	/* 0x00A6 */ char sceneDrawSettings;
 	/* 0x00A7 */ char __pad_0x00A7[9]; /* unused */
 	/* 0x00B0 */ int *scene; /* scene file ptr */
 	/* 0x00B4 */ int __pad_0x00B4;
-	/* 0x00B8 */ z_VIEW_t VIEW;
-	/* 0x01E0 */ z_Camera camera_data[4];
-	/* 0x0790 */ z_Camera *cameras[4];
+	/* 0x00B8 */ z_view_t VIEW;
+	/* 0x01E0 */ z_camera_t camera_data[4];
+	/* 0x0790 */ z_camera_t *cameras[4];
 	/* 0x07A0 */ char __pad_0x07A0[0x20];
 	/* 0x07C0 */ struct /* collision */
 	{
@@ -135,7 +135,7 @@ typedef struct {
 	/* 0x0814 */ z_ActorMesh actorMesh[50];
 	/* 0x1B9C */ short actorMeshLoaded[50];
 	/* 0x1C00 */ char __pad_0x1C00[0x24]; 
-	/* 0x1C24 */ z_ActorCtx_t actors;
+	/* 0x1C24 */ z_actor_ctxt_t actors;
 
 	/* 0x1C90 */ char __pad_0x1C90[0x98]; 
 	/* 0x1D28 */ int SceneSwitchFlags;
@@ -147,8 +147,8 @@ typedef struct {
 	/* 0x1D40 */ char __pad_0x1D40[0x234];
 	/* 0x1F74 */ int saveUnknown; /* pointer to some unknown data */
 	
-	/* 0x104F0 */ z_VIEW_t VIEW_2;
-	/* 0x117A4 */ struct /* z_ObjCtx_t */
+	/* 0x104F0 */ z_view_t VIEW_2;
+	/* 0x117A4 */ typedef struct /* z_ObjCtx_t */
 	{
 		/* 0x117A4 */ void	*obj_space_start;
 		/* 0x117A8 */ void	*obj_space_end;
@@ -164,10 +164,10 @@ typedef struct {
 			OSMesgQueue	load_mq;
 			OSMesg		load_m;
 		} objects[0x13];
-	} z_ObjCtx_t;
+	} z_obj_ctx_t obj_ctx;
 	
-} z_GCtx;
+} z_game_t;
 #endif
 
 
-/* volatile const int TEST = &(((z_GCtx *)((void *)0))->saveUnknown); */
+/* volatile const int TEST = &(((z_game_t *)((void *)0))->saveUnknown); */

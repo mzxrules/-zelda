@@ -29,16 +29,44 @@ typedef struct
     /* 0x1E */ u16      unk_0x01E;
     /* 0x20 */ u16      soundEffect; //Plays sound effect (relative to actor's location, if within range of camera?) 
     /* 0x22 */ u16      unk_0x022;
-    /* 0x24 */ Coord    Pos2; //Current coordinate
-    /* 0x30 */ u16      unk_0x030;
-    /* 0x32 */ u16      unk_0x032;
-    /* 0x34 */ char     buff[4];
-    /* 0x38 */ Coord    Pos3;
-    /* 0x44 */ rotation rot_1;
-    /* 0x4A */ u16      unk_0x04A;
-    /* 0x4C */ f32      unk_0x04C; /* I know this is a float from breakpointing it */
-    /* 0x50 */ Coord    Scale;
-    /* 0x5C */ char     buff2[0x54];
+    /* 0x24 */ Coord    position; //Current coordinate
+    /* 0x30 */ Rotation speedRot;  /* 0x32 sets what direction the 0x70 speedXZ variable is moving the actor */
+    /* 0x38 */ s8       unk_0x038;
+    /* 0x39 */ u8       unk_0x039;
+    
+    /* 0x3C */ Coord    Pos3;
+    /* 0x48 */ rotation rot_1;
+    /* 0x4E */ u16      unk_0x04E;
+    /* 0x50 */ u32      unk_0x050
+    /* 0x54 */ f32      unk_0x054; /* I know this is a float from breakpointing it */
+    
+    /* 0x58 */ Coord_f  scale;     /* sets x,y,z scaling factor. Typically, a factor of 0.01 is used for each axis */
+    /* 0x64 */ Coord_f  velocity;
+    /* 0x70 */ float    speedXZ;   /* Always positive, stores how fast the actor is traveling along the XZ plane */
+    /* 0x74 */ float    gravity;   /* acceleration due to gravity; value is added to Y velocity every frame */
+    /* 0x78 */ float    minVelocityY; /* sets the lower bounds cap on velocity along the Y axis */
+    
+    /* struct, collision related */
+    /* 0x7C */ int*     wallPoly;  /* Wall polygon an actor is touching */
+    /* 0x80 */ int*     floorPoly; /* Floor polygon an actor is over/touching */
+    /* 0x84 */ u8       wallPolySource; /* Complex Poly Surface Source. 0x32 = Scene */
+    /* 0x85 */ u8       floorPolySource; /* Complex Poly Surface Source. 0x32 = Scene. related to 0x80/88 */
+    /* 0x86 */ s16      wallRotation; /* Orientation of the wall poly plane's positive face */
+    /* 0x88 */ float    unk_0x080; /* floor poly height? */
+    /* 0x8C */ float    water_surface_dist; /* relative, -32000f if not near water */
+    /* 0x90 */ u16      bgcheck_flags; /*  */
+        /*  & 0x0001 = near floor
+        /*  & 0x0004 = near ledge
+        /*  & 0x0008 = near wall?
+        /*  & 0x0020 = set in water
+        /*  & 0x0040 = set in water
+        /*  & 0x0080 = on the ground
+        /*  & 0x0100 = ? 
+        /*  & 0x0200 = facing wall */
+    /* 0x92 */ s16      unk_roty; /* rotation y (give item, possibly next facing dir?/face toward link?) */
+    /* 0x94 */ float    unk_0x094;
+    /* 0x98 */ float    xzDistanceFromLink; 
+    /* 0x9C */ float    yDistanceFromLink; /*  relative distance */
     
 
     /* 8-10-2012 : Addition made by Jason777 */

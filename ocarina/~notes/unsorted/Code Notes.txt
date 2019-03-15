@@ -16,6 +16,10 @@ B71440 - Scene Table
 800F7A10 //Held Item display list pointer table? 0x17 records, 4 bytes ea
 800F8F34 inventory slot table (0x38 bytes)
 800FBD18 //func ptr table for scene pre-draw function, 0x35 records
+//struct start for saving
+800FC0B0 //OSPiHandle for save data transfer
+800FC124 //OSIoMesg for save data transfer
+800FC13C //osMesgQueue for save data transfer
 
 801029FC //Scarecrow's Song (short) (audio thread)
 80102B54 u8 //determines if func C31A0 uses 80102EE0 (== 1) or 80102EE8 (!= 1) buffer ptr
@@ -78,6 +82,11 @@ Crash Debugger, write to 003DD02C
 80118F80 //xyz collision stuff?
 
 8011BF00 s32 ptr to ovl_map_mark_data's dungeon array
+
+8011CF10 //?
++ 0x04 = u8[0x40] array of ?
++ 0x44 = u8[0x40] array of ?
++ 0x84 = u8[0x40] array of ?
 
 80121F1C s32 //current ocarina note frame?
 

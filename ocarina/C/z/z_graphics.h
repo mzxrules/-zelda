@@ -1,5 +1,5 @@
-#ifndef __Z_GRAPHICSCTX_H_
-#define __Z_GRAPHICSCTX_H_
+#ifndef __Z_GRAPHICS_H_
+#define __Z_GRAPHICS_H_
 #include <ultra64.h>
 typedef struct
 {
@@ -8,5 +8,5 @@ typedef struct
 	/* 0x008 */ u8 __pad_0x008[8];
 	/* 0x010 */ Gfx* OVERLAY_DISP;
 	/* 0x000 */
-} z_Graph;
+} z_gfx_t;
 #endif

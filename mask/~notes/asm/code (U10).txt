@@ -1,3 +1,34 @@
+Func 80093FF0 = 80004580
+
+80096C40 z_stack*   first;
+80096C44 z_stack*   last;
+80097530 //rng seed
+80097E90 OSPiHandle      *type[2?] //pimgr OSPiHandle->type table
+80097EA0 //?
+8009E3F0 OSMesg[1] //(0x08 bytes per record)
+8009E3F8 OSMesgQueue //mesg list at 80009E3F0
+8009CD50 //rng float temp
+801E026C string "sys_flashrom"
+801FBE10 OSMesgQueue ?
+801FBE2C s32 //?
+801FD008 //sys_flashrom args
+801FD01C OSMesgQueue //saving
+801FD034 OSMesg[1]   //save array
+801FD080 OSPiHandle
+    801FD08C //SRAM KSeg1
+801FCE38 z_stack  //
+
+struct z_stack
+{
+    z_stack*        next
+    z_stack*        prev
+    void*           bufferStart
+    void*           bufferEnd
+    s32             bufferInit
+    s32             unk_0x14
+    char*           string
+}
+
 //Thread stuff
 8009C480 //thread 02
 8009B358 //thread 18
@@ -11,6 +42,14 @@
 801FB6C0 //thread 07
 801FB468 //thread 10
 801F8310 //thread 05
+
+//sys_flashrom thread
+801FCE58 //thread 0x0D
+0000000D //id
+80185D40 //entrypoint
+801FD008 //args
+801FCE38 //stack ptr
+0000000D //priority
 
 801BD8B0 struct {
     /* 0x00 */ s16?

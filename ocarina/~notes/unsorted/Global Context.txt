@@ -46,17 +46,20 @@ Global Context (Game):
   12: OSContPad InputReleaseEdge; //Joystick Info is real-time input
   // OSContPad Struct (0x05 bytes, aligns to 0x06) is as follows:
       00: u16 button;
-        0001 = C-Right
-        0002 = C-Left
-        0004 = C-Down
-        0008 = C-Up
-        0010 = R Button
-        0020 = L Button
-        0800 = D-Up button
-        1000 = Start Button
-        2000 = Z Button
-        4000 = B Button
         8000 = A Button
+        4000 = B Button
+        2000 = Z Button
+        1000 = Start Button
+        0800 = D-Up button
+        0400 = D-Down button
+        0200 = D-Left button
+        0100 = D-Right button
+        0020 = L Button
+        0010 = R Button
+        0008 = C-Up
+        0004 = C-Down
+        0002 = C-Left
+        0001 = C-Right
       02: s8 = X axis, right is positive, left is negative
       03: s8 = Y axis, up is positive, down is negative
       04: u8 errno; //possibly wrong
@@ -133,7 +136,7 @@ Global Context (Game):
 0x1C14 (0x1454) s32 //num elements of 0x04 byte struct, default value 0x3E8
 0x1C18 (0x1458) s32 //num elements of 0x10 byte struct, default value 0x200
 0x1C1C (0x145C) s32 //num elements of 0x06 byte struct, default value 0x200
-0x1C20 (0x1460) s32 //?, value 0xF000
+0x1C20 (0x1460) s32 //some mem allocation, default 0x1CC00; //value 0xF000
 0x1C24 = Some Actor related struct
   00 = ?
   0C (0x1C30) = Actor Category Table
@@ -190,8 +193,10 @@ Global Context (Game):
   0x0C u16 //Dialog State
   0x0E u8[0xC8] //Textbox display data buffer, holds one box of data
 0x104A6 s16 //Dialog processing char index?
+0x104C8 s16 //Ocarina Song playback dialog
 0x104E0 ptr //Last Actor Spoken To (Exodus)
 0x104E4 s16 //0x08 header command, Disable Warp Songs (rooms)
+0x104E6 s16 //related to song playback
 0x104F0 //parameter_static/hud variables/minimap
   0x000 //VIEW struct //0x128 bytes, see below
   0x130 //parameter_static pointer, size 0x3B00
@@ -359,6 +364,7 @@ camera_struct: (0x16C bytes long)
 the second camera:
  0x004 f32 //tween time step (0 to 1)
  0x008 s16 //tween point list array index
+ 0x128 s32 sfx to play
 
 
 Game VIEW struct //0x128 bytes

@@ -31,7 +31,7 @@ typedef struct {
 		};
 	};
 	unsigned short equipment;
-} z_ItemEquips; //0x0A bytes
+} z_item_equips_t; //0x0A bytes
 
 typedef struct {
 	/* 0x00 */ int chests;
@@ -41,7 +41,7 @@ typedef struct {
 	/* 0x10 */ int unk;
 	/* 0x14 */ int visited1;
 	/* 0x18 */ int visited2;
-} z_SceneFlags; //0x1C bytes
+} z_scene_flags_t; //0x1C bytes
 
 typedef struct {
 	/* 0x00 */ float x;
@@ -54,7 +54,7 @@ typedef struct {
 	/* 0x13 */ unsigned char data; //used by grottos to store chest type, warp songs for spawn in sparkle color
 	/* 0x14 */ int tempFlags1; //GlobalContext + 0x1D2C
 	/* 0x18 */ int tempFlags2; //GlobalContext + 0x1D48
-} z_ZoneoutRespawn; //0x1C bytes
+} z_respawn_t; //0x1C bytes
 
 typedef struct {
 	
@@ -77,11 +77,11 @@ typedef struct {
 	/* 0x003A */ char haveMagic;
 	/* 0x003B */ char __pad_0x003B[4];
     /* 0x003F */ char ocarinaMinigame;
-	/* 0x0040 */ z_ItemEquips childEquips;
-	/* 0x004A */ z_ItemEquips adultEquips;
+	/* 0x0040 */ z_item_equips_t childEquips;
+	/* 0x004A */ z_item_equips_t adultEquips;
 	/* 0x0054 */ char __pad_0x0054[0x12];
 	/* 0x0066 */ short savedSceneId;
-	/* 0x0068 */ z_ItemEquips currEquips;
+	/* 0x0068 */ z_item_equips_t currEquips;
 	/* 0x0072 */ short __pad_0x0072;
 	/* 0x0074 */ char inventory[24];
 	/* 0x008C */ char inventoryAmmo[0xF];
@@ -159,7 +159,7 @@ typedef struct {
 	/* 0x00BC */ char dungeonKeys[0x13];
 	/* 0x00CF */ char doubleDefenseHearts;
 	/* 0x00D0 */ int goldSkulltulaTokens;
-	/* 0x00D4 */ z_SceneFlags sceneFlags[101]; //0x1C byte ea, 0xB0C
+	/* 0x00D4 */ z_scene_flags_t sceneFlags[101]; //0x1C byte ea, 0xB0C
 	/* 0x0BE0 */ char __pad_0x0A4C[0x284];
 	struct 
 	{
@@ -186,7 +186,7 @@ typedef struct {
 	// 01 = zoneoutRespawn 0, void
 	// 02 = zoneoutRespawn 1, grotto and warp songs
 	// 03 = zoneoutRespawn 2, farore's wind
-	/* 0x1368 */ z_ZoneoutRespawn zoneoutRespawn[3];
+	/* 0x1368 */ z_respawn_t zoneoutRespawn[3];
 	/* 0x13BC */ char __pad_0x13BC[0x8];
 	/* 0x13C4 */ unsigned short dogVar; //variable component for dog following Link
 	/* 0x13C6 */ unsigned char unk_0x13C6;
@@ -196,10 +196,11 @@ typedef struct {
 	/* 0x1412 */ unsigned short cutsceneNext;
 	/* 0x1414 */ short unk_0x1414;
 	/* 0x1416 */ unsigned short unk_0x1416;
+    /* 0x1426 */
 	
-} z_SaveCtx;
+} z_save_t;
 
-extern z_SaveCtx z_savectx;
-asm("z_savectx = 0x8011A5D0");
+extern z_save_t z_savectx;
+asm("z_save_t = 0x8011A5D0");
 asm(".global z_savectx");
 #endif
