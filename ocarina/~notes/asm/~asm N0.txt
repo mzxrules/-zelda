@@ -645,6 +645,11 @@ B508 jal 800CCBB8 //Link Overlay
 
 80021BE8 //Collision/Position Updating related
 //A0 = Actor Instance
+//A1 = f32 ?
+//V0 = 1 if ?, else 0
+//
+//v0 = actor bg_check flags
+1BF8 //return 1 if bg_check flags & 0x0001 == 0 (not near floor)
 1C1C //load Y velocity
 
 
