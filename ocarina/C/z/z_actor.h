@@ -34,11 +34,11 @@ typedef struct
     /* 0x1F */ u8       unk_0x01F;
     /* 0x20 */ u16      soundEffect;   /* Plays sound effect relative to actor's location (if within range of camera?) */
     /* 0x22 */ u16      unk_0x022;
-    /* 0x24 */ Coord_f  position;  /* Current coordinates */
-    /* 0x30 */ Rotation speedRot;  /* 0x32 sets what direction the 0x68 speedXZ variable is moving the actor */
+    /* 0x24 */ Coord_f  pos;       /* Current position */
+    /* 0x30 */ Rotation speed_rot;  /* 0x32 sets what direction the 0x68 speedXZ variable is moving the actor */
     /* 0x36 */ u16      unk_0x036; /* same as 0x1A */
     /* 0x38 */ Coord_f  pos3;      /* Related to camera */
-    /* 0x44 */ Rotation rot1;      /* 0x30 rotation copied into here */
+    /* 0x44 */ Rotation rot_0x44;  /* 0x30 rotation copied into here */
     /* 0x4A */ u16      unk_0x04A;
     /* 0x4C */ float    unk_0x04C; /*  */
     /* 0x50 */ Coord_f  scale;     /* sets x,y,z scaling factor. Typically, a factor of 0.01 is used for each axis */
@@ -87,7 +87,7 @@ typedef struct
     
     struct 
     {
-    /* 0xB4 */ Rotation rot2; /* updating this value changes an actor's rotation immediately */
+    /* 0xB4 */ Rotation rot; /* updating this value changes an actor's rotation immediately */
     /* 0xBA */ 
     /* 0xBB */ u8       unk_0x0BB; /* unknown byte? */
     /* 0xBC */ float    unk_0x0BC; /* Model y axis offset. Represents model space units. collision mesh related */
@@ -104,7 +104,7 @@ typedef struct
     /* 0xF4 */ float    unk_0x0F4;  /* unknown */
     /* 0xF8 */ float    unk_0x0F8;  /* unknown */
     /* 0xFC */ float    unk_0x0FC;  /* unknown */
-    /* 0x100 */ Coord_f Pos4;       /* Final Coordinates last frame (collision, NTSC 1.0 f 8002F8E0) */
+    /* 0x100 */ Coord_f last_pos;       /* Final Coordinates last frame (collision, NTSC 1.0 f 8002F8E0) */
     /* 0x10C */ u8      unk_0x10C;  /* Z-Target related */
     /* 0x10D */ s8      unk_0x10D;  /* Z-Target related */
     /* 0x10E */ u16     textId;     /* text id to pass to link/display when interacting with an actor (navi text, probably others) */

@@ -43,7 +43,7 @@ Global Context (Game):
   00: OSContPad InputCurrent;     //Joystick Input is less than InputReleaseEdge?
   06: OSContPad InputLast;        //computed at 60 fps, thus can appear equal to Current
   0C: OSContPad InputPressEdge;   //Joystick info is actually change in position
-  12: OSContPad InputReleaseEdge; //Joystick Info is real-time input
+  12: OSContPad InputReleaseEdge; //Joystick Info is capped input
   // OSContPad Struct (0x05 bytes, aligns to 0x06) is as follows:
       00: u16 button;
         8000 = A Button
@@ -159,6 +159,7 @@ Global Context (Game):
 0x1D2C u32 // Scene Temporary Switch Flags
 0x1D38 u32 // Scene Chest Flags
 0x1D3C u32 // Scene Room Clear flags
+0x1D40 u32 // Scene Temporary Clear flags
 0x1D44 u32 // Scene Collectible Flags
 0x1D48 u32 // Scene Temporary Collectible Flags
 0x1D4C //?
@@ -184,6 +185,7 @@ Global Context (Game):
  + 0x44 ptr //Actor Action 8
  + 0x48 ptr //Actor Action 9
  + 0x4C ptr //Actor Action A
+0x1F74 //Save related
 0x20D8 //Dialog Engine Struct
   0x00 //VIEW struct
 0xFE88 //Raw Dialog Data (0x20D8 + 0x8000 + 0x5C88)
@@ -253,6 +255,8 @@ Global Context (Game):
 0x10B13 u8 //Raindrops to draw
 0x10B16 u8 //Target Raindrops to draw 2
 0x10B20 s16 //Link animation related
+0x10B24 //start of 0x32 struct array, 0x40 bytes per struct
+  0x24 //MesgQueue, max one record, 4? byte message
 
 0x117A4  //801D9C44 Object Allocation Table
   0x00 ?
@@ -277,6 +281,7 @@ Global Context (Game):
 0x11D38 ptr //points to transition actor spawn list
 0x11D3C func ptr?//array of func ptrs to ovl_player_actor functions
 0x11D60 float matrix //used for some sort of transformation, see NTSC 1.0 8008EC20
+0x11DE4 s32 //Some Global Timer, affects flame damage rate
 0x11DE8 u8 //Age to set Link
 0x11DEA u8 //Spawn Id (from Entrance Table)
 0x11DEB u8 //Scene Header 0x01, num actors to spawn
@@ -305,7 +310,9 @@ Global Context (Game):
 0x12124 //some framebuffer struct
   0x00 s32 //Framebuffer x
   0x04 s32 //Framebuffer y (pause lag fix)
-  0x10 ptr //Backbuffer? address
+  0x10 ptr //Backbuffer address
+  0x14 ptr //Z-Buffer? pause screen?
+  0x18 ptr //Backbuffer pause screen?
   0x1C ptr //Z-Buffer
   0x34 s32 // 0?
   0x38 s32 // 0?

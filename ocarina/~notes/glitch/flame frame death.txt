@@ -1,0 +1,13 @@
+8009BC80
+
+801DA284 //play timer
+
+1DB498 //invincibility 
+
+
+
+8039FAE8 //fucking invince shit
+
+8038E5BC ?
+8038E578
+8038ED5C

@@ -1,0 +1,6 @@
+80B287B8 -> 8040A3C8
+//Set hitbox? run when fish resizes itself
+
+## Instance 
+
+0x0358 hitbox

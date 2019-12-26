@@ -1,0 +1,11 @@
+-241.1083831787109375, 19.8000011444091796875, -219.75  //inst + 0x08
+
+-233.111083984375, 0, -213.1538848876953125 //inst + 0x24 bomb
+
+-241.1083831787109375, 0, -149.25
+
+dist between bomb and link: 70.5 units
+
+0x2CC8	boy/anim/link_hook_walk2ready.anb
+
+8083EE6C -> 8039780C //Z-Target deceleration state 

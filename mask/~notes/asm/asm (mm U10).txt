@@ -20,6 +20,17 @@ Link Instance + 0x3C0 = xyz coords for falling into short oobs
 //A1 = Address to read from
 //A2 = Size
 
+80082180 //Crash Debugger, draw crash bar
+//a0 = bar color, 5/5/5/1
+
+80082BD0 //crash debugger, test for input code?
+
+80083828 //fault thread, crash debugger
+3A14 jal    80082180 //draw red crash bar and other things
+3A1C jal    80082BD0 //?
+
+80083EC4 //Crash Debugger
+
 8008501C //Load DLF
 //A0 = VROM start
 //A1 = VROM end

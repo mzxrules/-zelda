@@ -75,6 +75,10 @@
 //A2 = Actor Instance
 //A3 = string "Actor_draw"
 
+80031C3C //z_actor unk
+//800BC8EC calls this
+//related to destructing actor context?
+
 
 80035260 //?
 // ../z_cheap_proc.c
@@ -378,6 +382,8 @@ B170 //SP + 0x0C = F10 // = F12^3/6
 //A0 = SFX id
 
 
+800BC8EC //Main Game Game State Deconstructor
+//referenced by 800BCA64
 
 
 //en_elf
@@ -387,3 +393,6 @@ B170 //SP + 0x0C = F10 // = F12^3/6
 //copy to s16 at Static Context + 0x12B4?!
 //en_elf inst
 0x02BC s16 y rotation next?
+
+
+801120C0 //RSP code, 0x1000

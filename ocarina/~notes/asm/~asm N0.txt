@@ -804,6 +804,12 @@ B508 jal 800CCBB8 //Link Overlay
 //Flips bit at 0x00080000 of Instance + 0x04 to it's 1 state
 
 
+8002313C // Set 3D SFX?
+//A0 = Actor Instance
+//A1 = SFX ID
+//Sets Instance + 0x04 to &= 0xEFC7FFFF
+
+
 80023234 //Seems to set the variables pertaining to displaying the Farore's Wind sprite
 
 
@@ -904,6 +910,11 @@ B508 jal 800CCBB8 //Link Overlay
 //A0 = Global Context
 //A1 = Actor Instance
 4BE8 jal 80024280
+
+80024CCC
+//A0 = ?
+//A1 = ?
+//A2 = ?
 
 
 80024F98 //Bind Actor to Category
@@ -1632,7 +1643,7 @@ D920 jal	8002D9B8 //get Collision Sector
 //compare scene index to values at address A0 to V0 exclusive
 
 
-8002EB50 //Look up hardcoded size of ?
+8002EB50 //Look up hardcoded size of collision mesh lookup data
 //related to collision vertex info
 //A0 = Current Scene Index
 //A1 = out s32* size
@@ -1713,9 +1724,9 @@ ED18 //branch ED50 if V0 != 1
 //Scene is SpotXX scene
 //Set Global Context+0x1C14 (Mesh Ctx + 0x1454) to
 //+0x00 = 0x3E8
-//+0x04 0x200
-//+0x08 0x200
-//+0x0C 0xF000
+//+0x04 = 0x200
+//+0x08 = 0x200
+//+0x0C = 0xF000
 //set scene mesh volume divisions to 16 by 4 by 16
 ED48 //branch EDFC
 ED50 //Scene is not a SpotXX scene
@@ -1742,7 +1753,7 @@ ED84
 //V0 = 800EC124
 //V1 = 800EC13C
 //T8 = Current Scene Index
-EDB0 //loop start
+EDB0 //loop start, lookup custom scene subdivision list
 //T9 = s16 0x0000(v0) //scene index
 EDB4 //branch EDE0 if T8 != T9; if branch, V0 += 0x0C
 //scene matches table data
@@ -1967,7 +1978,7 @@ F7FC jal	8002F178
 //A1 = u16 PolyIgnoreFlags 
 //A2 = out ptr? 8011EEEC this pass
 //A3 = vector3_f32*, Actor Instance + 0x24 (suggested next? coordinates)
-//SP+0x10 = vector3_f32*, Actor Instance + 0x100 (previous? coordinates)
+//SP+0x10 = vector3_f32*, Actor Instance + 0x100 (previous coordinates)
 //SP+0x14 = float, flat wall pushback (18 this pass)
 //SP+0x18 = ptr, Actor Instance + 0x74
 //SP+0x1C = out s32*, 8011EEE8 this pass
@@ -1997,7 +2008,7 @@ F968 //T7 = T6 and 0x01
 F95C //F0  = F4 - F6,  or change in X between inst+0x100 -> inst+0x24
 F970 //F12 = F8 - F10, or change in Y between inst+0x100 -> inst+0x24
 F978 //F2  = F18 - F4, or change in Z between inst+0x100 -> inst+0x24
-F96C //If change in X and change in Z == 0, branch FCB4 (FCB0 basically)
+F96C //If change in X and change in Z == 0, branch FCB0/4
 F98C //If u8 arg SP+0x28 and 0x1, branch FCB0
 //F14 = arg SP+0x24, 26f this pass
 //F6 = F14 + Change in Y
@@ -2188,7 +2199,7 @@ FCB0
 //A0 = Global Context
 //A1 = Global Context + 0x810
 //A2 = Actor Index
-//A3 = ?
+//A3 = Ptr to Collision Mesh
 //V0 = Mesh Collision Id.
 
 
@@ -3267,7 +3278,6 @@ FA80/4
 1B58 JAL	800CDA20 //Allocates block on the main heap
 1B5C ADDIU	A0, R0, 0x15D4 //Size of block
 //the rest of the code zero-initializes the entire space
-//notably, it appears that the "true" size is 0x15D2
 
 
 80051E60 //Possibly "Static Context" related
@@ -3647,6 +3657,12 @@ BF30 JAL	80066804 //?
 800619CC //graph, Update Weather/Sun events?
 //Updates the number of rain drops that should be drawn
 //A0 = Global Context
+
+80062780 //Draw Sandstorm
+//draws sandstorm overlay effect onto screen
+//A0 = Global Context
+3090 //write sandstorm G_SETPRIMCOLOR
+30DC //sandstorm write G_SETENVCOLOR value
 
 
 80063534 //Update Next Spawn (Warp Songs)
@@ -4263,6 +4279,14 @@ B2C4 // T8 = GI/Title Card space
 B2D8 // Update Segment 06 reference directly
 B2F0 // Completes writing the G_MOVEWORD Seg #6 to the 0x2C0 gfx context display list
 
+8007B734 // ?
+
+8007C36C //Draw routine related to pause screen
+//SP+0x2C //viewport width?
+//SP+0x30 //viewport height?
+//
+C4EC //initial setup for G_MOVEMEM write
+
 
 8007D808 //?
 //At 11BF60 is structure that is 0x24 bytes long, 4 records
@@ -4429,7 +4453,7 @@ D854 JR 	RA
 
 
 80081628 //Get Object Table Index
-//Locates object file reference in object table
+//Locates object file reference in object table. Works even if object is not loaded
 //A0 = Global Context + 0x117A4 //Object Table
 //A1 = s16 Object Number
 //V0 = Index, or -1 if not found
@@ -4499,16 +4523,30 @@ D854 JR 	RA
 //V0 = u16 referenced by the segment address, minus 1
 //80120C38 = Segment Table
 
+8008A1DC //link anime related?
+//recursive
 
-8008B48C //?
+
+8008B48C //Get Animation Message Record?
+//
 //A0 = Global Context + 0x10B20
-//A1 = ?
+//A1 = ?, 0 this pass
 //V0 = ptr to ?
+//
+//A2 = arg A1
+//lw 0x0000(a0)
+//if v1 >= 0x32
+    //return null
+//t7 = v1 * 0x40
+//0x0000(a0) = v1 + 1
+//A1 = arg A0 + t7
+//sb A2 at A1 + 0x0004
+//return ptr A1 + 0x0004
 
 
 8008B4C4 //Fetch Link Animation from ROM
 //A0 = Global Context
-//A1 = Animation Segment Address (0x04, Gameplay Keep reference I think)
+//A1 = Animation Segment Address (0x04, Gameplay Keep)
 //A2 = ? (39 this pass, possibly frame index)
 //A3 = 16?, possibly limbs?
 //SP+0x10 = Link Instance + 0x1F0 //animation store pointer
@@ -4516,13 +4554,20 @@ B4EC jal	8008B48C
 	//call with
 	//A0 = Global Context + 0x10B20
 	//A1 = 0
-//
+    //V0 = ptr to some animation record, such that + 0x24 is start of osMesgQueue
+//SP+0x28 = ptr to osMesgQueue
+//SP+0x30 = arg A1 converted to a rdram ptr
+//SP+0x34 = animation global ctx record ptr
+B540 jal    80004220 //osCreateMesgQueue
+    //A0 = Global Context + 0x10B20 + 0x04 + 0x24
+    //A1 = Global Context + 0x10B20 + 0x04 + 0x3C
+    //A2 = 1
 B548 
 //A3 = Arg A3
 //T6 = Arg A2
+//T3 = ptr to arg A1 converted to rdram ptr (Gameplay_Keep animation)
 //A3 = A3 * 6 + 2
 //LO = T6 * A3
-//T3 = ptr to Gameplay_Keep animation record?
 //T4 = [T3+0x04]->link_animetion segment address
 //AT = 0x00FFFFFF
 //V1 = func 8008B48C result
@@ -4550,6 +4595,27 @@ B5A8 jal	80000D28
 //A1 = Link Instance + 0x1A4
 BDB8 jal	8008B4C4 //
 
+8008BE60 //Animation Cycle related
+//A0 = Global Context
+//A1 = Link Instance + 0x1A4
+//
+//T6 = static context
+//F8 = 0.5f
+//t7 = Static Context + 0x110
+//f16 = arg a1 + 0x1C
+//f10 = arg a1 + 0x18
+//f6 = s16 at Static Context + 0x110 
+//f2 = framerate factor (f6 * 0.5)
+//f6 = 0f
+//f18 = f16 * f2
+//f4 = f10 + f18
+//sw f4 at arg A1 + 0x18
+//f0 = f4
+BEB0 //branch likely BEC8/C if not F0 < F6
+//f8 = arg a1 + 0x14
+//arg a1 + 0x18 = F0 + F8
+BEC8
+//f2 = arg a1 + 0x14
 
 8008BF00 //Link Related?, Called by 8008BCA4
 //A0 = Global Context
@@ -4907,7 +4973,7 @@ A2D4 jal 80002E80 //zero 0x250 bytes at Global Context + 0x121C8
 //Unknown halfword pulled from Global Context + 0x7B2
 
 
-8009A5C0 //GAME DESTRUCTOR ROUTINE
+8009A5C0 //game_play destructor
 //A0 = Global Context
 //
 //SP -0x30
@@ -4917,7 +4983,7 @@ A2D4 jal 80002E80 //zero 0x250 bytes at Global Context + 0x121C8
 //set 
 
 
-8009A750  //MAIN GAME CONSTRUCTION ROUTINE
+8009A750  //game_play constructor
 //A0 = Global Context
 A750 ADDIU	SP, SP, 0xFF70
 A754 SW 	S2, 0x0028
@@ -5046,6 +5112,14 @@ CFD8 jal	8009CDE8 //
 //V0 is set to a pointer at 0x0790 + (4 * V1) from global context
 //V1 = either A1, or halfword at 0x07A0 + global context if A1 was -1 
 
+8009D66C //?
+//A0 = Global Context
+//A1 = s16
+//a2 = Actor* follow actor
+//A3 = Camera S
+D6B8 jal    80047C38
+D6C4 jal    800495BC
+
 
 8009D894 // Copies permanent scene flags for the current scene from the global context into the save data
 //A0 = Global Context
@@ -5170,7 +5244,7 @@ DAA8 JR 	RA
 //V0 = 1 if Global Context + 0x7B8 is > 0, else 0
 
 
-8009DD10 //?, Framebuffer info related
+8009DD10 //Draw Framebuffer as Texture (Second)
 //A0 = void* struct address (801DA5C4 this pass)
 //A1 = s32 framebuffer width
 //A2 = s32 framebuffer height
@@ -5179,6 +5253,68 @@ DAA8 JR 	RA
 //
 //See Global Context + 0x12124 for more info
 
+8009E50C //Draw Framebuffer as Texture (First)
+//rendered in 320ish by 6 horizontal slabs
+//0xCB8 bytes this pass
+//8017A5A8: E7000000 00000000 // G_RDPPIPESYNC
+//8017A5B0: EF000CF0 0F0A4004 // G_RDPSETOTHERMODE
+//8017A5B8: FB000000 FFFFFFFF // G_SETENVCOLOR
+//8017A5C0: FCFFFFFF FFFCFC7E // G_SETCOMBINE
+//8017A5C8: FC12FE25 FFFFFDFE // G_SETCOMBINE
+//8017A5D0: FF10013F 8012BE40 // G_SETCIMG G_IM_FMT_RGBA G_IM_SIZ_16b 0140
+//A0 = void* struct address (801DA5C4 this pass)
+//A1 = arg A1
+//A2 = struct + 0x10
+//A3 = struct + 0x14
+//SP+0x10 = s ?
+//SP+0x14 = ?
+//SP+0x18 = ?
+//SP+0x1C = ?
+//
+//SP -= 0x30
+//
+
+
+8009E8C8 //Draw Framebuffer as texture
+//A0 = void* struct address (801DA5C4 this pass)
+//A1 = gfx** dlist append start
+//A2 = struct + 0x10
+//A3 = struct + 0x14
+E8EC jal    8009E50C
+    //A0-A3 = args A0-A3
+    //SP+0x10 to SP+1C inclusive = 0xFF
+    
+8009E904 //draw ?
+//A0 = void* struct address (801DA5C4 this pass)
+//A1 = gfx** dlist append start
+//A2 = void* backbuffer
+
+8009EC8C //Draw Framebuffer as texture
+//A0 = void* struct address (801DA5C4 this pass)
+//A1 = gfx** dlist append start (OVERLAY_DISP clone)
+//
+//if struct + 0x10 and struct + 0x14 not null
+ECAC jal    8009E8C8
+    //A0 = 801DA5C4
+    //A1 = arg A1
+    //A2 = struct + 0x10
+    //A3 = struct + 0x14
+    
+8009ECC4 //Draw ?
+//A0 = void* struct address (801DA5C4 this pass)
+//A1 = gfx** dlist append start
+//
+//E7000000 00000000 // G_RDPPIPESYNC
+//F9000000 FFFFFF08 // G_SETBLENDCOLOR
+//EE000000 FFFFFFFF // G_SETPRIMDEPTH
+//EF000CF0 0FA54044 // G_RDPSETOTHERMODE
+//ED000000 005003C0 // G_SETSCISSOR
+//F65003C0 00000000 // G_FILLRECT
+//E7000000 00000000 // G_RDPPIPESYNC
+    
+8009EDD8 //
+//A0 = void* struct address (801DA5C4 this pass)
+//A1 = gfx** dlist append start (OVERLAY_DISP clone)
 
 8009FEC0 //Allocates Frame Display List Buffer
 //A0 = Memory Allocation Handle ptr
@@ -5282,7 +5418,7 @@ DAA8 JR 	RA
 //Arg + 04 = 8011D2A8
 
 
-800A0BA0 //Controller Stuffs
+800A0BA0 //Controller Stuffs, probably polls input
 //wrapper for 800A279C
 //A0 = Global Context
 //
@@ -5487,7 +5623,7 @@ V0 = Address to Game Context Overlay record to load
 15EC //Store frame count 2
 
 
-800A1688 //graph, Main Update function // Main draw function?
+800A1688 //graph, Run Game State
 //code seems to eventually end the frame
 //
 16A4 jal	800A1130 //Initializes data for rendering a new frame (gbi)
@@ -5972,6 +6108,307 @@ F64C jal    800AE6BC
 
 800B1ED0 //audio, ?
 
+800B399C //audio, allocate mem_0B39F4_a0
+//a0 = mem_0B39F4_a0*
+//a1 = size
+//v0 = void* to free space, or null if full
+
+800B39F4 //audio, initialize mem_0B39F4_a0
+//forces 0x10 byte alignment
+//a0 = mem_0B39F4_a0* struct start
+//a1 = void* start
+//a2 = int size
+//
+//start address is 0x10 aligned
+
+800B3A1C //audio, free mem_0B3A1C_a0
+//a0 = mem_0B3A1C_a0*
+
+800B3A30 //audio, initialize mem_0B3A30_a0
+//a0 = mem_0B3A30_a0*
+//
+//a0->s32_0x00 = 0
+//a0->s32_0x08 = a0->s32_0x04
+//v1 = -1
+//a0->s32_0x10 = 0
+//a0->s32_0x14 = a0->s32_0x04
+//a0->s32_0x1E = -1
+//a0->s32_0x20 = a0->s32_0x04 + a0->s32_0x0C
+//a0->s32_0x2A = -1
+
+800B3BB0 //audio, allocate audio memory (boot)
+//a0 = size of ? (0xE0E0)
+//
+//sp -= 0x18
+//
+3BCC jal    800B39F4 //initialize memory struct
+    //a0 = 80127FE0
+    //a1 = 80128B54->s32_0x00
+    //a2 = arg a0
+//v0 = audio_ctx 80125630
+//a3 = arg a0
+3BF4 jal    800B39F4 //initialize memory struct
+    //a0 = 80127FC0
+    //a1 = 80128B54->s32_0x00 + arg a0
+    //a2 = 80128B54->s32_0x04 - arg a0
+//80127FD0_s32 = 0
+
+800B3C10 //audio, allocate largest audio memory
+//a0 = ? (80128A38)
+//
+//sp -= 0x18
+//
+//V0 = 80125630 audio ctx
+//t7 = arg a0
+3C30 //mark 80127FC0 mem_0B39F4_a0 as being free
+3C38 jal    800B399C //allocate memory
+    //a0 = 80127FC0
+    //a1 = arg a0->s32_0x00
+    //v0 = free memory
+//t8 = arg a0
+3C50 jal    800B39F4 //initialize memory struct
+    //a0 = 80127FF0
+    //a1 = v0
+    //a2 = arg a0->s32_0x00
+3C64 jal    800B399C //allocate memory
+    //a0 = 80127FC0
+    //a1 = arg a0->s32_0x0C
+    //v0 = free memory
+//t0 = arg a0
+3C7C jal    800B39F4 //initialize memory struct
+    //a0 = 80128020
+    //a1 = v0
+    //a2 = arg a0->s32_0x0C
+    
+800B3D18 //audio, allocate fanfare bgm
+//A0 = primary bgm memory related struct (80128A50)
+//
+//SP -= 0x20
+//
+//v0 = audio ctx
+//t6 = audio_ctx->s32_0x2A00
+//s0 = arg a0
+//audio_ctx->s32_0x2A04 = audio_ctx->s32_0x2A00
+3D40 jal    800B399C //reserve ram for fanfare audioseq
+    //a0 = 80128030
+    //a1 = arg_a0->s32_0x00
+    //v0 = free ram
+3D54 jal    800B39F4 //init memory struct
+    //a0 = 80128054 //fanfare audioseq mem_0B39F4_a0
+    //a1 = v0
+    //a2 = arg_a0->s32_0x00
+3D64 jal    800B399C //reserve ram for ?
+    //a0 = 80128030
+    //a1 = arg_a0->s32_0x04
+    //v0 = free ram
+3D54 jal    800B39F4 //fanfare audiobank mem_0B39F4_a0
+    //a0 = 80128164
+    //a1 = v0
+    //a2 = arg_a0->s32_0x04
+3D88 jal    800B399C //reserve ram for ?
+    //a0 = 80128030
+    //a1 = arg_a0->s32_0x08
+    //v0 = free ram
+3D9C jal    800B39F4 //init memory struct
+    //a0 = 80128274
+    //a1 = v0
+    //a2 = arg_a0->s32_0x08
+3DA8 jal    800B3A1C //free mem_0B3A1C_a0
+    //a0 = 80128050
+3DB4 jal    800B3A1C //free mem_0B3A1C_a0
+    //a0 = 80128160
+3DC0 jal    800B3A1C //free mem_0B3A1C_a0
+    //a0 = 80128270
+    
+    
+800B3DDC //audio, allocate primary/secondary bgm memory
+//a0 = 80128A5C
+//
+//SP -= 0x20
+//
+//v0 = audio ctx
+//t6 = audio_ctx->s32_0x2A10
+//s0 = arg a0
+//audio_ctx->s32_0x2A14 = audio_ctx->s32_0x2A10
+3E04 jal    800B399C //reserve ram for primary audioseq
+    //a0 = 80128040
+    //a1 = arg_a0->s32_0x00
+    //v0 = free ram
+3E18 jal    800B39F4 //init memory struct
+    //a0 = 80128128 //primary audioseq mem_0B39F4_a0
+    //a1 = v0
+    //a2 = arg_a0->s32_0x00
+3E28 jal    800B399C //reserve ram for secondary audioseq
+    //a0 = 80128040
+    //a1 = arg_a0->s32_0x04
+    //v0 = free ram
+3E3C jal    800B39F4 //init memory struct
+    //a0 = 80128238
+    //a1 = v0
+    //a2 = arg_a0->s32_0x04
+3E4C jal    800B399C //reserve ram for ?
+    //a0 = 80128040
+    //a1 = arg_a0->s32_0x08
+    //v0 = free ram
+3E60 jal    800B39F4 //init memory struct
+    //a0 = 80128348
+    //a1 = v0
+    //a2 = arg_a0->s32_0x08
+3E6C jal    800B3A30 //free mem_0B3A30_a0
+    //a0 = 80128124
+
+800B3EA0
+//a0 = ?
+//a1 = s32 size to allocate
+//a2 = ?
+//a3 = ?
+//
+//SP -= 0x50
+//
+//s0 = arg a0
+//t3 = sp+0x30->s32 //uninitialized !
+//t0 = sp+0x4C->mem_0B3A1C_a0* //uninitialized !
+//t2 = 2
+//t1 = 1
+3EC8 //branch 3EE8 if s0 == 0
+    //a1 = arg a1
+3ED0 //branch 3EFC if s0 == 1
+3ED8 //branch 3F10 if s0 == 2
+//else branch 3F20
+3EE8
+//t0 = 80128050
+//t3 = 80128AC8
+//branch 3F20
+3EFC
+//t0 = 80128160
+//t3 = 80128A98
+//branch 3F20
+3F10
+//t0 = 80128270
+//t3 = 80128A68
+3F20 //branch if a2 != 0
+    //a0 = t0 + 4
+
+    
+800B51B8 //initialize main game audio?
+//
+//SP -= 0xA0
+//
+//s6 = 80125630 audio ctx
+//t6 = audio_ctx->u8_0x3519
+//t8 = 80104778
+//sp+0x68 = t8 + (t6 * 0x38)
+//audio_ctx->s32_0x2620 = 0
+//audio_ctx->u16_0x284A = v0->s32_0x0000
+5218 jal    800D2900
+    //a0 = audio_ctx->u16_0x284A
+    //v0 = ?
+//v1 = audio_ctx->u16_0x284A
+//t1 = audio_ctx->s32_0x2964
+//t0 = sp+0x68
+//f8 = v1
+//t2 = (v1/t1)
+//a2 = audio_ctx->s16_0x284E = (t2 + 0x0F) & 0xFFF0
+//audio_ctx->u16_0x284C = v0
+5250 //break if t1 == 0
+5260 //break if t1 == -1 && v1 == 0x8000
+5274
+//t6 = (a2 + 0x10)/0xD0
+//a3 = audio_ctx->s16_0x2854 = t6 + 1
+//t5 = audio_ctx->s16_0x2852 = a2 - 0x10
+//t8 = a2 / a3
+//f16 = uncast a3
+//audio_ctx->s16_0x2850 = a0
+52A8 //break if a3 == 0
+52B8 //break if a3 == -1 && a2 == 0x8000
+52CC
+//t9 = t8 & -8
+//f4 = 32000.0f
+//f0 = (float)f16
+//f18 = 1/256f
+//a1 = audio_ctx->s16_0x2856 = t9
+//f10 = f4/f8
+//f4 = 1/4f
+//f8 = f0 * 1/4f
+//audio_ctx->s16_0x2858 = a1 + 8
+//audio_ctx->s16_0x285A = a1 - 8
+//a0 = 80128A38
+//audio_ctx->f32_0x286C = f8
+//f6 = (1/256f) / f0
+//f10 = 1f
+//f16 = 1f / f0
+//audio_ctx->f32_0x2868 = f6
+//audio_ctx->f32_0x2864 = f16
+//audio_ctx->s32_0x2874 = t0->u16_0x10
+//audio_ctx->s32_0x2878 = t0->u16_0x12
+//audio_ctx->s32_0x2894 = t0->u8_0x05
+//t8 = audio_ctx->s16_0x285C = t0->u8_0x06
+//t9 = 4
+5364 //branch 5370 if t8 < 0x0005
+//audio_ctx->s16_0x285C = 4
+5370
+//audio_ctx->s16_0x0002 = t0->u16_0x14
+//t3 = u16 at 8010A1B2
+//f18 = 2,880,000f
+//f16 = audio_ctx->f32_0x2960
+//f6 = f0 * 2,880,000f
+//t5 = FCSR 0x0000_0001
+//f8 = (float)t3
+//f10 = f6 / f8
+//f18 = f10 / f16
+//t4 = FCSR state
+//FCSR = 0x0000_0001
+//f4 = (int)f18
+53C0 //branch 540C if t5 & 0x78 == 0
+540C
+//t5 = f4
+5414 //if t5 < 0, t5 = -1
+//FCSR = t4
+//t6 = audio_ctx->s16_0x284C
+//audio_ctx->s16_0x2898 = t5
+//f8 = (float)t1
+//
+//...
+//
+5528
+//t2 = t0->s32_0x1C
+//t9 = t0->s32_0x18
+//t6 = t0->s32_0x28
+//t4 = t0->s32_0x24
+//t5 = t0->s32_0x20
+//t8 = t0->s32_0x2C
+//
+//t3 = t9 + t2
+//t7 = t4 + t6
+//s0 = t3 + t5 + 0x10
+//s1 = t7 + t8 + 0x10
+//t9 = audio_ctx->s32_0x2998 //free size
+//v0 = s0 + s1
+//a1 = t9 - v0 - 0x100
+5564 //if audio_ctx->s32_0x29A0 != null
+    //audio_ctx->s32_0x29A4 = audio_ctx->s32_0x29A0
+//80128A38->s32_0x00 = a1
+//80128A38->s32_0x0C = v0
+5570 jal    800B3C10
+//
+//audio_ctx->s32_0x3418 = s0
+//audio_ctx->s32_0x341c = s1
+5588 jal    800B3C94
+    //a0 = 80128A48
+//v0 = SP+0x68
+//80128A50 is addr audio_ctx->s32_0x3420
+//audio_ctx->s32_0x3420 = v0->s32_0x18
+//audio_ctx->s32_0x3424 = v0->s32_0x1c
+//audio_ctx->s32_0x3428 = v0->s32_0x20
+55B4 jal    800B3D18 //reserve fanfare memory
+    //a0 = 80128A50
+//v0 = SP+0x68
+//audio_ctx->s32_0x342C = v0->s32_0x24
+//audio_ctx->s32_0x3430 = v0->s32_0x28
+//audio_ctx->s32_0x3434 = v0->s32_0x2c
+55D8 jal    800B3DDC //reserve primary/secondary memory
+    //a0 = 80128A5C
+    
 
 800B70C8 //Initializes Audiobank, Audioseq, and Audiotable pointer tables for fast DMA access
 //A0 = Table Address
@@ -5988,14 +6425,14 @@ F64C jal    800AE6BC
 
 
 800B773C // Initalizes data for Sequence playback
-//A0 = ?
+//A0 = Sequence struct index
 //A1 = Sequence to preload data
 //125630 Audio Context?
 //128B60 (audio context + 0x3530), some table indexed by A0
 //
 7780 //T8 = A0
 7794 //T9 = A0 * 0x160
-77A0 JAL 800BF12C //?
+77A0 JAL 800BF12C //Initialize sequence playback struct?
 77A8 //T0 = A1, sequence to preload
 77AC //V0 = Audio Context? + 0x283C //pointer to 801139B0, which contains some sort of table?
 77BC LHU S0, 0x0000(t2) //t2 = 801139B0 + seq*2
@@ -6004,6 +6441,17 @@ F64C jal    800AE6BC
 //set bp at B77C8
 
 
+800B7884 //?
+//A0 = Sequence ID
+//V0 = Sequence Ptr
+//
+//SP -= 0x28
+//
+7894 jal    800B7D28
+    //a0 = 0 //audioseq
+    //a1 = arg a0
+
+    
 800B7A14 //Initalizes Instrument Set?
 //A0 = instrument set
 7A24 JAL 800B7D28
@@ -6013,12 +6461,25 @@ F64C jal    800AE6BC
 7A5C //T9 = V0 * 0x14
 //!~~ Audio Context + 0x2844 (80190F60) contains a table for audiobank data. each record is 0x14 bytes!
 
+800B7B18 //?
+//a0 = Audio DMA table id
+//a1 = table data index
+//a2 = void* ? (on stack this pass)
+//
+//SP -= 0x50
+//
+7B2C jal    800B7D28 //get table data index
 
-800B7D28 //Returns pointer to an Audio DMA table record
+
+
+800B7D28 //Returns Audio DMA table record index
+//if record size == 0, record start is actually a new index
 //A0 = Audio DMA table id, valid range between 0 and 2
-//A1 = instrument set
+//A1 = index
 //V0 = Record index (1 based index)
-//V1 = Pointer to record
+
+800B7D64 //?
+//v0 = ptr to ?
 
 
 800B7DB8 //Returns pointer to an Audio DMA table, called by 800B7D28
@@ -6028,10 +6489,16 @@ F64C jal    800AE6BC
 
 
 800B8654 //audio, ?
+//allocates heap memory for the audio thread
+//a0 = void* memory start (0)
+//a1 = size (0)
+//
+//SP -= 0x70
+//
 8660 //S1 = 80125630, Audio Context? Audio Context is 0x6450 bytes long!
 8668 //store 0 at 8012BA80 (this is near heap allocation info)
 8680 //Zero Initialize the Audio Context, 0x6450 bytes long
-869C //lw from 80000300 (storing 1 this pass) to v0
+869C //lw from 80000300 (osTvType) (storing 1 this pass) to v0
 //Switch case on v0. 4 cases for 0, 1, 2, and default
 86EC //case 1 and case default (default sets t7 to 0x3C)
 86F0 //lwc1 f8, word at 80109868 (16.713)
@@ -6056,6 +6523,10 @@ F64C jal    800AE6BC
 87AC JAL	80005680
 //v0 = 80009EA0 when it returns
 //audio ctx + 1E18 = v0
+//v1 = arg a0
+87C0 //if arg a0 == NULL
+    //80128B54_s32 = 8018EE60
+    //80128B58_s32 = 8010A1B4->s32_0x00 (0x37F00)
 
 
 800BA5A0 //audio, ?
@@ -6094,6 +6565,9 @@ D418 //S2 = SP+0x40
 //looks like it's "deleting" a0 from a doubly linked list
 //A0 = some struct ptr
 
+
+800BF12C //audio, initialize Sequence playback struct?
+//A0 = struct ptr (array of type starts at 80128B60)
 
 800BF1E8 //audio, ?
 //A0 = 8012B1D8 this pass?
@@ -6809,6 +7283,11 @@ F900 jal	800D05D0
 800D61D0 //Textbox input, select choice?
 //Called with Farore's Wind
 
+
+800D8EF4 //Draw Textbox Text (English)
+A05C //near character kerning stuff
+//SP+0x50 = character
+A0AC //load character width, at 80112EC0 + character * 4 (32 is first valid char)
 
 800DA30C //Dialog
 B550 //Get next dialog character (English?)

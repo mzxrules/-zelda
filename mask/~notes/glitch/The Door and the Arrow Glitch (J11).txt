@@ -84,5 +84,3 @@ Majora's Mask: Swamp Target Game "Door Glitch" partial explanation.
 https://clips.twitch.tv/TrustworthyCrowdedAdminMrDestructoid
 
 Normally (at least I think so, didn't test this aspect much), whenever you fire an arrow into a wall-like surface, it will "stick" in place for a few frames before despawning.
-
-lovedrtom

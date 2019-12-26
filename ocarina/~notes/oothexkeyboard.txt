@@ -1,0 +1,76 @@
+Filename creation addr 801E4EA4
+
+
+hiragana keyboard in order top row left to right
+
+0A 0F 14 19 1E 23 28 2D 30 35 38 3E 3D
+
+0B 10 15 1A 1F 24 29    31    39      
+
+0c 11 16 1B 20 25 2A 2E 32 36 3A 3F E4
+
+0D 12 17 1C 21 26 2B    33    3B    [can't type by itself]
+
+0E 13 18 1D 22 27 2C 2F 34 37 3C 40 [can't type by itself]
+
+adding the " symbol to stuff
+
+image will be included
+
+41 46 4B 50 42 47 4c 51
+https://i.imgur.com/cnomTil.png
+
+43 48 4D 52 44 49 4E 53
+https://i.imgur.com/KhMsZJw.png
+
+45 4a 4f 54 
+https://i.imgur.com/pFccffF.png
+
+adding degree sign to stuff
+
+55 56 57 58 59
+https://i.imgur.com/iZR8Bsx.png
+
+katakana keyboard in order top row left to right
+
+5A 5F 64 69 6E 73 78 7D 80 85 88 8e 8d
+
+5b 60 65 6A 6f 74 79    81    89     
+
+5c 61 66 6b 70 75 7a 7e 82 86 8a 8f E4
+
+5D 62 67 6C 71 76 7B    83    8B    [can't type by itself]
+
+5E 63 68 6D 72 77 7c 7f 84 87 8C 90 [can't type by itself]
+
+adding the " symbol to stuff
+
+91, 96, 9B, A0, 92, 97, 9C, A1
+https://i.imgur.com/qemsxri.png
+
+AA 93 98 9D A2 94 99 9E
+https://i.imgur.com/GU7CnNQ.png
+
+A3 95 9A 9F A4
+https://i.imgur.com/YfzRPq6.png
+
+adding the degree sign to stuff
+
+A5 A6 A7 A8 A9
+https://i.imgur.com/wcsZt3t.png
+
+English keyboard left to right top row
+
+AB AC AD AE AF B0 B1 B2 B3 B4 B5 B6 B7
+
+B8 B9 BA BB BC BD BE BF C0 C1 C2 C3 C4
+
+c5 c6 c7 c8 c9 ca cb cc cd ce cf d0 d1
+
+d2 d3 d4 d5 d6 d7 d8 d9 da db dc dd de 
+
+01 02 03 04 05 06 07 08 09 00 EA E4    
+
+
+
+

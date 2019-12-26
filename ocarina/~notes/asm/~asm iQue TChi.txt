@@ -1,0 +1,10 @@
+800029B0 //decompress file into ram?
+//a0 = rom location
+//a1 = rdram address
+//a2 = size
+
+80022DB8 //spawn particle
+
+8002C2AC //extended zelda malloc hack
+
+8002C35C //spawn actor

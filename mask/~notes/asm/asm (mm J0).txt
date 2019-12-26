@@ -306,3 +306,43 @@ CEB0 //check if 0xC struct + 0xA is <= 0, and branch to CFCC if true
 
 801663E0 //lw 801CB510
 //v0 = lw 801CB510
+
+8019E22C //related to cutscenes? or link state
+//a0 = u8 ?
+//
+//SP -= 0x30
+//
+//v0 = 801D0E7C->u16_0x00
+//a1 = arg a0
+E244 //return if v1 != v0
+//t6 = 801D0E60->s8_0x00
+//a2 = 80200290
+E260 //branch E274 if t6 != 0
+//t7 = 801FD507->u8
+E26C //branch likely E278/C if t7 == 0
+    //v0 = 80200290->u16_0x020A
+//else
+//a1 = 3
+E278
+//v0 = 80200290->u16_0x020A
+//t1 = v0
+E280 //branch E2BC if v1 == v0
+//t9 = v0 & 0xFF
+//t4 = u8 801D0EB0[v0 & 0xFF]
+//t3 = 801D0E70
+//t5 = t4 & 0x01
+E2A0 //branch E2BC if t5 != 0
+
+E2BC
+//t3 = 801D0E70
+//v0 = 801D0E70->u8
+//a0 = 1
+//t2 = a1
+//v0 &= 0x7F
+E2D4 //branch E3DC if v0 == a1
+E3DC //return if a0 != t2
+
+
+
+
+

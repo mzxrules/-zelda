@@ -19,6 +19,7 @@ Instance:
 0x250 s16 //Timer? Incremented
 0x254 s16 //Timer? Decremented if not 0
 0x256 s16 //Timer? Decremented if not 0
+0x258 s16 //total cuccos in the pen?
 0x25E s16 //?
 0x266 u8 //?
 0x26E s16 //?
@@ -33,6 +34,15 @@ Instance:
 0x28A u16 ?
 0x290 Coord //Link's x,y,z
 
+80A9E574 -> 801F56D4 //cucco counting?
+//a0 = actor instance
+//a1 = global context
+//
+//a3 = arg a0
+//instance + 0x258 = 0
+//t6 = arg a1
+//a2 = Save Context
+//v0 = Global Context + 0x1C64 //Actor Category 6 ptr
 
 80A9F04C (T:801F1CEC) //update function
 1D18 //v0 = Link Instance

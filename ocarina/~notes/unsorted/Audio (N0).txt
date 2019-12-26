@@ -1,0 +1,36 @@
+800A04C4 //entrypoint
+
+800B399C //allocate mem_0B39F4_a0
+800B39F4 //initialize mem_0B39F4_a0
+800B3BB0 //allocate audio memory (boot)
+800B3C10 //allocate memory
+800B3EA0 //allocate individual sequences?
+
+800B51B8 //initialize main game audio 
+
+800B8654 //initialize ?
+
+800C7DD4 //initialize ? (wrapper for 800B8654)
+
+
+80104778 struct_104778[0x12] //table related to mem allocations 
+struct struct_104778
+{
+    s32     unk_0x00; //range u16
+    u8      unk_0x05;
+    u8      unk_0x06;
+    u16     unk_0x10;
+    u16     unk_0x12;
+    s32     unk_0x18; //size of fanfare? seq //0x7F0 (80128A50)
+    s32     unk_0x1C; //size of ? (80128A54)
+    s32     unk_0x20; //size of ? (80128A58)
+    s32     unk_0x24; //size of ? 
+    s32     unk_0x28; //size of ?
+    s32     unk_0x2C; //size of ?
+} //size 0x38
+
+
+
+
+//unrelated
+801C0BD0 //seq 0

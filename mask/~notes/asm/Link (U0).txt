@@ -20,9 +20,17 @@
 
 //data
 
+8085BCCC -> 8077915C //Deku Link form_properties_t
+8085BDA8 -> 80779238 //Child Link form_properties_t
 8085CFA8 -> 8077A438 //u16[4] item button masks (b, c-left, c-down, c-right)
 80862B44 -> 8077FFD4 ptr Input
 
 //instance
+0x0A68 ptr Form Properties //same as age properties in oot
 0x0B5E u8 ?
 0x0D6A s8 ?
+
+typedef struct 
+{
+    /* 0x92 */ sfx_offset; //voice sound effect base offset value
+} form_properties_t;

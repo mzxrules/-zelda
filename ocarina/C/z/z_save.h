@@ -9,175 +9,173 @@
 //z_common_data.yabusame_total is likely referring to the points total outside save data
 
 typedef struct {
-	char b;
+	uint8_t b;
 	union
 	{
-		char c_Buttons[3];
+		uint8_t c_Buttons[3];
 		struct
 		{
-			char c_left;
-			char c_down;
-			char c_right;
+			uint8_t c_left;
+			uint8_t c_down;
+			uint8_t c_right;
 		};
 	};
 	union
 	{
-		char c_Slots[3];
+		uint8_t c_Slots[3];
 		struct
 		{
-			char c_left_Slot;
-			char c_down_Slot;
-			char c_right_Slot;
+			uint8_t c_left_Slot;
+			uint8_t c_down_Slot;
+			uint8_t c_right_Slot;
 		};
 	};
-	unsigned short equipment;
+	uint16_t equipment;
 } z_item_equips_t; //0x0A bytes
 
 typedef struct {
-	/* 0x00 */ int chests;
-	/* 0x04 */ int switches;
-	/* 0x08 */ int roomClear;
-	/* 0x0C */ int collectibles;
-	/* 0x10 */ int unk;
-	/* 0x14 */ int visited1;
-	/* 0x18 */ int visited2;
+	/* 0x00 */ int32_t chests;
+	/* 0x04 */ int32_t switches;
+	/* 0x08 */ int32_t roomClear;
+	/* 0x0C */ int32_t collectibles;
+	/* 0x10 */ int32_t unk;
+	/* 0x14 */ int32_t visited1;
+	/* 0x18 */ int32_t visited2;
 } z_scene_flags_t; //0x1C bytes
 
 typedef struct {
-	/* 0x00 */ float x;
-	/* 0x04 */ float y;
-	/* 0x08 */ float z;
-	/* 0x0C */ short yRot;
-	/* 0x0E */ short linkVar;
-	/* 0x10 */ short entIndex;
-	/* 0x12 */ unsigned char room; //not sure?
-	/* 0x13 */ unsigned char data; //used by grottos to store chest type, warp songs for spawn in sparkle color
-	/* 0x14 */ int tempFlags1; //GlobalContext + 0x1D2C
-	/* 0x18 */ int tempFlags2; //GlobalContext + 0x1D48
+	/* 0x00 */ Vec3f pos;
+	/* 0x0C */ int16_t yRot;
+	/* 0x0E */ int16_t var; //Link's var component
+	/* 0x10 */ int16_t entrance;
+	/* 0x12 */ uint8_t room; //not sure?
+	/* 0x13 */ uint8_t data; //used by grottos to store chest type, warp songs for spawn in sparkle color
+	/* 0x14 */ int32_t temp_switch_flags; //GlobalContext + 0x1D2C
+	/* 0x18 */ int32_t temp_collect_flags; //GlobalContext + 0x1D48
 } z_respawn_t; //0x1C bytes
 
 typedef struct {
 	
-	/* 0x0000 */ int entIndex;
-	/* 0x0004 */ int age;
-	/* 0x0008 */ int cutscene;
-	/* 0x000C */ short time;
+	/* 0x0000 */ int32_t entIndex;
+	/* 0x0004 */ int32_t age;
+	/* 0x0008 */ int32_t cutscene;
+	/* 0x000C */ int16_t time;
 	//padding
-	/* 0x0010 */ int isNight;
+	/* 0x0010 */ int32_t isNight;
 	/* 0x0014 */ char __pad_0x14[0x10];
 	/* 0x0024 */ char name[0x8];
-	/* 0x002C */ short diskSave;
-	/* 0x002E */ short maxHp;
-	/* 0x0030 */ short hp;
-	/* 0x0032 */ char __unk_0x32_magic; //if 0, fills magic from somewhere else
-	/* 0x0033 */ char mp; //current magic
-	/* 0x0034 */ short rupees;
-	/* 0x0036 */ short __pad_0x0036;
-	/* 0x0038 */ short naviTimer;
-	/* 0x003A */ char haveMagic;
+	/* 0x002C */ int16_t diskSave;
+	/* 0x002E */ int16_t maxHp;
+	/* 0x0030 */ int16_t hp;
+	/* 0x0032 */ uint8_t __unk_0x32_magic; //if 0, fills magic from somewhere else
+	/* 0x0033 */ uint8_t mp; //current magic
+	/* 0x0034 */ int16_t rupees;
+	/* 0x0036 */ int16_t bgs_hits_left;
+	/* 0x0038 */ int16_t naviTimer;
+	/* 0x003A */ uint8_t haveMagic;
 	/* 0x003B */ char __pad_0x003B[4];
     /* 0x003F */ char ocarinaMinigame;
 	/* 0x0040 */ z_item_equips_t childEquips;
 	/* 0x004A */ z_item_equips_t adultEquips;
 	/* 0x0054 */ char __pad_0x0054[0x12];
-	/* 0x0066 */ short savedSceneId;
+	/* 0x0066 */ int16_t savedSceneId;
 	/* 0x0068 */ z_item_equips_t currEquips;
-	/* 0x0072 */ short __pad_0x0072;
-	/* 0x0074 */ char inventory[24];
+	/* 0x0072 */ int16_t __pad_0x0072;
+	/* 0x0074 */ uint8_t inventory[24];
 	/* 0x008C */ char inventoryAmmo[0xF];
 	/* 0x009B */ char magicBeansBought;
 	/* 0x009C */ struct
 	{
 		/* 0x009C */
-		unsigned char __padBoots : 1;
-		unsigned char hover_boots : 1;
-		unsigned char iron_boots : 1;
-		unsigned char kokiri_boots : 1;
-		unsigned char __padTunics : 1;
-		unsigned char zora_tunic : 1;
-		unsigned char goron_tunic : 1;
-		unsigned char kokiri_tunic : 1;
+		uint8_t __padBoots : 1;
+		uint8_t hover_boots : 1;
+		uint8_t iron_boots : 1;
+		uint8_t kokiri_boots : 1;
+		uint8_t __padTunics : 1;
+		uint8_t zora_tunic : 1;
+		uint8_t goron_tunic : 1;
+		uint8_t kokiri_tunic : 1;
 		
 		/* 0x009D */
-		unsigned char __padShields : 1;
-		unsigned char mirror_shield : 1;
-		unsigned char hylian_shield : 1;
-		unsigned char deku_shield : 1;
-		unsigned char brokenFlag : 1;
-		unsigned char biggoronSword : 1;
-		unsigned char masterSword : 1;
-		unsigned char kokiriSword : 1;
+		uint8_t __padShields : 1;
+		uint8_t mirror_shield : 1;
+		uint8_t hylian_shield : 1;
+		uint8_t deku_shield : 1;
+		uint8_t brokenFlag : 1;
+		uint8_t biggoronSword : 1;
+		uint8_t masterSword : 1;
+		uint8_t kokiriSword : 1;
 		
 		/* 0x009E */
-		unsigned int padding : 16;
+		uint32_t padding : 16;
 	} equipment;
 	/* 0x00A0 */ struct
 	{
-		unsigned int test : 32;
+		uint32_t test : 32;
 	}	equipment2;
 	/* 0x00A4 */ struct
 	{
 		
 		/* 0x00A4 */
-		unsigned char heart_pieces : 4;
-		unsigned char unused : 4;
+		uint8_t heart_pieces : 4;
+		uint8_t unused : 4;
 		
 		/* 0x00A5 */
 		/* 80 */
-		unsigned char gold_skulltula_icon : 1;
-		unsigned char gerudo_card : 1;
-		unsigned char stone_agony : 1;
-		unsigned char zora_sapphire : 1;
-		unsigned char goron_ruby : 1;
-		unsigned char kokiri_emerald : 1;
-		unsigned char song_of_storms : 1;
-		unsigned char song_of_time : 1;
+		uint8_t gold_skulltula_icon : 1;
+		uint8_t gerudo_card : 1;
+		uint8_t stone_agony : 1;
+		uint8_t zora_sapphire : 1;
+		uint8_t goron_ruby : 1;
+		uint8_t kokiri_emerald : 1;
+		uint8_t song_of_storms : 1;
+		uint8_t song_of_time : 1;
 		/* 01 */
 		
 		/* 0x00A6 */
-		unsigned char suns_song : 1;
-		unsigned char sarias_song : 1;
-		unsigned char eponas_song : 1;
-		unsigned char zeldas_lullaby : 1;
-		unsigned char prelude_song : 1;
-		unsigned char nocturne_song : 1;
-		unsigned char requiem_song : 1;
-		unsigned char serenade_song : 1;
+		uint8_t suns_song : 1;
+		uint8_t sarias_song : 1;
+		uint8_t eponas_song : 1;
+		uint8_t zeldas_lullaby : 1;
+		uint8_t prelude_song : 1;
+		uint8_t nocturne_song : 1;
+		uint8_t requiem_song : 1;
+		uint8_t serenade_song : 1;
 		
 		/* 0x00A7 */
-		unsigned char bolero_song : 1;
-		unsigned char minuet_song : 1;
-		unsigned char light_medallion : 1;
-		unsigned char shadow_medallion : 1;
-		unsigned char spirit_medallion : 1;
-		unsigned char water_medallion : 1;
-		unsigned char fire_medallion : 1;
-		unsigned char forest_medallion : 1;
+		uint8_t bolero_song : 1;
+		uint8_t minuet_song : 1;
+		uint8_t light_medallion : 1;
+		uint8_t shadow_medallion : 1;
+		uint8_t spirit_medallion : 1;
+		uint8_t water_medallion : 1;
+		uint8_t fire_medallion : 1;
+		uint8_t forest_medallion : 1;
 		
 	} questItems;
-	/* 0x00A8 */ char dungeonItems[0x14];
+	/* 0x00A8 */ uint8_t dungeonItems[0x14];
 	/* 0x00BC */ char dungeonKeys[0x13];
 	/* 0x00CF */ char doubleDefenseHearts;
-	/* 0x00D0 */ int goldSkulltulaTokens;
+	/* 0x00D0 */ int32_t goldSkulltulaTokens;
 	/* 0x00D4 */ z_scene_flags_t sceneFlags[101]; //0x1C byte ea, 0xB0C
 	/* 0x0BE0 */ char __pad_0x0A4C[0x284];
 	struct 
 	{
     /* 0x0E64 */	float x, y, z;	
-    /* 0x0E70 */	short y_rot;		
+    /* 0x0E70 */	int16_t y_rot;		
     /* 0x0E72 */	char __pad_00[0x8];
-	/* 0x0E7A */    unsigned short scene_no;
-	/* 0x0E7C */    unsigned int map_no;
+	/* 0x0E7A */    uint16_t scene_no;
+	/* 0x0E7C */    uint32_t map_no;
 	/* 0x0E80 */    int	isset;
     } farore_warp;
 	/* 0x0E84 */ char __pad_0x0E84[0x50];
-	/* 0x0ED4 */ unsigned short event_chk_inf[14];
-	/* 0x0EF0 */ unsigned short item_get_inf[4];
-	/* 0x0EF8 */ unsigned short inf_table[30];
+	/* 0x0ED4 */ uint16_t event_chk_inf[14];
+	/* 0x0EF0 */ uint16_t item_get_inf[4];
+	/* 0x0EF8 */ uint16_t inf_table[30];
 	/* 0x0F34 */ char __pad_0x0F34[0x428];
-	/* 0x135C */ int gameMode;
-	/* 0x1360 */ int __pad_0x1360;
-	/* 0x1364 */ int zoneoutType; 
+	/* 0x135C */ int32_t gameMode;
+	/* 0x1360 */ int32_t __pad_0x1360;
+	/* 0x1364 */ int32_t zoneoutType; 
 	/* zoneoutTypes
 	// -3 = Warp Song, reset temp flags. Uses zoneoutRespawn 1 data for spawning
 	// -2 = ?, preserves temporary flags (sun's song, tower collapse, continue)
@@ -185,17 +183,17 @@ typedef struct {
 	// 00 = Standard Exit, reset temporary flags
 	// 01 = zoneoutRespawn 0, void
 	// 02 = zoneoutRespawn 1, grotto and warp songs
-	// 03 = zoneoutRespawn 2, farore's wind
+	// 03 = zoneoutRespawn 2, farore's wind */
 	/* 0x1368 */ z_respawn_t zoneoutRespawn[3];
 	/* 0x13BC */ char __pad_0x13BC[0x8];
-	/* 0x13C4 */ unsigned short dogVar; //variable component for dog following Link
-	/* 0x13C6 */ unsigned char unk_0x13C6;
-	/* 0x13C7 */ unsigned char unk_0x13C7; //used
+	/* 0x13C4 */ uint16_t dogVar; //variable component for dog following Link
+	/* 0x13C6 */ uint8_t unk_0x13C6;
+	/* 0x13C7 */ uint8_t unk_0x13C7; //used
 	/* 0x13C8 */ char __pad_0x13C8[0x4A];
 	/* 0x1409 */ // char language;
-	/* 0x1412 */ unsigned short cutsceneNext;
-	/* 0x1414 */ short unk_0x1414;
-	/* 0x1416 */ unsigned short unk_0x1416;
+	/* 0x1412 */ uint16_t cutsceneNext;
+	/* 0x1414 */ int16_t unk_0x1414;
+	/* 0x1416 */ uint16_t unk_0x1416;
     /* 0x1426 */
 	
 } z_save_t;

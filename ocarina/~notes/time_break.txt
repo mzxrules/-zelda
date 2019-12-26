@@ -1,0 +1,80 @@
+Darunia Entrypoint
+
+800271FC //SP -= 0x28
+8002725C -> 80953560
+
+//SP -= 0x18
+//RA = SP + 0x14
+80953590 -> 801F8970 //darunia reads ?, jumps to switch statement
+
+801F5150 //stale data, stores our jump to input
+
+
+Controller 1 Input
+801C84B4
+
+L + Z + A generates the following opcodes:
+
+sb  r0, 0x0000(at) //at = 80200000
+add s4, r0, r0 //s4 = 0
+
+
+Controller 3 Jump Op
+
+We can generate an arbitrary jump to any address within RDRAM by pressing the following buttons:
+
+//This sets J op
+0800 = D-Up button 
+
+//Combinations of these sets J range between 0x00_0000 and 0x7C_0000
+0010 = R Button
+0008 = C-Up
+0004 = C-Down
+0002 = C-Left
+0001 = C-Right
+
+//Joystick input adds between 0000000 and 03FFFC to J
+//with an adapter, any value is possible, but physically there's an approx. limitation of +- 81 units
+02: s8 = X axis, right is positive, left is negative
+03: s8 = Y axis, up is positive, down is negative
+
+
+However, the delay slot is InputLast. If we hold Controller 3 input, the following are generated:
+
+Input   J       Delay Slot Op
+0800    000000  sll at, r0, 0 
+0801    040000  (Special)   //undefined
+0802    080000  srl at, r0, 0
+0803    0C0000  sra at, r0, 0
+0804    100000  sllv at, r0, r0
+0805    140000  (Special)   //undefined
+0806    180000  srlv at, r0, r0
+0807    1C0000  srav at, r0, r0
+0808    200000  jr r0       //crash due to jump in delay slot
+0809    240000  jalr at, r0 //crash due to jump in delay slot
+080A    280000  (Special)   //undefined
+080B    2C0000  (Special)   //undefined
+080C    300000  SYSCALL     //not sure what this does
+080D    340000  BREAK       //makes no sense in a delay slot, might have undefined behavior?
+080E    380000  (Special)   //undefined
+080F    3C0000  SYNC        //not sure what this does
+0810    400000  mfhi at    
+0811    440000  mthi r0
+0812    480000  mflo at
+0813    4C0000  mtlo r0
+0814    500000  dsllv at, r0, r0
+0815    540000  (Special)   //undefined
+0816    580000  dsrlv at, r0, r0
+0817    5C0000  dsrav at, r0, r0
+0818    600000  mult r0, r0
+0819    640000  multu r0, r0
+081A    680000  div r0, r0 
+081B    6C0000  divu r0, r0
+081C    700000  dmult r0, r0
+081D    740000  dmultu r0, r0
+081E    780000  ddiv r0, r0
+081F    7C0000  ddivu r0, r0
+
+
+Filename 
+8011A5F4

@@ -1,0 +1,11 @@
+
+
+800897A8 //divide s64 (integer division)
+//a0,a1 = left operand
+//a2,a3 = right operand
+//v0,v1 = result
+
+800898A8 //multiply s64
+//a0,a1 = left operand
+//a2,a3 = right operand
+//v0,v1 = result

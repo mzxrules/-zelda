@@ -107,3 +107,93 @@ ACTIVATION_TO_PLAYBACK_NOTE = {
 	
 0x00 u8   //playback note
 0x02 u16? //duration 
+
+struct mem_0B39F4_a0
+{
+    void* start;
+    void* next; //next free space
+    int size; //total free space
+    int alloc_count;
+}
+
+struct mem_0B3A1C_a0
+{
+    s32 unk_0x00;
+    mem_0B39F4_a0 data;
+} /* est. size 0x110, 0xE4 confirmed */
+
+struct mem_0B3A30_a0
+{
+    s32 unk_0x00;
+    mem_0B39F4_a0   data_0x04;          /* 0x04 - 0x14 */
+    void*           primary_seq_ptr;    /* 0x14 */
+    s32             primary_seq_size;   /* 0x18 */
+    s16             primary_seq_id;     /* 0x1E */
+    void*           secondary_seq_ptr;  /* 0x20 */
+    s32             secondary_seq_size; /* 0x24 */
+    s16             secondary_seq_id;   /* 0x2A */
+} /* 0x2C? */
+
+struct struct_128A38
+{
+    int audio_seq_free_size; //?
+    int unk;
+    int unk;
+    int audio_bank_free_size; //?
+}
+
+
+
+80125630 //audio context? DOG BED
+0x0002 u16
+0x2620 s32 unk
+0x284A u16 unk
+0x284E s16 //size of x, 0x10 aligned?
+0x2850 s16 
+0x2852 s16
+0x2854 s16 //((audio_ctx->0x284E + 0x10) / 0xD0) + 1
+0x2856 s16
+0x285C s16 //max 4?
+0x2864 f32 //?
+0x2868 f32 //?
+0x286C f32 //?
+0x2874 s32
+0x2878 s32
+0x2894 s32
+0x2960 f32 //affected by osTvType
+0x2964 s32 unk
+0x2990  80127FC0 mem_0B39F4_a0 //manages audio seq/audio bank alloc
+0x29A0  80127FD0 mem_0B39F4_a0 //?
+        80127FE0 mem_0B39F4_a0 //0xE0E0 bytes
+0x29C0  80127FF0 mem_0B39F4_a0
+0x2A00  80128030 mem_0B39F4_a0 //manages 80128054 //fanfares
+0x2A10  80128040 mem_0B39F4_a0 //manages 80128128
+        80128050 mem_0B3A1C_a0 //800B3EA0 arg a0 = 0
+        80128054  mem_0B39F4_a0 //fanfare audioseq (sequence 1)
+        80128124  mem_0B3A30_a0 //primary bgm (sequence 0)
+        80128128   mem_0B39F4_a0 //primary audioseq (sequence 0)
+        80128160 mem_0B3A1C_a0 //800B3EA0 arg a0 = 1
+        80128164  mem_0B39F4_a0 //fanfare audiobank, 80128030 (0xE00)
+        80128238  mem_0B39F4_a0 //?, related to 80128040 (0x2880)
+        80128270 mem_0B3A1C_a0 //800B3EA0 arg a0 = 2
+        80128274  mem_0B39F4_a0 //fanfare ?, 80128030 (0x000)
+        80128348  mem_0B39F4_a0 //?, related to 80128040 (0x000)
+0x3408  80128A38 struct_128A38
+0x3418  80128A48 8 byte struct
+            s32 size of ?
+            s32
+0x3420  80128A50 //something secondary bgm or fanfare? related (800B3D18)
+    0x3420 s32
+    0x3424 s32
+    0x3428 s32
+        80128A5C //800B3DDC
+    0x342C s32
+    0x3430 s32
+    0x3434 s32
+0x3519  80128B49 u8 index to struct_104778 table
+0x3524  80128B54
+        0x00 void*  free_start
+        0x04 s32    free_size //0x37F00
+0x3530  80128B60 //sequence_playback_t[4?] //size 0x160
+    0x18 void* //bg sequence ptr?
+    0x78 void* //bg sequence cur ptr

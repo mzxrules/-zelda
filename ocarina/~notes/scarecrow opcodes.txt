@@ -1,0 +1,142 @@
+Addresses for V1.0U
+
+This array starts at 8011B511 (the 01 at 8011B500 is something else) for the copy in the save file, or 80102B80 for the copy being written as you play
+struct event{
+    u8 note_number; //FF rest, 01-0F C# through high Eb, 07 is not possible
+    u8 zero; //Uninitialized by the song writing process
+    u8 timestamp_hi;
+    u8 timestamp_lo; //Multiple of 3
+    u8 unknown_57;
+    u8 vibrato; //00-0F
+    s8 pitch_bend; //C4-3C
+    u8 flags; //C0 for rest, 40 for flat, 80 for sharp, C0 for both sharp and flat, 00 normal
+} //size 0x08
+
+When using the array starting at 8011B511, the instructions are generated like so:
+
+Instruction word 1: //Used to create a "useless" nop
+[00,40,80,C0] <- slur all notes to make always 0
+[FF-0F except 00 or 07] <- doesn't matter
+[00]
+[00-FF] <- Timestamp hi
+
+Instruction word 2:
+[00-FF] <- Timestamp lo
+[57]
+[00-0F]
+[C4-3C]
+Timestamp must be a multiple of 3, so wait 1x256 VIs or 2x256 VIs to get timestamp lo to arbitrary values. However, instruction word 1 can't be 00NN0001 as this is an illegal instruction. So in this case, wait another 3x256 to create 00NN0004, which is SLLV.
+
+
+SRAM
+
+legend:
+  imm:  16-bit immediate
+        hi byte range 0x00..0x0F
+        lo byte range 0x00..0x3C, 0xC4..0xFF
+  rs:   $v0, $t2, $s2, $k0
+  rd:   $zero, $at
+  psa:  multiple of 4 in range 0..31
+  nsa:  3..31
+  sa:   psa or nsa
+
+possible but not listed:
+  syscall, break, sync, cache, tge, tgeu, tlt, tltu, teq, tne
+
+0057xxx0  sll     rd, $s7, psa
+0057xxx2  srl     rd, $s7, psa
+0057xxx3  sra     rd, $s7, psa
+0057xxx4  sllv    rd, $s7, rs
+0057xxx6  srlv    rd, $s7, rs
+0057xxx7  srav    rd, $s7, rs
+0057xxx8  jr      rs
+0057xxx9  jalr    rd, rs
+0057xxx0  mfhi    rd
+0057xxx1  mthi    rs
+0057xxx2  mflo    rd
+0057xxx3  mtlo    rs
+0057xxx4  dsllv   rd, $s7, rs
+0057xxx6  dsrlv   rd, $s7, rs
+0057xxx7  dsrav   rd, $s7, rs
+0057xxx8  mult    rs, $s7
+0057xxx9  multu   rs, $s7
+0057xxxA  div     rs, $s7
+0057xxxB  divu    rs, $s7
+0057xxxC  dmult   rs, $s7
+0057xxxD  dmultu  rs, $s7
+0057xxxE  ddiv    rs, $s7
+0057xxxF  ddivu   rs, $s7
+0057xxx0  add     rd, rs, $s7
+0057xxx1  addu    rd, rs, $s7
+0057xxx2  sub     rd, rs, $s7
+0057xxx3  subu    rd, rs, $s7
+0057xxx4  and     rd, rs, $s7
+0057xxx5  or      rd, rs, $s7
+0057xxx6  xor     rd, rs, $s7
+0057xxx7  nor     rd, rs, $s7
+0057xxxA  slt     rd, rs, $s7
+0057xxxB  sltu    rd, rs, $s7
+0057xxxC  dadd    rd, rs, $s7
+0057xxxD  daddu   rd, rs, $s7
+0057xxxE  dsub    rd, rs, $s7
+0057xxxF  dsubu   rd, rs, $s7
+0057xxx8  dsll    rd, $s7, sa
+0057xxxA  dsrl    rd, $s7, sa
+0057xxxB  dsra    rd, $s7, sa
+0057xxxC  dsll32  rd, $s7, sa
+0057xxxE  dsrl32  rd, $s7, nsa
+0057xxxF  dsra32  rd, $s7, nsa
+0857xxxx  j       0x815C0000 + 4 * imm
+0957xxxx  j       0x855C0000 + 4 * imm
+0A57xxxx  j       0x895C0000 + 4 * imm
+0B57xxxx  j       0x8D5C0000 + 4 * imm
+0C57xxxx  jal     0x815C0000 + 4 * imm
+0D57xxxx  jal     0x855C0000 + 4 * imm
+0E57xxxx  jal     0x895C0000 + 4 * imm
+0F57xxxx  jal     0x8D5C0000 + 4 * imm
+1x57xxxx  beq     rs, $s7, imm
+1x57xxxx  bne     rs, $s7, imm
+1x57xxxx  blez    rs, imm
+1x57xxxx  bgtz    rs, imm
+2x57xxxx  addi    $s7, rs, imm
+2x57xxxx  addiu   $s7, rs, imm
+2x57xxxx  slti    $s7, rs, imm
+2x57xxxx  sltiu   $s7, rs, imm
+3x57xxxx  andi    $s7, rs, imm
+3x57xxxx  ori     $s7, rs, imm
+3x57xxxx  xori    $s7, rs, imm
+3x57xxxx  lui     $s7, imm
+44570xxx  cfc1    $s7, $fcr0
+5x57xxxx  beql    rs, $s7, imm
+5x57xxxx  bnel    rs, $s7, imm
+5x57xxxx  blezl   rs, imm
+5x57xxxx  bgtzl   rs, imm
+6x57xxxx  daddi   $s7, rs, imm
+6x57xxxx  daddiu  $s7, rs, imm
+6x57xxxx  ldl     $s7, imm(rs)
+6x57xxxx  ldr     $s7, imm(rs)
+8x57xxxx  lb      $s7, imm(rs)
+8x57xxxx  lh      $s7, imm(rs)
+8x57xxxx  lwl     $s7, imm(rs)
+8x57xxxx  lw      $s7, imm(rs)
+9x57xxxx  lbu     $s7, imm(rs)
+9x57xxxx  lhu     $s7, imm(rs)
+9x57xxxx  lwr     $s7, imm(rs)
+9x57xxxx  lwu     $s7, imm(rs)
+Ax57xxxx  sb      $s7, imm(rs)
+Ax57xxxx  sh      $s7, imm(rs)
+A857xxxx  swl     $s7, imm(rs)
+AC57xxxx  sw      $s7, imm(rs)
+B057xxxx  sdl     $s7, imm(rs)
+B457xxxx  sdr     $s7, imm(rs)
+B857xxxx  swr     $s7, imm(rs)
+C057xxxx  ll      $s7, imm(rs)
+C457xxxx  lwc1    $f23, imm(rs)
+D057xxxx  lld     $s7, imm(rs)
+D457xxxx  ldc1    $f23, imm(rs)
+DC57xxxx  ld      $s7, imm(rs)
+E057xxxx  sc      $s7, imm(rs)
+E457xxxx  swc1    $f23, imm(rs)
+F057xxxx  scd     $s7, imm(rs)
+F457xxxx  sdc1    $f23, imm(rs)
+FC57xxxx  sd      $s7, imm(rs)

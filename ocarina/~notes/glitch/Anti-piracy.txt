@@ -1,0 +1,8 @@
+OoT anti-piracy
+
+
+80001570: //initializes 800088A0/800088A4 to two "arbitrary" values
+//copy int32_t at A02FB1F4 to 800088A0
+//copy int32_t at A02FE1C0 to 800088A4
+
+800088A0 //If not assigned to AD09 0010, fishing will no longer function correctly

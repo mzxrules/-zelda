@@ -60,9 +60,11 @@ Common CollisionBodyInfo: 0x28 bytes
 0x00 s32 //Toucher Attack Identifier Flags
 0x04 u8
 0x05 u8 //damage dealt when touched/stun timer
+//
 0x08 s32 //Bumper Exclusion Mask
 0x0C u8 //Effect when collided into
 0x0D u8 //
+//
 0x14 u8 //flags?
 0x15 u8 //Toucher flags?
 0x16 u8 //Bumper flags?

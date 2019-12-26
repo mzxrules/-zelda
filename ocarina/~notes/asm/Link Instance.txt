@@ -26,28 +26,30 @@ Link Instance
 0x0158 ptr //pointer to segment offset to display list, related to held item
 0x015C ptr //pointer to segment offset to display list, related to held item
 0x01A0 ptr //points to Title Card/Get Item Object File allocated space
+
 0x01A4 ? //struct? 0x40 bytes,
 {
 0x01A4 u8 // 0x16, related to animation buffer at 0x1F0, as game loads (6 * this)+2 bytes into 0x1F0
 0x01A6 u8 //?
 0x01A8 s32 unk_4  
-0x01AC s32 unk_8  // animation index?
+0x01AC s32 unk_8  // gameplay_keep animation segment offset
 0x01B0 s32 unk_c 
 0x01B4 f32 unk_10
 0x01B8 f32 unk_14
-0x01BC f32 unk_18 // counter of some kind?
+0x01BC f32 unk_18 // Dynamic Animation Index?
 0x01C0 f32 unk_1c
 0x01C4 vector3_s16* //? points to Instance + 0x1F0
 0x01C8 ptr unk_24
 0x01CC s32 unk_28
 0x01D0 s32 unk_2c
-0x01D4 function ptr //points to ?   ptr unk_30
+0x01D4 function ptr unk_30 //computes animation cycle/fetches animation
 0x01D8 ?
 0x01D9 u8 //?
 0x01DA s16 old_rotation_36
 0x01DC vector3_s16* old_xyz_38
    s16*3 next_xyz_3e // xyz of next frame of the animation
 }
+
 0x01F0 byte[0x86] //Current Link animation raw data
 0x0280 ?, //current Link animation raw data 2 (possibly the sword?)
 0x039C Actor Instance ptr, held Actor //Hookshot for e.g.
@@ -148,6 +150,7 @@ Link Instance
 0x06B4 f32 ? //probably height related?
 0x06C0 void* //Link's Current Animation Segment Address
 0x081C ptr //Function pointer to ?
+0x0827 u8?
 0x0828 float //linear velocity on XZ plane, related to below
 0x082C s16 //Movement angle on XZ plane, Sets Y Rotation to Link's XZ speed variable (instance + 0x68)
 0x082E s16 //Z-Target angle
@@ -169,7 +172,7 @@ Link Instance
 0x0874 f32 //distance to ledge
 0x0878 f32 //distance to wall
 0x087E byte
-0x0880 s8 ?
+0x0880 s8 ?, decremented every frame that it's not 0?
 0x0884 s16 //fall start height
 0x0886 s16 //fall distance
 0x0891 u8

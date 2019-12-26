@@ -266,6 +266,8 @@ F300 jal 800347C8 //sidewall collision detection? //GLITCH START
 //A0 = Link
 //A1 = Global Context
 
+8083EE6C (T:8039780C) // Player State, Z + BackRight/BackLeft, Decelerate while Z-Targeted
+
 80845CB0 (T:8039E650) //Background Collision Detection
 E684 //branch E6A8 if instance +0x670 &>> 0x0004 0000 (Is Crawling) is not set
 E688 
@@ -401,6 +403,11 @@ C350 //sw 0x0060 in Link Instance + 0x670
 8038FAE0 //Link, unknown, seems to run every frame
 //Contains a number of interesting checks
 
+
+808363BC -> 8038ED5C //set knockback invincibility 
+//a0 = link instance
+//if invincibility is < 0, do nothing
+//else f
 
 
 8039542C //not function, Link actor, weird subroutine
